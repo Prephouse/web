@@ -1,4 +1,4 @@
-# Prephouse Front-end
+# Prephouse Frontend
 
 ## Development Setup
 1. Run `brew install yarn` to install the yarn dependency manager
