@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+# Prephouse Front-end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Development Setup
+1. Run `brew install yarn` to install the yarn dependency manager
+2. Open a tab, in the root directory of this project, on your command line interface (CLI)
+3. Run `yarn install` on your CLI to install the [project dependencies](package.json)
+4. Complete the development setup process for the other subsystems
 
-## Available Scripts
+## Local Website Startup
+1. Run `yarn start` on your CLI
+2. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
 
-In the project directory, you can run:
+## Compatibility
+Prephouse supports the following browsers
 
-### `yarn start`
+- Chrome 80+
+- Edge 80+
+- Firefox 74+
+- Opera 67+
+- Safari 13.1+
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Code Style
+We're utilizing [Prettier](https://prettier.io/) to enforce certain [styling rules](.pretterric.json). It will auto-format your code whenever you save that code.
