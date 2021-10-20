@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "formulahendry.auto-rename-tag",
+        "dbaeumer.vscode-eslint",
+        "ms-vsliveshare.vsliveshare",
+        "esbenp.prettier-vscode",
+        "coenraads.bracket-pair-colorizer",
+        "dsznajder.es7-react-js-snippets"
+    ]
+}

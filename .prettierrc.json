@@ -1,0 +1,14 @@
+{
+    "parser": "typescript",
+    "printWidth": 120,
+    "proseWrap": "always",
+    "arrowParens": "avoid",
+    "overrides": [
+        {
+            "files": "*.md",
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
+}
