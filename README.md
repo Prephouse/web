@@ -31,8 +31,14 @@ The following development tools are recommended for this project:
   [Firefox](https://addons.mozilla.org/en-CA/firefox/addon/reduxdevtools/)
 
 ## Code Style
-We're utilizing [Prettier](https://prettier.io/) to enforce certain [styling rules](.prettierrc.json). If you use VSCode,
-your code will be auto-formatted whenever you save it.
+We're utilizing [Prettier](https://prettier.io/) to enforce certain [styling rules](.prettierrc). If you use VSCode,
+your code will be auto-formatted whenever you save it. If you use Webstorm, go to Languages & Frameworks > JavaScript >
+Prettier in the IDE preferences, and then check "On 'Reformat code' action" and "On save".
+
+A git pre-commit hook has been set up with [Husky](https://typicode.github.io/husky/#/) to enforce
+these styling rules. When you attempt to make a commit that includes changes that do not satisfy the
+rules, the hook will automatically try to refactor your code and add the refactored code to your commit;
+otherwise, the hook will reject your commit, and you will need to manually refactor your code.
 
 ## Internalization
 In order to keep our user-facing strings in one place for easy search and modification,
