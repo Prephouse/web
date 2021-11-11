@@ -1,13 +1,13 @@
 import React from 'react';
 import Flex from './Flex';
 
-interface CenteredDivProps {
+interface Props {
   style?: React.CSSProperties;
   children?: React.ReactNode;
   [x: string]: any;
 }
 
-const CenteredDiv = ({ style, children, ...otherProps }: CenteredDivProps) => {
+const CenteredDiv = ({ style, children, ...otherProps }: Props) => {
   return (
     <Flex style={{ justifyContent: 'center', alignItems: 'center', ...style }} {...otherProps}>
       {children}

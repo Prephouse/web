@@ -13,7 +13,7 @@ interface Props extends OutlinedInputProps {
   children?: React.ReactNode;
 }
 
-const FcInput = ({
+const FormInput = ({
   name,
   label,
   value,
@@ -47,4 +47,4 @@ const FcInput = ({
   );
 };
 
-export default FcInput;
+export default FormInput;

@@ -6,7 +6,7 @@ interface Props {
   msg?: string;
 }
 
-const FcErrorMessage = ({ id, msg }: Props) => (
+const FormErrorMessage = ({ id, msg }: Props) => (
   <FormHelperText
     sx={{
       display: 'flex',
@@ -24,4 +24,4 @@ const FcErrorMessage = ({ id, msg }: Props) => (
   </FormHelperText>
 );
 
-export default FcErrorMessage;
+export default FormErrorMessage;

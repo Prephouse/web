@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { Button, Card, CardContent, Divider, styled, SvgIconTypeMap, Typography } from '@mui/material';
 
-interface FcHorizontalCardProps {
+interface Props {
   img?: React.ReactNode;
   header?: React.ReactNode;
   body?: React.ReactNode;
@@ -45,7 +45,7 @@ const BWrapper = styled('div')(() => ({
   bottom: 0,
 }));
 
-const HorizontalCard = ({ img, header, body, bodyComponent = 'p', extra, actions, style }: FcHorizontalCardProps) => {
+const HorizontalCard = ({ img, header, body, bodyComponent = 'p', extra, actions, style }: Props) => {
   const intl = useIntl();
 
   return (

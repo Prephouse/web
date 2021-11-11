@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, CircularProgress } from '@mui/material';
 
-interface FormButtonsProps {
+interface Props {
   primaryText: string;
   onPrimaryClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   secondaryText?: string;
@@ -19,7 +19,7 @@ const FormButtons = ({
   secondaryColor = 'secondary',
   isLoading = false,
   loadingText,
-}: FormButtonsProps) => {
+}: Props) => {
   return (
     <Box>
       <Button

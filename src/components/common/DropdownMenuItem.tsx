@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 
-interface DropdownMenuItemProps {
+interface Props {
   primary: React.ReactNode;
   icon?: React.ReactNode;
   selected?: boolean;
@@ -10,7 +10,7 @@ interface DropdownMenuItemProps {
   [x: string]: any;
 }
 
-class DropdownMenuItem extends PureComponent<DropdownMenuItemProps> {
+class DropdownMenuItem extends PureComponent<Props> {
   render() {
     const { primary, icon, selected = false, onClick, children, ...otherProps } = this.props;
     return (
