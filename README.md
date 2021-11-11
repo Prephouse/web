@@ -4,7 +4,6 @@
 1. Run `brew install yarn` to install the yarn dependency manager
 2. Open a tab, in the root directory of this project, on your command line interface (CLI)
 3. Run `yarn install` on your CLI to install the [project dependencies](package.json)
-4. Complete the development setup process for the other subsystems
 
 ## Local Website Startup
 1. Run `yarn start` on your CLI
