@@ -11,13 +11,9 @@ const NavigationDropdown = () => {
   const handleOpenMenu = (event: any) => setAnchorElMenu(event.currentTarget);
   const handleCloseMenu = () => setAnchorElMenu(null);
 
-  const [selectedNameMenu, setSelectedMenuName] = useState<string>('default');
+  const [, setSelectedMenuName] = useState<string>('default');
   const handleSwitchMenu = (newMenuName: string) => setSelectedMenuName(newMenuName);
   const handleMenuBack = () => handleSwitchMenu('default');
-  const handleMenuBackAndQuit = () => {
-    handleMenuBack();
-    handleCloseMenu();
-  };
 
   const ScaledAvatar = (
     <Avatar
