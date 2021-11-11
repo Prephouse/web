@@ -1,24 +1,24 @@
-import { BaseFormValidation } from "../../common/base-form-helper";
+import { BaseFormValidation } from '../../common/base-form-helper';
 import {
   validateEmailAddressFormat,
   validatePasswordMinimumLength,
   validatePasswordUppercase,
   validatePasswordNumericality,
-} from "../../../utils/validators";
+} from '../../../utils/validators';
 
 export function retrievePasswordRequirements(password: string) {
   return Object.freeze([
     {
       passed: validatePasswordMinimumLength(password),
-      failTextId: "user.registration.password.length",
+      failTextId: 'user.registration.password.length',
     },
     {
       passed: validatePasswordUppercase(password),
-      failTextId: "user.registration.password.oneUpper",
+      failTextId: 'user.registration.password.oneUpper',
     },
     {
       passed: validatePasswordNumericality(password),
-      failTextId: "user.registration.password.oneNumber",
+      failTextId: 'user.registration.password.oneNumber',
     },
     // { passed: /^(?:(.)(?!\1{3}))*$/.test(password), failTextId: "user.registration.form.msg.password.requirement.consecutive"},
   ]);
@@ -33,16 +33,16 @@ export interface RegistrationFormValues {
 }
 
 export const initialValues: RegistrationFormValues = {
-  email: "",
-  password: "",
-  passwordConfirmation: "",
-  firstName: "",
-  lastName: ""
+  email: '',
+  password: '',
+  passwordConfirmation: '',
+  firstName: '',
+  lastName: '',
 };
 
 export class RegistrationFormValidation extends BaseFormValidation<RegistrationFormValues> {
-  readonly #emailFormatErrorMsg: string = "";
-  readonly #passwordMatchErrorMsg: string = "";
+  readonly #emailFormatErrorMsg: string = '';
+  readonly #passwordMatchErrorMsg: string = '';
   readonly #onPasswordRequirementFailed: (x: string, errors: any) => typeof errors = () => {};
 
   constructor(
@@ -93,7 +93,7 @@ export class RegistrationFormValidation extends BaseFormValidation<RegistrationF
   }
 
   private _validatePersonal() {
-    ["firstName", "lastName"].forEach(v => this.onlyCheckRequiredFilled(v));
+    ['firstName', 'lastName'].forEach(v => this.onlyCheckRequiredFilled(v));
   }
 
   validate = () => {

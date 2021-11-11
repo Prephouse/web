@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Avatar, Button, createTheme, IconButton, Typography } from "@mui/material";
-import { NAVIGATION_HOVER_GREY } from "../../styles/colours";
-import DropdownMenu from "../common/DropdownMenu";
-import ProfileMenu from "./ProfileMenu";
+import { useState } from 'react';
+import { Avatar, Button, createTheme, IconButton, Typography } from '@mui/material';
+import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
+import DropdownMenu from '../common/DropdownMenu';
+import ProfileMenu from './ProfileMenu';
 
 const NavigationDropdown = () => {
   const theme = createTheme();
@@ -11,9 +11,9 @@ const NavigationDropdown = () => {
   const handleOpenMenu = (event: any) => setAnchorElMenu(event.currentTarget);
   const handleCloseMenu = () => setAnchorElMenu(null);
 
-  const [selectedNameMenu, setSelectedMenuName] = useState<string>("default");
+  const [selectedNameMenu, setSelectedMenuName] = useState<string>('default');
   const handleSwitchMenu = (newMenuName: string) => setSelectedMenuName(newMenuName);
-  const handleMenuBack = () => handleSwitchMenu("default");
+  const handleMenuBack = () => handleSwitchMenu('default');
   const handleMenuBackAndQuit = () => {
     handleMenuBack();
     handleCloseMenu();
@@ -34,35 +34,37 @@ const NavigationDropdown = () => {
       <Button
         sx={{
           borderRadius: theme.spacing(3),
-          textTransform: "none",
-          textDecoration: "none",
+          textTransform: 'none',
+          textDecoration: 'none',
           color: theme.palette.common.white,
-          display: "none",
-            "&:hover": {
+          display: 'none',
+          '&:hover': {
             backgroundColor: NAVIGATION_HOVER_GREY,
           },
-          [theme.breakpoints.up("md")]: {
-            display: "flex"
-          }
+          [theme.breakpoints.up('md')]: {
+            display: 'flex',
+          },
         }}
         startIcon={ScaledAvatar}
         onClick={handleOpenMenu}
         aria-haspopup="true"
       >
-        <Typography sx={{
-          whiteSpace: "nowrap",
-          textOverflow: "ellipsis"
-        }}>
+        <Typography
+          sx={{
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+          }}
+        >
           Chandler Lei
         </Typography>
       </Button>
       <IconButton
         sx={{
           color: theme.palette.common.white,
-          display: "none",
-          "&:hover": {
+          display: 'none',
+          '&:hover': {
             backgroundColor: NAVIGATION_HOVER_GREY,
-          }
+          },
         }}
         onClick={handleOpenMenu}
         aria-haspopup="true"
@@ -76,10 +78,7 @@ const NavigationDropdown = () => {
         anchorEl={anchorElMenu}
         onClose={handleCloseMenu}
       >
-       <ProfileMenu
-          onSwitchMenu={handleSwitchMenu}
-          onMenuBack={handleMenuBack}
-        />
+        <ProfileMenu onSwitchMenu={handleSwitchMenu} onMenuBack={handleMenuBack} />
       </DropdownMenu>
     </nav>
   );

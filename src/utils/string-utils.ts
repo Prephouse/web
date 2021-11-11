@@ -8,7 +8,7 @@ export const findClosestPathname = function findClosestPathname(
 ) {
   let res: string | null = null;
   for (const pathname of Object.values(pathnames)) {
-    if (pathname !== "/" && hasSimilarPathname(pathname, window.location.pathname)) {
+    if (pathname !== '/' && hasSimilarPathname(pathname, window.location.pathname)) {
       res = pathname;
       break;
     }

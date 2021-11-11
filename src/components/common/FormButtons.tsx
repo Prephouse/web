@@ -1,5 +1,5 @@
-import React from "react";
-import { Box, Button, CircularProgress } from "@mui/material";
+import React from 'react';
+import { Box, Button, CircularProgress } from '@mui/material';
 
 interface FormButtonsProps {
   primaryText: string;
@@ -8,17 +8,17 @@ interface FormButtonsProps {
   onSecondaryClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isLoading?: boolean;
   loadingText?: string;
-  secondaryColor?: "error" | "inherit" | "primary" | "secondary" | "success" | "info" | "warning" | undefined;
+  secondaryColor?: 'error' | 'inherit' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | undefined;
 }
 
 const FormButtons = ({
- primaryText,
- onPrimaryClick,
- secondaryText,
- onSecondaryClick,
- secondaryColor = "secondary",
- isLoading = false,
- loadingText,
+  primaryText,
+  onPrimaryClick,
+  secondaryText,
+  onSecondaryClick,
+  secondaryColor = 'secondary',
+  isLoading = false,
+  loadingText,
 }: FormButtonsProps) => {
   return (
     <Box>
@@ -40,7 +40,7 @@ const FormButtons = ({
           primaryText
         )}
       </Button>
-      {secondaryText &&
+      {secondaryText && (
         <Button
           variant="contained"
           color={secondaryColor}
@@ -50,7 +50,7 @@ const FormButtons = ({
         >
           {secondaryText}
         </Button>
-      }
+      )}
     </Box>
   );
 };

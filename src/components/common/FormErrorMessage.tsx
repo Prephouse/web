@@ -1,4 +1,4 @@
-import { FormHelperText } from "@mui/material";
+import { FormHelperText } from '@mui/material';
 import ErrorIcon from '@mui/icons-material/Error';
 
 interface Props {
@@ -9,16 +9,17 @@ interface Props {
 const FcErrorMessage = ({ id, msg }: Props) => (
   <FormHelperText
     sx={{
-      display: "flex",
-      alignItems: "center",
+      display: 'flex',
+      alignItems: 'center',
       color: theme => theme.palette.error.dark,
-      textAlign: "left",
+      textAlign: 'left',
       fontWeight: theme => theme.typography.fontWeightBold,
-      fontSize: "small",
+      fontSize: 'small',
     }}
     role="alert"
-    id={id}>
-    <ErrorIcon sx={{ marginRight: theme => theme.spacing(1)} } fontSize="small" />
+    id={id}
+  >
+    <ErrorIcon sx={{ marginRight: theme => theme.spacing(1) }} fontSize="small" />
     {msg}
   </FormHelperText>
 );

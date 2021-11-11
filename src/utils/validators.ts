@@ -1,4 +1,4 @@
-import emailValidator from "email-validator";
+import emailValidator from 'email-validator';
 
 export const validateEmailAddressFormat = (email: string) => emailValidator.validate(email);
 

@@ -1,6 +1,6 @@
-import { useIntl } from "react-intl";
-import { Helmet } from "react-helmet";
-import PageContainer from "../common/PageContainer";
+import { useIntl } from 'react-intl';
+import { Helmet } from 'react-helmet';
+import PageContainer from '../common/PageContainer';
 
 const Dashboard = () => {
   const intl = useIntl();
@@ -8,13 +8,11 @@ const Dashboard = () => {
   return (
     <>
       <Helmet>
-        <title>{intl.formatMessage({ id: "dashboard.title" })}</title>
+        <title>{intl.formatMessage({ id: 'dashboard.title' })}</title>
       </Helmet>
-      <PageContainer>
-
-      </PageContainer>
+      <PageContainer></PageContainer>
     </>
-  )
+  );
 };
 
 export default Dashboard;

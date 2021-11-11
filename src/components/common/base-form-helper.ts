@@ -1,4 +1,4 @@
-import { FormikErrors } from "formik";
+import { FormikErrors } from 'formik';
 
 export abstract class BaseFormValidation<T> {
   protected errors: FormikErrors<T> = {};

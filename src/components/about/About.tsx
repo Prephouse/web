@@ -1,6 +1,6 @@
-import { Helmet } from "react-helmet";
-import PageContainer from "../common/PageContainer";
-import TeamPanel from "./TeamPanel";
+import { Helmet } from 'react-helmet';
+import PageContainer from '../common/PageContainer';
+import TeamPanel from './TeamPanel';
 
 const Mission = () => {
   return (

@@ -1,6 +1,6 @@
-import React from "react";
-import { FormControl, FormHelperText, InputLabel, OutlinedInput, OutlinedInputProps } from "@mui/material";
-import FormErrorMessage from "./FormErrorMessage";
+import React from 'react';
+import { FormControl, FormHelperText, InputLabel, OutlinedInput, OutlinedInputProps } from '@mui/material';
+import FormErrorMessage from './FormErrorMessage';
 
 interface Props extends OutlinedInputProps {
   name: string;
@@ -14,25 +14,25 @@ interface Props extends OutlinedInputProps {
 }
 
 const FcInput = ({
-   name,
-   label,
-   value,
-   onChange,
-   type,
-   errorMsg = "",
-   helperText = "",
-   children,
-   ...otherProps
- }: Props) => {
+  name,
+  label,
+  value,
+  onChange,
+  type,
+  errorMsg = '',
+  helperText = '',
+  children,
+  ...otherProps
+}: Props) => {
   return (
-    <FormControl variant="outlined" style={{ width: "100%" }}>
+    <FormControl variant="outlined" style={{ width: '100%' }}>
       <InputLabel htmlFor={label}>{label}</InputLabel>
       <OutlinedInput
         id={label}
         name={name}
         type={type}
         label={label}
-        value={value || ""}
+        value={value || ''}
         error={errorMsg.length > 0}
         onChange={onChange}
         fullWidth

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface Props {
   id?: string;
@@ -9,12 +9,12 @@ interface Props {
 
 const IconicText = ({ id, text, icon, style }: Props) => {
   return (
-    <div id={id} style={{ display: "flex", alignItems: "center", ...style }}>
+    <div id={id} style={{ display: 'flex', alignItems: 'center', ...style }}>
       <span
         id={`${id}--icon`}
         style={{
-          display: "flex",
-          alignItems: "center",
+          display: 'flex',
+          alignItems: 'center',
           marginLeft: 4,
           marginRight: 4,
         }}

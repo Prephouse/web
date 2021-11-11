@@ -6,7 +6,7 @@ interface FlexProps {
 
 const Flex = ({ children, style, ...otherProps }: FlexProps) => {
   return (
-    <div style={{ display: "flex", width: "100%", ...style }} {...otherProps}>
+    <div style={{ display: 'flex', width: '100%', ...style }} {...otherProps}>
       {children}
     </div>
   );

@@ -1,15 +1,7 @@
-import React from "react";
-import { useIntl } from "react-intl";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import {
-  Button,
-  Card,
-  CardContent,
-  Divider,
-  styled,
-  SvgIconTypeMap,
-  Typography
-} from "@mui/material";
+import React from 'react';
+import { useIntl } from 'react-intl';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { Button, Card, CardContent, Divider, styled, SvgIconTypeMap, Typography } from '@mui/material';
 
 interface FcHorizontalCardProps {
   img?: React.ReactNode;
@@ -22,38 +14,38 @@ interface FcHorizontalCardProps {
 }
 
 const C = styled(Card)(({ theme }) => ({
-    padding: theme.spacing(3),
-    "@media (min-width: 769px)": {
-      display: "flex",
-    }
-}))
+  padding: theme.spacing(3),
+  '@media (min-width: 769px)': {
+    display: 'flex',
+  },
+}));
 
 const ImageWrapper = styled('div')(({ theme }) => ({
-  "@media (max-width: 768px)": {
-    display: "flex",
-    justifyContent: "center",
-    width: "100%",
+  '@media (max-width: 768px)': {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
     marginBottom: theme.spacing(1),
-  }
-}))
+  },
+}));
 
 const CC = styled(CardContent)(() => ({
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
-  width: "100%",
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  width: '100%',
   paddingTop: 0,
-  "&:last-child": {
+  '&:last-child': {
     paddingBottom: 0,
-  }
-}))
+  },
+}));
 
 const BWrapper = styled('div')(() => ({
-  position: "relative",
-  bottom: 0
-}))
+  position: 'relative',
+  bottom: 0,
+}));
 
-const HorizontalCard = ({ img, header, body, bodyComponent = "p", extra, actions, style }: FcHorizontalCardProps) => {
+const HorizontalCard = ({ img, header, body, bodyComponent = 'p', extra, actions, style }: FcHorizontalCardProps) => {
   const intl = useIntl();
 
   return (
@@ -81,7 +73,7 @@ const HorizontalCard = ({ img, header, body, bodyComponent = "p", extra, actions
                       sx={{
                         marginLeft: theme => theme.spacing(1),
                         marginRight: theme => theme.spacing(1),
-                        textTransform: "none"
+                        textTransform: 'none',
                       }}
                       href={href}
                       target="_blank"

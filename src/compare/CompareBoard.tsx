@@ -1,6 +1,6 @@
-import { useIntl } from "react-intl";
-import { Helmet } from "react-helmet";
-import PageContainer from "../components/common/PageContainer";
+import { useIntl } from 'react-intl';
+import { Helmet } from 'react-helmet';
+import PageContainer from '../components/common/PageContainer';
 
 const CompareBoard = () => {
   const intl = useIntl();
@@ -8,13 +8,11 @@ const CompareBoard = () => {
   return (
     <>
       <Helmet>
-        <title>{intl.formatMessage({ id: "compare.title" })}</title>
+        <title>{intl.formatMessage({ id: 'compare.title' })}</title>
       </Helmet>
-      <PageContainer>
-
-      </PageContainer>
+      <PageContainer></PageContainer>
     </>
-  )
+  );
 };
 
 export default CompareBoard;

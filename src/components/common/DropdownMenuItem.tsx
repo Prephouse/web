@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import { ListItemIcon, ListItemText, MenuItem } from "@mui/material";
+import React, { PureComponent } from 'react';
+import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 
 interface DropdownMenuItemProps {
   primary: React.ReactNode;

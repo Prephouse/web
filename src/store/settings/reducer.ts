@@ -1,12 +1,12 @@
-import { Reducer } from "redux";
-import { SettingsReduxState, SettingsReduxAction, CHANGE_PREFERS_DARK_MODE } from "./types";
-import { PREFERS_DARK_MODE_KEY } from "../../strings/keys";
+import { Reducer } from 'redux';
+import { SettingsReduxState, SettingsReduxAction, CHANGE_PREFERS_DARK_MODE } from './types';
+import { PREFERS_DARK_MODE_KEY } from '../../strings/keys';
 
 const initializePrefersDarkMode = (): boolean => {
   if (PREFERS_DARK_MODE_KEY in localStorage) {
-    return localStorage.getItem(PREFERS_DARK_MODE_KEY) === "true";
+    return localStorage.getItem(PREFERS_DARK_MODE_KEY) === 'true';
   }
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
 };
 
 const initState: SettingsReduxState = {

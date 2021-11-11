@@ -1,7 +1,7 @@
-import React, { useState, useCallback } from "react";
-import { useIntl } from "react-intl";
-import { useDropzone } from "react-dropzone";
-import { Box, Typography } from "@mui/material";
+import React, { useState, useCallback } from 'react';
+import { useIntl } from 'react-intl';
+import { useDropzone } from 'react-dropzone';
+import { Box, Typography } from '@mui/material';
 
 const accept: string[] = [
   // TODO determine what MIME types to accept
@@ -28,15 +28,15 @@ const MediaUploadZone = () => {
     if (!video) {
       let Message: React.ReactNode;
       if (isDragActive) {
-        Message = intl.formatMessage({ id: "practice.upload.dropImage" });
+        Message = intl.formatMessage({ id: 'practice.upload.dropImage' });
       } else if (isDragReject) {
-        Message = intl.formatMessage({ id: "practice.upload.mime.error" });
+        Message = intl.formatMessage({ id: 'practice.upload.mime.error' });
       } else {
         Message = (
           <>
-            {intl.formatMessage({ id: "practice.upload.dragDropClick" })}
+            {intl.formatMessage({ id: 'practice.upload.dragDropClick' })}
             <br />
-            <em>{intl.formatMessage({ id: "practice.upload.mime.warning" })}</em>
+            <em>{intl.formatMessage({ id: 'practice.upload.mime.warning' })}</em>
           </>
         );
       }
@@ -50,9 +50,9 @@ const MediaUploadZone = () => {
   };
 
   return (
-    <Box ref={ref} width={1} p={3} border="0.5px dashed" borderRadius={6} sx={{ cursor: "pointer" }} {...rootProps}>
+    <Box ref={ref} width={1} p={3} border="0.5px dashed" borderRadius={6} sx={{ cursor: 'pointer' }} {...rootProps}>
       <Typography component="div" variant="h6" gutterBottom>
-        {intl.formatMessage({ id: "practice.upload" })}
+        {intl.formatMessage({ id: 'practice.upload' })}
       </Typography>
       <input {...getInputProps()} />
       {showUploader(isDragActive, isDragReject)}
