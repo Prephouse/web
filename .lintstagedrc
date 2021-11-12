@@ -6,5 +6,11 @@
   '**/*.+(css|scss)': [
     "stylelint **/*.css --fix",
     "prettier --write"
+  ],
+  '**/*.+(json|toml|yml|yaml)': [
+    "prettier --write"
+  ],
+  '**/src/strings/translations/*/index.json': [
+    "eslint --no-eslintrc --config .eslintrc.i18n.js --fix --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js src/strings/translations/",
   ]
 }
