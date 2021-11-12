@@ -3,10 +3,11 @@ import { useIntl } from 'react-intl';
 
 import { Box, Step, StepLabel, Stepper } from '@mui/material';
 
+import practiceSteps from '../../helpers/practice-steps';
+
 import PageContainer from '../common/PageContainer';
 import MediaUploadZone from './MediaUploadZone';
 import PracticeSettings from './PracticeSettings';
-import practiceSteps from './practiceSteps';
 
 const PracticeGround = () => {
   const intl = useIntl();

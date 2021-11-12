@@ -6,8 +6,9 @@ import LinkIcon from '@mui/icons-material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Grid, Typography } from '@mui/material';
 
+import members from '../../helpers/members';
+
 import HorizontalCard from '../common/HorizontalCard';
-import members from './members';
 
 const TeamPanel = () => {
   const intl = useIntl();

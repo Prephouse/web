@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
 
+import usePrevious from './hooks/usePrevious';
+
 import { RootState } from './store/rootReducer';
 
 import {
@@ -30,7 +32,6 @@ import Home from './components/home/Home';
 import PracticeGround from './components/practice/PracticeGround';
 import TipBook from './components/tips/TipBook';
 import RegistrationForm from './components/user/registration/RegistrationForm';
-import usePrevious from './hooks/usePrevious';
 
 const App = () => {
   const prefersDarkMode: boolean = useSelector(

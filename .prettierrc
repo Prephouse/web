@@ -6,7 +6,9 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@mui/(.*)$",
+    "^(.*)[./]hooks/(.*)",
     "^(.*)[./]store/(.*)",
+    "^(.*)[./]helpers/(.*)",
     "^(.*)[./]strings/(.*)",
     "^(.*)[./]styles/(.*)",
     "^(.*)[./]utils/(.*)",

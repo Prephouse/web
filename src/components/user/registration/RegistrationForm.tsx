@@ -5,13 +5,17 @@ import { useIntl } from 'react-intl';
 
 import { Popover, Typography } from '@mui/material';
 
+import {
+  RegistrationFormValidation,
+  initialValues,
+} from '../../../helpers/registration-form-helper';
+
 import FormButtons from '../../common/FormButtons';
 import FormGroupCompact from '../../common/FormGroupCompact';
 import FormInput from '../../common/FormInput';
 import FormPaper from '../../common/FormPaper';
 import PageContainer from '../../common/PageContainer';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator';
-import { RegistrationFormValidation, initialValues } from './registration-form-helper';
 
 const RegistrationForm = () => {
   const intl = useIntl();

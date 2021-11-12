@@ -6,6 +6,8 @@ import { Button, Typography, styled, useScrollTrigger } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
+import navigationDestinations from '../../helpers/navigation-destinations';
+
 import { HOME_PATH } from '../../strings/paths';
 
 import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
@@ -13,7 +15,6 @@ import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
 import HeavyDivider from '../common/HeavyDivider';
 import PlainRouterLink from '../common/PlainRouterLink';
 import ProfileDropdown from './ProfileDropdown';
-import navigationDestinations from './navigationDestinations';
 
 interface Props {
   children: React.ReactElement;

@@ -4,10 +4,11 @@ import zxcvbn from 'zxcvbn';
 
 import { Typography } from '@mui/material';
 
+import badPasswords from '../../../helpers/bad-passwords';
+import { retrievePasswordRequirements } from '../../../helpers/registration-form-helper';
+
 import IconicText from '../../common/IconicText';
 import SmallSuccessIndicatorIcon from '../../common/SmallSuccessIndicatorIcon';
-import badPasswords from './bad-passwords';
-import { retrievePasswordRequirements } from './registration-form-helper';
 
 interface Props {
   password: string;
