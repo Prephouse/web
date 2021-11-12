@@ -26,7 +26,9 @@ const TeamPanel = () => {
           return (
             <Grid item key={member.name}>
               <HorizontalCard
-                img={<img src={`/images/${member.img}`} alt={member.name} width={240} height={240} />}
+                img={
+                  <img src={`/images/${member.img}`} alt={member.name} width={240} height={240} />
+                }
                 header={<b>{member.name}</b>}
                 body={member.bio}
                 actions={sites}

@@ -27,7 +27,10 @@ const RegistrationForm = () => {
   const handlePasswordRequirementFailed = (errorMsgId: string, errors: any) => {
     let passwordErrorMsg = intl.formatMessage({ id: errorMsgId });
     passwordErrorMsg = passwordErrorMsg.charAt(0).toLowerCase() + passwordErrorMsg.slice(1);
-    const passwordErrors = intl.formatMessage({ id: 'user.registration.password.error' }, { passwordErrorMsg });
+    const passwordErrors = intl.formatMessage(
+      { id: 'user.registration.password.error' },
+      { passwordErrorMsg }
+    );
     return { ...errors, password: passwordErrors };
   };
 

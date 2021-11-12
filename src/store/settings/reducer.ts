@@ -13,7 +13,10 @@ const initState: SettingsReduxState = {
   prefersDarkMode: initializePrefersDarkMode(),
 };
 
-const settingsReducer: Reducer<SettingsReduxState, SettingsReduxAction> = (state = initState, action) => {
+const settingsReducer: Reducer<SettingsReduxState, SettingsReduxAction> = (
+  state = initState,
+  action
+) => {
   switch (action.type) {
     case CHANGE_PREFERS_DARK_MODE:
       return { ...state, prefersDarkMode: action.payload.prefersDarkMode };

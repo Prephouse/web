@@ -18,7 +18,8 @@ const strings = {
     'practice.title': 'Practice',
     'practice.title.expanded': 'Practice Ground',
     'practice.upload': 'Upload an existing mock interview or presentation',
-    'practice.upload.dragDropClick': 'Drag and drop a video or audio file here, or click here to select a file',
+    'practice.upload.dragDropClick':
+      'Drag and drop a video or audio file here, or click here to select a file',
     'practice.upload.dropImage': 'Drop a video or audio file file here',
     'practice.upload.mime.error': 'We cannot accept this file',
     'practice.upload.mime.warning': '...',

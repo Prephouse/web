@@ -1,4 +1,10 @@
-import { ABOUT_PATH, COMPARE_PATH, DASHBOARD_PATH, PRACTICE_PATH, TIPS_PATH } from '../../strings/paths';
+import {
+  ABOUT_PATH,
+  COMPARE_PATH,
+  DASHBOARD_PATH,
+  PRACTICE_PATH,
+  TIPS_PATH,
+} from '../../strings/paths';
 
 interface NavigationDestination {
   readonly path: string;

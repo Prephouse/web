@@ -8,7 +8,15 @@ interface Props {
   onSecondaryClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isLoading?: boolean;
   loadingText?: string;
-  secondaryColor?: 'error' | 'inherit' | 'primary' | 'secondary' | 'success' | 'info' | 'warning' | undefined;
+  secondaryColor?:
+    | 'error'
+    | 'inherit'
+    | 'primary'
+    | 'secondary'
+    | 'success'
+    | 'info'
+    | 'warning'
+    | undefined;
 }
 
 const FormButtons = ({

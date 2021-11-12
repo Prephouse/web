@@ -1,17 +1,17 @@
 @media screen and (prefers-reduced-motion: no-preference) {
-    .neon {
-        text-shadow: 0 0 2px, 0 0 1em #4444FF, 0 0 0.5em #4444FF, 0 0 0.1em #4444FF, 0 8px 4px #000;
-    }
-    .neon > span {
-        animation: blink linear infinite 3s;
-    }
-    .neon > span:first-of-type {
-        animation: blink linear infinite 5s;
-    }
-    .neon > span:nth-of-type(3n+1) {
-        animation: blink linear infinite 4s;
-    }
-    .neon > span:nth-last-of-type(even) {
-        animation: blink linear infinite 6s;
-    }
+  .neon {
+    text-shadow: 0 0 2px, 0 0 1em #4444ff, 0 0 0.5em #4444ff, 0 0 0.1em #4444ff, 0 8px 4px #000;
+  }
+  .neon > span {
+    animation: blink linear infinite 3s;
+  }
+  .neon > span:first-of-type {
+    animation: blink linear infinite 5s;
+  }
+  .neon > span:nth-of-type(3n + 1) {
+    animation: blink linear infinite 4s;
+  }
+  .neon > span:nth-last-of-type(even) {
+    animation: blink linear infinite 6s;
+  }
 }
