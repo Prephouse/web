@@ -1,12 +1,10 @@
 {
   "**/*.+(js|jsx|ts|tsx)": [
     "eslint --fix",
-    "prettier --write",
-    "git add"
+    "prettier --write"
   ],
   '**/*.+(css|scss)': [
     "stylelint **/*.css --fix",
-    "prettier --write",
-    "git add",
+    "prettier --write"
   ]
 }
