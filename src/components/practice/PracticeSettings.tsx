@@ -1,5 +1,5 @@
 import React from 'react';
-import { Medium, SessionType } from '../../utils/enums';
+
 import {
   Alert,
   Box,
@@ -10,6 +10,8 @@ import {
   Radio,
   RadioGroup,
 } from '@mui/material';
+
+import { Medium, SessionType } from '../../utils/enums';
 
 import FormButtons from '../common/FormButtons';
 
