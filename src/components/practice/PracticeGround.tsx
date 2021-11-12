@@ -4,12 +4,10 @@ import { useIntl } from 'react-intl';
 
 import { Paper, Step, StepLabel, Stepper } from '@mui/material';
 
-import { Medium } from '../../utils/enums';
-
 import practiceSteps from '../../helpers/practice-steps';
 
 import PageContainer from '../common/PageContainer';
-import MediaUploadZone from './MediaUploadZone';
+import MediaZone from './MediaZone';
 import PracticeInstructions from './PracticeInstructions';
 import PracticeSettings from './PracticeSettings';
 
@@ -23,9 +21,11 @@ const PracticeGround = () => {
       case 0:
         return <PracticeSettings onNext={() => setStep(step + 1)} />;
       case 1:
-        return <PracticeInstructions onNext={() => setStep(step + 1)} />;
+        return (
+          <PracticeInstructions onNext={() => setStep(step + 1)} onBack={() => setStep(step - 1)} />
+        );
       case 2:
-        return <MediaUploadZone medium={Medium.VIDEO_AND_AUDIO} />;
+        return <MediaZone onBack={() => setStep(step - 1)} />;
       default:
         return <></>;
     }
@@ -41,7 +41,6 @@ const PracticeGround = () => {
           elevation={3}
           sx={{
             width: '100%',
-            margin: theme => theme.spacing(3, 0),
             padding: theme => theme.spacing(3),
           }}
         >

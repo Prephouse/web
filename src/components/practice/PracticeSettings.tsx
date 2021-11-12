@@ -1,4 +1,6 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Alert,
@@ -11,7 +13,15 @@ import {
   RadioGroup,
 } from '@mui/material';
 
-import { Medium, SessionType } from '../../utils/enums';
+import {
+  setAllowLiveFeedback,
+  setPracticeMedium,
+  setPracticeSessionType,
+  setPracticeSource,
+} from '../../store/practice/actions';
+import { RootState } from '../../store/rootReducer';
+
+import { SessionMedium, SessionSource, SessionType } from '../../utils/enums';
 
 import FormButtons from '../common/FormButtons';
 
@@ -19,75 +29,165 @@ interface Props {
   onNext: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-// TODO i18n
+// TODO use Formik form and validate form submission
 const PracticeSettings = ({ onNext }: Props) => {
+  const sessionType = useSelector((state: RootState) => state.practiceReducer.sessionType);
+  const medium = useSelector((state: RootState) => state.practiceReducer.medium);
+  const source = useSelector((state: RootState) => state.practiceReducer.source);
+  const allowLiveFeedback = useSelector(
+    (state: RootState) => state.practiceReducer.allowLiveFeedback
+  );
+  const dispatch = useDispatch();
+
+  const intl = useIntl();
+
+  const getSessionTypeName = () => {
+    if (sessionType === SessionType.INTERVIEW) {
+      return intl.formatMessage({ id: 'practice.settings.type.interview2' });
+    } else if (sessionType === SessionType.PRESENTATION) {
+      return intl.formatMessage({ id: 'practice.settings.type.presentation2' });
+    } else {
+      return '';
+    }
+  };
+
   return (
     <>
-      <Box sx={{ padding: theme => theme.spacing(3) }}>
+      <Box sx={{ padding: theme => theme.spacing(2) }}>
         <FormControl component="fieldset" required>
-          <FormLabel component="legend">Type</FormLabel>
+          <FormLabel component="legend">
+            {intl.formatMessage({ id: 'practice.settings.type.title' })}
+          </FormLabel>
           <FormHelperText>
-            Choose between an interview or presentation for this session
+            {intl.formatMessage({ id: 'practice.settings.type.helper' })}
           </FormHelperText>
-          <RadioGroup row name="radio-buttons-group-type">
-            <FormControlLabel value={SessionType.INTERVIEW} control={<Radio />} label="Interview" />
+          <RadioGroup
+            row
+            name="radio-buttons-group-type"
+            value={sessionType}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              const value = (event.target as HTMLInputElement).value;
+              setPracticeSessionType(parseInt(value))(dispatch);
+            }}
+          >
+            <FormControlLabel
+              value={SessionType.INTERVIEW}
+              control={<Radio />}
+              label={intl.formatMessage({ id: 'practice.settings.type.interview' })}
+            />
             <FormControlLabel
               value={SessionType.PRESENTATION}
               control={<Radio />}
-              label="Presentation"
+              label={intl.formatMessage({ id: 'practice.settings.type.presentation' })}
             />
           </RadioGroup>
         </FormControl>
         <Alert variant="outlined" severity="info" sx={{ margin: theme => theme.spacing(1, 0) }}>
-          An interview consists of an introduction from you and multiple questions asked by our
-          system and to be answered by you.
+          {intl.formatMessage({ id: 'practice.settings.type.interview.description' })}
         </Alert>
       </Box>
-      <Box sx={{ padding: theme => theme.spacing(3) }}>
+      <Box sx={{ padding: theme => theme.spacing(2) }}>
         <FormControl component="fieldset" required>
-          <FormLabel component="legend">Medium</FormLabel>
+          <FormLabel component="legend">
+            {intl.formatMessage({ id: 'practice.settings.medium.title' })}
+          </FormLabel>
           <FormHelperText>
-            Choose whether to record and analyze both audio and video, or audio only
+            {intl.formatMessage({ id: 'practice.settings.medium.helper' })}
           </FormHelperText>
-          <RadioGroup row name="radio-buttons-group-medium">
+          <RadioGroup
+            row
+            name="radio-buttons-group-medium"
+            value={medium}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              const value = (event.target as HTMLInputElement).value;
+              setPracticeMedium(parseInt(value))(dispatch);
+            }}
+          >
             <FormControlLabel
-              value={Medium.VIDEO_AND_AUDIO}
+              value={SessionMedium.VIDEO_AND_AUDIO}
               control={<Radio />}
-              label="Video and audio"
+              label={intl.formatMessage({ id: 'practice.settings.medium.videoAudio' })}
             />
-            <FormControlLabel value={Medium.AUDIO_ONLY} control={<Radio />} label="Audio only" />
+            <FormControlLabel
+              value={SessionMedium.AUDIO_ONLY}
+              control={<Radio />}
+              label={intl.formatMessage({ id: 'practice.settings.medium.audio' })}
+            />
           </RadioGroup>
         </FormControl>
         <Alert variant="outlined" severity="info" sx={{ margin: theme => theme.spacing(1, 0) }}>
-          You will be required to show your face throughout the ______ and use your voice to conduct
-          the _____. You will receive the full set of feedback after the _____ has been completed.
+          {intl.formatMessage(
+            { id: 'practice.settings.medium.videoAudio.description' },
+            { sessionTypeName: getSessionTypeName() }
+          )}
         </Alert>
       </Box>
-      <Box sx={{ padding: theme => theme.spacing(3) }}>
+      <Box sx={{ padding: theme => theme.spacing(2) }}>
         <FormControl component="fieldset" required>
-          <FormLabel component="legend">Source</FormLabel>
+          <FormLabel component="legend">
+            {intl.formatMessage({ id: 'practice.settings.source.title' })}
+          </FormLabel>
           <FormHelperText>
-            Choose whether to record a new ______ on our website or upload an existing
-            (pre-recorded) _______{' '}
+            {intl.formatMessage(
+              { id: 'practice.settings.source.helper' },
+              { sessionTypeName: getSessionTypeName() }
+            )}
           </FormHelperText>
-          <RadioGroup row name="radio-buttons-group-medium">
-            <FormControlLabel value="video" control={<Radio />} label="Record New" />
-            <FormControlLabel value="audio" control={<Radio />} label="Upload Existing" />
+          <RadioGroup
+            row
+            name="radio-buttons-group-source"
+            value={source}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              const value = (event.target as HTMLInputElement).value;
+              setPracticeSource(parseInt(value))(dispatch);
+            }}
+          >
+            <FormControlLabel
+              value={SessionSource.RECORD}
+              control={<Radio />}
+              label={intl.formatMessage({ id: 'practice.settings.source.record' })}
+            />
+            <FormControlLabel
+              value={SessionSource.UPLOAD}
+              control={<Radio />}
+              label={intl.formatMessage({ id: 'practice.settings.source.upload' })}
+            />
           </RadioGroup>
         </FormControl>
         <Alert variant="outlined" severity="info" sx={{ margin: theme => theme.spacing(1, 0) }}>
-          You will be required to use your webcam and microphone through your browser in order to
-          record a new _______ on our website. You will receive instructions on how to perform the
-          recording before you start.
+          {intl.formatMessage(
+            { id: 'practice.settings.source.record.description' },
+            { sessionTypeName: getSessionTypeName() }
+          )}
         </Alert>
       </Box>
-      <Box sx={{ padding: theme => theme.spacing(3) }}>
+      <Box sx={{ padding: theme => theme.spacing(2) }}>
         <FormControl component="fieldset" required>
-          <FormLabel component="legend">Live Feedback</FormLabel>
-          <FormHelperText>Choose whether to receive some feedback as you go</FormHelperText>
-          <RadioGroup row name="radio-buttons-group-live">
-            <FormControlLabel value="enabled" control={<Radio />} label="Enabled" />
-            <FormControlLabel value="disabled" control={<Radio />} label="Disabled" />
+          <FormLabel component="legend">
+            {intl.formatMessage({ id: 'practice.settings.liveFeedback.title' })}
+          </FormLabel>
+          <FormHelperText>
+            {intl.formatMessage({ id: 'practice.settings.liveFeedback.helper' })}
+          </FormHelperText>
+          <RadioGroup
+            row
+            name="radio-buttons-group-live"
+            value={allowLiveFeedback}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              const value = (event.target as HTMLInputElement).value;
+              setAllowLiveFeedback(value === 'true')(dispatch);
+            }}
+          >
+            <FormControlLabel
+              value="true"
+              control={<Radio />}
+              label={intl.formatMessage({ id: 'common.enabled' })}
+            />
+            <FormControlLabel
+              value="false"
+              control={<Radio />}
+              label={intl.formatMessage({ id: 'common.disabled' })}
+            />
           </RadioGroup>
         </FormControl>
         <Alert variant="outlined" severity="info" sx={{ margin: theme => theme.spacing(1, 0) }}>

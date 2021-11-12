@@ -5,15 +5,18 @@ import FormButtons from '../common/FormButtons';
 
 interface Props {
   onNext: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onBack: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const PracticeInstructions = ({ onNext }: Props) => {
+const PracticeInstructions = ({ onNext, onBack }: Props) => {
   const intl = useIntl();
 
   return (
     <FormButtons
       primaryText={intl.formatMessage({ id: 'practice.instructions.confirm' })}
       onPrimaryClick={onNext}
+      secondaryText={intl.formatMessage({ id: 'practice.instructions.back' })}
+      onSecondaryClick={onBack}
     />
   );
 };
