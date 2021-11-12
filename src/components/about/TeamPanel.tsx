@@ -1,11 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { Grid, Typography } from '@mui/material';
-import LinkIcon from '@mui/icons-material/Link';
-import members from './members';
-import HorizontalCard from '../common/HorizontalCard';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkIcon from '@mui/icons-material/Link';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Grid, Typography } from '@mui/material';
+
+import HorizontalCard from '../common/HorizontalCard';
+import members from './members';
 
 const TeamPanel = () => {
   const intl = useIntl();

@@ -1,18 +1,20 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import clsx from 'clsx';
 import { useIntl } from 'react-intl';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
+
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import PersonIcon from '@mui/icons-material/Person';
+import { Divider, Switch } from '@mui/material';
+
 import { RootState } from '../../store/rootReducer';
 import { changePrefersDarkMode } from '../../store/settings/actions';
-import { Divider, Switch } from '@mui/material';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import PersonIcon from '@mui/icons-material/Person';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-import DropdownMenuItem from '../common/DropdownMenuItem';
-import clsx from 'clsx';
 
-import './actionbar.css';
 import { USER_REGISTRATION_PATH, USER_SIGN_IN_PATH } from '../../strings/paths';
+
+import DropdownMenuItem from '../common/DropdownMenuItem';
+import './actionbar.css';
 
 interface Props {
   onSwitchMenu: (nextMenu: any) => void;

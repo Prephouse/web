@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { useIntl } from 'react-intl';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import * as paths from '../../strings/paths';
-import { findClosestPathname } from '../../utils/string-utils';
+import { useIntl } from 'react-intl';
+import { Link as RouterLink } from 'react-router-dom';
+
 import { Link, Typography } from '@mui/material';
+
+import * as paths from '../../strings/paths';
+
+import { findClosestPathname } from '../../utils/string-utils';
+
 import PageContainer from '../common/PageContainer';
 
 const PageNotFound = () => {

@@ -2,5 +2,16 @@
   "printWidth": 100,
   "proseWrap": "always",
   "arrowParens": "avoid",
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@mui/(.*)$",
+    "^(.*)[./]store/(.*)",
+    "^(.*)[./]strings/(.*)",
+    "^(.*)[./]styles/(.*)",
+    "^(.*)[./]utils/(.*)",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

@@ -1,6 +1,8 @@
-import { useIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
+import { useIntl } from 'react-intl';
+
 import { Pagination, Typography } from '@mui/material';
+
 import PageContainer from '../common/PageContainer';
 
 const TipBook = () => {

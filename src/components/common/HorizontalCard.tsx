@@ -1,15 +1,15 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+
 import {
   Button,
   Card,
   CardContent,
   Divider,
-  styled,
   SvgIconTypeMap,
   Typography,
+  styled,
 } from '@mui/material';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 interface Props {
   img?: React.ReactNode;

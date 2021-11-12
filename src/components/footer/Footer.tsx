@@ -1,5 +1,6 @@
-import { NAVIGATION_BLACK } from '../../styles/colours';
 import { Box } from '@mui/material';
+
+import { NAVIGATION_BLACK } from '../../styles/colours';
 
 const Footer = () => (
   <Box component="footer" bgcolor={NAVIGATION_BLACK} color="primary.contrastText">

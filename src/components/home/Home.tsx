@@ -1,5 +1,7 @@
-import { Typography } from '@mui/material';
 import { Helmet } from 'react-helmet';
+
+import { Typography } from '@mui/material';
+
 import CenteredDiv from '../common/CenteredDiv';
 
 const Home = () => (

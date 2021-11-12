@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { Link as RouterLink } from 'react-router-dom';
+
+import { Button, Typography, styled, useScrollTrigger } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import { Button, styled, Typography, useScrollTrigger } from '@mui/material';
+
 import { HOME_PATH } from '../../strings/paths';
+
 import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
+
 import HeavyDivider from '../common/HeavyDivider';
 import PlainRouterLink from '../common/PlainRouterLink';
 import ProfileDropdown from './ProfileDropdown';

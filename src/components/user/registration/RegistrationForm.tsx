@@ -1,15 +1,17 @@
+import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
-import { Field, Form, Formik } from 'formik';
+
 import { Popover, Typography } from '@mui/material';
-import { initialValues, RegistrationFormValidation } from './registration-form-helper';
-import PageContainer from '../../common/PageContainer';
-import FormPaper from '../../common/FormPaper';
+
+import FormButtons from '../../common/FormButtons';
 import FormGroupCompact from '../../common/FormGroupCompact';
 import FormInput from '../../common/FormInput';
+import FormPaper from '../../common/FormPaper';
+import PageContainer from '../../common/PageContainer';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator';
-import FormButtons from '../../common/FormButtons';
+import { RegistrationFormValidation, initialValues } from './registration-form-helper';
 
 const RegistrationForm = () => {
   const intl = useIntl();
