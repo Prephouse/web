@@ -24,7 +24,7 @@ const MediaUploadZone = () => {
   });
   const { ref, ...rootProps } = getRootProps();
 
-  const showUploader = (isDragActive: boolean = false, isDragReject: boolean = false) => {
+  const showUploader = (isDragActive = false, isDragReject = false) => {
     let Zone: React.ReactNode = <> </>;
     if (!video) {
       let Message: React.ReactNode;

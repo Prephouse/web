@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material';
 import { blue, grey, red } from '@mui/material/colors';
 
-export default function generateTheme(prefersDarkMode: boolean = false) {
+export default function generateTheme(prefersDarkMode = false) {
   return createTheme({
     palette: {
       mode: prefersDarkMode ? 'dark' : 'light',
