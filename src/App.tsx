@@ -28,7 +28,9 @@ import CompareBoard from './compare/CompareBoard';
 import Dashboard from './components/dashboard/Dashboard';
 
 const App = () => {
-  const prefersDarkMode: boolean = useSelector((state: RootState) => state.settingsReducer.prefersDarkMode);
+  const prefersDarkMode: boolean = useSelector(
+    (state: RootState) => state.settingsReducer.prefersDarkMode
+  );
 
   function establishTheme() {
     let theme = generateTheme(prefersDarkMode);

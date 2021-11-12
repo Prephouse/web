@@ -50,7 +50,15 @@ const MediaUploadZone = () => {
   };
 
   return (
-    <Box ref={ref} width={1} p={3} border="0.5px dashed" borderRadius={6} sx={{ cursor: 'pointer' }} {...rootProps}>
+    <Box
+      ref={ref}
+      width={1}
+      p={3}
+      border="0.5px dashed"
+      borderRadius={6}
+      sx={{ cursor: 'pointer' }}
+      {...rootProps}
+    >
       <Typography component="div" variant="h6" gutterBottom>
         {intl.formatMessage({ id: 'practice.upload' })}
       </Typography>

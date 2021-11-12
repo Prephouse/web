@@ -33,7 +33,9 @@ const actions = Object.freeze([
 ]);
 
 const ProfileMenu = ({ onSwitchMenu, onMenuBack }: Props) => {
-  const prefersDarkMode: boolean = useSelector((state: RootState) => state.settingsReducer.prefersDarkMode);
+  const prefersDarkMode: boolean = useSelector(
+    (state: RootState) => state.settingsReducer.prefersDarkMode
+  );
   const dispatch = useDispatch();
   const intl = useIntl();
 

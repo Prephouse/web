@@ -30,7 +30,11 @@ const PageNotFound = () => {
               { id: 'app.http.404.redirect' },
               {
                 url: (
-                  <Link key={`redirect-suggestion-${closestPathname}`} component={RouterLink} to={closestPathname}>
+                  <Link
+                    key={`redirect-suggestion-${closestPathname}`}
+                    component={RouterLink}
+                    to={closestPathname}
+                  >
                     {`${window.location.protocol}//${window.location.host}${closestPathname}`}
                   </Link>
                 ),

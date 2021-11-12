@@ -49,7 +49,9 @@ const ActionBar = () => {
                 marginRight: theme => theme.spacing(2),
               }}
             >
-              <PlainRouterLink to={HOME_PATH}>{intl.formatMessage({ id: 'app.title' })}</PlainRouterLink>
+              <PlainRouterLink to={HOME_PATH}>
+                {intl.formatMessage({ id: 'app.title' })}
+              </PlainRouterLink>
             </Typography>
             <span style={{ flexGrow: 1 }} />
             <nav>

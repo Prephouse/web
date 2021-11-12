@@ -1,5 +1,11 @@
-export const hasSimilarPathname = function hasSimiliarPathnames(pathname1: string, pathname2: string) {
-  return !/^.*\/:.*$/i.test(pathname1) && (pathname2.includes(pathname1) || pathname1.includes(pathname2));
+export const hasSimilarPathname = function hasSimiliarPathnames(
+  pathname1: string,
+  pathname2: string
+) {
+  return (
+    !/^.*\/:.*$/i.test(pathname1) &&
+    (pathname2.includes(pathname1) || pathname1.includes(pathname2))
+  );
 };
 
 export const findClosestPathname = function findClosestPathname(
