@@ -1,3 +1,5 @@
+import React from 'react';
+import { Medium, SessionType } from '../../utils/enums';
 import {
   Alert,
   Box,
@@ -11,8 +13,12 @@ import {
 
 import FormButtons from '../common/FormButtons';
 
+interface Props {
+  onNext: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+}
+
 // TODO i18n
-const PracticeSettings = () => {
+const PracticeSettings = ({ onNext }: Props) => {
   return (
     <>
       <Box sx={{ padding: theme => theme.spacing(3) }}>
@@ -22,8 +28,12 @@ const PracticeSettings = () => {
             Choose between an interview or presentation for this session
           </FormHelperText>
           <RadioGroup row name="radio-buttons-group-type">
-            <FormControlLabel value="interview" control={<Radio />} label="Interview" />
-            <FormControlLabel value="presentation" control={<Radio />} label="Presentation" />
+            <FormControlLabel value={SessionType.INTERVIEW} control={<Radio />} label="Interview" />
+            <FormControlLabel
+              value={SessionType.PRESENTATION}
+              control={<Radio />}
+              label="Presentation"
+            />
           </RadioGroup>
         </FormControl>
         <Alert variant="outlined" severity="info" sx={{ margin: theme => theme.spacing(1, 0) }}>
@@ -38,8 +48,12 @@ const PracticeSettings = () => {
             Choose whether to record and analyze both audio and video, or audio only
           </FormHelperText>
           <RadioGroup row name="radio-buttons-group-medium">
-            <FormControlLabel value="video" control={<Radio />} label="Video and audio" />
-            <FormControlLabel value="audio" control={<Radio />} label="Audio only" />
+            <FormControlLabel
+              value={Medium.VIDEO_AND_AUDIO}
+              control={<Radio />}
+              label="Video and audio"
+            />
+            <FormControlLabel value={Medium.AUDIO_ONLY} control={<Radio />} label="Audio only" />
           </RadioGroup>
         </FormControl>
         <Alert variant="outlined" severity="info" sx={{ margin: theme => theme.spacing(1, 0) }}>
@@ -81,6 +95,7 @@ const PracticeSettings = () => {
       </Box>
       <FormButtons
         primaryText="Confirm settings"
+        onPrimaryClick={onNext}
         secondaryText="Contact us for help"
         secondaryColor="warning"
       />

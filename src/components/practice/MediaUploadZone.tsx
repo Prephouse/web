@@ -4,21 +4,30 @@ import { useIntl } from 'react-intl';
 
 import { Box, Typography } from '@mui/material';
 
-const accept: string[] = [
-  // TODO determine what MIME types to accept
-];
+import { Medium } from '../../utils/enums';
 
-const MediaUploadZone = () => {
+interface Props {
+  medium: Medium;
+}
+
+const MediaUploadZone = ({ medium }: Props) => {
   const intl = useIntl();
 
   const [video, setVideo] = useState<File | null>(null);
 
+  const getAcceptedMimes: () => string[] = () => {
+    if (medium === Medium.VIDEO_AND_AUDIO) {
+      return ['video/mp4'];
+    } else {
+      return ['audio/mp4', 'audio/wav'];
+    }
+  };
   const onDrop = useCallback(acceptedFiles => {
     setVideo(acceptedFiles[0]);
   }, []);
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     onDrop,
-    accept,
+    accept: getAcceptedMimes(),
     noClick: !!video,
     multiple: false,
   });
@@ -27,23 +36,17 @@ const MediaUploadZone = () => {
   const showUploader = (isDragActive = false, isDragReject = false) => {
     let Zone: React.ReactNode = <> </>;
     if (!video) {
-      let Message: React.ReactNode;
+      let msg: string;
       if (isDragActive) {
-        Message = intl.formatMessage({ id: 'practice.upload.dropImage' });
+        msg = intl.formatMessage({ id: 'practice.upload.dropImage' });
       } else if (isDragReject) {
-        Message = intl.formatMessage({ id: 'practice.upload.mime.error' });
+        msg = intl.formatMessage({ id: 'practice.upload.mime.error' });
       } else {
-        Message = (
-          <>
-            {intl.formatMessage({ id: 'practice.upload.dragDropClick' })}
-            <br />
-            <em>{intl.formatMessage({ id: 'practice.upload.mime.warning' })}</em>
-          </>
-        );
+        msg = intl.formatMessage({ id: 'practice.upload.dragDropClick' });
       }
       Zone = (
         <Typography component="div" variant="body2">
-          {Message}
+          {msg}
         </Typography>
       );
     }
