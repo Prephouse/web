@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 
+import { Box } from '@mui/material';
+
 import PrephouseMediaRecorder from '../common/MediaRecorder';
 
 const VideoPreview = ({ stream }: { stream: MediaStream | null }) => {
@@ -14,7 +16,9 @@ const VideoPreview = ({ stream }: { stream: MediaStream | null }) => {
   if (!stream) {
     return null;
   }
-  return <video ref={videoRef} width={800} height={800} autoPlay controls />;
+  return (
+    <video ref={videoRef} width={800} height={800} autoPlay style={{ transform: 'scaleX(-1)' }} />
+  );
 };
 
 const VideoRecordZone = () => {
@@ -22,11 +26,11 @@ const VideoRecordZone = () => {
     <PrephouseMediaRecorder
       video
       render={({ startRecording, stopRecording, previewVideoStream }) => (
-        <div>
+        <Box>
           <button onClick={startRecording}>Start Recording</button>
           <button onClick={stopRecording}>Stop Recording</button>
           <VideoPreview stream={previewVideoStream} />
-        </div>
+        </Box>
       )}
     />
   );
