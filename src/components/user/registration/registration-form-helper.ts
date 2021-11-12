@@ -1,10 +1,11 @@
-import { BaseFormValidation } from '../../common/base-form-helper';
 import {
   validateEmailAddressFormat,
   validatePasswordMinimumLength,
-  validatePasswordUppercase,
   validatePasswordNumericality,
+  validatePasswordUppercase,
 } from '../../../utils/validators';
+
+import { BaseFormValidation } from '../../common/base-form-helper';
 
 export function retrievePasswordRequirements(password: string) {
   return Object.freeze([

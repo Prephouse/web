@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet';
+
 import PageContainer from '../common/PageContainer';
 import TeamPanel from './TeamPanel';
 

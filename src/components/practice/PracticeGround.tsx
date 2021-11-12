@@ -1,10 +1,12 @@
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
-import practiceSteps from './practiceSteps';
+
 import { Box, Step, StepLabel, Stepper } from '@mui/material';
+
 import PageContainer from '../common/PageContainer';
 import MediaUploadZone from './MediaUploadZone';
 import PracticeSettings from './PracticeSettings';
+import practiceSteps from './practiceSteps';
 
 const PracticeGround = () => {
   const intl = useIntl();

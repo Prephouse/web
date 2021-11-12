@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { Avatar, Button, createTheme, IconButton, Typography } from '@mui/material';
+
+import { Avatar, Button, IconButton, Typography, createTheme } from '@mui/material';
+
 import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
+
 import DropdownMenu from '../common/DropdownMenu';
 import ProfileMenu from './ProfileMenu';
 

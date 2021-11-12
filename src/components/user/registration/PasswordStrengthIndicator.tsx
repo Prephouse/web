@@ -1,11 +1,13 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import zxcvbn from 'zxcvbn';
-import { retrievePasswordRequirements } from './registration-form-helper';
-import badPasswords from './bad-passwords';
+
 import { Typography } from '@mui/material';
+
 import IconicText from '../../common/IconicText';
 import SmallSuccessIndicatorIcon from '../../common/SmallSuccessIndicatorIcon';
+import badPasswords from './bad-passwords';
+import { retrievePasswordRequirements } from './registration-form-helper';
 
 interface Props {
   password: string;

@@ -1,6 +1,8 @@
 import { Reducer } from 'redux';
-import { SettingsReduxState, SettingsReduxAction, CHANGE_PREFERS_DARK_MODE } from './types';
+
 import { PREFERS_DARK_MODE_KEY } from '../../strings/keys';
+
+import { CHANGE_PREFERS_DARK_MODE, SettingsReduxAction, SettingsReduxState } from './types';
 
 const initializePrefersDarkMode = (): boolean => {
   if (PREFERS_DARK_MODE_KEY in localStorage) {

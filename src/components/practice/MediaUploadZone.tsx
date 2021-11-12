@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import { useIntl } from 'react-intl';
+import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useIntl } from 'react-intl';
+
 import { Box, Typography } from '@mui/material';
 
 const accept: string[] = [

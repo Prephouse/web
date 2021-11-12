@@ -1,31 +1,36 @@
 import { useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import usePrevious from './hooks/usePrevious';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
+
 import { RootState } from './store/rootReducer';
+
 import {
   ABOUT_PATH,
+  COMPARE_PATH,
+  DASHBOARD_PATH,
   HOME_PATH,
   PRACTICE_PATH,
-  COMPARE_PATH,
   TIPS_PATH,
   USER_REGISTRATION_PATH,
-  DASHBOARD_PATH,
 } from './strings/paths';
 import strings from './strings/strings';
+
 import generateTheme from './styles/themes';
-import { CssBaseline, responsiveFontSizes, ThemeProvider } from '@mui/material';
-import Home from './components/home/Home';
-import ActionBar from './components/actionbar/ActionBar';
+
+import CompareBoard from './compare/CompareBoard';
 import About from './components/about/About';
-import Footer from './components/footer/Footer';
-import RegistrationForm from './components/user/registration/RegistrationForm';
+import ActionBar from './components/actionbar/ActionBar';
+import Dashboard from './components/dashboard/Dashboard';
 import PageNotFound from './components/error/PageNotFound';
+import Footer from './components/footer/Footer';
+import Home from './components/home/Home';
 import PracticeGround from './components/practice/PracticeGround';
 import TipBook from './components/tips/TipBook';
-import CompareBoard from './compare/CompareBoard';
-import Dashboard from './components/dashboard/Dashboard';
+import RegistrationForm from './components/user/registration/RegistrationForm';
+import usePrevious from './hooks/usePrevious';
 
 const App = () => {
   const prefersDarkMode: boolean = useSelector(
