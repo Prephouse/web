@@ -7,7 +7,7 @@
     "stylelint **/*.css --fix",
     "prettier --write"
   ],
-  '**/*.+(json)': [
+  '**/*.+(json|toml|yml|yaml)': [
     "prettier --write"
   ],
   '**/src/strings/translations/*/index.json': [
