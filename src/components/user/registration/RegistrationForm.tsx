@@ -40,7 +40,9 @@ const RegistrationForm = () => {
     return { ...errors, password: passwordErrors };
   };
 
-  const submitRegistration = () => {};
+  const submitRegistration = () => {
+    return;
+  };
 
   return (
     <>
@@ -63,7 +65,7 @@ const RegistrationForm = () => {
           validateOnBlur={false}
           validateOnChange={false}
         >
-          {({ values, errors, resetForm, validateForm, submitForm }) => {
+          {({ values, errors, resetForm, submitForm }) => {
             const onClear = (event: any) => {
               event.preventDefault();
               resetForm();

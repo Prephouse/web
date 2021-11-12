@@ -1,3 +1,4 @@
+import React from 'react';
 import { useIntl } from 'react-intl';
 
 import {
@@ -15,7 +16,6 @@ interface Props {
   img?: React.ReactNode;
   header?: React.ReactNode;
   body?: React.ReactNode;
-  bodyComponent?: React.ElementType;
   extra?: React.ReactNode;
   actions?: { href?: string | null; nameId: string; Icon: OverridableComponent<SvgIconTypeMap> }[];
   style?: React.CSSProperties;
@@ -53,15 +53,7 @@ const BWrapper = styled('div')(() => ({
   bottom: 0,
 }));
 
-const HorizontalCard = ({
-  img,
-  header,
-  body,
-  bodyComponent = 'p',
-  extra,
-  actions,
-  style,
-}: Props) => {
+const HorizontalCard = ({ img, header, body, extra, actions, style }: Props) => {
   const intl = useIntl();
 
   return (

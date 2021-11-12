@@ -14,10 +14,6 @@ const NavigationDropdown = () => {
   const handleOpenMenu = (event: any) => setAnchorElMenu(event.currentTarget);
   const handleCloseMenu = () => setAnchorElMenu(null);
 
-  const [, setSelectedMenuName] = useState<string>('default');
-  const handleSwitchMenu = (newMenuName: string) => setSelectedMenuName(newMenuName);
-  const handleMenuBack = () => handleSwitchMenu('default');
-
   const ScaledAvatar = (
     <Avatar
       sx={{
@@ -77,7 +73,7 @@ const NavigationDropdown = () => {
         anchorEl={anchorElMenu}
         onClose={handleCloseMenu}
       >
-        <ProfileMenu onSwitchMenu={handleSwitchMenu} onMenuBack={handleMenuBack} />
+        <ProfileMenu />
       </DropdownMenu>
     </nav>
   );

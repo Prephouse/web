@@ -16,11 +16,6 @@ import { USER_REGISTRATION_PATH, USER_SIGN_IN_PATH } from '../../strings/paths';
 import DropdownMenuItem from '../common/DropdownMenuItem';
 import './actionbar.css';
 
-interface Props {
-  onSwitchMenu: (nextMenu: any) => void;
-  onMenuBack: () => void;
-}
-
 const actions = Object.freeze([
   {
     primaryNameId: 'user.sign-in.action',
@@ -34,7 +29,7 @@ const actions = Object.freeze([
   },
 ]);
 
-const ProfileMenu = ({ onSwitchMenu, onMenuBack }: Props) => {
+const ProfileMenu = () => {
   const prefersDarkMode: boolean = useSelector(
     (state: RootState) => state.settingsReducer.prefersDarkMode
   );
