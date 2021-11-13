@@ -22,6 +22,7 @@ import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
 
 import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
+import PermissionManager, { PermissionRequest } from '../common/PermissionManager';
 
 interface Props {
   onBack: () => void;
@@ -43,6 +44,18 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
     }
   };
 
+  const getPermissions = (medium: SessionMedium): PermissionRequest => {
+    const permissions: PermissionRequest = {
+      audioinput: { declineMessage: intl.formatMessage({ id: 'common.permission.audio' }) },
+    };
+    if (medium === SessionMedium.VIDEO_AND_AUDIO) {
+      permissions['videoinput'] = {
+        declineMessage: intl.formatMessage({ id: 'common.permission.video' }),
+      };
+    }
+    return permissions;
+  };
+
   return (
     <Formik
       initialValues={{
@@ -55,7 +68,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
       validate={values =>
         new PracticeSettingsFormValidation(
           values,
-          intl.formatMessage({ id: 'common.form.requiredField' })
+          intl.formatMessage({ id: 'common.form.field.required' })
         ).validate()
       }
       onSubmit={values => {
@@ -63,13 +76,15 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
         setPracticeSettings(medium, origin, allowLiveFeedback)(dispatch);
         onNext();
       }}
-      validateOnChange={false}
-      validateOnBlur={false}
     >
-      {({ touched, values, errors, setFieldValue, submitForm }) => {
+      {({ touched, values, errors, setFieldValue, setFieldError, submitForm }) => {
         const onSubmit = (event: any) => {
           event.preventDefault();
           submitForm().then(console.log);
+        };
+
+        const onOriginPermissionDenied = () => {
+          setFieldError('origin', intl.formatMessage({ id: 'common.form.field.denied' }));
         };
 
         return (
@@ -146,6 +161,27 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 </RadioGroup>
                 {touched.origin && errors.origin && <FormErrorMessage msg={errors.origin} />}
               </FormControl>
+              {values.origin === SessionOrigin.RECORD && (
+                <PermissionManager
+                  permissions={getPermissions(values.medium)}
+                  onDenied={onOriginPermissionDenied}
+                  render={({ permitted }) => {
+                    if (Object.entries(permitted).length > 0) {
+                      return (
+                        <Alert variant="outlined" severity="error">
+                          {intl.formatMessage({ id: 'common.permission.decline' })}
+                          {Object.entries(permitted).map(([, v], i) => (
+                            <div key={`decline-message-${v.id}-${i}`}>
+                              &bull; {v.declineMessage}
+                            </div>
+                          ))}
+                        </Alert>
+                      );
+                    }
+                    return <> </>;
+                  }}
+                />
+              )}
               <Alert
                 variant="outlined"
                 severity="info"

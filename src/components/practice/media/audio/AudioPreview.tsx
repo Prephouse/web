@@ -2,53 +2,65 @@ import { useRef } from 'react';
 
 interface Props {
   stream: MediaStream | null;
+  height?: number;
 }
 
-const AudioPreview = ({ stream }: Props) => {
-  const audioCanvasRef = useRef<any>(null);
+const AudioPreview = ({ stream, height = 96 }: Props) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   if (!stream?.getAudioTracks().length) {
     return null;
   }
 
   const audioCtx = new AudioContext();
+
   const analyser = audioCtx.createAnalyser();
   analyser.fftSize = 2048;
-  const audioSrc = audioCtx.createMediaStreamSource(stream);
-  audioSrc.connect(analyser);
-  const data = new Uint8Array(analyser.frequencyBinCount);
 
-  const loopingFunction = () => {
-    requestAnimationFrame(loopingFunction);
-    analyser.getByteFrequencyData(data);
-    draw(data);
-  };
+  const source = audioCtx.createMediaStreamSource(stream);
+  source.connect(analyser);
 
-  requestAnimationFrame(loopingFunction);
+  const bufferLength = analyser.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
 
-  const draw = (dataParameter: any) => {
-    dataParameter = [...dataParameter];
+  const canvasCtx = canvasRef?.current?.getContext('2d');
 
-    const ctx = audioCanvasRef?.current?.getContext('2d');
-    if (!ctx) {
-      return;
+  const draw = () => {
+    requestAnimationFrame(draw);
+    analyser.getByteTimeDomainData(dataArray);
+
+    const current = canvasRef?.current;
+    if (canvasCtx && current) {
+      canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+      canvasCtx.fillRect(0, 0, current.width, current.height);
+      canvasCtx.lineWidth = 2;
+      canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+      canvasCtx.beginPath();
+
+      const sliceWidth = current.width / dataArray.length;
+      let x = 0;
+
+      for (let i = 0; i < bufferLength; i++) {
+        const v = dataArray[i] / 128.0;
+        const y = (v * current.height) / 2;
+
+        if (i === 0) {
+          canvasCtx.moveTo(x, y);
+        } else {
+          canvasCtx.lineTo(x, y);
+        }
+
+        x += sliceWidth;
+      }
+
+      canvasCtx.lineTo(current.width, current.height / 2);
+      canvasCtx.stroke();
     }
-    ctx.fillStyle = 'white';
-    ctx.lineWidth = 2;
-    ctx.strokeStyle = '#d5d4d5';
-
-    const space = audioCanvasRef.current.width / dataParameter.length;
-    dataParameter.forEach((value: number, i: number) => {
-      ctx.beginPath();
-      ctx.moveTo(space * i, audioCanvasRef.current.height);
-      ctx.lineTo(space * i, audioCanvasRef.current.height - value);
-      ctx.stroke();
-    });
   };
 
-  requestAnimationFrame(loopingFunction);
+  draw();
 
-  return <canvas ref={audioCanvasRef} style={{ width: '100%', height: 100 }} />;
+  return <canvas ref={canvasRef} style={{ width: '100%', height }} />;
 };
 
 export default AudioPreview;

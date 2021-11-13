@@ -11,7 +11,7 @@ import { findClosestPathname } from '../../utils/string-utils';
 
 import PageContainer from '../common/PageContainer';
 
-const PageNotFound = () => {
+const PageNotFoundView = () => {
   const intl = useIntl();
 
   const [closestPathname, setClosestPathname] = useState<string | null>(null);
@@ -51,4 +51,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default PageNotFoundView;

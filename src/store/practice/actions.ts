@@ -1,6 +1,6 @@
 import { Dispatch } from 'react';
 
-import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
+import { SessionMedium, SessionOrigin } from '../../utils/enums';
 
 import { SET_MEDIA_SOURCE, SET_PRACTICE_SETTINGS } from './types';
 

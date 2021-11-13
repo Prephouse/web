@@ -1,4 +1,4 @@
-import { SessionMedium, SessionOrigin, SessionType } from '../utils/enums';
+import { SessionMedium, SessionOrigin } from '../utils/enums';
 
 import { BaseFormValidation } from './base-form-helper';
 

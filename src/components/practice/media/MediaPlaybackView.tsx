@@ -6,18 +6,18 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@mui/material';
 
-import { FADING_GREY } from '../../../../styles/colours';
+import { FADING_GREY } from '../../../styles/colours';
 
-import { round_as_decimal } from '../../../../utils/math-utils';
+import { round_as_decimal } from '../../../utils/math-utils';
 
-import MediaSeekSlider from '../../../common/MediaSeekSlider';
+import MediaSeekSlider from '../../common/MediaSeekSlider';
 
 interface Props {
   duration?: number | null /* in seconds */;
   src?: string;
 }
 
-const VideoPlaybackView = ({ duration, src }: Props) => {
+const MediaPlaybackView = ({ duration, src }: Props) => {
   const theme = useTheme();
 
   const playerRef = useRef<HTMLVideoElement | null>(null);
@@ -120,4 +120,4 @@ const VideoPlaybackView = ({ duration, src }: Props) => {
   );
 };
 
-export default VideoPlaybackView;
+export default MediaPlaybackView;

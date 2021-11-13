@@ -6,10 +6,10 @@ import {
   TIPS_PATH,
 } from '../strings/paths';
 
-interface NavigationDestination {
+type NavigationDestination = {
   readonly path: string;
   readonly titleId: string;
-}
+};
 
 const navigationDestinations: Readonly<NavigationDestination[]> = Object.freeze([
   {

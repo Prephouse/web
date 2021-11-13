@@ -56,7 +56,7 @@ const RegistrationForm = () => {
           validate={values =>
             new RegistrationFormValidation(
               values,
-              intl.formatMessage({ id: 'common.form.requiredField' }),
+              intl.formatMessage({ id: 'common.form.field.required' }),
               intl.formatMessage({ id: 'user.registration.email.error' }),
               intl.formatMessage({ id: 'user.registration.password.error' }),
               handlePasswordRequirementFailed

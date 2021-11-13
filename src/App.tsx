@@ -26,7 +26,7 @@ import CompareBoard from './compare/CompareBoard';
 import About from './components/about/About';
 import ActionBar from './components/actionbar/ActionBar';
 import Dashboard from './components/dashboard/Dashboard';
-import PageNotFound from './components/error/PageNotFound';
+import PageNotFoundView from './components/error/PageNotFoundView';
 import Footer from './components/footer/Footer';
 import Home from './components/home/Home';
 import PracticeGround from './components/practice/PracticeGround';
@@ -81,7 +81,7 @@ const App = () => {
                 <Route path={COMPARE_PATH} element={<CompareBoard />} />
                 <Route path={TIPS_PATH} element={<TipBook />} />
                 <Route path={USER_REGISTRATION_PATH} element={<RegistrationForm />} />
-                <Route path="*" element={<PageNotFound />} />
+                <Route path="*" element={<PageNotFoundView />} />
               </Routes>
             </main>
             <Footer />

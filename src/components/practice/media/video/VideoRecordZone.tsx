@@ -1,30 +1,27 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useDispatch } from 'react-redux';
 
-import PauseIcon from '@mui/icons-material/Pause';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { Box, Button, ButtonGroup, Slider, Stack, Typography } from '@mui/material';
-
-import { setMediaSource } from '../../../../store/practice/actions';
-
-import { MediaRecordingStatus } from '../../../../utils/enums';
+import { Box, Slider, Stack, Typography } from '@mui/material';
 
 import PrephouseMediaRecorder from '../../../common/MediaRecorder';
+import LiveRecordButtons from '../LiveRecordButtons';
 import AudioPreview from '../audio/AudioPreview';
 import VideoPreview from './VideoPreview';
 
-const VideoRecordZone = () => {
-  const dispatch = useDispatch();
+interface Props {
+  onSubmit: (duration: number | null, src: string) => void;
+}
 
-  const intl = useIntl();
-
+const VideoRecordZone = ({ onSubmit }: Props) => {
   const [previewWidth, setPreviewWidth] = useState(60);
   const [blobUrl, setBlobUrl] = useState<string | null>(null);
+
+  const intl = useIntl();
 
   const handlePreviewWidthChange = (event: Event, newValue: number | number[]) => {
     setPreviewWidth(newValue as number);
   };
+
   return (
     <PrephouseMediaRecorder
       video
@@ -41,13 +38,16 @@ const VideoRecordZone = () => {
         previewAudioStream,
       }) => {
         if (blobUrl) {
-          setMediaSource(duration, blobUrl)(dispatch);
+          onSubmit(duration, blobUrl);
+          return <> </>;
         }
         return (
           <Box my={3}>
             <Box my={1}>
               <Stack spacing={3} direction="row" alignItems="center">
-                <Typography>Preview Size</Typography>
+                <Typography>
+                  {intl.formatMessage({ id: 'practice.practice.preview.size' })}
+                </Typography>
                 <Slider
                   value={previewWidth}
                   min={30}
@@ -65,30 +65,13 @@ const VideoRecordZone = () => {
               }}
             >
               <Box sx={{ width: `${previewWidth}%` }}>
-                <ButtonGroup variant="contained" fullWidth>
-                  <Button
-                    onClick={startRecording}
-                    disabled={status === MediaRecordingStatus.RECORDING}
-                  >
-                    {intl.formatMessage({ id: 'common.recording.start' })}
-                  </Button>
-                  <Button
-                    color="secondary"
-                    onClick={stopRecording}
-                    disabled={status !== MediaRecordingStatus.RECORDING}
-                  >
-                    {intl.formatMessage({ id: 'common.recording.stop' })}
-                  </Button>
-                  {status == MediaRecordingStatus.PAUSED ? (
-                    <Button startIcon={<PlayArrowIcon />} onClick={resumeRecording}>
-                      {intl.formatMessage({ id: 'common.resume' })}
-                    </Button>
-                  ) : (
-                    <Button color="secondary" startIcon={<PauseIcon />} onClick={pauseRecording}>
-                      {intl.formatMessage({ id: 'common.pause' })}
-                    </Button>
-                  )}
-                </ButtonGroup>
+                <LiveRecordButtons
+                  status={status}
+                  startRecording={startRecording}
+                  stopRecording={stopRecording}
+                  resumeRecording={resumeRecording}
+                  pauseRecording={pauseRecording}
+                />
                 <VideoPreview stream={previewVideoStream} />
                 <AudioPreview stream={previewAudioStream} />
               </Box>

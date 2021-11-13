@@ -1,23 +1,19 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useIntl } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Box, Typography } from '@mui/material';
-
-import { setMediaSource } from '../../../store/practice/actions';
-import { RootState } from '../../../store/rootReducer';
 
 import { SessionMedium, SessionType } from '../../../utils/enums';
 
 interface Props {
   sessionType: SessionType;
   medium: SessionMedium;
+  onSubmit: (duration: number | null, src: string) => void;
 }
 
-const MediaUploadZone = ({ medium }: Props) => {
-  const source = useSelector((state: RootState) => state.practiceReducer.source);
-  const dispatch = useDispatch();
+const MediaUploadZone = ({ medium, onSubmit }: Props) => {
+  const [file, setFile] = useState<File | null>(null);
 
   const intl = useIntl();
 
@@ -28,20 +24,23 @@ const MediaUploadZone = ({ medium }: Props) => {
       return ['audio/mp4', 'audio/wav'];
     }
   };
+
   const onDrop = useCallback(acceptedFiles => {
-    const fileUrl = URL.createObjectURL(acceptedFiles[0]);
-    setMediaSource(null, fileUrl)(dispatch);
+    setFile(acceptedFiles[0]);
+    onSubmit(null, URL.createObjectURL(acceptedFiles[0]));
   }, []);
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     onDrop,
     accept: getAcceptedMimes(),
-    noClick: !!source,
+    noClick: !!file,
     multiple: false,
   });
+
   const { ref, ...rootProps } = getRootProps();
 
   const showUploader = (isDragActive = false, isDragReject = false) => {
-    if (!source) {
+    if (!file) {
       let msg: string;
       if (isDragActive) {
         msg = intl.formatMessage({ id: 'practice.upload.drop' });

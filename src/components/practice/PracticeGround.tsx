@@ -14,8 +14,8 @@ import PageContainer from '../common/PageContainer';
 import PracticeInstructions from './PracticeInstructions';
 import PracticeIntroduction from './PracticeIntroduction';
 import PracticeSettings from './PracticeSettings';
+import MediaPlaybackView from './media/MediaPlaybackView';
 import MediaZone from './media/MediaZone';
-import VideoPlaybackView from './media/video/VideoPlaybackView';
 
 const PracticeGround = () => {
   const duration = useSelector((state: RootState) => state.practiceReducer.duration);
@@ -47,7 +47,7 @@ const PracticeGround = () => {
       case 3:
         return <MediaZone onBack={() => setStep(step - 1)} onNext={() => setStep(step + 1)} />;
       case 4:
-        return <VideoPlaybackView duration={duration} src={source} />;
+        return <MediaPlaybackView duration={duration} src={source} />;
       default:
         return <></>;
     }
