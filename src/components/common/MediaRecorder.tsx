@@ -10,6 +10,7 @@ interface RenderProps {
   mediaBlobUrl: string | null;
   status: MediaRecordingStatus;
   isAudioMuted: () => boolean;
+  duration: number /* in seconds */;
   previewVideoStream: MediaStream | null;
   previewAudioStream: MediaStream | null;
   clearBlobUrl: () => void;
@@ -19,6 +20,9 @@ interface HookProps {
   audio?: boolean;
   video?: boolean;
   mediaRecorderOptions?: MediaRecorderOptions | null;
+  onStart?: () => void;
+  onResume?: () => void;
+  onPause?: () => void;
   onStop?: (blobUrl: string, blob: Blob) => void;
 }
 
@@ -30,6 +34,9 @@ function useMediaRecorder({
   audio = false,
   video = false,
   mediaRecorderOptions,
+  onStart,
+  onResume,
+  onPause,
   onStop,
 }: HookProps): RenderProps {
   const mediaRecorder = useRef<MediaRecorder | null>(null);
@@ -38,6 +45,8 @@ function useMediaRecorder({
 
   const [status, setStatus] = useState<MediaRecordingStatus>(MediaRecordingStatus.IDLE);
   const [mediaBlobUrl, setMediaBlobUrl] = useState<string | null>(null);
+  const [startTimeSec, setStartTimeSec] = useState(0);
+  const [endTimeSec, setEndTimeSec] = useState(0);
   // const [errors, setErrors] = useState<MediaRecordingError[]>([]);
 
   const getMediaStream = useCallback(async () => {
@@ -88,8 +97,10 @@ function useMediaRecorder({
 
     const blob = new Blob(mediaChunks.current, blobProperty);
     const url = URL.createObjectURL(blob);
-    setStatus(MediaRecordingStatus.STOPPED);
     setMediaBlobUrl(url);
+
+    setEndTimeSec(Date.now() / 1_000);
+    setStatus(MediaRecordingStatus.STOPPED);
 
     if (onStop) {
       onStop(url, blob);
@@ -116,8 +127,14 @@ function useMediaRecorder({
         // TODO set errors state
         setStatus(MediaRecordingStatus.IDLE);
       };
-      mediaRecorder.current.start();
+
       setStatus(MediaRecordingStatus.RECORDING);
+      setStartTimeSec(Date.now() / 1_000);
+      mediaRecorder.current.start();
+
+      if (onStart) {
+        onStart();
+      }
     }
   };
 
@@ -130,22 +147,30 @@ function useMediaRecorder({
     }
   };
 
-  const pauseRecording = () => {
-    if (mediaRecorder.current?.state === 'recording') {
-      setStatus(MediaRecordingStatus.RECORDING);
-      mediaRecorder.current.pause();
-    }
-  };
-
   const resumeRecording = () => {
     if (mediaRecorder.current?.state === 'paused') {
       setStatus(MediaRecordingStatus.RECORDING);
       mediaRecorder.current.resume();
     }
+
+    if (onResume) {
+      onResume();
+    }
+  };
+
+  const pauseRecording = () => {
+    if (mediaRecorder.current?.state === 'recording') {
+      setStatus(MediaRecordingStatus.PAUSED);
+      mediaRecorder.current.pause();
+    }
+
+    if (onPause) {
+      onPause();
+    }
   };
 
   const isAudioMuted = () =>
-    mediaStream.current?.getAudioTracks().some(track => !track.enabled) ?? false;
+    mediaStream.current?.getAudioTracks().some(track => !track.enabled) ?? true;
 
   const clearBlobUrl = () => {
     if (mediaBlobUrl) {
@@ -162,6 +187,7 @@ function useMediaRecorder({
     mediaBlobUrl,
     status,
     isAudioMuted,
+    duration: endTimeSec - startTimeSec,
     previewVideoStream: mediaStream.current
       ? new MediaStream(mediaStream.current.getVideoTracks())
       : null,

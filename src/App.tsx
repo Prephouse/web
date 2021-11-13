@@ -49,7 +49,6 @@ const App = () => {
   const prevPref = usePrevious(prefersDarkMode);
   useEffect(() => {
     if (prevPref !== prefersDarkMode) {
-      console.log('PREFERS', prefersDarkMode);
       setTheme(establishTheme());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
