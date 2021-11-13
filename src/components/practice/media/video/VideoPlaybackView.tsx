@@ -6,15 +6,15 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@mui/material';
 
-import { FADING_GREY } from '../../styles/colours';
+import { FADING_GREY } from '../../../../styles/colours';
 
-import { round_as_decimal } from '../../utils/math-utils';
+import { round_as_decimal } from '../../../../utils/math-utils';
 
-import MediaSeekSlider from '../common/MediaSeekSlider';
+import MediaSeekSlider from '../../../common/MediaSeekSlider';
 
 interface Props {
-  duration: number /* in seconds */;
-  src: string;
+  duration?: number | null /* in seconds */;
+  src?: string;
 }
 
 const VideoPlaybackView = ({ duration, src }: Props) => {
@@ -86,11 +86,11 @@ const VideoPlaybackView = ({ duration, src }: Props) => {
               )}
               <Typography gutterBottom>
                 {new Date(currentTime * 1000).toISOString().substr(14, 5)}/
-                {new Date(duration * 1000).toISOString().substr(14, 5)}
+                {new Date((duration ?? 0) * 1000).toISOString().substr(14, 5)}
               </Typography>
               <MediaSeekSlider
                 currentTime={currentTime}
-                duration={duration}
+                duration={duration ?? 0}
                 handleSeek={handleSeek}
               />
             </Stack>

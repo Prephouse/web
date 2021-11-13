@@ -1,32 +1,32 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
 
-import { RootState } from '../../store/rootReducer';
+import { RootState } from '../../../store/rootReducer';
 
-import { SessionMedium, SessionSource } from '../../utils/enums';
+import { SessionMedium, SessionOrigin } from '../../../utils/enums';
 
-import FormButtons from '../common/FormButtons';
+import FormButtons from '../../common/FormButtons';
 import MediaUploadZone from './MediaUploadZone';
-import VideoRecordZone from './VideoRecordZone';
+import VideoRecordZone from './video/VideoRecordZone';
 
 interface Props {
-  onBack: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onNext: () => void;
+  onBack: () => void;
 }
 
-const MediaZone = ({ onBack }: Props) => {
+const MediaZone = ({ onNext, onBack }: Props) => {
   const sessionType = useSelector((state: RootState) => state.practiceReducer.sessionType);
   const medium = useSelector((state: RootState) => state.practiceReducer.medium);
-  const source = useSelector((state: RootState) => state.practiceReducer.source);
+  const origin = useSelector((state: RootState) => state.practiceReducer.origin);
 
   const intl = useIntl();
 
   const establishZone = () => {
-    if (source === SessionSource.RECORD) {
+    if (origin === SessionOrigin.RECORD) {
       if (medium === SessionMedium.VIDEO_AND_AUDIO) {
         return <VideoRecordZone />;
       }
-    } else if (source === SessionSource.UPLOAD) {
+    } else if (origin === SessionOrigin.UPLOAD) {
       return <MediaUploadZone sessionType={sessionType} medium={medium} />;
     }
   };
@@ -36,6 +36,7 @@ const MediaZone = ({ onBack }: Props) => {
       {establishZone()}
       <FormButtons
         primaryText={intl.formatMessage({ id: 'practice.practice.submit' })}
+        onPrimaryClick={onNext}
         secondaryText={intl.formatMessage({ id: 'practice.practice.back' })}
         onSecondaryClick={onBack}
       />

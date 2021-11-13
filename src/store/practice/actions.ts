@@ -1,36 +1,29 @@
-import { SessionMedium, SessionSource, SessionType } from '../../utils/enums';
+import { Dispatch } from 'react';
 
-import {
-  SET_ALLOW_LIVE_FEEDBACK,
-  SET_PRACTICE_MEDIUM,
-  SET_PRACTICE_SESSION_TYPE,
-  SET_PRACTICE_SOURCE,
-} from './types';
+import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
 
-export const setPracticeSessionType = (sessionType: SessionType) => (dispatch: any) => {
+import { SET_MEDIA_SOURCE, SET_PRACTICE_SETTINGS } from './types';
+
+export const setPracticeSettings =
+  (medium: SessionMedium, origin: SessionOrigin, allowLiveFeedback: boolean) =>
+  (dispatch: Dispatch<any>) => {
+    dispatch({
+      type: SET_PRACTICE_SETTINGS,
+      payload: { medium, origin, allowLiveFeedback },
+    });
+  };
+
+export const setMediaSource =
+  (duration: number | null, source: string) => (dispatch: Dispatch<any>) => {
+    dispatch({
+      type: SET_MEDIA_SOURCE,
+      payload: { duration, source },
+    });
+  };
+
+export const clearMediaSource = () => (dispatch: Dispatch<any>) => {
   dispatch({
-    type: SET_PRACTICE_SESSION_TYPE,
-    payload: { sessionType },
-  });
-};
-
-export const setPracticeMedium = (medium: SessionMedium) => (dispatch: any) => {
-  dispatch({
-    type: SET_PRACTICE_MEDIUM,
-    payload: { medium },
-  });
-};
-
-export const setPracticeSource = (source: SessionSource) => (dispatch: any) => {
-  dispatch({
-    type: SET_PRACTICE_SOURCE,
-    payload: { source },
-  });
-};
-
-export const setAllowLiveFeedback = (allowLiveFeedback: boolean) => (dispatch: any) => {
-  dispatch({
-    type: SET_ALLOW_LIVE_FEEDBACK,
-    payload: { allowLiveFeedback },
+    type: SET_MEDIA_SOURCE,
+    payload: {},
   });
 };

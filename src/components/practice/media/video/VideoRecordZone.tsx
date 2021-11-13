@@ -1,17 +1,24 @@
 import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import { useDispatch } from 'react-redux';
 
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Box, Button, ButtonGroup, Slider, Stack, Typography } from '@mui/material';
 
-import { MediaRecordingStatus } from '../../utils/enums';
+import { setMediaSource } from '../../../../store/practice/actions';
 
-import PrephouseMediaRecorder from '../common/MediaRecorder';
-import AudioPreview from './AudioPreview';
-import VideoPlaybackView from './VideoPlaybackView';
+import { MediaRecordingStatus } from '../../../../utils/enums';
+
+import PrephouseMediaRecorder from '../../../common/MediaRecorder';
+import AudioPreview from '../audio/AudioPreview';
 import VideoPreview from './VideoPreview';
 
 const VideoRecordZone = () => {
+  const dispatch = useDispatch();
+
+  const intl = useIntl();
+
   const [previewWidth, setPreviewWidth] = useState(60);
   const [blobUrl, setBlobUrl] = useState<string | null>(null);
 
@@ -34,7 +41,7 @@ const VideoRecordZone = () => {
         previewAudioStream,
       }) => {
         if (blobUrl) {
-          return <VideoPlaybackView duration={duration} src={blobUrl} />;
+          setMediaSource(duration, blobUrl)(dispatch);
         }
         return (
           <Box my={3}>
@@ -59,20 +66,26 @@ const VideoRecordZone = () => {
             >
               <Box sx={{ width: `${previewWidth}%` }}>
                 <ButtonGroup variant="contained" fullWidth>
-                  {status !== MediaRecordingStatus.RECORDING ? (
-                    <Button onClick={startRecording}>Start Interview</Button>
-                  ) : (
-                    <Button color="secondary" onClick={stopRecording}>
-                      Stop Interview
-                    </Button>
-                  )}
+                  <Button
+                    onClick={startRecording}
+                    disabled={status === MediaRecordingStatus.RECORDING}
+                  >
+                    {intl.formatMessage({ id: 'common.recording.start' })}
+                  </Button>
+                  <Button
+                    color="secondary"
+                    onClick={stopRecording}
+                    disabled={status !== MediaRecordingStatus.RECORDING}
+                  >
+                    {intl.formatMessage({ id: 'common.recording.stop' })}
+                  </Button>
                   {status == MediaRecordingStatus.PAUSED ? (
                     <Button startIcon={<PlayArrowIcon />} onClick={resumeRecording}>
-                      Resume
+                      {intl.formatMessage({ id: 'common.resume' })}
                     </Button>
                   ) : (
                     <Button color="secondary" startIcon={<PauseIcon />} onClick={pauseRecording}>
-                      Pause
+                      {intl.formatMessage({ id: 'common.pause' })}
                     </Button>
                   )}
                 </ButtonGroup>

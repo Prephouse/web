@@ -1,27 +1,26 @@
-import { SessionMedium, SessionSource, SessionType } from '../../utils/enums';
+import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
 
-export const SET_PRACTICE_SESSION_TYPE = 'setPracticeSessionType';
-export const SET_PRACTICE_MEDIUM = 'setPracticeMedium';
-export const SET_PRACTICE_SOURCE = 'setPracticeSource';
-export const SET_ALLOW_LIVE_FEEDBACK = 'setAllowLiveFeedback';
+export const SET_PRACTICE_SETTINGS = 'setPracticeSettings';
+export const SET_MEDIA_SOURCE = 'setMediaSource';
+export const CLEAR_MEDIA_SOURCE = 'clearMediaSource';
 
 export type PracticeReduxState = {
   sessionType: SessionType;
   medium: SessionMedium;
-  source: SessionSource;
+  origin: SessionOrigin;
   allowLiveFeedback: boolean;
+  duration?: number | null;
+  source?: string;
 };
 
 export type PracticeReduxAction = {
-  type:
-    | typeof SET_PRACTICE_SESSION_TYPE
-    | typeof SET_PRACTICE_MEDIUM
-    | typeof SET_PRACTICE_SOURCE
-    | typeof SET_ALLOW_LIVE_FEEDBACK;
+  type: typeof SET_PRACTICE_SETTINGS | typeof SET_MEDIA_SOURCE | typeof CLEAR_MEDIA_SOURCE;
   payload: {
     sessionType: SessionType;
     medium: SessionMedium;
-    source: SessionSource;
+    origin: SessionOrigin;
     allowLiveFeedback: boolean;
+    duration: number | null;
+    source: string;
   };
 };

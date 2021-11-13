@@ -8,7 +8,7 @@ export enum SessionType {
   PRESENTATION,
 }
 
-export enum SessionSource {
+export enum SessionOrigin {
   RECORD,
   UPLOAD,
 }
