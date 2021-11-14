@@ -1,10 +1,10 @@
-import React from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 interface Props {
   id?: string;
   text: string;
-  icon: React.ReactNode;
-  style?: React.CSSProperties;
+  icon: ReactNode;
+  style?: CSSProperties;
 }
 
 const IconicText = ({ id, text, icon, style }: Props) => {

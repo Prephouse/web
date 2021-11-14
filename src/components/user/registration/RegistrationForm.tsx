@@ -1,5 +1,5 @@
 import { Field, Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import { MouseEvent as ReactMouseEvent, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
 
@@ -23,7 +23,7 @@ const RegistrationForm = () => {
   const [anchorElPsi, setAnchorElPsi] = useState<HTMLElement | null>(null);
   const openPsi = Boolean(anchorElPsi);
   const psiPopoverId = openPsi ? 'password-strength-popover' : undefined;
-  const handlePsiOpen = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handlePsiOpen = (event: ReactMouseEvent<HTMLElement, MouseEvent>) => {
     if (event.currentTarget != null) {
       setAnchorElPsi(event.currentTarget);
     }
@@ -66,13 +66,11 @@ const RegistrationForm = () => {
           validateOnChange={false}
         >
           {({ values, errors, resetForm, submitForm }) => {
-            const onClear = (event: any) => {
-              event.preventDefault();
+            const onClear = () => {
               resetForm();
             };
 
-            const onSubmit = (event: any) => {
-              event.preventDefault();
+            const onSubmit = () => {
               submitForm().then(console.log);
             };
 

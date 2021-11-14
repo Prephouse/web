@@ -1,13 +1,13 @@
-import React from 'react';
+import { MouseEvent as ReactMouseEvent } from 'react';
 
 import { Box, Button, CircularProgress } from '@mui/material';
 
 interface Props {
   primaryText: string;
-  onPrimaryClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onPrimaryClick?: (event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void;
   primaryDisabled?: boolean;
   secondaryText?: string;
-  onSecondaryClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onSecondaryClick?: (event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isLoading?: boolean;
   loadingText?: string;
   secondaryColor?:

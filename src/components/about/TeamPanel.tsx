@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import { useIntl } from 'react-intl';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -44,4 +44,4 @@ const TeamPanel = () => {
   );
 };
 
-export default React.memo(TeamPanel);
+export default memo(TeamPanel);
