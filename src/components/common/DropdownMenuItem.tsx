@@ -1,13 +1,13 @@
-import React, { PureComponent } from 'react';
+import { PureComponent, MouseEvent as ReactMouseEvent, ReactNode } from 'react';
 
 import { ListItemIcon, ListItemText, MenuItem } from '@mui/material';
 
 interface Props {
-  primary: React.ReactNode;
-  icon?: React.ReactNode;
+  primary: ReactNode;
+  icon?: ReactNode;
   selected?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void;
-  children?: React.ReactNode;
+  onClick?: (event: ReactMouseEvent<HTMLLIElement, MouseEvent>) => void;
+  children?: ReactNode;
   [x: string]: any;
 }
 

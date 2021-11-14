@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactElement, cloneElement } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ import PlainRouterLink from '../common/PlainRouterLink';
 import ProfileDropdown from './ProfileDropdown';
 
 interface Props {
-  children: React.ReactElement;
+  children: ReactElement;
 }
 
 const BlackToolbar = styled(Toolbar)(({ theme }) => ({
@@ -31,7 +31,7 @@ const ElevationScroll = ({ children }: Props) => {
     threshold: 0,
   });
 
-  return React.cloneElement(children, {
+  return cloneElement(children, {
     elevation: trigger ? 4 : 0,
   });
 };

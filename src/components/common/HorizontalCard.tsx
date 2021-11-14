@@ -1,4 +1,4 @@
-import React from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { useIntl } from 'react-intl';
 
 import {
@@ -13,12 +13,12 @@ import {
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 interface Props {
-  img?: React.ReactNode;
-  header?: React.ReactNode;
-  body?: React.ReactNode;
-  extra?: React.ReactNode;
+  img?: ReactNode;
+  header?: ReactNode;
+  body?: ReactNode;
+  extra?: ReactNode;
   actions?: { href?: string | null; nameId: string; Icon: OverridableComponent<SvgIconTypeMap> }[];
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
 const C = styled(Card)(({ theme }) => ({

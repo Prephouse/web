@@ -1,10 +1,10 @@
-import React from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import Flex from './Flex';
 
 interface Props {
-  style?: React.CSSProperties;
-  children?: React.ReactNode;
+  style?: CSSProperties;
+  children?: ReactNode;
   [x: string]: any;
 }
 

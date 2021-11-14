@@ -1,4 +1,4 @@
-import React from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 
 import {
   FormControl,
@@ -14,11 +14,11 @@ interface Props extends OutlinedInputProps {
   name: string;
   label: string;
   value: string;
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
   type?: string;
   errorMsg?: string;
   helperText?: string;
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
 
 const FormInput = ({

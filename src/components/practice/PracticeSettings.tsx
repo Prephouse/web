@@ -78,8 +78,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
       }}
     >
       {({ touched, values, errors, setFieldValue, setFieldError, submitForm }) => {
-        const onSubmit = (event: any) => {
-          event.preventDefault();
+        const onSubmit = () => {
           submitForm().then(console.log);
         };
 

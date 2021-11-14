@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { useIntl } from 'react-intl';
 import zxcvbn from 'zxcvbn';
 
@@ -49,12 +49,12 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
       {intl.formatMessage({ id: 'user.registration.password.requirement' })}
       <br />
       {retrievePasswordRequirements(password).map((requirement, index) => (
-        <React.Fragment key={`password-requirement-${index}`}>
+        <Fragment key={`password-requirement-${index}`}>
           <IconicText
             text={intl.formatMessage({ id: requirement.failTextId })}
             icon={<SuccessIndicatorIcon success={requirement.passed} />}
           />
-        </React.Fragment>
+        </Fragment>
       ))}
     </Typography>
   );
