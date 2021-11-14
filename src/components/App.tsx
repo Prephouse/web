@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
 
+import rollbar from '../libs/rollbar';
+
 import usePrevious from '../hooks/usePrevious';
 import { SnackbarContextProvider } from '../hooks/useSnackbar';
 
@@ -46,6 +48,7 @@ const App = () => {
     return theme;
   }
 
+  const [,] = useState(rollbar);
   const [theme, setTheme] = useState(establishTheme());
 
   const prevPref = usePrevious<boolean>(prefersDarkMode);
