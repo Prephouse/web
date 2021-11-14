@@ -165,7 +165,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   permissions={getPermissions(values.medium)}
                   onDenied={onOriginPermissionDenied}
                   render={({ permitted }) => {
-                    if (Object.entries(permitted).length === 0) {
+                    if (!Object.entries(permitted).length) {
                       return (
                         <Alert variant="outlined" severity="error">
                           {intl.formatMessage({ id: 'common.permission.decline' })}

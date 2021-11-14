@@ -77,10 +77,7 @@ function useMediaRecorder({
     }
 
     return () => {
-      if (mediaStream.current) {
-        const tracks = mediaStream.current.getTracks();
-        tracks?.forEach(track => track.stop());
-      }
+      mediaStream.current?.getTracks()?.forEach(track => track.stop());
     };
   }, [audio, video, getMediaStream, mediaRecorderOptions]);
 
@@ -102,9 +99,7 @@ function useMediaRecorder({
     setEndTimeSec(Date.now() / 1_000);
     setStatus(MediaRecordingStatus.STOPPED);
 
-    if (onStop) {
-      onStop(url, blob);
-    }
+    onStop?.(url, blob);
   };
 
   const startRecording = async () => {
