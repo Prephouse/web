@@ -78,7 +78,7 @@ function useMediaRecorder({
 
     return () => {
       if (mediaStream.current) {
-        const tracks = mediaStream.current?.getTracks();
+        const tracks = mediaStream.current.getTracks();
         tracks?.forEach(track => track.stop());
       }
     };
@@ -132,9 +132,7 @@ function useMediaRecorder({
       setStartTimeSec(Date.now() / 1_000);
       mediaRecorder.current.start();
 
-      if (onStart) {
-        onStart();
-      }
+      onStart?.();
     }
   };
 
@@ -153,9 +151,7 @@ function useMediaRecorder({
       mediaRecorder.current.resume();
     }
 
-    if (onResume) {
-      onResume();
-    }
+    onResume?.();
   };
 
   const pauseRecording = () => {
@@ -164,9 +160,7 @@ function useMediaRecorder({
       mediaRecorder.current.pause();
     }
 
-    if (onPause) {
-      onPause();
-    }
+    onPause?.();
   };
 
   const isAudioMuted = () =>

@@ -1,5 +1,9 @@
 import { useRef } from 'react';
 
+import { useTheme } from '@mui/material';
+
+import { GREY_400 } from '../../../../styles/colours';
+
 interface Props {
   stream: MediaStream | null;
   height?: number;
@@ -7,6 +11,8 @@ interface Props {
 
 const AudioPreview = ({ stream, height = 96 }: Props) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  const theme = useTheme();
 
   if (!stream?.getAudioTracks().length) {
     return null;
@@ -31,10 +37,10 @@ const AudioPreview = ({ stream, height = 96 }: Props) => {
 
     const current = canvasRef?.current;
     if (canvasCtx && current) {
-      canvasCtx.fillStyle = 'rgb(200, 200, 200)';
+      canvasCtx.fillStyle = GREY_400;
       canvasCtx.fillRect(0, 0, current.width, current.height);
       canvasCtx.lineWidth = 2;
-      canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
+      canvasCtx.strokeStyle = theme.palette.common.black;
       canvasCtx.beginPath();
 
       const sliceWidth = current.width / dataArray.length;

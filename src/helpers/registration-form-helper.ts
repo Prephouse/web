@@ -26,25 +26,25 @@ export function retrievePasswordRequirements(password: string) {
 }
 
 export interface RegistrationFormValues {
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   passwordConfirmation: string;
-  firstName: string;
-  lastName: string;
 }
 
 export const initialValues: RegistrationFormValues = {
+  firstName: '',
+  lastName: '',
   email: '',
   password: '',
   passwordConfirmation: '',
-  firstName: '',
-  lastName: '',
 };
 
 export class RegistrationFormValidation extends BaseFormValidation<RegistrationFormValues> {
   readonly #emailFormatErrorMsg: string = '';
   readonly #passwordMatchErrorMsg: string = '';
-  // eslint-disable-next-line
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   readonly #onPasswordRequirementFailed: (x: string, errors: any) => typeof errors = () => {};
 
   constructor(
@@ -60,7 +60,16 @@ export class RegistrationFormValidation extends BaseFormValidation<RegistrationF
     this.#onPasswordRequirementFailed = onPasswordRequirementFailed;
   }
 
-  validateEmail() {
+  private _validateName() {
+    if (!this.values.firstName) {
+      this.errors.firstName = this.requiredFieldMsg;
+    }
+    if (!this.values.lastName) {
+      this.errors.lastName = this.requiredFieldMsg;
+    }
+  }
+
+  private _validateEmail() {
     if (!this.values.email) {
       this.errors.email = this.requiredFieldMsg;
     } else if (!validateEmailAddressFormat(this.values.email)) {
@@ -68,7 +77,7 @@ export class RegistrationFormValidation extends BaseFormValidation<RegistrationF
     }
   }
 
-  validatePassword() {
+  private _validatePassword() {
     if (!this.values.password) {
       this.errors.password = this.requiredFieldMsg;
     } else {
@@ -80,7 +89,7 @@ export class RegistrationFormValidation extends BaseFormValidation<RegistrationF
     }
   }
 
-  validatePasswordConfirmation() {
+  private _validatePasswordConfirmation() {
     if (!this.values.passwordConfirmation) {
       this.errors.passwordConfirmation = this.requiredFieldMsg;
     } else if (this.values.password !== this.values.passwordConfirmation) {
@@ -88,19 +97,12 @@ export class RegistrationFormValidation extends BaseFormValidation<RegistrationF
     }
   }
 
-  private _validateCredentials() {
-    this.validateEmail();
-    this.validatePassword();
-    this.validatePasswordConfirmation();
-  }
-
-  private _validatePersonal() {
-    ['firstName', 'lastName'].forEach(v => this.onlyCheckRequiredFilled(v));
-  }
-
   validate = () => {
-    this._validateCredentials();
-    this._validatePersonal();
+    this._validateName();
+    this._validateEmail();
+    this._validatePassword();
+    this._validatePasswordConfirmation();
+
     return this.errors;
   };
 }

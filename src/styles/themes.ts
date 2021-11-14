@@ -1,15 +1,16 @@
 import { createTheme } from '@mui/material';
-import { blue, grey, red } from '@mui/material/colors';
+
+import { BLUE_500, BLUE_900, GREY_200, GREY_300, GREY_500, GREY_600, PURPLE_500 } from './colours';
 
 export default function generateTheme(prefersDarkMode = false) {
   return createTheme({
     palette: {
       mode: prefersDarkMode ? 'dark' : 'light',
       primary: {
-        main: prefersDarkMode ? '#206EC2' : blue[900],
+        main: prefersDarkMode ? BLUE_500 : BLUE_900,
       },
       secondary: {
-        main: red[700],
+        main: PURPLE_500,
       },
     },
     typography: {
@@ -19,25 +20,11 @@ export default function generateTheme(prefersDarkMode = false) {
       MuiCssBaseline: {
         styleOverrides: {
           '@global': {
-            main: {
-              minHeight: '100vh',
-              height: '100%',
-            },
-            footer: {
-              display: 'inline-block',
-              boxSizing: 'border-box',
-              width: '100%',
-              padding: '32px 10%',
-            },
-            input: {
-              '&:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus, &:-webkit-autofill:active':
-                prefersDarkMode ? undefined : '0 0 0 30px transparent inset !important',
-            },
             blockquote: {
               margin: 0,
               '& p': {
                 padding: 16,
-                background: '#EEE',
+                background: GREY_200,
                 color: 'black',
                 borderRadius: 4,
               },
@@ -47,7 +34,7 @@ export default function generateTheme(prefersDarkMode = false) {
               marginRight: 0,
             },
             kbd: {
-              backgroundColor: '#EEE',
+              backgroundColor: GREY_200,
               borderRadius: 3,
               border: '1px solid #B4B4B4',
               boxShadow: '0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset',
@@ -104,7 +91,7 @@ export default function generateTheme(prefersDarkMode = false) {
         styleOverrides: {
           root: {
             '&:hover': {
-              backgroundColor: prefersDarkMode ? grey[600] : grey[300],
+              backgroundColor: prefersDarkMode ? GREY_600 : GREY_300,
             },
           },
         },
@@ -112,14 +99,7 @@ export default function generateTheme(prefersDarkMode = false) {
       MuiAccordionSummary: {
         styleOverrides: {
           root: {
-            backgroundColor: grey[500],
-          },
-        },
-      },
-      MuiTooltip: {
-        styleOverrides: {
-          tooltipPlacementBottom: {
-            marginTop: '8px !important',
+            backgroundColor: GREY_500,
           },
         },
       },

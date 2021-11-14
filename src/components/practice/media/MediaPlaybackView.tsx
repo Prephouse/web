@@ -6,7 +6,7 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@mui/material';
 
-import { FADING_GREY } from '../../../styles/colours';
+import { GREY_500 } from '../../../styles/colours';
 
 import { round_as_decimal } from '../../../utils/math-utils';
 
@@ -99,7 +99,7 @@ const MediaPlaybackView = ({ duration, src }: Props) => {
             item
             xs={2}
             sx={{
-              backgroundColor: FADING_GREY,
+              backgroundColor: GREY_500,
               padding: theme.spacing(2),
             }}
           >
