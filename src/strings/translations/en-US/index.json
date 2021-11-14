@@ -38,6 +38,7 @@
   "practice.settings.back": "Restart",
   "practice.settings.confirm": "Confirm preferences",
   "practice.settings.title": "Select your preferences",
+  "practice.settings.liveFeedback.description": "You will receive some, but not all, automated feedback from our system as you go. You can use that feedback to improve your skills along the way!",
   "practice.settings.liveFeedback.helper": "Choose whether to receive some feedback as you go",
   "practice.settings.liveFeedback.title": "Live Feedback",
   "practice.settings.medium.audio": "Audio only",

@@ -229,8 +229,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 severity="info"
                 sx={{ margin: theme => theme.spacing(1, 0) }}
               >
-                You will receive some, but not all, automated feedback from our system as you go.
-                You can use that feedback to improve your skills along the way!
+                {intl.formatMessage({ id: 'practice.settings.liveFeedback.description' })}
               </Alert>
             </Box>
             <FormButtons
