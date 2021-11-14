@@ -21,9 +21,9 @@ const TeamPanel = () => {
       <Grid container direction="column" wrap="wrap" spacing={3}>
         {members.map(member => {
           const sites = [
-            { href: member.website, nameId: 'general.action.website', Icon: LinkIcon },
-            { href: member.linkedin, nameId: 'general.action.linkedin', Icon: LinkedInIcon },
-            { href: member.github, nameId: 'general.action.github', Icon: GitHubIcon },
+            { href: member.website, nameId: 'common.website', Icon: LinkIcon },
+            { href: member.linkedin, nameId: 'common.linkedin', Icon: LinkedInIcon },
+            { href: member.github, nameId: 'common.github', Icon: GitHubIcon },
           ];
 
           return (

@@ -11,7 +11,7 @@ import { findClosestPathname } from '../../utils/string-utils';
 
 import PageContainer from '../common/PageContainer';
 
-const PageNotFound = () => {
+const PageNotFoundView = () => {
   const intl = useIntl();
 
   const [closestPathname, setClosestPathname] = useState<string | null>(null);
@@ -21,17 +21,17 @@ const PageNotFound = () => {
   return (
     <PageContainer>
       <Helmet>
-        <title>{intl.formatMessage({ id: 'app.http.404' })} &ndash; Prephouse</title>
+        <title>{intl.formatMessage({ id: 'common.http.404' })} &ndash; Prephouse</title>
       </Helmet>
       <Typography component="h2" variant="h3" gutterBottom>
-        &#128533; {intl.formatMessage({ id: 'app.http.404' })}
+        &#128533; {intl.formatMessage({ id: 'common.http.404' })}
       </Typography>
       <Typography variant="body1">
         {closestPathname && (
           <>
             <br />
             {intl.formatMessage(
-              { id: 'app.http.404.redirect' },
+              { id: 'common.http.404.redirect' },
               {
                 url: (
                   <Link
@@ -51,4 +51,4 @@ const PageNotFound = () => {
   );
 };
 
-export default PageNotFound;
+export default PageNotFoundView;

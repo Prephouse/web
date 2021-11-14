@@ -1,11 +1,11 @@
-export interface Member {
+type Member = {
   name: string;
   img: string;
   bio: string;
   website?: string;
   linkedin?: string;
   github?: string;
-}
+};
 
 const members: Member[] = [
   {

@@ -4,50 +4,57 @@ import { useIntl } from 'react-intl';
 
 import { Box, Typography } from '@mui/material';
 
-const accept: string[] = [
-  // TODO determine what MIME types to accept
-];
+import { SessionMedium, SessionType } from '../../../utils/enums';
 
-const MediaUploadZone = () => {
+interface Props {
+  sessionType: SessionType;
+  medium: SessionMedium;
+  onSubmit: (duration: number | null, src: string) => void;
+}
+
+const MediaUploadZone = ({ medium, onSubmit }: Props) => {
+  const [file, setFile] = useState<File | null>(null);
+
   const intl = useIntl();
 
-  const [video, setVideo] = useState<File | null>(null);
+  const getAcceptedMimes: () => string[] = () => {
+    if (medium === SessionMedium.VIDEO_AND_AUDIO) {
+      return ['video/mp4'];
+    } else {
+      return ['audio/mp4', 'audio/wav'];
+    }
+  };
 
   const onDrop = useCallback(acceptedFiles => {
-    setVideo(acceptedFiles[0]);
+    setFile(acceptedFiles[0]);
+    onSubmit(null, URL.createObjectURL(acceptedFiles[0]));
   }, []);
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     onDrop,
-    accept,
-    noClick: !!video,
+    accept: getAcceptedMimes(),
+    noClick: !!file,
     multiple: false,
   });
+
   const { ref, ...rootProps } = getRootProps();
 
   const showUploader = (isDragActive = false, isDragReject = false) => {
-    let Zone: React.ReactNode = <> </>;
-    if (!video) {
-      let Message: React.ReactNode;
+    if (!file) {
+      let msg: string;
       if (isDragActive) {
-        Message = intl.formatMessage({ id: 'practice.upload.dropImage' });
+        msg = intl.formatMessage({ id: 'practice.upload.drop' });
       } else if (isDragReject) {
-        Message = intl.formatMessage({ id: 'practice.upload.mime.error' });
+        msg = intl.formatMessage({ id: 'practice.upload.mime.error' });
       } else {
-        Message = (
-          <>
-            {intl.formatMessage({ id: 'practice.upload.dragDropClick' })}
-            <br />
-            <em>{intl.formatMessage({ id: 'practice.upload.mime.warning' })}</em>
-          </>
-        );
+        msg = intl.formatMessage({ id: 'practice.upload.dragDrop' });
       }
-      Zone = (
+      return (
         <Typography component="div" variant="body2">
-          {Message}
+          {msg}
         </Typography>
       );
     }
-    return Zone;
   };
 
   return (
@@ -55,9 +62,10 @@ const MediaUploadZone = () => {
       ref={ref}
       width={1}
       p={3}
+      my={3}
       border="0.5px dashed"
       borderRadius={6}
-      sx={{ cursor: 'pointer' }}
+      sx={{ cursor: 'pointer', minHeight: 300 }}
       {...rootProps}
     >
       <Typography component="div" variant="h6" gutterBottom>

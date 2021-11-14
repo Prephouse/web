@@ -5,6 +5,7 @@ import { Box, Button, CircularProgress } from '@mui/material';
 interface Props {
   primaryText: string;
   onPrimaryClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  primaryDisabled?: boolean;
   secondaryText?: string;
   onSecondaryClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isLoading?: boolean;
@@ -23,6 +24,7 @@ interface Props {
 const FormButtons = ({
   primaryText,
   onPrimaryClick,
+  primaryDisabled = false,
   secondaryText,
   onSecondaryClick,
   secondaryColor = 'secondary',
@@ -38,7 +40,7 @@ const FormButtons = ({
         fullWidth
         sx={{ margin: theme => theme.spacing(0.5, 0) }}
         onClick={onPrimaryClick}
-        disabled={isLoading}
+        disabled={isLoading || primaryDisabled}
       >
         {isLoading ? (
           <>

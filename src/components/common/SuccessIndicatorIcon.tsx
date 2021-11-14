@@ -11,7 +11,7 @@ const SmallCircle = styled('span')(() => ({
   borderRadius: '50%',
 }));
 
-const SmallSuccessIndicatorIcon = ({ success }: Props) => (
+const SuccessIndicatorIcon = ({ success }: Props) => (
   <SmallCircle
     sx={{
       backgroundColor: theme => theme.palette[success ? 'success' : 'error'].main,
@@ -19,4 +19,4 @@ const SmallSuccessIndicatorIcon = ({ success }: Props) => (
   />
 );
 
-export default SmallSuccessIndicatorIcon;
+export default SuccessIndicatorIcon;

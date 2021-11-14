@@ -48,8 +48,7 @@ code.
 
 ## Internalization
 
-In order to keep our user-facing strings in one place for easy search and modification, and in order
-to potentially support i18n in the feature, place your strings _only_ in
-[strings.ts](./src/strings/strings.ts) and use the
-[react-intl](https://formatjs.io/docs/react-intl/) library. Take extra pre-caution for strings that
-may be pluralized.
+Place your translatable strings _only_ in the appropriate locale within the
+[translations](./src/strings/translations) directory and use the
+[react-intl](https://formatjs.io/docs/react-intl/) library in the code. Take extra pre-caution for
+strings that may be pluralized.

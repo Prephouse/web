@@ -52,7 +52,7 @@ const ProfileMenu = () => {
       <DropdownMenuItem
         primary={
           <div className={clsx(prefersDarkMode && 'neon')}>
-            {[...intl.formatMessage({ id: 'actionbar.dropdown.item.darkMode' })].map((c, i) => (
+            {[...intl.formatMessage({ id: 'app.setting.darkMode' })].map((c, i) => (
               <span key={`neon-char-${i}`}>{c}</span>
             ))}
           </div>

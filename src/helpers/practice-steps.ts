@@ -1,7 +1,9 @@
 const practiceSteps: Readonly<string[]> = Object.freeze([
-  'practice.step.selectSettings',
-  'practice.step.readInstructions',
-  'practice.step.practice',
+  'practice.introduction.title',
+  'practice.settings.title',
+  'practice.instructions.title',
+  'practice.practice.title',
+  'practice.feedback.title',
 ]);
 
 export default practiceSteps;

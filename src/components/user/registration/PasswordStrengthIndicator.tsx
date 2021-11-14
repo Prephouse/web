@@ -8,7 +8,7 @@ import badPasswords from '../../../helpers/bad-passwords';
 import { retrievePasswordRequirements } from '../../../helpers/registration-form-helper';
 
 import IconicText from '../../common/IconicText';
-import SmallSuccessIndicatorIcon from '../../common/SmallSuccessIndicatorIcon';
+import SuccessIndicatorIcon from '../../common/SuccessIndicatorIcon';
 
 interface Props {
   password: string;
@@ -52,7 +52,7 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
         <React.Fragment key={`password-requirement-${index}`}>
           <IconicText
             text={intl.formatMessage({ id: requirement.failTextId })}
-            icon={<SmallSuccessIndicatorIcon success={requirement.passed} />}
+            icon={<SuccessIndicatorIcon success={requirement.passed} />}
           />
         </React.Fragment>
       ))}
