@@ -13,7 +13,7 @@ interface Props extends BaseProps {
   onClose: () => void;
 }
 
-const AlertingSnackbar = ({ open, onClose, severity, duration = 5000, message }: Props) => {
+const AlertSnackbar = ({ open, onClose, severity, duration = 5000, message }: Props) => {
   return (
     <Snackbar
       role="status"
@@ -38,7 +38,7 @@ const SnackbarWrapper = () => {
     setSnackbar(null);
   };
 
-  return snackbar && <AlertingSnackbar {...snackbar} open={!!snackbar} onClose={onClose} />;
+  return snackbar && <AlertSnackbar {...snackbar} open={!!snackbar} onClose={onClose} />;
 };
 
 export default SnackbarWrapper;

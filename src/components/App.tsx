@@ -25,7 +25,7 @@ import generateTheme from '../styles/themes';
 
 import About from './about/About';
 import ActionBar from './actionbar/ActionBar';
-import SnackbarWrapper from './common/AlertingSnackbar';
+import SnackbarWrapper from './common/AlertSnackbar';
 import CompareBoard from './compare/CompareBoard';
 import Dashboard from './dashboard/Dashboard';
 import PageNotFoundView from './error/PageNotFoundView';
