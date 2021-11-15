@@ -135,7 +135,7 @@ function useMediaRecorder({
     if (mediaRecorder.current && mediaRecorder.current.state !== 'inactive') {
       setStatus(MediaRecordingStatus.STOPPING);
       mediaRecorder.current.stop();
-      mediaStream.current && mediaStream.current.getTracks().forEach(track => track.stop());
+      mediaStream.current?.getTracks().forEach(track => track.stop());
       mediaChunks.current = [];
     }
   };
