@@ -25,10 +25,13 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
     }
   };
 
-  const onDrop = useCallback(acceptedFiles => {
-    setFile(acceptedFiles[0]);
-    onSubmit(null, URL.createObjectURL(acceptedFiles[0]));
-  }, []);
+  const onDrop = useCallback(
+    acceptedFiles => {
+      setFile(acceptedFiles[0]);
+      onSubmit(null, URL.createObjectURL(acceptedFiles[0]));
+    },
+    [onSubmit]
+  );
 
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     onDrop,
@@ -39,7 +42,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
 
   const { ref, ...rootProps } = getRootProps();
 
-  const showUploader = (isDragActive = false, isDragReject = false) => {
+  const showUploader = () => {
     if (!file) {
       let msg: string;
       if (isDragActive) {
@@ -72,7 +75,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
         {intl.formatMessage({ id: 'practice.upload' })}
       </Typography>
       <input {...getInputProps()} />
-      {showUploader(isDragActive, isDragReject)}
+      {showUploader()}
     </Box>
   );
 };

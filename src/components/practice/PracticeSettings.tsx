@@ -49,7 +49,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
       audioinput: { declineMessage: intl.formatMessage({ id: 'common.permission.audio' }) },
     };
     if (medium === SessionMedium.VIDEO_AND_AUDIO) {
-      permissions['videoinput'] = {
+      permissions.videoinput = {
         declineMessage: intl.formatMessage({ id: 'common.permission.video' }),
       };
     }
