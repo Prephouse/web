@@ -43,7 +43,9 @@ export const initialValues: RegistrationFormValues = {
 
 export class RegistrationFormValidation extends BaseFormValidation<RegistrationFormValues> {
   readonly #emailFormatErrorMsg: string = '';
+
   readonly #passwordMatchErrorMsg: string = '';
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   readonly #onPasswordRequirementFailed: (x: string, errors: any) => typeof errors = () => {};
 

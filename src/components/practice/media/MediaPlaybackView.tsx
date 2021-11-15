@@ -8,7 +8,7 @@ import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@m
 
 import { GREY_500 } from '../../../styles/colours';
 
-import { round_as_decimal } from '../../../utils/math-utils';
+import { roundAsDecimal } from '../../../utils/math-utils';
 
 import MediaSeekSlider from '../../common/MediaSeekSlider';
 
@@ -48,7 +48,7 @@ const MediaPlaybackView = ({ duration, src }: Props) => {
 
   useEffect(() => {
     playerRef?.current?.addEventListener('loadedmetadata', () => {
-      setVolume(round_as_decimal((playerRef?.current?.volume ?? 0) * 100));
+      setVolume(roundAsDecimal((playerRef?.current?.volume ?? 0) * 100));
     });
 
     playerRef?.current?.addEventListener('play', () => {
@@ -64,14 +64,14 @@ const MediaPlaybackView = ({ duration, src }: Props) => {
     });
 
     playerRef?.current?.addEventListener('volumechange', () => {
-      setVolume(round_as_decimal((playerRef?.current?.volume ?? 0) * 100));
+      setVolume(roundAsDecimal((playerRef?.current?.volume ?? 0) * 100));
     });
   }, [playerRef]);
 
   return (
     <>
       <video src={src} ref={playerRef} style={{ width: '100%', transform: 'scaleX(-1)' }} />
-      <Paper sx={{ margin: theme => theme.spacing(3, 0) }}>
+      <Paper sx={{ margin: theme.spacing(3, 0) }}>
         <Grid container>
           <Grid item xs={10} sx={{ padding: theme.spacing(2) }}>
             <Stack direction="row" spacing={2} alignItems="center">

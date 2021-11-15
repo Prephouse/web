@@ -26,7 +26,7 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
     <PrephouseMediaRecorder
       video
       audio
-      onStop={blobUrl => setBlobUrl(blobUrl)}
+      onStop={burl => setBlobUrl(burl)}
       render={({
         status,
         duration,

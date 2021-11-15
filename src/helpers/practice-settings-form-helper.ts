@@ -9,10 +9,6 @@ export interface PracticeSettingsFormValues {
 }
 
 export class PracticeSettingsFormValidation extends BaseFormValidation<PracticeSettingsFormValues> {
-  constructor(values: PracticeSettingsFormValues, requiredFieldMsg: string) {
-    super(values, requiredFieldMsg);
-  }
-
   validate = () => {
     if (!this.values.medium) {
       this.errors.medium = this.requiredFieldMsg;
