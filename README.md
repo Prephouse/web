@@ -2,11 +2,10 @@
 
 ## Development Setup
 
-1. Run `brew install yarn` to install the yarn dependency manager
-2. Open a tab, in the root directory of this project, on your command line interface (CLI)
-3. Run `yarn install` on your CLI to install the [project dependencies](package.json)
+1. Go to the root directory of this project on your command line interface (CLI)
+2. Run `./setup.sh` on your CLI to install the [project dependencies](package.json)
 
-## Local Website Startup
+## Development Startup
 
 1. Run `yarn start` on your CLI
 2. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
@@ -35,7 +34,7 @@ The following development tools are recommended for this project:
 
 ## Code Style
 
-We're utilizing [Prettier](https://prettier.io/) to enforce certain [styling rules](.prettierrc). If
+We're utilizing [Prettier](.prettierrc) and [ESLint](.eslintrc) to enforce certain styling rules. If
 you use VSCode, your code will be auto-formatted whenever you save it. If you use Webstorm, go to
 Languages & Frameworks > JavaScript > Prettier in the IDE preferences, and then check "On 'Reformat
 code' action" and "On save".
