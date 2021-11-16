@@ -7,7 +7,7 @@ import { Link, Typography } from '@mui/material';
 
 import * as paths from '../../strings/paths';
 
-import { findClosestPathname } from '../../utils/string-utils';
+import { findClosestPathname } from '../../utils/stringUtils';
 
 import PageContainer from '../common/PageContainer';
 

@@ -1,3 +1,5 @@
+import { FormikErrors } from 'formik';
+
 import {
   validateEmailAddressFormat,
   validatePasswordMinimumLength,
@@ -5,7 +7,7 @@ import {
   validatePasswordUppercase,
 } from '../utils/validators';
 
-import { BaseFormValidation } from './base-form-helper';
+import { BaseFormValidation } from './baseFormHelper';
 
 export function retrievePasswordRequirements(password: string) {
   return Object.freeze([
@@ -46,15 +48,21 @@ export class RegistrationFormValidation extends BaseFormValidation<RegistrationF
 
   readonly #passwordMatchErrorMsg: string = '';
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  readonly #onPasswordRequirementFailed: (x: string, errors: any) => typeof errors = () => {};
+  readonly #onPasswordRequirementFailed: (
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    errorMsgId: string,
+    errors: FormikErrors<RegistrationFormValues>
+  ) => typeof errors;
 
   constructor(
     values: RegistrationFormValues,
     requiredFieldMsg: string,
     emailFormatErrorMsg: string,
     passwordMatchErrorMsg: string,
-    onPasswordRequirementFailed: (x: string, errors: any) => typeof errors
+    onPasswordRequirementFailed: (
+      errorMsgId: string,
+      errors: FormikErrors<RegistrationFormValues>
+    ) => typeof errors
   ) {
     super(values, requiredFieldMsg);
     this.#emailFormatErrorMsg = emailFormatErrorMsg;

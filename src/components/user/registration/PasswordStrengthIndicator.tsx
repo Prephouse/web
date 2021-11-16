@@ -4,8 +4,8 @@ import zxcvbn from 'zxcvbn';
 
 import { Typography } from '@mui/material';
 
-import badPasswords from '../../../helpers/bad-passwords';
-import { retrievePasswordRequirements } from '../../../helpers/registration-form-helper';
+import badPasswords from '../../../helpers/badPasswords';
+import { retrievePasswordRequirements } from '../../../helpers/userRegistrationHelper';
 
 import IconicText from '../../common/IconicText';
 import SuccessIndicatorIcon from '../../common/SuccessIndicatorIcon';

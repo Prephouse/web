@@ -9,15 +9,11 @@ export const hasSimilarPathname = function hasSimiliarPathnames(
 };
 
 export const findClosestPathname = function findClosestPathname(
-  pathnames: Record<string, string>,
-  onFoundClosestPathname: (res: string | null) => any
+  paths: Record<string, string>,
+  onFoundClosestPathname: (res: string | null) => void
 ) {
-  let res: string | null = null;
-  for (const pathname of Object.values(pathnames)) {
-    if (pathname !== '/' && hasSimilarPathname(pathname, window.location.pathname)) {
-      res = pathname;
-      break;
-    }
-  }
+  const res: string | null =
+    Object.values(paths).find(p => p !== '/' && hasSimilarPathname(p, window.location.pathname)) ??
+    null;
   onFoundClosestPathname(res);
 };

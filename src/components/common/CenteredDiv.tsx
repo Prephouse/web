@@ -5,7 +5,7 @@ import Flex from './Flex';
 interface Props {
   style?: CSSProperties;
   children?: ReactNode;
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 const CenteredDiv = ({ style, children, ...otherProps }: Props) => {

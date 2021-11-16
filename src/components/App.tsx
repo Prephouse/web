@@ -1,16 +1,13 @@
 import { useEffect, useState } from 'react';
 import { IntlProvider } from 'react-intl';
-import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
 
 import rollbar from '../libs/rollbar';
 
+import useAppSelector from '../hooks/useAppSelector';
 import usePrevious from '../hooks/usePrevious';
-import { SnackbarContextProvider } from '../hooks/useSnackbar';
-
-import { RootState } from '../store/rootReducer';
 
 import {
   ABOUT_PATH,
@@ -28,6 +25,7 @@ import generateTheme from '../styles/themes';
 import About from './about/About';
 import ActionBar from './actionbar/ActionBar';
 import SnackbarWrapper from './common/AlertSnackbar';
+import SnackbarContextProvider from './common/SnackbarContextProvider';
 import CompareBoard from './compare/CompareBoard';
 import Dashboard from './dashboard/Dashboard';
 import PageNotFoundView from './error/PageNotFoundView';
@@ -38,9 +36,7 @@ import TipBook from './tips/TipBook';
 import RegistrationForm from './user/registration/RegistrationForm';
 
 const App = () => {
-  const prefersDarkMode: boolean = useSelector(
-    (state: RootState) => state.settingsReducer.prefersDarkMode
-  );
+  const prefersDarkMode: boolean = useAppSelector(state => state.settingsReducer.prefersDarkMode);
 
   function establishTheme() {
     let theme = generateTheme(prefersDarkMode);

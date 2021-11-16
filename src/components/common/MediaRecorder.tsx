@@ -53,7 +53,7 @@ function useMediaRecorder({
     setStatus(MediaRecordingStatus.ACQUIRING_MEDIA);
     try {
       mediaStream.current = await window.navigator.mediaDevices.getUserMedia({ audio, video });
-    } catch (error: any) {
+    } catch {
       // TODO send to errors state
     } finally {
       setStatus(MediaRecordingStatus.IDLE);

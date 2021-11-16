@@ -1,6 +1,5 @@
 import { Form, Formik } from 'formik';
 import { useIntl } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
 
 import {
   Alert,
@@ -13,10 +12,12 @@ import {
   RadioGroup,
 } from '@mui/material';
 
-import { setPracticeSettings } from '../../store/practice/actions';
-import { RootState } from '../../store/rootReducer';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import useAppSelector from '../../hooks/useAppSelector';
 
-import { PracticeSettingsFormValidation } from '../../helpers/practice-settings-form-helper';
+import { setPracticeSettings } from '../../store/practice/actions';
+
+import { PracticeSettingsFormValidation } from '../../helpers/practiceSettingsHelper';
 
 import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
 
@@ -30,7 +31,7 @@ interface Props {
 }
 
 const PracticeSettings = ({ onBack, onNext }: Props) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const intl = useIntl();
 
@@ -59,11 +60,9 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
   return (
     <Formik
       initialValues={{
-        medium: useSelector((state: RootState) => state.practiceReducer.medium),
-        origin: useSelector((state: RootState) => state.practiceReducer.origin),
-        allowLiveFeedback: useSelector(
-          (state: RootState) => state.practiceReducer.allowLiveFeedback
-        ),
+        medium: useAppSelector(state => state.practiceReducer.medium),
+        origin: useAppSelector(state => state.practiceReducer.origin),
+        allowLiveFeedback: useAppSelector(state => state.practiceReducer.allowLiveFeedback),
       }}
       validate={values =>
         new PracticeSettingsFormValidation(

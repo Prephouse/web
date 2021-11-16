@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Paper, Step, StepLabel, Stepper } from '@mui/material';
 
-import { clearMediaSource } from '../../store/practice/actions';
-import { RootState } from '../../store/rootReducer';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import useAppSelector from '../../hooks/useAppSelector';
 
-import practiceSteps from '../../helpers/practice-steps';
+import { clearMediaSource } from '../../store/practice/actions';
+
+import practiceSteps from '../../helpers/practiceSteps';
 
 import PageContainer from '../common/PageContainer';
 import PracticeInstructions from './PracticeInstructions';
@@ -18,9 +19,9 @@ import MediaPlaybackView from './media/MediaPlaybackView';
 import MediaZone from './media/MediaZone';
 
 const PracticeGround = () => {
-  const duration = useSelector((state: RootState) => state.practiceReducer.duration);
-  const source = useSelector((state: RootState) => state.practiceReducer.source);
-  const dispatch = useDispatch();
+  const duration = useAppSelector(state => state.practiceReducer.duration);
+  const source = useAppSelector(state => state.practiceReducer.source);
+  const dispatch = useAppDispatch();
 
   const intl = useIntl();
 
