@@ -3,7 +3,7 @@ import { CSSProperties, ReactNode } from 'react';
 interface Props {
   children?: ReactNode;
   style?: CSSProperties;
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 const Flex = ({ children, style, ...otherProps }: Props) => {

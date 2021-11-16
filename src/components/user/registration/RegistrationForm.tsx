@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikErrors } from 'formik';
 import { MouseEvent as ReactMouseEvent, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
@@ -7,8 +7,9 @@ import { Popover, Typography } from '@mui/material';
 
 import {
   RegistrationFormValidation,
+  RegistrationFormValues,
   initialValues,
-} from '../../../helpers/registration-form-helper';
+} from '../../../helpers/userRegistrationHelper';
 
 import FormButtons from '../../common/FormButtons';
 import FormGroupCompact from '../../common/FormGroupCompact';
@@ -30,7 +31,10 @@ const RegistrationForm = () => {
   };
   const handlePsiClose = () => setAnchorElPsi(null);
 
-  const handlePasswordRequirementFailed = (errorMsgId: string, errors: any) => {
+  const handlePasswordRequirementFailed = (
+    errorMsgId: string,
+    errors: FormikErrors<RegistrationFormValues>
+  ) => {
     let passwordErrorMsg = intl.formatMessage({ id: errorMsgId });
     passwordErrorMsg = passwordErrorMsg.charAt(0).toLowerCase() + passwordErrorMsg.slice(1);
     const passwordErrors = intl.formatMessage(

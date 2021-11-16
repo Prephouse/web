@@ -1,6 +1,6 @@
 import { SessionMedium, SessionOrigin } from '../utils/enums';
 
-import { BaseFormValidation } from './base-form-helper';
+import { BaseFormValidation } from './baseFormHelper';
 
 export interface PracticeSettingsFormValues {
   medium: SessionMedium;

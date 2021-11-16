@@ -8,7 +8,7 @@ interface Props {
   selected?: boolean;
   onClick?: (event: ReactMouseEvent<HTMLLIElement, MouseEvent>) => void;
   children?: ReactNode;
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 class DropdownMenuItem extends PureComponent<Props> {

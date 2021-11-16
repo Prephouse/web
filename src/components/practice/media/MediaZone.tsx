@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { useDispatch, useSelector } from 'react-redux';
+
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import useAppSelector from '../../../hooks/useAppSelector';
 
 import { setMediaSource } from '../../../store/practice/actions';
-import { RootState } from '../../../store/rootReducer';
 
 import { SessionMedium, SessionOrigin } from '../../../utils/enums';
 
@@ -18,10 +19,10 @@ interface Props {
 }
 
 const MediaZone = ({ onNext, onBack }: Props) => {
-  const sessionType = useSelector((state: RootState) => state.practiceReducer.sessionType);
-  const medium = useSelector((state: RootState) => state.practiceReducer.medium);
-  const origin = useSelector((state: RootState) => state.practiceReducer.origin);
-  const dispatch = useDispatch();
+  const sessionType = useAppSelector(state => state.practiceReducer.sessionType);
+  const medium = useAppSelector(state => state.practiceReducer.medium);
+  const origin = useAppSelector(state => state.practiceReducer.origin);
+  const dispatch = useAppDispatch();
 
   const [readyForSubmission, setReadyForSubmission] = useState(false);
 

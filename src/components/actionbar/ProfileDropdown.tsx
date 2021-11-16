@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
 import { Avatar, Button, IconButton, Typography, createTheme } from '@mui/material';
 
@@ -11,7 +11,8 @@ const NavigationDropdown = () => {
   const theme = createTheme();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
-  const handleOpenMenu = (event: any) => setAnchorElMenu(event.currentTarget);
+  const handleOpenMenu = (event: { currentTarget: SetStateAction<HTMLElement | null> }) =>
+    setAnchorElMenu(event.currentTarget);
   const handleCloseMenu = () => setAnchorElMenu(null);
 
   const ScaledAvatar = (
