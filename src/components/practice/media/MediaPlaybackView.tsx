@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
@@ -18,13 +19,15 @@ interface Props {
 }
 
 const MediaPlaybackView = ({ duration, src }: Props) => {
-  const theme = useTheme();
-
   const playerRef = useRef<HTMLVideoElement | null>(null);
 
   const [play, setPlay] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0);
+
+  const theme = useTheme();
+
+  const intl = useIntl();
 
   const handlePlay = () => {
     playerRef.current?.play();
@@ -70,7 +73,12 @@ const MediaPlaybackView = ({ duration, src }: Props) => {
 
   return (
     <>
-      <video src={src} ref={playerRef} style={{ width: '100%', transform: 'scaleX(-1)' }} />
+      <video
+        aria-label={intl.formatMessage({ id: 'practice.practice.playback.video' })}
+        src={src}
+        ref={playerRef}
+        style={{ width: '100%', transform: 'scaleX(-1)' }}
+      />
       <Paper sx={{ margin: theme.spacing(3, 0) }}>
         <Grid container>
           <Grid item xs={10} sx={{ padding: theme.spacing(2) }}>

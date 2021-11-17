@@ -25,7 +25,7 @@ const LiveRecordButtons = ({
 
   return (
     <ButtonGroup variant="contained" fullWidth>
-      <Button onClick={startRecording} disabled={status === MediaRecordingStatus.RECORDING}>
+      <Button onClick={startRecording} disabled={status === MediaRecordingStatus.Recording}>
         {intl.formatMessage(
           { id: 'practice.practice.start' },
           {
@@ -38,7 +38,7 @@ const LiveRecordButtons = ({
       <Button
         color="secondary"
         onClick={stopRecording}
-        disabled={status !== MediaRecordingStatus.RECORDING}
+        disabled={status !== MediaRecordingStatus.Recording}
       >
         {intl.formatMessage(
           { id: 'practice.practice.end' },
@@ -49,7 +49,7 @@ const LiveRecordButtons = ({
           }
         )}
       </Button>
-      {status == MediaRecordingStatus.PAUSED ? (
+      {status === MediaRecordingStatus.Paused ? (
         <Button startIcon={<PlayArrowIcon />} onClick={resumeRecording}>
           {intl.formatMessage({ id: 'common.resume' })}
         </Button>

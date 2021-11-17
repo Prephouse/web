@@ -1,7 +1,8 @@
 import { ReportHandler } from 'web-vitals';
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {
-  if (onPerfEntry && onPerfEntry instanceof Function) {
+  if (onPerfEntry) {
+    // eslint-disable-next-line promise/always-return
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
       getCLS(onPerfEntry);
       getFID(onPerfEntry);

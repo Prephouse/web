@@ -32,7 +32,7 @@ const AlertSnackbar = ({ open, onClose, severity, duration = 5000, message }: Pr
 };
 
 const SnackbarWrapper = () => {
-  const [snackbar, setSnackbar] = useSnackbar();
+  const { snackbar, setSnackbar } = useSnackbar();
 
   const onClose = () => {
     setSnackbar(null);

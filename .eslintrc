@@ -1,26 +1,47 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": [
-      "./tsconfig.json"
-    ]
+    "project": ["./tsconfig.json"]
   },
   "env": {
     "es2021": true,
-    "node": true
+    "node": true,
+    "browser": true,
+    "jest": true
   },
-  "plugins": ["@typescript-eslint", "import", "react", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "eslint-comments",
+    "import",
+    "jest",
+    "promise",
+    "react",
+    "react-hooks"
+  ],
   "extends": [
     "airbnb-typescript",
     "airbnb/hooks",
     "eslint:recommended",
+    "plugin:@shopify/react",
+    "plugin:@shopify/prettier",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:jest/recommended",
+    "plugin:promise/recommended",
     "prettier"
   ],
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@shopify/jsx-no-complex-expressions": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/order": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "no-console": "warn",
+    "promise/catch-or-return": "off",
+    "radix": "error",
+    "react/react-in-jsx-scope": "off"
   },
   "ignorePatterns": [".eslintrc.i18n.js"]
 }

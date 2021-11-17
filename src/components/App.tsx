@@ -57,18 +57,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <IntlProvider
-        locale="en-US"
-        defaultLocale="en-US"
-        messages={strings['en-US']}
-        onError={err => {
-          if (err.code === 'MISSING_TRANSLATION') {
-            console.warn('Missing translation', err.message);
-            return;
-          }
-          throw err;
-        }}
-      >
+      <IntlProvider locale="en-US" defaultLocale="en-US" messages={strings['en-US']}>
         <ThemeProvider theme={theme}>
           <SnackbarContextProvider>
             <CssBaseline />

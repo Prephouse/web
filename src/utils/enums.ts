@@ -1,23 +1,23 @@
 export enum SessionMedium {
-  VIDEO_AND_AUDIO,
-  AUDIO_ONLY,
+  VideoAudio,
+  AudioOnly,
 }
 
 export enum SessionType {
-  INTERVIEW,
-  PRESENTATION,
+  Interview,
+  Presentation,
 }
 
 export enum SessionOrigin {
-  RECORD,
-  UPLOAD,
+  Record,
+  Upload,
 }
 
 export enum MediaRecordingStatus {
-  IDLE = 'idle',
-  ACQUIRING_MEDIA = 'acquiring_media',
-  RECORDING = 'recording',
-  STOPPING = 'stopping',
-  STOPPED = 'stopped',
-  PAUSED = 'paused',
+  Idle = 'idle',
+  AcquiringMedia = 'acquiring_media',
+  Recording = 'recording',
+  Stopping = 'stopping',
+  Stopped = 'stopped',
+  Paused = 'paused',
 }
