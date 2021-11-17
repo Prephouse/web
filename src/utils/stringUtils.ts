@@ -5,7 +5,7 @@ export function hasSimilarPathname(pathname1: string, pathname2: string) {
   );
 }
 
-export const findClosestPathname = function findClosestPathname(
+export function findClosestPathname(
   paths: Record<string, string>,
   onFoundClosestPathname: (res: string | null) => void
 ) {
@@ -14,4 +14,4 @@ export const findClosestPathname = function findClosestPathname(
       pa => pa !== '/' && hasSimilarPathname(pa, window.location.pathname)
     ) ?? null;
   onFoundClosestPathname(res);
-};
+}
