@@ -40,6 +40,7 @@
     "jsx-a11y/media-has-caption": "off",
     "no-console": "warn",
     "promise/catch-or-return": "off",
+    "radix": "error",
     "react/react-in-jsx-scope": "off"
   },
   "ignorePatterns": [".eslintrc.i18n.js"]
