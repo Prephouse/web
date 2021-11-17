@@ -10,15 +10,15 @@ export interface PracticeSettingsFormValues {
 
 export class PracticeSettingsFormValidation extends BaseFormValidation<PracticeSettingsFormValues> {
   validate = () => {
-    if (!this.values.medium) {
+    if (this.values.medium === null) {
       this.errors.medium = this.requiredFieldMsg;
     }
 
-    if (!this.values.origin) {
+    if (this.values.origin === null) {
       this.errors.origin = this.requiredFieldMsg;
     }
 
-    if (!this.values.allowLiveFeedback) {
+    if (this.values.allowLiveFeedback === null) {
       this.errors.allowLiveFeedback = this.requiredFieldMsg;
     }
 

@@ -24,7 +24,10 @@ const PageNotFoundView = () => {
         <title>{intl.formatMessage({ id: 'common.http.404' })} &ndash; Prephouse</title>
       </Helmet>
       <Typography component="h2" variant="h3" gutterBottom>
-        &#128533; {intl.formatMessage({ id: 'common.http.404' })}
+        <span role="img" aria-label={intl.formatMessage({ id: 'common.emotion.annoyed' })}>
+          &#128533;
+        </span>{' '}
+        {intl.formatMessage({ id: 'common.http.404' })}
       </Typography>
       <Typography variant="body1">
         {closestPathname && (
@@ -34,6 +37,7 @@ const PageNotFoundView = () => {
               { id: 'common.http.404.redirect' },
               {
                 url: (
+                  // eslint-disable-next-line @shopify/jsx-no-hardcoded-content
                   <Link
                     key={`redirect-suggestion-${closestPathname}`}
                     component={RouterLink}

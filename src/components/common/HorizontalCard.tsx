@@ -37,17 +37,6 @@ const ImageWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-const CC = styled(CardContent)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  width: '100%',
-  paddingTop: 0,
-  '&:last-child': {
-    paddingBottom: 0,
-  },
-}));
-
 const BWrapper = styled('div')(() => ({
   position: 'relative',
   bottom: 0,
@@ -59,15 +48,26 @@ const HorizontalCard = ({ img, header, body, extra, actions, style }: Props) => 
   return (
     <C style={{ ...style }}>
       {img && <ImageWrapper>{img}</ImageWrapper>}
-      <CC>
-        <div>
+      <CardContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          width: '100%',
+          paddingTop: 0,
+          '&:last-child': {
+            paddingBottom: 0,
+          },
+        }}
+      >
+        <>
           <Typography gutterBottom align="center">
             {header}
           </Typography>
           <Typography sx={{ padding: theme => theme.spacing(1, 0) }} component="p" variant="body2">
             {body}
           </Typography>
-        </div>
+        </>
         <BWrapper>
           {extra}
           {actions && (
@@ -95,7 +95,7 @@ const HorizontalCard = ({ img, header, body, extra, actions, style }: Props) => 
             </>
           )}
         </BWrapper>
-      </CC>
+      </CardContent>
     </C>
   );
 };

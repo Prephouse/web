@@ -11,9 +11,9 @@ import {
 } from './types';
 
 const initState: PracticeReduxState = {
-  sessionType: SessionType.INTERVIEW,
-  medium: SessionMedium.VIDEO_AND_AUDIO,
-  origin: SessionOrigin.RECORD,
+  sessionType: SessionType.Interview,
+  medium: SessionMedium.VideoAudio,
+  origin: SessionOrigin.Record,
   allowLiveFeedback: true,
 };
 

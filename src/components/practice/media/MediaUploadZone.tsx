@@ -18,7 +18,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
   const intl = useIntl();
 
   const getAcceptedMimes: () => string[] = () => {
-    if (medium === SessionMedium.VIDEO_AND_AUDIO) {
+    if (medium === SessionMedium.VideoAudio) {
       return ['video/mp4'];
     } else {
       return ['audio/mp4', 'audio/wav'];
@@ -74,6 +74,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
       <Typography component="div" variant="h6" gutterBottom>
         {intl.formatMessage({ id: 'practice.upload' })}
       </Typography>
+      {/* eslint-disable-next-line @shopify/react-require-autocomplete */}
       <input {...getInputProps()} />
       {showUploader()}
     </Box>

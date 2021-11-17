@@ -34,13 +34,13 @@ const MediaZone = ({ onNext, onBack }: Props) => {
   };
 
   const establishZone = () => {
-    if (origin === SessionOrigin.RECORD) {
-      if (medium === SessionMedium.VIDEO_AND_AUDIO) {
+    if (origin === SessionOrigin.Record) {
+      if (medium === SessionMedium.VideoAudio) {
         return <VideoRecordZone onSubmit={handleSubmission} />;
-      } else if (medium === SessionMedium.AUDIO_ONLY) {
+      } else if (medium === SessionMedium.AudioOnly) {
         return <AudioRecordZone onSubmit={handleSubmission} />;
       }
-    } else if (origin === SessionOrigin.UPLOAD) {
+    } else if (origin === SessionOrigin.Upload) {
       return (
         <MediaUploadZone sessionType={sessionType} medium={medium} onSubmit={handleSubmission} />
       );

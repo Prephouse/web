@@ -48,8 +48,8 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
       <br />
       {intl.formatMessage({ id: 'user.registration.password.requirement' })}
       <br />
-      {retrievePasswordRequirements(password).map((requirement, index) => (
-        <Fragment key={`password-requirement-${index}`}>
+      {retrievePasswordRequirements(password).map(requirement => (
+        <Fragment key={`password-requirement-${requirement.failTextId}`}>
           <IconicText
             text={intl.formatMessage({ id: requirement.failTextId })}
             icon={<SuccessIndicatorIcon success={requirement.passed} />}
