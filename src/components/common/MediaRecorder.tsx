@@ -43,20 +43,20 @@ function useMediaRecorder({
   const mediaChunks = useRef<Blob[]>([]);
   const mediaStream = useRef<MediaStream | null>(null);
 
-  const [status, setStatus] = useState<MediaRecordingStatus>(MediaRecordingStatus.IDLE);
+  const [status, setStatus] = useState<MediaRecordingStatus>(MediaRecordingStatus.Idle);
   const [mediaBlobUrl, setMediaBlobUrl] = useState<string | null>(null);
   const [startTimeSec, setStartTimeSec] = useState(0);
   const [endTimeSec, setEndTimeSec] = useState(0);
   // const [errors, setErrors] = useState<MediaRecordingError[]>([]);
 
   const getMediaStream = useCallback(async () => {
-    setStatus(MediaRecordingStatus.ACQUIRING_MEDIA);
+    setStatus(MediaRecordingStatus.AcquiringMedia);
     try {
       mediaStream.current = await window.navigator.mediaDevices.getUserMedia({ audio, video });
     } catch {
       // TODO send to errors state
     } finally {
-      setStatus(MediaRecordingStatus.IDLE);
+      setStatus(MediaRecordingStatus.Idle);
     }
   }, [audio, video]);
 
@@ -73,6 +73,7 @@ function useMediaRecorder({
     }
 
     if (!mediaStream.current) {
+      // eslint-disable-next-line no-console
       getMediaStream().then(console.log);
     }
 
@@ -97,7 +98,7 @@ function useMediaRecorder({
     setMediaBlobUrl(url);
 
     setEndTimeSec(Date.now() / 1_000);
-    setStatus(MediaRecordingStatus.STOPPED);
+    setStatus(MediaRecordingStatus.Stopped);
 
     onStop?.(url, blob);
   };
@@ -120,10 +121,10 @@ function useMediaRecorder({
       mediaRecorder.current.onstop = onRecordingStop;
       mediaRecorder.current.onerror = () => {
         // TODO set errors state
-        setStatus(MediaRecordingStatus.IDLE);
+        setStatus(MediaRecordingStatus.Idle);
       };
 
-      setStatus(MediaRecordingStatus.RECORDING);
+      setStatus(MediaRecordingStatus.Recording);
       setStartTimeSec(Date.now() / 1_000);
       mediaRecorder.current.start();
 
@@ -133,7 +134,7 @@ function useMediaRecorder({
 
   const stopRecording = () => {
     if (mediaRecorder.current && mediaRecorder.current.state !== 'inactive') {
-      setStatus(MediaRecordingStatus.STOPPING);
+      setStatus(MediaRecordingStatus.Stopping);
       mediaRecorder.current.stop();
       mediaStream.current?.getTracks().forEach(track => track.stop());
       mediaChunks.current = [];
@@ -142,7 +143,7 @@ function useMediaRecorder({
 
   const resumeRecording = () => {
     if (mediaRecorder.current?.state === 'paused') {
-      setStatus(MediaRecordingStatus.RECORDING);
+      setStatus(MediaRecordingStatus.Recording);
       mediaRecorder.current.resume();
     }
 
@@ -151,7 +152,7 @@ function useMediaRecorder({
 
   const pauseRecording = () => {
     if (mediaRecorder.current?.state === 'recording') {
-      setStatus(MediaRecordingStatus.PAUSED);
+      setStatus(MediaRecordingStatus.Paused);
       mediaRecorder.current.pause();
     }
 

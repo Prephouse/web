@@ -11,7 +11,7 @@ const Dashboard = () => {
       <Helmet>
         <title>{intl.formatMessage({ id: 'dashboard.title' })}</title>
       </Helmet>
-      <PageContainer></PageContainer>
+      <PageContainer />
     </>
   );
 };

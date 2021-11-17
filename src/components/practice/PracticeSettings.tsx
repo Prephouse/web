@@ -36,9 +36,9 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
   const intl = useIntl();
 
   const getSessionTypeName = (st: SessionType) => {
-    if (st === SessionType.INTERVIEW) {
+    if (st === SessionType.Interview) {
       return intl.formatMessage({ id: 'practice.settings.type.interview2' });
-    } else if (st === SessionType.PRESENTATION) {
+    } else if (st === SessionType.Presentation) {
       return intl.formatMessage({ id: 'practice.settings.type.presentation2' });
     } else {
       return '';
@@ -49,7 +49,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
     const permissions: PermissionRequest = {
       audioinput: { declineMessage: intl.formatMessage({ id: 'common.permission.audio' }) },
     };
-    if (medium === SessionMedium.VIDEO_AND_AUDIO) {
+    if (medium === SessionMedium.VideoAudio) {
       permissions.videoinput = {
         declineMessage: intl.formatMessage({ id: 'common.permission.video' }),
       };
@@ -77,16 +77,12 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
       }}
     >
       {({ touched, values, errors, setFieldValue, setFieldError, submitForm }) => {
-        const onSubmit = () => {
-          submitForm().then(console.log);
-        };
-
         const onOriginPermissionDenied = () => {
           setFieldError('origin', intl.formatMessage({ id: 'common.form.field.denied' }));
         };
 
         return (
-          <Form onSubmit={onSubmit}>
+          <Form onSubmit={submitForm}>
             <Box sx={{ padding: theme => theme.spacing(2) }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
@@ -100,16 +96,16 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   name="medium"
                   value={values.medium}
                   onChange={event => {
-                    setFieldValue('medium', parseInt(event.currentTarget.value));
+                    setFieldValue('medium', parseInt(event.currentTarget.value, 10));
                   }}
                 >
                   <FormControlLabel
-                    value={SessionMedium.VIDEO_AND_AUDIO}
+                    value={SessionMedium.VideoAudio}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.settings.medium.videoAudio' })}
                   />
                   <FormControlLabel
-                    value={SessionMedium.AUDIO_ONLY}
+                    value={SessionMedium.AudioOnly}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.settings.medium.audio' })}
                   />
@@ -123,7 +119,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
               >
                 {intl.formatMessage(
                   { id: 'practice.settings.medium.videoAudio.description' },
-                  { sessionTypeName: getSessionTypeName(SessionType.INTERVIEW) }
+                  { sessionTypeName: getSessionTypeName(SessionType.Interview) }
                 )}
               </Alert>
             </Box>
@@ -135,7 +131,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 <FormHelperText>
                   {intl.formatMessage(
                     { id: 'practice.settings.source.helper' },
-                    { sessionTypeName: getSessionTypeName(SessionType.INTERVIEW) }
+                    { sessionTypeName: getSessionTypeName(SessionType.Interview) }
                   )}
                 </FormHelperText>
                 <RadioGroup
@@ -143,23 +139,23 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   name="origin"
                   value={values.origin}
                   onChange={event => {
-                    setFieldValue('origin', parseInt(event.currentTarget.value));
+                    setFieldValue('origin', parseInt(event.currentTarget.value, 10));
                   }}
                 >
                   <FormControlLabel
-                    value={SessionOrigin.RECORD}
+                    value={SessionOrigin.Record}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.settings.source.record' })}
                   />
                   <FormControlLabel
-                    value={SessionOrigin.UPLOAD}
+                    value={SessionOrigin.Upload}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.settings.source.upload' })}
                   />
                 </RadioGroup>
                 {touched.origin && errors.origin && <FormErrorMessage msg={errors.origin} />}
               </FormControl>
-              {values.origin === SessionOrigin.RECORD && (
+              {values.origin === SessionOrigin.Record && (
                 <PermissionManager
                   permissions={getPermissions(values.medium)}
                   onDenied={onOriginPermissionDenied}
@@ -168,10 +164,8 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                       return (
                         <Alert variant="outlined" severity="error">
                           {intl.formatMessage({ id: 'common.permission.decline' })}
-                          {Object.entries(permitted).map(([, v], i) => (
-                            <div key={`decline-message-${v.id}-${i}`}>
-                              &bull; {v.declineMessage}
-                            </div>
+                          {Object.entries(permitted).map(([, v]) => (
+                            <div key={`decline-message-${v.id}`}>&bull; {v.declineMessage}</div>
                           ))}
                         </Alert>
                       );
@@ -187,7 +181,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
               >
                 {intl.formatMessage(
                   { id: 'practice.settings.source.record.description' },
-                  { sessionTypeName: getSessionTypeName(SessionType.INTERVIEW) }
+                  { sessionTypeName: getSessionTypeName(SessionType.Interview) }
                 )}
               </Alert>
             </Box>
