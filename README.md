@@ -2,8 +2,9 @@
 
 ## Development Setup
 
-1. Go to the root directory of this project on your command line interface (CLI)
-2. Run `./setup.sh` on your CLI to install the [project dependencies](package.json)
+1. Install the [yarn](https://classic.yarnpkg.com/lang/en/docs/install) dependency manager
+2. Go to the root directory of this project on your command line interface (CLI)
+3. Run `yarn install` on your CLI to install [project dependencies](package.json)
 
 ## Development Startup
 
@@ -34,7 +35,7 @@ The following development tools are recommended for this project:
 
 ## Code Style
 
-We're utilizing [Prettier](.prettierrc) and [ESLint](.eslintrc) to enforce certain styling rules. If
+We are utilizing [Prettier](.prettierrc) and [ESLint](.eslintrc) to enforce certain styling rules. If
 you use VSCode, your code will be auto-formatted whenever you save it. If you use Webstorm, go to
 Languages & Frameworks > JavaScript > Prettier in the IDE preferences, and then check "On 'Reformat
 code' action" and "On save".

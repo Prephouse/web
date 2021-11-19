@@ -35,7 +35,7 @@
     "redux": "^4.1.2",
     "rollbar": "^2.24.0",
     "styled-components": "^5.3.3",
-    "typescript": "^4.1.2",
+    "typescript": "^4.5.2",
     "web-vitals": "^2.1.2",
     "yarn": "^1.22.15",
     "zxcvbn": "^4.4.2"
@@ -74,7 +74,7 @@
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.5",
     "enzyme": "^3.11.0",
     "eslint-config-airbnb": "^19.0.0",
-    "eslint-config-airbnb-typescript": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^16.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-i18n-json": "^3.1.0",
