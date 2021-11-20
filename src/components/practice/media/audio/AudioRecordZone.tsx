@@ -7,7 +7,7 @@ import LiveRecordButtons from '../LiveRecordButtons';
 import AudioPreview from './AudioPreview';
 
 interface Props {
-  onSubmit: (duration: number | null, src: string) => void;
+  onSubmit: (src: string) => void;
 }
 
 const AudioRecordZone = ({ onSubmit }: Props) => {
@@ -19,7 +19,6 @@ const AudioRecordZone = ({ onSubmit }: Props) => {
       onStop={burl => setBlobUrl(burl)}
       render={({
         status,
-        duration,
         startRecording,
         stopRecording,
         resumeRecording,
@@ -27,9 +26,10 @@ const AudioRecordZone = ({ onSubmit }: Props) => {
         previewAudioStream,
       }) => {
         if (blobUrl) {
-          onSubmit(duration, blobUrl);
+          onSubmit(blobUrl);
           return <> </>;
         }
+
         return (
           <Box
             my={3}

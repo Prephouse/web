@@ -19,7 +19,6 @@ import MediaPlaybackView from './media/MediaPlaybackView';
 import MediaZone from './media/MediaZone';
 
 const PracticeGround = () => {
-  const duration = useAppSelector(state => state.practiceReducer.duration);
   const source = useAppSelector(state => state.practiceReducer.source);
   const dispatch = useAppDispatch();
 
@@ -48,7 +47,7 @@ const PracticeGround = () => {
       case 3:
         return <MediaZone onBack={() => setStep(step - 1)} onNext={() => setStep(step + 1)} />;
       case 4:
-        return <MediaPlaybackView duration={duration} src={source} />;
+        return <MediaPlaybackView src={source} />;
       default:
         return <></>;
     }

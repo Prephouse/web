@@ -12,13 +12,12 @@ export const setPracticeSettings =
     });
   };
 
-export const setMediaSource =
-  (duration: number | null, source: string) => (dispatch: AppDispatch) => {
-    dispatch({
-      type: SET_MEDIA_SOURCE,
-      payload: { duration, source },
-    });
-  };
+export const setMediaSource = (source: string) => (dispatch: AppDispatch) => {
+  dispatch({
+    type: SET_MEDIA_SOURCE,
+    payload: { source },
+  });
+};
 
 export const clearMediaSource = () => (dispatch: AppDispatch) => {
   dispatch({

@@ -14,57 +14,55 @@ const AudioPreview = ({ stream, height = 96 }: Props) => {
 
   const theme = useTheme();
 
-  if (!stream?.getAudioTracks().length) {
-    return null;
-  }
+  if (stream) {
+    const audioCtx = new AudioContext();
 
-  const audioCtx = new AudioContext();
+    const analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 2048;
 
-  const analyser = audioCtx.createAnalyser();
-  analyser.fftSize = 2048;
+    const source = audioCtx.createMediaStreamSource(stream);
+    source.connect(analyser);
 
-  const source = audioCtx.createMediaStreamSource(stream);
-  source.connect(analyser);
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
 
-  const bufferLength = analyser.frequencyBinCount;
-  const dataArray = new Uint8Array(bufferLength);
+    const canvasCtx = canvasRef?.current?.getContext('2d');
 
-  const canvasCtx = canvasRef?.current?.getContext('2d');
+    const draw = () => {
+      requestAnimationFrame(draw);
+      analyser.getByteTimeDomainData(dataArray);
 
-  const draw = () => {
-    requestAnimationFrame(draw);
-    analyser.getByteTimeDomainData(dataArray);
+      const current = canvasRef?.current;
+      if (canvasCtx && current) {
+        canvasCtx.fillStyle = GREY_400;
+        canvasCtx.fillRect(0, 0, current.width, current.height);
+        canvasCtx.lineWidth = 2;
+        canvasCtx.strokeStyle = theme.palette.common.black;
+        canvasCtx.beginPath();
 
-    const current = canvasRef?.current;
-    if (canvasCtx && current) {
-      canvasCtx.fillStyle = GREY_400;
-      canvasCtx.fillRect(0, 0, current.width, current.height);
-      canvasCtx.lineWidth = 2;
-      canvasCtx.strokeStyle = theme.palette.common.black;
-      canvasCtx.beginPath();
+        const sliceWidth = current.width / dataArray.length;
+        let x = 0;
 
-      const sliceWidth = current.width / dataArray.length;
-      let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+          const v = dataArray[i] / 128.0;
+          const y = (v * current.height) / 2;
 
-      for (let i = 0; i < bufferLength; i++) {
-        const v = dataArray[i] / 128.0;
-        const y = (v * current.height) / 2;
+          if (i === 0) {
+            canvasCtx.moveTo(x, y);
+          } else {
+            canvasCtx.lineTo(x, y);
+          }
 
-        if (i === 0) {
-          canvasCtx.moveTo(x, y);
-        } else {
-          canvasCtx.lineTo(x, y);
+          x += sliceWidth;
         }
 
-        x += sliceWidth;
+        canvasCtx.lineTo(current.width, current.height / 2);
+        canvasCtx.stroke();
       }
+    };
 
-      canvasCtx.lineTo(current.width, current.height / 2);
-      canvasCtx.stroke();
-    }
-  };
-
-  draw();
+    draw();
+  }
 
   return <canvas ref={canvasRef} style={{ width: '100%', height }} />;
 };

@@ -9,7 +9,7 @@ import AudioPreview from '../audio/AudioPreview';
 import VideoPreview from './VideoPreview';
 
 interface Props {
-  onSubmit: (duration: number | null, src: string) => void;
+  onSubmit: (src: string) => void;
 }
 
 const VideoRecordZone = ({ onSubmit }: Props) => {
@@ -29,7 +29,6 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
       onStop={burl => setBlobUrl(burl)}
       render={({
         status,
-        duration,
         startRecording,
         stopRecording,
         resumeRecording,
@@ -38,9 +37,10 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
         previewAudioStream,
       }) => {
         if (blobUrl) {
-          onSubmit(duration, blobUrl);
+          onSubmit(blobUrl);
           return <> </>;
         }
+
         return (
           <Box my={3}>
             <Box my={1}>

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import useAppDispatch from '../../../hooks/useAppDispatch';
@@ -22,15 +21,13 @@ const MediaZone = ({ onNext, onBack }: Props) => {
   const sessionType = useAppSelector(state => state.practiceReducer.sessionType);
   const medium = useAppSelector(state => state.practiceReducer.medium);
   const origin = useAppSelector(state => state.practiceReducer.origin);
+  const source = useAppSelector(state => state.practiceReducer.source);
   const dispatch = useAppDispatch();
-
-  const [readyForSubmission, setReadyForSubmission] = useState(false);
 
   const intl = useIntl();
 
-  const handleSubmission = (duration: number | null, src: string) => {
-    setMediaSource(duration, src)(dispatch);
-    setReadyForSubmission(true);
+  const handleSubmission = (src: string) => {
+    setMediaSource(src)(dispatch);
   };
 
   const establishZone = () => {
@@ -53,7 +50,7 @@ const MediaZone = ({ onNext, onBack }: Props) => {
       <FormButtons
         primaryText={intl.formatMessage({ id: 'practice.practice.submit' })}
         onPrimaryClick={onNext}
-        primaryDisabled={!readyForSubmission}
+        primaryDisabled={!source}
         secondaryText={intl.formatMessage({ id: 'practice.practice.back' })}
         onSecondaryClick={onBack}
       />

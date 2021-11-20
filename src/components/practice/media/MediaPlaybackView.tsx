@@ -14,16 +14,16 @@ import { roundAsDecimal } from '../../../utils/mathUtils';
 import MediaSeekSlider from '../../common/MediaSeekSlider';
 
 interface Props {
-  duration?: number | null /* in seconds */;
   src?: string;
 }
 
-const MediaPlaybackView = ({ duration, src }: Props) => {
+const MediaPlaybackView = ({ src }: Props) => {
   const playerRef = useRef<HTMLVideoElement | null>(null);
 
   const [play, setPlay] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   const theme = useTheme();
 
@@ -51,7 +51,20 @@ const MediaPlaybackView = ({ duration, src }: Props) => {
 
   useEffect(() => {
     playerRef?.current?.addEventListener('loadedmetadata', () => {
-      setVolume(roundAsDecimal((playerRef?.current?.volume ?? 0) * 100));
+      const current = playerRef?.current;
+
+      setVolume(roundAsDecimal((current?.volume ?? 0) * 100));
+
+      if (current?.duration === Infinity) {
+        current.currentTime = Number.MAX_SAFE_INTEGER;
+        current.ontimeupdate = () => {
+          current.ontimeupdate = null;
+          setDuration(current.duration);
+          current.currentTime = 0;
+        };
+      } else {
+        setDuration(current?.duration ?? 0);
+      }
     });
 
     playerRef?.current?.addEventListener('play', () => {
@@ -93,8 +106,8 @@ const MediaPlaybackView = ({ duration, src }: Props) => {
                 </IconButton>
               )}
               <Typography gutterBottom>
-                {new Date(currentTime * 1000).toISOString().substr(14, 5)}/
-                {new Date((duration ?? 0) * 1000).toISOString().substr(14, 5)}
+                {new Date(currentTime * 1000).toISOString().slice(14, 19)}/
+                {new Date((duration ?? 0) * 1000).toISOString().slice(14, 19)}
               </Typography>
               <MediaSeekSlider
                 currentTime={currentTime}
