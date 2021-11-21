@@ -30,9 +30,9 @@ const practiceReducer: Reducer<PracticeReduxState, PracticeReduxAction> = (
         allowLiveFeedback: action.payload.allowLiveFeedback,
       };
     case SET_MEDIA_SOURCE:
-      return { ...state, duration: action.payload.duration, source: action.payload.source };
+      return { ...state, source: action.payload.source };
     case CLEAR_MEDIA_SOURCE:
-      return { ...state, duration: undefined, source: undefined };
+      return { ...state, source: undefined };
     default:
       return state;
   }

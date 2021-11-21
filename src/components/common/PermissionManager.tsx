@@ -1,15 +1,15 @@
 import { ReactElement, useState } from 'react';
 
-export type PermissionMap = Record<string, { id: string; label: string; declineMessage: string }>;
+export type PermissionMap = Map<string, { id: string; label: string; declineMessage?: string }>;
 
-export type PermissionRequest = Record<string, { declineMessage: string }>;
+export type PermissionRequest = Map<string, { declineMessage: string }>;
 
 interface RenderProps {
-  permitted: PermissionMap;
+  permissions: PermissionMap;
 }
 
 interface HookProps {
-  permissions: PermissionRequest;
+  requests: PermissionRequest;
   onDenied: () => void;
 }
 
@@ -17,36 +17,36 @@ interface Props extends HookProps {
   render: (props: RenderProps) => ReactElement;
 }
 
-function usePermissionManager({ permissions, onDenied }: HookProps): RenderProps {
-  const [permitted, setPermitted] = useState<PermissionMap | null>(null);
+function usePermissionManager({ requests, onDenied }: HookProps): RenderProps {
+  const [permissions, setPermissions] = useState<PermissionMap>(new Map());
 
   const findPermissions = () => {
     navigator.mediaDevices.enumerateDevices().then(devices => {
-      const ret: PermissionMap = {};
-      const kinds = Object.keys(permissions);
+      const ret: PermissionMap = new Map();
       devices.forEach(device => {
-        if (kinds.includes(device.kind)) {
-          ret[device.kind] = {
-            id: device.deviceId,
-            label: device.label,
-            declineMessage: permissions[device.kind].declineMessage,
-          };
+        if (requests.has(device.kind)) {
           if (!device.label) {
+            ret.set(device.kind, {
+              id: device.deviceId,
+              label: device.label,
+              declineMessage: requests.get(device.kind)?.declineMessage,
+            });
+          } else {
             onDenied();
           }
         }
       });
-      setPermitted(ret);
+      setPermissions(ret);
       return;
     });
   };
 
-  if (!permitted) {
+  if (permissions.size === 0) {
     findPermissions();
   }
 
   return {
-    permitted: permitted ?? {},
+    permissions,
   };
 }
 
