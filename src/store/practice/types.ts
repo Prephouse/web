@@ -9,7 +9,6 @@ export type PracticeReduxState = {
   medium: SessionMedium;
   origin: SessionOrigin;
   allowLiveFeedback: boolean;
-  duration?: number | null;
   source?: string;
 };
 
@@ -20,7 +19,6 @@ export type PracticeReduxAction = {
     medium: SessionMedium;
     origin: SessionOrigin;
     allowLiveFeedback: boolean;
-    duration: number | null;
     source: string;
   };
 };

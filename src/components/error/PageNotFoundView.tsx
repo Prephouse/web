@@ -26,7 +26,7 @@ const PageNotFoundView = () => {
       <Typography component="h2" variant="h3" gutterBottom>
         <span role="img" aria-label={intl.formatMessage({ id: 'common.emotion.annoyed' })}>
           &#128533;
-        </span>{' '}
+        </span>
         {intl.formatMessage({ id: 'common.http.404' })}
       </Typography>
       <Typography variant="body1">

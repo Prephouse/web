@@ -3,13 +3,13 @@ import { useIntl } from 'react-intl';
 
 import { Box, Slider, Stack, Typography } from '@mui/material';
 
-import PrephouseMediaRecorder from '../../../common/MediaRecorder';
-import LiveRecordButtons from '../LiveRecordButtons';
-import AudioPreview from '../audio/AudioPreview';
-import VideoPreview from './VideoPreview';
+import AudioPreview from '../../common/AudioPreview';
+import PrephouseMediaRecorder from '../../common/MediaRecorder';
+import VideoPreview from '../../common/VideoPreview';
+import LiveRecordButtons from './LiveRecordButtons';
 
 interface Props {
-  onSubmit: (duration: number | null, src: string) => void;
+  onSubmit: (src: string) => void;
 }
 
 const VideoRecordZone = ({ onSubmit }: Props) => {
@@ -29,7 +29,6 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
       onStop={burl => setBlobUrl(burl)}
       render={({
         status,
-        duration,
         startRecording,
         stopRecording,
         resumeRecording,
@@ -38,9 +37,10 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
         previewAudioStream,
       }) => {
         if (blobUrl) {
-          onSubmit(duration, blobUrl);
+          onSubmit(blobUrl);
           return <> </>;
         }
+
         return (
           <Box my={3}>
             <Box my={1}>

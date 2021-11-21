@@ -46,13 +46,18 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
   };
 
   const getPermissions = (medium: SessionMedium): PermissionRequest => {
-    const permissions: PermissionRequest = {
-      audioinput: { declineMessage: intl.formatMessage({ id: 'common.permission.audio' }) },
-    };
+    const permissions: PermissionRequest = new Map([
+      [
+        'audioinput',
+        {
+          declineMessage: intl.formatMessage({ id: 'common.permission.audio' }),
+        },
+      ],
+    ]);
     if (medium === SessionMedium.VideoAudio) {
-      permissions.videoinput = {
+      permissions.set('videoinput', {
         declineMessage: intl.formatMessage({ id: 'common.permission.video' }),
-      };
+      });
     }
     return permissions;
   };
@@ -157,16 +162,18 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
               </FormControl>
               {values.origin === SessionOrigin.Record && (
                 <PermissionManager
-                  permissions={getPermissions(values.medium)}
+                  requests={getPermissions(values.medium)}
                   onDenied={onOriginPermissionDenied}
-                  render={({ permitted }) => {
-                    if (!Object.entries(permitted).length) {
+                  render={({ permissions }) => {
+                    if (permissions.size > 0) {
                       return (
                         <Alert variant="outlined" severity="error">
                           {intl.formatMessage({ id: 'common.permission.decline' })}
-                          {Object.entries(permitted).map(([, v]) => (
-                            <div key={`decline-message-${v.id}`}>&bull; {v.declineMessage}</div>
-                          ))}
+                          {[...permissions.values()]
+                            .filter(v => !v.label)
+                            .map(v => (
+                              <div key={`decline-message-${v.id}`}>&bull; {v.declineMessage}</div>
+                            ))}
                         </Alert>
                       );
                     }

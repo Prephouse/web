@@ -36,7 +36,7 @@ import TipBook from './tips/TipBook';
 import RegistrationForm from './user/registration/RegistrationForm';
 
 const App = () => {
-  const prefersDarkMode: boolean = useAppSelector(state => state.settingsReducer.prefersDarkMode);
+  const prefersDarkMode = useAppSelector(state => state.settingsReducer.prefersDarkMode);
 
   function establishTheme() {
     let theme = generateTheme(prefersDarkMode);
