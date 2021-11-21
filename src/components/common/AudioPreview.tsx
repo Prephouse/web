@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import { useTheme } from '@mui/material';
 
-import { GREY_400 } from '../../../../styles/colours';
+import { GREY_400 } from '../../styles/colours';
 
 interface Props {
   stream: MediaStream | null;

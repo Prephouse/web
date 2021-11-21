@@ -12,11 +12,11 @@ import { clearMediaSource } from '../../store/practice/actions';
 import practiceSteps from '../../helpers/practiceSteps';
 
 import PageContainer from '../common/PageContainer';
+import PracticeFeedback from './PracticeFeedback';
 import PracticeInstructions from './PracticeInstructions';
 import PracticeIntroduction from './PracticeIntroduction';
 import PracticeSettings from './PracticeSettings';
-import MediaPlaybackView from './media/MediaPlaybackView';
-import MediaZone from './media/MediaZone';
+import PracticeUploadRecord from './PracticeUploadRecord';
 
 const PracticeGround = () => {
   const source = useAppSelector(state => state.practiceReducer.source);
@@ -45,9 +45,11 @@ const PracticeGround = () => {
           />
         );
       case 3:
-        return <MediaZone onBack={() => setStep(step - 1)} onNext={() => setStep(step + 1)} />;
+        return (
+          <PracticeUploadRecord onBack={() => setStep(step - 1)} onNext={() => setStep(step + 1)} />
+        );
       case 4:
-        return <MediaPlaybackView src={source} />;
+        return <PracticeFeedback src={source} />;
       default:
         return <></>;
     }

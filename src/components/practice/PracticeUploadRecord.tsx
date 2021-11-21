@@ -1,23 +1,23 @@
 import { useIntl } from 'react-intl';
 
-import useAppDispatch from '../../../hooks/useAppDispatch';
-import useAppSelector from '../../../hooks/useAppSelector';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import useAppSelector from '../../hooks/useAppSelector';
 
-import { setMediaSource } from '../../../store/practice/actions';
+import { setMediaSource } from '../../store/practice/actions';
 
-import { SessionMedium, SessionOrigin } from '../../../utils/enums';
+import { SessionMedium, SessionOrigin } from '../../utils/enums';
 
-import FormButtons from '../../common/FormButtons';
-import MediaUploadZone from './MediaUploadZone';
-import AudioRecordZone from './audio/AudioRecordZone';
-import VideoRecordZone from './video/VideoRecordZone';
+import FormButtons from '../common/FormButtons';
+import AudioRecordZone from './media/AudioRecordZone';
+import MediaUploadZone from './media/MediaUploadZone';
+import VideoRecordZone from './media/VideoRecordZone';
 
 interface Props {
   onNext: () => void;
   onBack: () => void;
 }
 
-const MediaZone = ({ onNext, onBack }: Props) => {
+const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
   const sessionType = useAppSelector(state => state.practiceReducer.sessionType);
   const medium = useAppSelector(state => state.practiceReducer.medium);
   const origin = useAppSelector(state => state.practiceReducer.origin);
@@ -58,4 +58,4 @@ const MediaZone = ({ onNext, onBack }: Props) => {
   );
 };
 
-export default MediaZone;
+export default PracticeUploadRecord;

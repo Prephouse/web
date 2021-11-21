@@ -7,17 +7,17 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@mui/material';
 
-import { GREY_500 } from '../../../styles/colours';
+import { GREY_500 } from '../../styles/colours';
 
-import { roundAsDecimal } from '../../../utils/mathUtils';
+import { roundAsDecimal } from '../../utils/mathUtils';
 
-import MediaSeekSlider from '../../common/MediaSeekSlider';
+import MediaSeekSlider from '../common/MediaSeekSlider';
 
 interface Props {
   src?: string;
 }
 
-const MediaPlaybackView = ({ src }: Props) => {
+const PracticeFeedback = ({ src }: Props) => {
   const playerRef = useRef<HTMLVideoElement | null>(null);
 
   const [play, setPlay] = useState(false);
@@ -141,4 +141,4 @@ const MediaPlaybackView = ({ src }: Props) => {
   );
 };
 
-export default MediaPlaybackView;
+export default PracticeFeedback;

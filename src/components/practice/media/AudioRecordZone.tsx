@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import { Box } from '@mui/material';
 
-import PrephouseMediaRecorder from '../../../common/MediaRecorder';
-import LiveRecordButtons from '../LiveRecordButtons';
-import AudioPreview from './AudioPreview';
+import AudioPreview from '../../common/AudioPreview';
+import PrephouseMediaRecorder from '../../common/MediaRecorder';
+import LiveRecordButtons from './LiveRecordButtons';
 
 interface Props {
   onSubmit: (src: string) => void;
