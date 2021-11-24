@@ -1,10 +1,8 @@
 {
   "app.title": "Prephouse",
   "app.setting.darkMode": "Dark Mode",
-
   "about.title": "About",
   "about.team": "Our team",
-
   "common.website": "Website",
   "common.linkedin": "LinkedIn",
   "common.github": "GitHub",
@@ -20,11 +18,8 @@
   "common.permission.decline": "Prephouse either cannot read these devices or does not have the required permissions by your browser to access them.",
   "common.permission.audio": "Audio input (e.g., microphone)",
   "common.permission.video": "Video input (e.g., webcam)",
-
   "compare.title": "Compare",
-
   "dashboard.title": "My Progress",
-
   "practice.feedback.title": "Review feedback",
   "practice.introduction.title": "Get started",
   "practice.instructions.back": "Go back to settings",
@@ -37,7 +32,7 @@
   "practice.practice.end": "End {sessionTypeName}",
   "practice.practice.playback.video": "video playback",
   "practice.practice.preview.size": "Preview Size",
-  "practice.settings.back": "Restart",
+  "practice.settings.restart": "Restart",
   "practice.settings.confirm": "Confirm preferences",
   "practice.settings.title": "Select your preferences",
   "practice.settings.liveFeedback.description": "You will receive some, but not all, automated feedback from our system as you go. You can use that feedback to improve your skills along the way!",
@@ -67,10 +62,8 @@
   "practice.upload.drop": "Drop a video or audio file file here",
   "practice.upload.mime.error": "We cannot accept this file",
   "practice.upload.mime.warning": "We will not be able to accept this file",
-
   "tips.title": "Tips",
   "tips.title.expanded": "Tips for success",
-
   "user.sign-in.action": "Sign in",
   "user.registration.action": "Sign up",
   "user.registration.title": "Create your personalized account",
