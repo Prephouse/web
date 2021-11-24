@@ -233,7 +233,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
             </Box>
             <FormButtons
               primaryText={intl.formatMessage({ id: 'practice.settings.confirm' })}
-              secondaryText={intl.formatMessage({ id: 'practice.settings.back' })}
+              secondaryText={intl.formatMessage({ id: 'practice.settings.restart' })}
               onSecondaryClick={onBack}
             />
           </Form>

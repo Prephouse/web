@@ -50,6 +50,15 @@ const members: Member[] = [
     linkedin: 'https://www.linkedin.com/in/qian-chandler-l-486069137/',
     github: 'https://github.com/chandlerlei2017',
   },
+  {
+    name: 'Mivia Li',
+    img: 'mivia-li.jpg',
+    bio: `
+      TBD`,
+    website: '/about',
+    linkedin: 'https://www.linkedin.com/in/mivia-li/',
+    github: 'https://github.com/Mivialll',
+  },
 ];
 
 export default members;

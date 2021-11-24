@@ -15,7 +15,7 @@ const PracticeIntroduction = ({ onNext }: Props) => {
       }}
     >
       <Button onClick={onNext}>
-        <Typography>Interview</Typography>
+        <Typography>Start My Interview</Typography>
       </Button>
     </ButtonGroup>
   );
