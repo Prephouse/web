@@ -94,6 +94,7 @@
     "no-console": "warn",
     "promise/catch-or-return": "off",
     "radix": "error",
+    "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
   },
   "ignorePatterns": [".eslintrc.i18n.js"]
