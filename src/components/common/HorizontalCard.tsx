@@ -17,7 +17,7 @@ interface Props {
   header?: ReactNode;
   body?: ReactNode;
   extra?: ReactNode;
-  actions?: { href?: string | null; nameId: string; Icon: OverridableComponent<SvgIconTypeMap> }[];
+  actions?: { href?: string | null; nameId: string; icon: OverridableComponent<SvgIconTypeMap> }[];
   style?: CSSProperties;
 }
 
@@ -74,7 +74,7 @@ const HorizontalCard = ({ img, header, body, extra, actions, style }: Props) => 
             <>
               <Divider sx={{ margin: theme => theme.spacing(2, 0, 1) }} />
               {actions.map(
-                ({ href, nameId, Icon }) =>
+                ({ href, nameId, icon: Icon }) =>
                   href && (
                     <Button
                       key={nameId}

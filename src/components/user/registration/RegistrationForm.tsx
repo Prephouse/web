@@ -29,7 +29,9 @@ const RegistrationForm = () => {
       setAnchorElPsi(event.currentTarget);
     }
   };
-  const handlePsiClose = () => setAnchorElPsi(null);
+  const handlePsiClose = () => {
+    setAnchorElPsi(null);
+  };
 
   const handlePasswordRequirementFailed = (
     errorMsgId: string,

@@ -11,7 +11,7 @@ type NavigationDestination = {
   readonly titleId: string;
 };
 
-const navigationDestinations: Readonly<NavigationDestination[]> = Object.freeze([
+const navigationDestinations: readonly NavigationDestination[] = Object.freeze([
   {
     path: ABOUT_PATH,
     titleId: 'about.title',

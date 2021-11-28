@@ -11,9 +11,12 @@ const NavigationDropdown = () => {
   const theme = createTheme();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
-  const handleOpenMenu = (event: { currentTarget: SetStateAction<HTMLElement | null> }) =>
+  const handleOpenMenu = (event: { currentTarget: SetStateAction<HTMLElement | null> }) => {
     setAnchorElMenu(event.currentTarget);
-  const handleCloseMenu = () => setAnchorElMenu(null);
+  };
+  const handleCloseMenu = () => {
+    setAnchorElMenu(null);
+  };
 
   const ScaledAvatar = (
     <Avatar
