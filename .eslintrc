@@ -12,6 +12,7 @@
   "plugins": [
     "@typescript-eslint",
     "eslint-comments",
+    "formatjs",
     "import",
     "jest",
     "promise",
@@ -34,6 +35,10 @@
   "rules": {
     "@shopify/jsx-no-complex-expressions": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "formatjs/enforce-placeholders": "error",
+    "formatjs/no-camel-case": "error",
+    "formatjs/no-emoji": "error",
+    "formatjs/no-offset": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/order": "off",
     "jsx-a11y/control-has-associated-label": "off",
