@@ -67,7 +67,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
       p={3}
       my={3}
       border="0.5px dashed"
-      borderRadius={6}
+      borderRadius="6px"
       sx={{ cursor: 'pointer', minHeight: 300 }}
       {...rootProps}
     >

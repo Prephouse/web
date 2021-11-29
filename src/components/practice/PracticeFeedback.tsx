@@ -97,11 +97,11 @@ const PracticeFeedback = ({ src }: Props) => {
           <Grid item xs={10} sx={{ padding: theme.spacing(2) }}>
             <Stack direction="row" spacing={2} alignItems="center">
               {play ? (
-                <IconButton onClick={handlePause}>
+                <IconButton onClick={handlePause} size="large">
                   <PauseIcon />
                 </IconButton>
               ) : (
-                <IconButton onClick={handlePlay}>
+                <IconButton onClick={handlePlay} size="large">
                   <PlayArrowIcon />
                 </IconButton>
               )}

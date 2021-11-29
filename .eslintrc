@@ -92,6 +92,7 @@
     "jsx-a11y/control-has-associated-label": "off",
     "jsx-a11y/media-has-caption": "off",
     "no-console": "warn",
+    "no-restricted-imports": ["error", { "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"] }],
     "promise/catch-or-return": "off",
     "radix": "error",
     "react/jsx-uses-react": "off",
