@@ -4,7 +4,7 @@ const PageContainer = styled(Container)(({ theme }) => ({
   flexDirection: 'column',
   margin: 'auto',
   padding: theme.spacing(3, 0),
-  [theme.breakpoints.down('xs')]: {
+  [theme.breakpoints.only('xs')]: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
   },

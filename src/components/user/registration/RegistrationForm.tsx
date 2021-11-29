@@ -29,7 +29,9 @@ const RegistrationForm = () => {
       setAnchorElPsi(event.currentTarget);
     }
   };
-  const handlePsiClose = () => setAnchorElPsi(null);
+  const handlePsiClose = () => {
+    setAnchorElPsi(null);
+  };
 
   const handlePasswordRequirementFailed = (
     errorMsgId: string,
@@ -39,7 +41,7 @@ const RegistrationForm = () => {
     passwordErrorMsg = passwordErrorMsg.charAt(0).toLowerCase() + passwordErrorMsg.slice(1);
     const passwordErrors = intl.formatMessage(
       { id: 'user.registration.password.error' },
-      { passwordErrorMsg }
+      { password_error_message: passwordErrorMsg }
     );
     return { ...errors, password: passwordErrors };
   };
@@ -124,7 +126,7 @@ const RegistrationForm = () => {
                     as={FormInput}
                     name="passwordConfirmation"
                     type="password"
-                    label={intl.formatMessage({ id: 'user.registration.passwordConfirmation' })}
+                    label={intl.formatMessage({ id: 'user.registration.password.confirm' })}
                     errorMsg={errors.passwordConfirmation}
                   />
                 </FormGroupCompact>

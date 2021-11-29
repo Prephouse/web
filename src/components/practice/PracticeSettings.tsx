@@ -124,7 +124,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
               >
                 {intl.formatMessage(
                   { id: 'practice.settings.medium.videoAudio.description' },
-                  { sessionTypeName: getSessionTypeName(SessionType.Interview) }
+                  { session_type_name: getSessionTypeName(SessionType.Interview) }
                 )}
               </Alert>
             </Box>
@@ -136,7 +136,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 <FormHelperText>
                   {intl.formatMessage(
                     { id: 'practice.settings.source.helper' },
-                    { sessionTypeName: getSessionTypeName(SessionType.Interview) }
+                    { session_type_name: getSessionTypeName(SessionType.Interview) }
                   )}
                 </FormHelperText>
                 <RadioGroup
@@ -188,7 +188,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
               >
                 {intl.formatMessage(
                   { id: 'practice.settings.source.record.description' },
-                  { sessionTypeName: getSessionTypeName(SessionType.Interview) }
+                  { session_type_name: getSessionTypeName(SessionType.Interview) }
                 )}
               </Alert>
             </Box>

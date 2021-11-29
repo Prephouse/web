@@ -21,7 +21,6 @@ const badPasswords: string[] = [
   'priyanka',
   'mivia',
   'boris',
-  'password',
 ];
 
 export default badPasswords;

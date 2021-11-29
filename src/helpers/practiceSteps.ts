@@ -1,4 +1,4 @@
-const practiceSteps: Readonly<string[]> = Object.freeze([
+const practiceSteps: readonly string[] = Object.freeze([
   'practice.introduction.title',
   'practice.settings.title',
   'practice.instructions.title',

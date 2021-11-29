@@ -29,7 +29,7 @@ const LiveRecordButtons = ({
         {intl.formatMessage(
           { id: 'practice.practice.start' },
           {
-            sessionTypeName: intl.formatMessage({
+            session_type_name: intl.formatMessage({
               id: 'practice.settings.type.interview2',
             }),
           }
@@ -43,7 +43,7 @@ const LiveRecordButtons = ({
         {intl.formatMessage(
           { id: 'practice.practice.end' },
           {
-            sessionTypeName: intl.formatMessage({
+            session_type_name: intl.formatMessage({
               id: 'practice.settings.type.interview2',
             }),
           }

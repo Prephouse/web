@@ -1,3 +1,5 @@
+import { useIntl } from 'react-intl';
+
 import { Button, ButtonGroup, Typography } from '@mui/material';
 
 interface Props {
@@ -5,6 +7,8 @@ interface Props {
 }
 
 const PracticeIntroduction = ({ onNext }: Props) => {
+  const intl = useIntl();
+
   return (
     <ButtonGroup
       fullWidth
@@ -15,7 +19,7 @@ const PracticeIntroduction = ({ onNext }: Props) => {
       }}
     >
       <Button onClick={onNext}>
-        <Typography>Start My Interview</Typography>
+        <Typography>{intl.formatMessage({ id: 'practice.start.interview' })}</Typography>
       </Button>
     </ButtonGroup>
   );
