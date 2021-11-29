@@ -1,6 +1,6 @@
 import { SetStateAction, useState } from 'react';
 
-import { Avatar, Button, IconButton, Typography, createTheme } from '@mui/material';
+import { Avatar, Button, IconButton, Typography, useTheme } from '@mui/material';
 
 import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
 
@@ -8,12 +8,15 @@ import DropdownMenu from '../common/DropdownMenu';
 import ProfileMenu from './ProfileMenu';
 
 const NavigationDropdown = () => {
-  const theme = createTheme();
+  const theme = useTheme();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
-  const handleOpenMenu = (event: { currentTarget: SetStateAction<HTMLElement | null> }) =>
+  const handleOpenMenu = (event: { currentTarget: SetStateAction<HTMLElement | null> }) => {
     setAnchorElMenu(event.currentTarget);
-  const handleCloseMenu = () => setAnchorElMenu(null);
+  };
+  const handleCloseMenu = () => {
+    setAnchorElMenu(null);
+  };
 
   const ScaledAvatar = (
     <Avatar
@@ -64,6 +67,7 @@ const NavigationDropdown = () => {
         }}
         onClick={handleOpenMenu}
         aria-haspopup="true"
+        size="large"
       >
         {ScaledAvatar}
       </IconButton>

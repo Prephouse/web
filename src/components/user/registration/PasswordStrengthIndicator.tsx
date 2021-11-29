@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { useIntl } from 'react-intl';
 import zxcvbn from 'zxcvbn';
 
@@ -60,4 +60,4 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
   );
 };
 
-export default PasswordStrengthIndicator;
+export default memo(PasswordStrengthIndicator);

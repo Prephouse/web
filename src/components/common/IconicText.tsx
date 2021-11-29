@@ -1,5 +1,7 @@
 import { CSSProperties, ReactNode } from 'react';
 
+import { Box } from '@mui/material';
+
 interface Props {
   id?: string;
   text: string;
@@ -10,18 +12,19 @@ interface Props {
 const IconicText = ({ id, text, icon, style }: Props) => {
   return (
     <div id={id} style={{ display: 'flex', alignItems: 'center', ...style }}>
-      <span
+      <Box
+        component="span"
         id={`${id}--icon`}
-        style={{
+        sx={{
           display: 'flex',
           alignItems: 'center',
-          marginLeft: 4,
-          marginRight: 4,
+          marginLeft: theme => theme.spacing(0.5),
+          marginRight: theme => theme.spacing(0.5),
         }}
         aria-labelledby={`${id}--text`}
       >
         {icon}
-      </span>
+      </Box>
       <span id={`${id}--text`}>{text}</span>
     </div>
   );
