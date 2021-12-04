@@ -7,8 +7,9 @@ local environment or a Docker container.
 
 ### Local Environment
 
-1. Install the [pnpm](https://pnpm.io/installation) dependency manager
-2. Run `pnpm install` on your command line interface (CLI) to install [project dependencies](package.json)
+1. Download and install [Node.js 16](https://nodejs.org/en/)
+2. Install the [pnpm](https://pnpm.io/installation) package manager
+3. Run `pnpm install` on your command line interface (CLI) to install the [project dependencies](package.json)
 
 ### Docker Container
 
@@ -28,6 +29,10 @@ directory or its files.
 
 1. Run `pnpm start` on your CLI
 2. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
+
+> You may encounter an issue with OpenSSL when running `pnpm start` on Node.js 17.
+> You should therefore either switch to Node.js 16 (the latest LTS version)
+> _or_ set `NODE_OPTIONS=--openssl-legacy-provider` as an environment variable.
 
 ### Docker Container
 
@@ -61,7 +66,7 @@ We recommend the following development tools for this project
 
 We are utilizing [Prettier](.prettierrc) and [ESLint](.eslintrc) to enforce certain styling rules. If
 you use VSCode, your code will be auto-formatted whenever you save it. If you use Webstorm, go to
-Languages & Frameworks > JavaScript > Prettier in the IDE preferences, and then check "On 'Reformat
+Languages & Frameworks > JavaScript > Prettier in the IDE preferences and check "On 'Reformat
 code' action" and "On save".
 
 A git pre-commit hook has been set up with [Husky](https://typicode.github.io/husky/#/) to enforce
