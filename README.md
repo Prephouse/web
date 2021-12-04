@@ -7,13 +7,13 @@ local environment or a Docker container.
 
 ### Local Environment
 
-1. Install the [yarn](https://classic.yarnpkg.com/lang/en/docs/install) dependency manager
-2. Run `yarn install` on your command line interface (CLI) to install [project dependencies](package.json)
+1. Install the [pnpm](https://pnpm.io/installation) dependency manager
+2. Run `pnpm install` on your command line interface (CLI) to install [project dependencies](package.json)
 
 ### Docker Container
 
 1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop) and
-   [Docker Compose](https://docs.docker.com/compose/install/
+   [Docker Compose](https://docs.docker.com/compose/install/)
 2. Run Docker Desktop on your machine
 3. Run `docker-compose build` on your command line interface (CLI)
 
@@ -26,7 +26,7 @@ directory or its files.
 
 ### Local Environment
 
-1. Run `yarn start` on your CLI
+1. Run `pnpm start` on your CLI
 2. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
 
 ### Docker Container
