@@ -5,6 +5,7 @@
         "ms-vsliveshare.vsliveshare",
         "esbenp.prettier-vscode",
         "coenraads.bracket-pair-colorizer",
-        "dsznajder.es7-react-js-snippets"
+        "dsznajder.es7-react-js-snippets",
+        "stylelint.vscode-stylelint"
     ]
 }
