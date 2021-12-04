@@ -2,6 +2,9 @@
 
 ## Setup Instructions
 
+You can run the Prephouse website in development mode in either your
+local environment or a Docker container.
+
 ### Local Environment
 
 1. Install the [yarn](https://classic.yarnpkg.com/lang/en/docs/install) dependency manager
@@ -15,6 +18,11 @@
 3. Run `docker-compose build` on your command line interface (CLI)
 
 ## Startup Instructions
+
+Once you have set up the local environment or Docker container, you can
+run the Prephouse website in the respective environment. In either case,
+the website will reload when you make any changes to the [src](src)
+directory or its files.
 
 ### Local Environment
 
