@@ -1,19 +1,35 @@
-# Prephouse Frontend
+# Prephouse Frontend (ph-web)
 
-## Development Setup
+## Setup Instructions
+
+### Local Environment
 
 1. Install the [yarn](https://classic.yarnpkg.com/lang/en/docs/install) dependency manager
-2. Go to the root directory of this project on your command line interface (CLI)
-3. Run `yarn install` on your CLI to install [project dependencies](package.json)
+2. Run `yarn install` on your command line interface (CLI) to install [project dependencies](package.json)
 
-## Development Startup
+### Docker Container
+
+1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop) and
+   [Docker Compose](https://docs.docker.com/compose/install/
+2. Run Docker Desktop on your machine
+3. Run `docker-compose build` on your command line interface (CLI)
+
+## Startup Instructions
+
+### Local Environment
 
 1. Run `yarn start` on your CLI
 2. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
 
-## Compatibility
+### Docker Container
 
-As of November 11, 2021, Prephouse supports the following browsers:
+1. Run Docker Desktop on your machine
+2. Run `docker-compose up` on your CLI
+3. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
+
+## Browser Compatibility
+
+As of November 11, 2021, Prephouse supports the following browsers
 
 - Chrome 80+
 - Edge 80+
@@ -23,7 +39,7 @@ As of November 11, 2021, Prephouse supports the following browsers:
 
 ## Development Tools
 
-The following development tools are recommended for this project:
+We recommend the following development tools for this project
 
 - React Developer Tools &ndash;
   [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)

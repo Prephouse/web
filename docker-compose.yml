@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  prephouse:
+    container_name: prephouse-web
+    image: prephouse-web
+    build: ./
+    ports:
+      - '3000:3000'
+    volumes:
+      - './:/app'
+      - '/app/node_modules'
+    stdin_open: true
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - NODE_OPTIONS=--openssl-legacy-provider
+
+networks:
+  default:
+    external: true
+    name: prephouse
