@@ -79,8 +79,8 @@ const HorizontalCard = ({ img, header, body, extra, actions, style }: Props) => 
                     <Button
                       key={nameId}
                       sx={{
-                        marginLeft: theme => theme.spacing(1),
-                        marginRight: theme => theme.spacing(1),
+                        marginLeft: 1,
+                        marginRight: 1,
                         textTransform: 'none',
                       }}
                       href={href}

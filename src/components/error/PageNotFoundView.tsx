@@ -14,7 +14,7 @@ import PageContainer from '../common/PageContainer';
 const PageNotFoundView = () => {
   const intl = useIntl();
 
-  const [closestPathname, setClosestPathname] = useState<string | null>(null);
+  const [closestPathname, setClosestPathname] = useState<string | undefined>();
 
   useEffect(() => findClosestPathname(paths, setClosestPathname), []);
 

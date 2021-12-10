@@ -51,7 +51,7 @@ const ActionBar = () => {
               variant="h4"
               sx={{
                 display: 'inline-block',
-                marginRight: theme => theme.spacing(2),
+                marginRight: 2,
               }}
             >
               <PlainRouterLink to={HOME_PATH}>
@@ -64,9 +64,9 @@ const ActionBar = () => {
                 <Button
                   key={`nav-button-${titleId}`}
                   sx={{
-                    marginRight: theme => theme.spacing(1),
-                    color: theme => theme.palette.primary.contrastText,
-                    borderRadius: theme => theme.spacing(3),
+                    marginRight: 1,
+                    color: 'primary.contrastText',
+                    borderRadius: 3,
                     textTransform: 'none',
                     textOverflow: 'nowrap',
                     whiteSpace: 'nowrap',

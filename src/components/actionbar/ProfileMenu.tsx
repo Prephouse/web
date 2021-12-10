@@ -1,9 +1,8 @@
-import clsx from 'clsx';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import { Divider, Switch } from '@mui/material';
+import { Divider, styled, Switch } from '@mui/material';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
@@ -13,7 +12,31 @@ import { changePrefersDarkMode } from '../../store/settings/actions';
 import profileActions from '../../helpers/profileActions';
 
 import DropdownMenuItem from '../common/DropdownMenuItem';
-import './actionbar.css';
+
+const Neon = styled('div')((props: Record<'lightUp', boolean>) => {
+  if (props.lightUp) {
+    return {
+      '@media (prefers-reduced-motion: no-preference)': {
+        textShadow:
+          '0 0 2px, 0 0 1em #4444ff, 0 0 0.5em #4444ff, 0 0 0.1em #4444ff, 0 8px 4px #000',
+        '& > span': {
+          animation: 'blink linear infinite 3s',
+        },
+        '& > span:first-of-type': {
+          animation: 'blink linear infinite 5s',
+        },
+        '& > span:nth-of-type(3n + 1)': {
+          animation: 'blink linear infinite 4s',
+        },
+        '& > span:nth-last-of-type(even)': {
+          animation: 'blink linear infinite 6s',
+        },
+      },
+    };
+  }
+
+  return {};
+});
 
 const ProfileMenu = () => {
   const prefersDarkMode: boolean = useAppSelector(state => state.settingsReducer.prefersDarkMode);
@@ -36,11 +59,11 @@ const ProfileMenu = () => {
       <Divider />
       <DropdownMenuItem
         primary={
-          <div className={clsx(prefersDarkMode && 'neon')}>
+          <Neon lightUp={prefersDarkMode}>
             {[...intl.formatMessage({ id: 'app.setting.darkMode' })].map(c => (
               <span key={`neon-char-${c}-${c + 1}`}>{c}</span>
             ))}
-          </div>
+          </Neon>
         }
         icon={<Brightness4Icon />}
       >
