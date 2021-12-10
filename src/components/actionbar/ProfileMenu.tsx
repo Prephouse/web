@@ -33,9 +33,9 @@ const Neon = styled('div')((props: Record<'lightUp', boolean>) => {
         },
       },
     };
-  } else {
-    return {};
   }
+
+  return {};
 });
 
 const ProfileMenu = () => {
