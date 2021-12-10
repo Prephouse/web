@@ -65,7 +65,7 @@ const PracticeGround = () => {
           elevation={3}
           sx={{
             width: '100%',
-            padding: theme => theme.spacing(3),
+            padding: 3,
           }}
         >
           <Stepper activeStep={step} alternativeLabel>

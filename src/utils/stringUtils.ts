@@ -7,11 +7,9 @@ export function hasSimilarPathname(pathname1: string, pathname2: string) {
 
 export function findClosestPathname(
   paths: Record<string, string>,
-  onFoundClosestPathname: (res: string | null) => void
+  onFoundClosestPathname: (res: string | undefined) => void
 ) {
-  const res: string | null =
-    Object.values(paths).find(
-      pa => pa !== '/' && hasSimilarPathname(pa, window.location.pathname)
-    ) ?? null;
-  onFoundClosestPathname(res);
+  onFoundClosestPathname(
+    Object.values(paths).find(p => p !== '/' && hasSimilarPathname(p, window.location.pathname))
+  );
 }

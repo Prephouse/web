@@ -88,7 +88,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
 
         return (
           <Form onSubmit={submitForm}>
-            <Box sx={{ padding: theme => theme.spacing(2) }}>
+            <Box sx={{ padding: 2 }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
                   {intl.formatMessage({ id: 'practice.settings.medium.title' })}
@@ -128,7 +128,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 )}
               </Alert>
             </Box>
-            <Box sx={{ padding: theme => theme.spacing(2) }}>
+            <Box sx={{ padding: 2 }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
                   {intl.formatMessage({ id: 'practice.settings.source.title' })}
@@ -192,7 +192,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 )}
               </Alert>
             </Box>
-            <Box sx={{ padding: theme => theme.spacing(2) }}>
+            <Box sx={{ padding: 2 }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
                   {intl.formatMessage({ id: 'practice.settings.liveFeedback.title' })}

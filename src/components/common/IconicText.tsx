@@ -18,8 +18,8 @@ const IconicText = ({ id, text, icon, style }: Props) => {
         sx={{
           display: 'flex',
           alignItems: 'center',
-          marginLeft: theme => theme.spacing(0.5),
-          marginRight: theme => theme.spacing(0.5),
+          marginLeft: 0.5,
+          marginRight: 0.5,
         }}
         aria-labelledby={`${id}--text`}
       >
