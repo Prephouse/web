@@ -19,6 +19,31 @@ export default function generateTheme(prefersDarkMode = false) {
     components: {
       MuiCssBaseline: {
         styleOverrides: `
+          html {
+            height: 100%;
+          }
+          body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            height: 100%;
+            margin: 0;
+            font-family: 'Doppio One', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+              'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-variant-ligatures: none;
+          }
+          main {
+            flex-grow: 1;
+          }
+          footer {
+            height: 100px;
+            text-align: center;
+          }
+          code {
+            font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+          }
           blockquote {
             margin: 0;
           }

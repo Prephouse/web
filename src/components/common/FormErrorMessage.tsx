@@ -11,15 +11,14 @@ const FormErrorMessage = ({ id, msg }: Props) => (
     sx={{
       display: 'flex',
       alignItems: 'center',
-      color: theme => theme.palette.error.dark,
+      color: 'error.dark',
       textAlign: 'left',
-      fontWeight: theme => theme.typography.fontWeightBold,
       fontSize: 'small',
     }}
     role="alert"
     id={id}
   >
-    <ErrorIcon sx={{ marginRight: theme => theme.spacing(1) }} fontSize="small" />
+    <ErrorIcon sx={{ marginRight: 1 }} fontSize="small" />
     {msg}
   </FormHelperText>
 );

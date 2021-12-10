@@ -29,7 +29,7 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
       variant="body2"
       align="left"
       sx={{
-        padding: theme => theme.spacing(2),
+        padding: 2,
       }}
     >
       <meter

@@ -12,8 +12,8 @@ const HeavyDivider = ({ orientation = 'horizontal' }: HeavyDividerProps) => (
     variant="middle"
     flexItem
     sx={{
-      marginLeft: theme => theme.spacing(2),
-      marginRight: theme => theme.spacing(2),
+      marginLeft: 2,
+      marginRight: 2,
       backgroundColor: NAVIGATION_HOVER_GREY,
     }}
   />
