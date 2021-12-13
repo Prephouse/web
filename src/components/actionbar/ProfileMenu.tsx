@@ -9,7 +9,7 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { changePrefersDarkMode } from '../../store/settings/actions';
 
-import profileActions from '../../helpers/profileActions';
+import profileActions from '../../values/actionbar/profileActions';
 
 import DropdownMenuItem from '../common/DropdownMenuItem';
 

@@ -4,11 +4,11 @@ import zxcvbn from 'zxcvbn';
 
 import { Typography } from '@mui/material';
 
-import badPasswords from '../../../helpers/badPasswords';
-import { retrievePasswordRequirements } from '../../../helpers/userRegistrationHelper';
+import badPasswords from '../../../values/user/badPasswords';
 
 import IconicText from '../../common/IconicText';
 import SuccessIndicatorIcon from '../../common/SuccessIndicatorIcon';
+import { getPasswordValidators } from '../../../utils/validators';
 
 interface Props {
   password: string;
@@ -48,11 +48,11 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
       <br />
       {intl.formatMessage({ id: 'user.registration.password.requirement' })}
       <br />
-      {retrievePasswordRequirements(password).map(requirement => (
-        <Fragment key={`password-requirement-${requirement.failTextId}`}>
+      {getPasswordValidators().map(({ id, validator }) => (
+        <Fragment key={`password-requirement-${id}`}>
           <IconicText
-            text={intl.formatMessage({ id: requirement.failTextId })}
-            icon={<SuccessIndicatorIcon success={requirement.passed} />}
+            text={intl.formatMessage({ id })}
+            icon={<SuccessIndicatorIcon success={validator(password)} />}
           />
         </Fragment>
       ))}

@@ -17,13 +17,13 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { setPracticeSettings } from '../../store/practice/actions';
 
-import { PracticeSettingsFormValidation } from '../../helpers/practiceSettingsHelper';
-
 import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
 
 import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
 import PermissionManager, { PermissionRequest } from '../common/PermissionManager';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
+import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
 
 interface Props {
   onBack: () => void;
@@ -69,12 +69,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
         origin: useAppSelector(state => state.practiceReducer.origin),
         allowLiveFeedback: useAppSelector(state => state.practiceReducer.allowLiveFeedback),
       }}
-      validate={values =>
-        new PracticeSettingsFormValidation(
-          values,
-          intl.formatMessage({ id: 'common.form.field.required' })
-        ).validate()
-      }
+      validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
       onSubmit={values => {
         const { medium, origin, allowLiveFeedback } = values;
         setPracticeSettings(medium, origin, allowLiveFeedback)(dispatch);
