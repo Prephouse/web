@@ -2,8 +2,11 @@ import { Field, Form, Formik } from 'formik';
 import { FormEvent, MouseEvent as ReactMouseEvent, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useIntl } from 'react-intl';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Popover, Typography } from '@mui/material';
+
+import { getFormValidationSchema } from '../../../schemas/user/registrationFormSchema';
 
 import { initialValues } from '../../../values/user/registrationFormValues';
 
@@ -13,8 +16,6 @@ import FormInput from '../../common/FormInput';
 import FormPaper from '../../common/FormPaper';
 import PageContainer from '../../common/PageContainer';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { getFormValidationSchema } from '../../../schemas/user/registrationFormSchema';
 
 const RegistrationForm = () => {
   const intl = useIntl();

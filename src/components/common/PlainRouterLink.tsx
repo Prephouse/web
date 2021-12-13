@@ -1,5 +1,6 @@
-import { styled } from '@mui/material';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+
+import { styled } from '@mui/material';
 
 const StyledLink = styled(RouterLink)`
   text-decoration: none;

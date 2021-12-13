@@ -1,5 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useIntl } from 'react-intl';
+import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import {
   Alert,
@@ -15,6 +16,8 @@ import {
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
+import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
+
 import { setPracticeSettings } from '../../store/practice/actions';
 
 import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
@@ -22,8 +25,6 @@ import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
 import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
 import PermissionManager, { PermissionRequest } from '../common/PermissionManager';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
 
 interface Props {
   onBack: () => void;

@@ -1,8 +1,10 @@
-import React from 'react';
 import { mount } from 'enzyme';
+import React from 'react';
 import { IntlProvider } from 'react-intl';
-import PasswordStrengthMeter from './PasswordStrengthIndicator';
+
 import strings from '../../../strings/strings';
+
+import PasswordStrengthMeter from './PasswordStrengthIndicator';
 
 const locale = 'en-US';
 let wrapper: ReturnType<typeof mount>;

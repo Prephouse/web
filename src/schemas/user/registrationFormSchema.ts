@@ -1,10 +1,11 @@
+import { IntlShape } from 'react-intl';
 import { z } from 'zod';
+
 import {
   validatePasswordMinimumLength,
   validatePasswordNumericality,
   validatePasswordUppercase,
 } from '../../utils/validators';
-import { IntlShape } from 'react-intl';
 
 export const getFormValidationSchema = (intl: IntlShape) => {
   const z1 = z.string({
