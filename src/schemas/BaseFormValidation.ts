@@ -1,7 +1,7 @@
 import { FormikErrors } from 'formik';
 
 /**
- * @deprecated Replace with zod schema validation
+ * @deprecated Replace with zod schemas validation
  */
 export abstract class BaseFormValidation<T> {
   protected errors: FormikErrors<T> = {};

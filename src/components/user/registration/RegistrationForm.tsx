@@ -14,7 +14,7 @@ import FormPaper from '../../common/FormPaper';
 import PageContainer from '../../common/PageContainer';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { getFormValidationSchema } from '../../../schema/user/registrationFormSchema';
+import { getFormValidationSchema } from '../../../schemas/user/registrationFormSchema';
 
 const RegistrationForm = () => {
   const intl = useIntl();

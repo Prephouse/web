@@ -23,7 +23,7 @@ import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
 import PermissionManager, { PermissionRequest } from '../common/PermissionManager';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
-import { getFormValidationSchema } from '../../schema/practice/practiceFormSchema';
+import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
 
 interface Props {
   onBack: () => void;
