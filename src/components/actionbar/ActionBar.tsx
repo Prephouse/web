@@ -6,7 +6,7 @@ import { Button, Typography, styled, useScrollTrigger } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
-import navigationDestinations from '../../helpers/navigationDestinations';
+import navigationDestinations from '../../values/actionbar/navigationDestinations';
 
 import { HOME_PATH } from '../../strings/paths';
 

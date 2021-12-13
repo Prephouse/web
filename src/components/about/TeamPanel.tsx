@@ -6,7 +6,7 @@ import LinkIcon from '@mui/icons-material/Link';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Grid, Typography } from '@mui/material';
 
-import members from '../../helpers/members';
+import members from '../../values/about/members';
 
 import HorizontalCard from '../common/HorizontalCard';
 

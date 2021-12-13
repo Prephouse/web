@@ -3,7 +3,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
-import { USER_REGISTRATION_PATH, USER_SIGN_IN_PATH } from '../strings/paths';
+import { USER_REGISTRATION_PATH, USER_SIGN_IN_PATH } from '../../strings/paths';
 
 type ProfileAction = {
   readonly primaryNameId: string;

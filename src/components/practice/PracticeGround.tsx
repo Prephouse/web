@@ -9,7 +9,7 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { clearMediaSource } from '../../store/practice/actions';
 
-import practiceSteps from '../../helpers/practiceSteps';
+import practiceSteps from '../../values/practice/practiceSteps';
 
 import PageContainer from '../common/PageContainer';
 import PracticeFeedback from './PracticeFeedback';
