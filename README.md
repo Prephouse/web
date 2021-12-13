@@ -35,7 +35,7 @@ run the Prephouse website in the respective environment.
 2. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
 
 > You may encounter an issue with OpenSSL when running `pnpm start` on Node.js 17.
-> You should therefore either switch to Node.js 16 (the latest LTS version)
+> You should therefore either use Node.js 16 (the latest LTS version)
 > _or_ set `NODE_OPTIONS=--openssl-legacy-provider` as an environment variable.
 
 #### Docker Container
