@@ -1,11 +1,11 @@
 {
   'src/**/*.+(js|jsx|ts|tsx)': [
     "eslint --fix",
-    "prettier --write",
+    "prettier . --write",
     "stylelint **/*.{js,ts,tsx}"
   ],
   'src/**/*.+(json|toml|yml|yaml)': [
-    "prettier --write"
+    "prettier . --write"
   ],
   'src/strings/translations/*/index.json': [
     "eslint --no-eslintrc --config .eslintrc.i18n.js --fix --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js src/strings/translations/",

@@ -6,11 +6,11 @@ import { Button, Typography, styled, useScrollTrigger } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
-import navigationDestinations from '../../values/actionbar/navigationDestinations';
-
 import { HOME_PATH } from '../../strings/paths';
 
 import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
+
+import navigationDestinations from '../../values/actionbar/navigationDestinations';
 
 import HeavyDivider from '../common/HeavyDivider';
 import PlainRouterLink from '../common/PlainRouterLink';

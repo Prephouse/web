@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import { Divider, styled, Switch } from '@mui/material';
+import { Divider, Switch, styled } from '@mui/material';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
