@@ -1,83 +1,55 @@
 {
-    "typescript.format.enable": false,
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "git.enableSmartCommit": true,
-    "git.fetchOnPull": true,
-    "git.confirmSync": false,
-    "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true,
-    "files.associations": {
-        "*.html": "html",
-        "*.svg": "typescriptreact"
-    },
-    "files.exclude": {
-        "**/node_modules": true
-    },
-    "emmet.showSuggestionsAsSnippets": true,
-    "eslint.alwaysShowStatus": true,
-    "prettier.requireConfig": true,
-    "editor.snippetSuggestions": "top",
-    "editor.tabCompletion": "on",
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "cSpell.enableFiletypes": [
-        "!json",
-        "!jsonc",
-        "!markdown",
-        "!text",
-        "!yaml",
-        "!yml"
-    ],
-    "cSpell.ignorePaths": [
-        ".venv",
-        ".vscode",
-        ".git",
-        ".github",
-        "node_modules",
-        "public",
-        "**/*.test.js",
-        "**/*.test.jsx",
-        "**/*.test.ts",
-        "**/*.test.tsx",
-        "yarn.lock",
-        "*.env*",
-        "*.dll",
-        "**/*.dll"
-    ],
-    "cSpell.ignoreRegExpList": [
-        "&[\\w|\\d]*;"
-    ],
-    "cSpell.allowCompoundWords": true,
-    "[javascript]": {
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": false
-    },
-    "[javascriptreact]": {
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": false
-    },
-    "[typescript]": {
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": false
-    },
-    "[typescriptreact]": {
-        "editor.tabSize": 2,
-        "editor.insertSpaces": true,
-        "editor.detectIndentation": false
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true
-    },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true
-    },
-    "[yaml]": {},
-    "[html]": {},
+  "typescript.format.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "git.enableSmartCommit": true,
+  "git.fetchOnPull": true,
+  "git.confirmSync": false,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.associations": {
+    "*.html": "html",
+    "*.svg": "typescriptreact"
+  },
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "emmet.showSuggestionsAsSnippets": true,
+  "eslint.alwaysShowStatus": true,
+  "prettier.requireConfig": true,
+  "editor.snippetSuggestions": "top",
+  "editor.tabCompletion": "on",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",\
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
+  },
+  "[javascriptreact]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[yaml]": {},
+  "[html]": {}
 }

@@ -23,7 +23,6 @@ export function retrievePasswordRequirements(password: string) {
       passed: validatePasswordNumericality(password),
       failTextId: 'user.registration.password.oneNumber',
     },
-    // { passed: /^(?:(.)(?!\1{3}))*$/.test(password), failTextId: "user.registration.form.msg.password.requirement.consecutive"},
   ]);
 }
 
