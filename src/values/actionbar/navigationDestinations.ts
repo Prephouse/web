@@ -4,7 +4,7 @@ import {
   DASHBOARD_PATH,
   PRACTICE_PATH,
   TIPS_PATH,
-} from '../strings/paths';
+} from '../../strings/paths';
 
 type NavigationDestination = {
   readonly path: string;
