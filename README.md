@@ -13,15 +13,14 @@ container.
 
 #### Local Environment
 
-1. Download and install [Node.js 16](https://nodejs.org/en/)
-2. Install the [pnpm](https://pnpm.io/installation) package manager
+1. Download and install [Node.js 16][node]
+2. Install the [pnpm][] package manager
 3. Run `pnpm install` on your command line interface (CLI) to install the
    [project dependencies](package.json)
 
 #### Docker Container
 
-1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop) and
-   [Docker Compose](https://docs.docker.com/compose/install/)
+1. Download and install [Docker Desktop][docker-desktop] and [Docker Compose][docker-compose]
 2. Run Docker Desktop on your machine
 3. Run `docker-compose build` on your command line interface (CLI)
 
@@ -33,7 +32,7 @@ the respective environment.
 #### Local Environment
 
 1. Run `pnpm start` on your CLI
-2. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
+2. Navigate to <http://localhost:3000> on your web browser
 
 > You may encounter an issue with OpenSSL when running `pnpm start` on Node.js 17. You should
 > therefore either use Node.js 16 (the latest LTS version) _or_ set
@@ -43,7 +42,12 @@ the respective environment.
 
 1. Run Docker Desktop on your machine
 2. Run `docker-compose up` on your CLI
-3. Navigate to [http://localhost:3000](http://localhost:3000) on your web browser
+3. Navigate to <http://localhost:3000> on your web browser
+
+[node]: https://nodejs.org/en/
+[pnpm]: https://pnpm.io/installation
+[docker-desktop]: https://www.docker.com/products/docker-desktop
+[docker-compose]: https://docs.docker.com/compose/install/
 
 ### Development
 
@@ -68,28 +72,50 @@ the respective environment.
 
 We support both Visual Studio Code and WebStorm out of the box with the proper configurations
 automatically calibrated. Furthermore, we recommend installing the _React Developer Tools_
-([Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-| [Firefox](https://addons.mozilla.org/en-CA/firefox/addon/react-devtools/) |
-[Edge](https://microsoftedge.microsoft.com/addons/detail/gpphkfbcpidddadnkolkpfckpihlkkil)) and
-_Redux DevTools_
-([Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
-| [Firefox](https://addons.mozilla.org/en-CA/firefox/addon/reduxdevtools/)) browser extensions.
+([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] | [Edge][react-ext-edge]) and _Redux
+DevTools_ ([Chrome][react-ext-chrome] | [Firefox][redux-ext-firefox]) browser extensions.
+
+[react-ext-chrome]:
+  https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+  'Chrome Extension'
+[react-ext-firefox]:
+  https://addons.mozilla.org/en-CA/firefox/addon/react-devtools/
+  'Firefox Browser Add-On'
+[react-ext-edge]:
+  https://microsoftedge.microsoft.com/addons/detail/gpphkfbcpidddadnkolkpfckpihlkkil
+  'Microsoft Edge Add-On'
+[redux-ext-chrome]:
+  https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+  'Chrome Extension'
+[redux-ext-firefox]:
+  https://addons.mozilla.org/en-CA/firefox/addon/reduxdevtools/
+  'Firefox Browser Add-On'
 
 ## Code Style
 
 We are following, with some exceptions, the commonly recommended TypeScript styling rules which
-includes the rules specified in the
-[_Airbnb JavaScript Style Guide_](https://github.com/airbnb/javascript) (adopted for TypeScript) and
-the recommended rules for the
-[_TypeScript ESLint plugin_](https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin).
-To this end, we utilize [Prettier](.prettierrc) and [ESLint](.eslintrc) to enforce certain
-TypeScript styling rules. If you use VSCode or WebStorm, your code will be auto-formatted whenever
-you save it. Moreover, a pre-commit hook has been created to enforce these styling rules when you
-attempt to commit your code to the git repository.
+includes the rules specified in the [_Airbnb JavaScript Style Guide_][airbnb-style-guide] (adopted
+for TypeScript) and the recommended rules for the [_TypeScript ESLint plugin_][ts-eslint-plugin]. To
+this end, we utilize [Prettier](.prettierrc) and [ESLint](.eslintrc) to enforce certain TypeScript
+styling rules. If you use VSCode or WebStorm, your code will be auto-formatted whenever you save it.
+Moreover, a pre-commit hook has been created to enforce these styling rules when you attempt to
+commit your code to the git repository.
+
+[airbnb-style-guide]: https://github.com/airbnb/javascript
+[ts-eslint-plugin]:
+  https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin
 
 ## Internalization
 
-Place your translatable strings _only_ in the appropriate locale within the
-[translations](./src/strings/translations) directory and use the
-[react-intl](https://formatjs.io/docs/react-intl/) library in the code. Take extra pre-caution for
-strings that may be pluralized.
+You should place any translatable strings in the appropriate locale within the
+[translations](./src/strings/translations) directory. Then, you can use the
+[react-intl][react-intl] library in the code to retrieve the translated
+strings for the current user locale.
+
+The strings should be formatted as an [ICU message][icu-message]. Take extra
+pre-caution for strings that may be pluralized.
+
+[react-intl]: https://formatjs.io/docs/react-intl/
+[icu-message]:
+  https://lokalise.com/blog/complete-guide-to-icu-message-format/
+  'A complete guide to the ICU message format'
