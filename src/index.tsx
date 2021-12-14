@@ -1,11 +1,37 @@
+import axios from 'axios';
+import camelcaseKeys from 'camelcase-keys';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import snakecaseKeys from 'snakecase-keys';
 
 import { store } from './store/store';
 
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
+
+axios.defaults.baseURL = process.env.REACT_APP_PREPHOUSE_BASE_URL;
+axios.interceptors.request.use(config => {
+  if (config.params) {
+    config.params = snakecaseKeys(config.params);
+  }
+  if (config.data) {
+    config.data = snakecaseKeys(config.data);
+  }
+  return config;
+});
+axios.interceptors.response.use(
+  config => {
+    config.data = camelcaseKeys(config.data);
+    return config;
+  },
+  error => {
+    if (error.response) {
+      error.response.data = camelcaseKeys(error.response.data);
+    }
+    return Promise.reject(error);
+  }
+);
 
 ReactDOM.render(
   <StrictMode>
