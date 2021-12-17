@@ -22,7 +22,7 @@ export default function generateTheme(prefersDarkMode = false) {
           html {
             height: 100%;
           }
-          body {
+          #root {
             display: flex;
             flex-direction: column;
             min-height: 100vh;

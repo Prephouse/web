@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 

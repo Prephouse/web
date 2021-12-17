@@ -8,12 +8,10 @@ interface Props {
   [x: string]: unknown;
 }
 
-const CenteredDiv = ({ style, children, ...otherProps }: Props) => {
-  return (
-    <Flex style={{ justifyContent: 'center', alignItems: 'center', ...style }} {...otherProps}>
-      {children}
-    </Flex>
-  );
-};
+const CenteredDiv = ({ style, children, ...otherProps }: Props) => (
+  <Flex style={{ justifyContent: 'center', alignItems: 'center', ...style }} {...otherProps}>
+    {children}
+  </Flex>
+);
 
 export default CenteredDiv;
