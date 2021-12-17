@@ -54,9 +54,20 @@ the respective environment.
 - Run `pnpm add -D <package-name>` and `pnpm add <package-name>` on your CLI so that the
   corresponding package is included as a development dependency or universal dependency respectively
   in [package.json](package.json)
-- Run `pnpm install` on your CLI when you need to install any new packages
+- Run `pnpm i` on your CLI when you need to install any new packages
+- Run `pnpm store prune` on your CLI at your own convenience if your machine is low on disk space
+  and contains orphan node modules in the pnpm store
 - A hot reload of the Prephouse website will be triggered whenever you modify the [src](src)
   directory or its files
+
+## Troubleshooting
+
+If pnpm fails to install a particular package or find the required dependencies, you should delete
+the project-level node modules folder and run `pnpm i --frozen-lockfile`. As a last resort, you
+could also try deleting your pnpm store (run `pnpm store path` to get the path of the store) and/or
+the pnpm state directory and pnpm-lock.yaml file which usually share the same parent directory as
+the store. However, this last resort may drastically affect the installation time for other pnpm
+projects.
 
 ## Browser Compatibility
 
@@ -73,7 +84,7 @@ the respective environment.
 We support both Visual Studio Code and WebStorm out of the box with the proper configurations
 automatically calibrated. Furthermore, we recommend installing the _React Developer Tools_
 ([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] | [Edge][react-ext-edge]) and _Redux
-DevTools_ ([Chrome][react-ext-chrome] | [Firefox][redux-ext-firefox]) browser extensions.
+DevTools_ ([Chrome][redux-ext-chrome] | [Firefox][redux-ext-firefox]) browser extensions.
 
 [react-ext-chrome]:
   https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
@@ -93,13 +104,13 @@ DevTools_ ([Chrome][react-ext-chrome] | [Firefox][redux-ext-firefox]) browser ex
 
 ## Code Style
 
-We are following, with some exceptions, the commonly recommended TypeScript styling rules which
-includes the rules specified in the [_Airbnb JavaScript Style Guide_][airbnb-style-guide] (adopted
-for TypeScript) and the recommended rules for the [_TypeScript ESLint plugin_][ts-eslint-plugin]. To
-this end, we utilize [Prettier](.prettierrc) and [ESLint](.eslintrc) to enforce certain TypeScript
-styling rules. If you use VSCode or WebStorm, your code will be auto-formatted whenever you save it.
-Moreover, a pre-commit hook has been created to enforce these styling rules when you attempt to
-commit your code to the git repository.
+We are following, with some exceptions, the commonly recommended TypeScript and React styling rules
+which includes the rules specified in the [_Airbnb JavaScript Style Guide_][airbnb-style-guide]
+(adopted for TypeScript) and the recommended rules for the [_TypeScript ESLint
+plugin_][ts-eslint-plugin]. To this end, we utilize [Prettier](.prettierrc) and [ESLint](.eslintrc)
+to enforce these styling rules. If you use VSCode or WebStorm, your code will be auto-formatted
+whenever you save it. Moreover, a pre-commit hook has been created to enforce these styling rules
+when you attempt to commit your code to the git repository.
 
 [airbnb-style-guide]: https://github.com/airbnb/javascript
 [ts-eslint-plugin]:
@@ -111,7 +122,7 @@ You should place any translatable strings in the appropriate locale within the
 [translations](./src/strings/translations) directory. Then, you can use the [react-intl][react-intl]
 library in the code to retrieve the translated strings for the current user locale.
 
-The strings should be formatted as an [ICU message][icu-message]. Take extra pre-caution for strings
+The strings should be formatted as [ICU messages][icu-message]. Take extra pre-caution for strings
 that may be pluralized.
 
 [react-intl]: https://formatjs.io/docs/react-intl/
