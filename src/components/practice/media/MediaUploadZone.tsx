@@ -74,7 +74,6 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
       <Typography component="div" variant="h6" gutterBottom>
         {intl.formatMessage({ id: 'practice.upload' })}
       </Typography>
-      {/* eslint-disable-next-line @shopify/react-require-autocomplete */}
       <input {...getInputProps()} />
       {showUploader()}
     </Box>

@@ -37,7 +37,6 @@ const PageNotFoundView = () => {
               { id: 'common.http.404.redirect' },
               {
                 url: (
-                  // eslint-disable-next-line @shopify/jsx-no-hardcoded-content
                   <Link
                     key={`redirect-suggestion-${closestPathname}`}
                     component={RouterLink}
