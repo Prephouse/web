@@ -53,7 +53,7 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
                   min={30}
                   onChange={handlePreviewWidthChange}
                   valueLabelDisplay="auto"
-                  valueLabelFormat={x => x + '%'}
+                  valueLabelFormat={x => `${x}%`}
                 />
               </Stack>
             </Box>

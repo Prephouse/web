@@ -2,7 +2,7 @@ import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider as ReduxProvider } from 'react-redux';
 import snakecaseKeys from 'snakecase-keys';
 
 import { store } from './store/store';
@@ -12,32 +12,35 @@ import reportWebVitals from './reportWebVitals';
 
 axios.defaults.baseURL = process.env.REACT_APP_PREPHOUSE_BASE_URL;
 axios.interceptors.request.use(config => {
+  const c = config;
   if (config.params) {
-    config.params = snakecaseKeys(config.params);
+    c.params = snakecaseKeys(config.params);
   }
   if (config.data) {
-    config.data = snakecaseKeys(config.data);
+    c.data = snakecaseKeys(config.data);
   }
-  return config;
+  return c;
 });
 axios.interceptors.response.use(
   config => {
-    config.data = camelcaseKeys(config.data);
-    return config;
+    const c = config;
+    c.data = camelcaseKeys(config.data);
+    return c;
   },
   error => {
+    const e = error;
     if (error.response) {
-      error.response.data = camelcaseKeys(error.response.data);
+      e.response.data = camelcaseKeys(error.response.data);
     }
-    return Promise.reject(error);
+    return Promise.reject(e);
   }
 );
 
 ReactDOM.render(
   <StrictMode>
-    <Provider store={store}>
+    <ReduxProvider store={store}>
       <App />
-    </Provider>
+    </ReduxProvider>
   </StrictMode>,
   document.getElementById('root')
 );

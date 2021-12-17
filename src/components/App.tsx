@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -35,33 +36,32 @@ import PracticeGround from './practice/PracticeGround';
 import TipBook from './tips/TipBook';
 import RegistrationForm from './user/registration/RegistrationForm';
 
+const establishTheme = (prefersDarkMode: boolean) => {
+  let theme = generateTheme(prefersDarkMode);
+  theme = responsiveFontSizes(theme);
+  return theme;
+};
+
 const App = () => {
   const prefersDarkMode = useAppSelector(state => state.settingsReducer.prefersDarkMode);
 
-  function establishTheme() {
-    let theme = generateTheme(prefersDarkMode);
-    theme = responsiveFontSizes(theme);
-    return theme;
-  }
-
   const [,] = useState(rollbar);
-  const [theme, setTheme] = useState(establishTheme());
+  const [theme, setTheme] = useState(establishTheme(prefersDarkMode));
 
   const prevPref = usePrevious<boolean>(prefersDarkMode);
   useEffect(() => {
     if (prevPref !== prefersDarkMode) {
-      setTheme(establishTheme());
+      setTheme(establishTheme(prefersDarkMode));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prefersDarkMode, prevPref]);
 
   return (
     <BrowserRouter>
       <IntlProvider locale="en-US" defaultLocale="en-US" messages={strings['en-US']}>
-        <ThemeProvider theme={theme}>
-          <SnackbarContextProvider>
+        <HelmetProvider>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
-            <body>
+            <SnackbarContextProvider>
               <ActionBar />
               <main>
                 <Routes>
@@ -76,10 +76,10 @@ const App = () => {
                 </Routes>
                 <SnackbarWrapper />
               </main>
-              <Footer />
-            </body>
-          </SnackbarContextProvider>
-        </ThemeProvider>
+            </SnackbarContextProvider>
+            <Footer />
+          </ThemeProvider>
+        </HelmetProvider>
       </IntlProvider>
     </BrowserRouter>
   );

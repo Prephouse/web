@@ -43,7 +43,7 @@ const AudioPreview = ({ stream, height = 96 }: Props) => {
         const sliceWidth = current.width / dataArray.length;
         let x = 0;
 
-        for (let i = 0; i < bufferLength; i++) {
+        for (let i = 0; i < bufferLength; i += 1) {
           const v = dataArray[i] / 128.0;
           const y = (v * current.height) / 2;
 

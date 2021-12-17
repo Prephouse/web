@@ -20,9 +20,9 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
   const getAcceptedMimes: () => string[] = () => {
     if (medium === SessionMedium.VideoAudio) {
       return ['video/mp4'];
-    } else {
-      return ['audio/mp4', 'audio/wav'];
     }
+
+    return ['audio/mp4', 'audio/wav'];
   };
 
   const onDrop = useCallback(
@@ -58,6 +58,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
         </Typography>
       );
     }
+    return undefined;
   };
 
   return (
@@ -74,7 +75,6 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
       <Typography component="div" variant="h6" gutterBottom>
         {intl.formatMessage({ id: 'practice.upload' })}
       </Typography>
-      {/* eslint-disable-next-line @shopify/react-require-autocomplete */}
       <input {...getInputProps()} />
       {showUploader()}
     </Box>

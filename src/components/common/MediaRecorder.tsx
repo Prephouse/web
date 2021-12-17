@@ -87,11 +87,9 @@ function useMediaRecorder({
   };
 
   const onRecordingStop = () => {
-    const [chunk] = mediaChunks.current;
-    const blobProperty: BlobPropertyBag = Object.assign(
-      { type: chunk.type },
-      video ? { type: 'video/mp4' } : { type: 'audio/wav' }
-    );
+    const blobProperty: BlobPropertyBag = {
+      ...(video ? { type: 'video/mp4' } : { type: 'audio/wav' }),
+    };
 
     const blob = new Blob(mediaChunks.current, blobProperty);
     const url = URL.createObjectURL(blob);

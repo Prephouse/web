@@ -30,40 +30,38 @@ const FormButtons = ({
   secondaryColor = 'secondary',
   isLoading = false,
   loadingText,
-}: Props) => {
-  return (
-    <Box>
+}: Props) => (
+  <Box>
+    <Button
+      type="submit"
+      variant="contained"
+      color="primary"
+      fullWidth
+      sx={{ margin: theme => theme.spacing(0.5, 0) }}
+      onClick={onPrimaryClick}
+      disabled={isLoading || primaryDisabled}
+    >
+      {isLoading ? (
+        <>
+          <CircularProgress size={24} />
+          {loadingText && <Button> &emsp;{loadingText}&hellip;</Button>}
+        </>
+      ) : (
+        primaryText
+      )}
+    </Button>
+    {secondaryText && (
       <Button
-        type="submit"
         variant="contained"
-        color="primary"
+        color={secondaryColor}
         fullWidth
         sx={{ margin: theme => theme.spacing(0.5, 0) }}
-        onClick={onPrimaryClick}
-        disabled={isLoading || primaryDisabled}
+        onClick={onSecondaryClick}
       >
-        {isLoading ? (
-          <>
-            <CircularProgress size={24} />
-            {loadingText && <Button> &emsp;{loadingText}&hellip;</Button>}
-          </>
-        ) : (
-          primaryText
-        )}
+        {secondaryText}
       </Button>
-      {secondaryText && (
-        <Button
-          variant="contained"
-          color={secondaryColor}
-          fullWidth
-          sx={{ margin: theme => theme.spacing(0.5, 0) }}
-          onClick={onSecondaryClick}
-        >
-          {secondaryText}
-        </Button>
-      )}
-    </Box>
-  );
-};
+    )}
+  </Box>
+);
 
 export default FormButtons;

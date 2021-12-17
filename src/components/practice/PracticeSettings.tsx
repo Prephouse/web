@@ -37,13 +37,13 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
   const intl = useIntl();
 
   const getSessionTypeName = (st: SessionType) => {
+    let name = '';
     if (st === SessionType.Interview) {
-      return intl.formatMessage({ id: 'practice.settings.type.interview2' });
+      name = intl.formatMessage({ id: 'practice.settings.type.interview2' });
     } else if (st === SessionType.Presentation) {
-      return intl.formatMessage({ id: 'practice.settings.type.presentation2' });
-    } else {
-      return '';
+      name = intl.formatMessage({ id: 'practice.settings.type.presentation2' });
     }
+    return name;
   };
 
   const getPermissions = (medium: SessionMedium): PermissionRequest => {
