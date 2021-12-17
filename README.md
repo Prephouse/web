@@ -108,12 +108,11 @@ commit your code to the git repository.
 ## Internalization
 
 You should place any translatable strings in the appropriate locale within the
-[translations](./src/strings/translations) directory. Then, you can use the
-[react-intl][react-intl] library in the code to retrieve the translated
-strings for the current user locale.
+[translations](./src/strings/translations) directory. Then, you can use the [react-intl][react-intl]
+library in the code to retrieve the translated strings for the current user locale.
 
-The strings should be formatted as an [ICU message][icu-message]. Take extra
-pre-caution for strings that may be pluralized.
+The strings should be formatted as an [ICU message][icu-message]. Take extra pre-caution for strings
+that may be pluralized.
 
 [react-intl]: https://formatjs.io/docs/react-intl/
 [icu-message]:

@@ -31,28 +31,26 @@ const FormInput = ({
   helperText = '',
   children,
   ...otherProps
-}: Props) => {
-  return (
-    <FormControl variant="outlined" style={{ width: '100%' }}>
-      <InputLabel htmlFor={label}>{label}</InputLabel>
-      <OutlinedInput
-        id={label}
-        name={name}
-        type={type}
-        label={label}
-        value={value || ''}
-        error={errorMsg.length > 0}
-        onChange={onChange}
-        fullWidth
-        aria-invalid={!!errorMsg}
-        aria-describedby={errorMsg ? `${label}-error-message` : `${label}-helper-text`}
-        {...otherProps}
-      />
-      {helperText && <FormHelperText id={`${label}-helper-text`}>{helperText}</FormHelperText>}
-      {errorMsg && <FormErrorMessage id={`${label}-error-message`} msg={errorMsg} />}
-      {children}
-    </FormControl>
-  );
-};
+}: Props) => (
+  <FormControl variant="outlined" style={{ width: '100%' }}>
+    <InputLabel htmlFor={label}>{label}</InputLabel>
+    <OutlinedInput
+      id={label}
+      name={name}
+      type={type}
+      label={label}
+      value={value || ''}
+      error={errorMsg.length > 0}
+      onChange={onChange}
+      fullWidth
+      aria-invalid={!!errorMsg}
+      aria-describedby={errorMsg ? `${label}-error-message` : `${label}-helper-text`}
+      {...otherProps}
+    />
+    {helperText && <FormHelperText id={`${label}-helper-text`}>{helperText}</FormHelperText>}
+    {errorMsg && <FormErrorMessage id={`${label}-error-message`} msg={errorMsg} />}
+    {children}
+  </FormControl>
+);
 
 export default FormInput;

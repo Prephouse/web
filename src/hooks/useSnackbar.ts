@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
+// eslint-disable-next-line import/no-cycle
 import { BaseProps } from '../components/common/AlertSnackbar';
 
 type SnackbarContextType = {
@@ -13,6 +14,4 @@ export const SnackbarContext = createContext<SnackbarContextType>({
   setSnackbar: () => {},
 });
 
-export const useSnackbar = () => {
-  return useContext(SnackbarContext);
-};
+export const useSnackbar = () => useContext(SnackbarContext);

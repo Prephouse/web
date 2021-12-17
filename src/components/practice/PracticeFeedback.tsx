@@ -130,7 +130,7 @@ const PracticeFeedback = ({ src }: Props) => {
                 value={volume}
                 onChange={handleVolumeChange}
                 valueLabelDisplay="auto"
-                valueLabelFormat={x => x + '%'}
+                valueLabelFormat={x => `${x}%`}
               />
               <VolumeUp />
             </Stack>

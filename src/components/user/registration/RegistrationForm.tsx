@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import { FormEvent, MouseEvent as ReactMouseEvent, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 

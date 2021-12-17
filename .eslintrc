@@ -20,21 +20,19 @@
     "react-hooks"
   ],
   "extends": [
+    "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
     "eslint:recommended",
-    "plugin:@shopify/react",
-    "plugin:@shopify/prettier",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:eslint-comments/recommended",
     "plugin:jest/recommended",
     "plugin:promise/recommended",
+    "plugin:react-hooks/recommended",
     "prettier"
   ],
   "rules": {
-    "@shopify/jsx-no-complex-expressions": "off",
-    "@shopify/jsx-no-hardcoded-content": "off",
     "@typescript-eslint/array-type": [2, { "array-simple": true }],
     "@typescript-eslint/default-param-last": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -91,6 +89,7 @@
     "formatjs/no-offset": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/order": "off",
+    "import/prefer-default-export": "off",
     "jsx-a11y/control-has-associated-label": "off",
     "jsx-a11y/media-has-caption": "off",
     "no-console": "warn",
@@ -98,10 +97,14 @@
       "error",
       { "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"] }
     ],
+    "no-useless-return": "off",
     "promise/catch-or-return": "off",
     "radix": "error",
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-uses-react": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off"
   },
   "ignorePatterns": [".eslintrc.i18n.js"]
 }

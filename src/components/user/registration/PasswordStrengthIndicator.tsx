@@ -18,9 +18,8 @@ interface Props {
 const PasswordStrengthIndicator = ({ password }: Props) => {
   const intl = useIntl();
 
-  const passwordScoreToTextual = (score: number) => {
-    return intl.formatMessage({ id: `user.registration.password.strength.${score}` });
-  };
+  const passwordScoreToTextual = (score: number) =>
+    intl.formatMessage({ id: `user.registration.password.strength.${score}` });
 
   const score = zxcvbn(password, badPasswords)?.score;
 

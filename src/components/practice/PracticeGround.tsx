@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
 import { Paper, Step, StepLabel, Stepper } from '@mui/material';
@@ -51,7 +51,7 @@ const PracticeGround = () => {
       case 4:
         return <PracticeFeedback src={source} />;
       default:
-        return <></>;
+        return null;
     }
   };
 

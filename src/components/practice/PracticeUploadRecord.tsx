@@ -31,17 +31,19 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
   };
 
   const establishZone = () => {
+    let zone = null;
     if (origin === SessionOrigin.Record) {
       if (medium === SessionMedium.VideoAudio) {
-        return <VideoRecordZone onSubmit={handleSubmission} />;
+        zone = <VideoRecordZone onSubmit={handleSubmission} />;
       } else if (medium === SessionMedium.AudioOnly) {
-        return <AudioRecordZone onSubmit={handleSubmission} />;
+        zone = <AudioRecordZone onSubmit={handleSubmission} />;
       }
     } else if (origin === SessionOrigin.Upload) {
-      return (
+      zone = (
         <MediaUploadZone sessionType={sessionType} medium={medium} onSubmit={handleSubmission} />
       );
     }
+    return zone;
   };
 
   return (
