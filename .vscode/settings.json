@@ -19,7 +19,7 @@
   "editor.snippetSuggestions": "top",
   "editor.tabCompletion": "on",
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",\
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
