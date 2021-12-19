@@ -1,8 +1,5 @@
 import { Alert, Snackbar } from '@mui/material';
 
-// eslint-disable-next-line import/no-cycle
-import { useSnackbar } from '../../hooks/useSnackbar';
-
 export interface BaseProps {
   severity: 'success' | 'info' | 'warning' | 'error' | undefined;
   duration?: number;
@@ -30,14 +27,4 @@ const AlertSnackbar = ({ open, onClose, severity, duration = 5000, message }: Pr
   </Snackbar>
 );
 
-const SnackbarWrapper = () => {
-  const { snackbar, setSnackbar } = useSnackbar();
-
-  const onClose = () => {
-    setSnackbar(null);
-  };
-
-  return snackbar && <AlertSnackbar {...snackbar} open={!!snackbar} onClose={onClose} />;
-};
-
-export default SnackbarWrapper;
+export default AlertSnackbar;

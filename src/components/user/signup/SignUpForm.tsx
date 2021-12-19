@@ -6,9 +6,9 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Popover, Typography } from '@mui/material';
 
-import { getFormValidationSchema } from '../../../schemas/user/registrationFormSchema';
+import { getFormValidationSchema } from '../../../schemas/user/signUpFormSchema';
 
-import { initialValues } from '../../../values/user/registrationFormValues';
+import initialValues from '../../../values/user/signUpFormValues';
 
 import FormButtons from '../../common/FormButtons';
 import FormGroupCompact from '../../common/FormGroupCompact';
@@ -17,7 +17,7 @@ import FormPaper from '../../common/FormPaper';
 import PageContainer from '../../common/PageContainer';
 import PasswordStrengthIndicator from './PasswordStrengthIndicator';
 
-const RegistrationForm = () => {
+const SignUpForm = () => {
   const intl = useIntl();
 
   const [anchorElPsi, setAnchorElPsi] = useState<HTMLElement | null>(null);
@@ -32,17 +32,17 @@ const RegistrationForm = () => {
     setAnchorElPsi(null);
   };
 
-  const submitRegistration = () => {};
+  const registerUser = () => {};
 
   return (
     <>
       <Helmet>
-        <title>{intl.formatMessage({ id: 'user.registration.title' })}</title>
+        <title>{intl.formatMessage({ id: 'user.signup.title' })}</title>
       </Helmet>
       <PageContainer maxWidth="md">
         <Formik
           initialValues={initialValues}
-          onSubmit={submitRegistration}
+          onSubmit={registerUser}
           validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
           validateOnBlur={false}
           validateOnChange={false}
@@ -56,21 +56,21 @@ const RegistrationForm = () => {
             return (
               <FormPaper elevation={4}>
                 <Typography component="h2" variant="h4">
-                  {intl.formatMessage({ id: 'user.registration.title' })}
+                  {intl.formatMessage({ id: 'user.signup.title' })}
                 </Typography>
                 <Form onSubmit={onSubmit}>
                   <FormGroupCompact>
                     <Field
                       as={FormInput}
                       name="firstName"
-                      label={intl.formatMessage({ id: 'user.registration.firstName' })}
+                      label={intl.formatMessage({ id: 'user.signup.firstName' })}
                       errorMsg={errors.firstName}
                       aria-required="true"
                     />
                     <Field
                       as={FormInput}
                       name="lastName"
-                      label={intl.formatMessage({ id: 'user.registration.lastName' })}
+                      label={intl.formatMessage({ id: 'user.signup.lastName' })}
                       errorMsg={errors.lastName}
                       aria-required="true"
                     />
@@ -78,7 +78,7 @@ const RegistrationForm = () => {
                       as={FormInput}
                       name="email"
                       autoComplete="email"
-                      label={intl.formatMessage({ id: 'user.registration.email' })}
+                      label={intl.formatMessage({ id: 'user.signup.email' })}
                       errorMsg={errors.email}
                       aria-required="true"
                     />
@@ -86,7 +86,7 @@ const RegistrationForm = () => {
                       as={FormInput}
                       name="password"
                       type="password"
-                      label={intl.formatMessage({ id: 'user.registration.password' })}
+                      label={intl.formatMessage({ id: 'user.signup.password' })}
                       errorMsg={errors.password}
                       onMouseDown={handlePsiOpen}
                       onBlur={handlePsiClose}
@@ -110,13 +110,13 @@ const RegistrationForm = () => {
                       as={FormInput}
                       name="passwordConfirmation"
                       type="password"
-                      label={intl.formatMessage({ id: 'user.registration.password.confirm' })}
+                      label={intl.formatMessage({ id: 'user.signup.password.confirm' })}
                       errorMsg={errors.passwordConfirmation}
                     />
                   </FormGroupCompact>
                   <FormButtons
-                    primaryText={intl.formatMessage({ id: 'user.registration.register' })}
-                    secondaryText={intl.formatMessage({ id: 'user.registration.clear' })}
+                    primaryText={intl.formatMessage({ id: 'user.signup.register' })}
+                    secondaryText={intl.formatMessage({ id: 'user.signup.clear' })}
                     onSecondaryClick={() => resetForm()}
                   />
                 </Form>
@@ -129,4 +129,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default SignUpForm;

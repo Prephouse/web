@@ -5,15 +5,15 @@ export const validatePasswordNumericality = (password: string) => /.*[1-9].*/.te
 export const getPasswordValidators = () =>
   Object.freeze([
     {
-      id: 'user.registration.password.length',
+      id: 'user.signup.password.length',
       validator: validatePasswordMinimumLength,
     },
     {
-      id: 'user.registration.password.oneUpper',
+      id: 'user.signup.password.oneUpper',
       validator: validatePasswordUppercase,
     },
     {
-      id: 'user.registration.password.oneNumber',
+      id: 'user.signup.password.oneNumber',
       validator: validatePasswordNumericality,
     },
   ]);

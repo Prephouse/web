@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 
 import { PREFERS_DARK_MODE_KEY } from '../../strings/keys';
 
-import { CHANGE_PREFERS_DARK_MODE, SettingsReduxAction, SettingsReduxState } from './types';
+import { CHANGE_PREFERS_DARK_MODE, PreferenceReduxAction, PreferenceReduxState } from './types';
 
 const initializePrefersDarkMode = (): boolean => {
   if (PREFERS_DARK_MODE_KEY in localStorage) {
@@ -11,11 +11,11 @@ const initializePrefersDarkMode = (): boolean => {
   return window.matchMedia('(prefers-color-scheme: dark)').matches;
 };
 
-const initState: SettingsReduxState = {
+const initState: PreferenceReduxState = {
   prefersDarkMode: initializePrefersDarkMode(),
 };
 
-const settingsReducer: Reducer<SettingsReduxState, SettingsReduxAction> = (
+const preferenceReducer: Reducer<PreferenceReduxState, PreferenceReduxAction> = (
   state = initState,
   action
 ) => {
@@ -27,4 +27,4 @@ const settingsReducer: Reducer<SettingsReduxState, SettingsReduxAction> = (
   }
 };
 
-export default settingsReducer;
+export default preferenceReducer;
