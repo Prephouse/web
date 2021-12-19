@@ -45,7 +45,7 @@ const establishTheme = (prefersDarkMode: boolean) => {
 };
 
 const App = () => {
-  const prefersDarkMode = useAppSelector(state => state.settingsReducer.prefersDarkMode);
+  const prefersDarkMode = useAppSelector(state => state.preferenceReducer.prefersDarkMode);
 
   const [,] = useState(rollbar);
   const [theme, setTheme] = useState(establishTheme(prefersDarkMode));
