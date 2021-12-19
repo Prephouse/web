@@ -13,7 +13,7 @@ type ProfileAction = {
 
 const actions: readonly ProfileAction[] = Object.freeze([
   {
-    primaryNameId: 'user.sign-in.action',
+    primaryNameId: 'user.signin.action',
     icon: PersonIcon,
     to: USER_SIGN_IN_PATH,
   },
