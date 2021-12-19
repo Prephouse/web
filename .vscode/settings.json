@@ -4,6 +4,8 @@
   "git.enableSmartCommit": true,
   "git.fetchOnPull": true,
   "git.confirmSync": false,
+  "eslint.alwaysShowStatus": true,
+  "prettier.requireConfig": true,
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.associations": {
@@ -14,12 +16,12 @@
     "**/node_modules": true
   },
   "emmet.showSuggestionsAsSnippets": true,
-  "eslint.alwaysShowStatus": true,
-  "prettier.requireConfig": true,
-  "editor.snippetSuggestions": "top",
-  "editor.tabCompletion": "on",
-  "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.tabCompletion": "on",
+  "editor.snippetSuggestions": "top",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
