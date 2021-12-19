@@ -8,7 +8,7 @@ import { Popover, Typography } from '@mui/material';
 
 import { getFormValidationSchema } from '../../../schemas/user/signUpFormSchema';
 
-import { initialValues } from '../../../values/user/signUpFormValues';
+import initialValues from '../../../values/user/signUpFormValues';
 
 import FormButtons from '../../common/FormButtons';
 import FormGroupCompact from '../../common/FormGroupCompact';
