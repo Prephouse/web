@@ -73,8 +73,7 @@ function useMediaRecorder({
     }
 
     if (!mediaStream.current) {
-      // eslint-disable-next-line no-console
-      getMediaStream().then(console.log);
+      getMediaStream().then(undefined);
     }
 
     return () => {

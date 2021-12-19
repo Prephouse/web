@@ -16,27 +16,27 @@ export const getFormValidationSchema = (intl: IntlShape) => {
       firstName: z1,
       lastName: z1,
       email: z1.email({
-        message: intl.formatMessage({ id: 'user.registration.email.error' }),
+        message: intl.formatMessage({ id: 'user.signup.email.error' }),
       }),
       password: z1,
       passwordConfirmation: z1,
     })
     .refine(({ password }) => validatePasswordMinimumLength(password), {
-      message: intl.formatMessage({ id: 'user.registration.password.length' }),
+      message: intl.formatMessage({ id: 'user.signup.password.length' }),
       path: ['password'],
     })
     .refine(({ password }) => validatePasswordUppercase(password), {
-      message: intl.formatMessage({ id: 'user.registration.password.oneUpper' }),
+      message: intl.formatMessage({ id: 'user.signup.password.oneUpper' }),
       path: ['password'],
     })
     .refine(({ password }) => validatePasswordNumericality(password), {
-      message: intl.formatMessage({ id: 'user.registration.password.oneNumber' }),
+      message: intl.formatMessage({ id: 'user.signup.password.oneNumber' }),
       path: ['password'],
     })
     .refine(({ password, passwordConfirmation }) => password === passwordConfirmation, {
-      message: intl.formatMessage({ id: 'user.registration.password.match' }),
+      message: intl.formatMessage({ id: 'user.signup.password.match' }),
       path: ['passwordConfirmation'],
     });
 };
 
-export type UserRegistrationFormFields = z.infer<ReturnType<typeof getFormValidationSchema>>;
+export type UserSignUpFormFields = z.infer<ReturnType<typeof getFormValidationSchema>>;

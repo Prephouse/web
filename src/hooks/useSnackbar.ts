@@ -1,17 +1,25 @@
-import { Dispatch, SetStateAction, createContext, useContext } from 'react';
+import { Dispatch, SetStateAction, createContext, createElement, useContext } from 'react';
 
-// eslint-disable-next-line import/no-cycle
-import { BaseProps } from '../components/common/AlertSnackbar';
+import AlertSnackbar, { BaseProps } from '../components/common/AlertSnackbar';
 
-type SnackbarContextType = {
+export type SnackbarContextType = {
   snackbar: BaseProps | null;
   setSnackbar: Dispatch<SetStateAction<BaseProps | null>>;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const SnackbarContext = createContext<SnackbarContextType>({
   snackbar: null,
   setSnackbar: () => {},
 });
 
 export const useSnackbar = () => useContext(SnackbarContext);
+
+export const SnackbarWrapper = () => {
+  const { snackbar, setSnackbar } = useSnackbar();
+
+  const onClose = () => {
+    setSnackbar(null);
+  };
+
+  return snackbar && createElement(AlertSnackbar, { ...snackbar, open: !!snackbar, onClose }, null);
+};

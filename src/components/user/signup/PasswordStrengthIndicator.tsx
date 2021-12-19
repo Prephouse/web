@@ -19,7 +19,7 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
   const intl = useIntl();
 
   const passwordScoreToTextual = (score: number) =>
-    intl.formatMessage({ id: `user.registration.password.strength.${score}` });
+    intl.formatMessage({ id: `user.signup.password.strength.${score}` });
 
   const score = zxcvbn(password, badPasswords)?.score;
 
@@ -46,7 +46,7 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
         <strong>{passwordScoreToTextual(score)}</strong>
       </div>
       <br />
-      {intl.formatMessage({ id: 'user.registration.password.requirement' })}
+      {intl.formatMessage({ id: 'user.signup.password.requirement' })}
       <br />
       {getPasswordValidators().map(({ id, validator }) => (
         <Fragment key={`password-requirement-${id}`}>
