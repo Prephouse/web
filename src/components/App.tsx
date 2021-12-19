@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -9,6 +9,7 @@ import rollbar from '../libs/rollbar';
 
 import useAppSelector from '../hooks/useAppSelector';
 import usePrevious from '../hooks/usePrevious';
+import { SnackbarWrapper } from '../hooks/useSnackbar';
 
 import {
   ABOUT_PATH,
@@ -17,24 +18,25 @@ import {
   HOME_PATH,
   PRACTICE_PATH,
   TIPS_PATH,
-  USER_REGISTRATION_PATH,
+  USER_SIGN_UP_PATH,
 } from '../strings/paths';
 import strings from '../strings/strings';
 
 import generateTheme from '../styles/themes';
 
-import About from './about/About';
 import ActionBar from './actionbar/ActionBar';
-import SnackbarWrapper from './common/AlertSnackbar';
 import SnackbarContextProvider from './common/SnackbarContextProvider';
-import CompareBoard from './compare/CompareBoard';
-import Dashboard from './dashboard/Dashboard';
+import SuspendableScreen from './common/SuspendableScreen';
 import PageNotFoundView from './error/PageNotFoundView';
 import Footer from './footer/Footer';
 import Home from './home/Home';
-import PracticeGround from './practice/PracticeGround';
-import TipBook from './tips/TipBook';
-import RegistrationForm from './user/registration/RegistrationForm';
+
+const About = lazy(() => import('./about/About'));
+const CompareBoard = lazy(() => import('./compare/CompareBoard'));
+const Dashboard = lazy(() => import('./dashboard/Dashboard'));
+const PracticeGround = lazy(() => import('./practice/PracticeGround'));
+const SignUpForm = lazy(() => import('./user/signup/SignUpForm'));
+const TipBook = lazy(() => import('./tips/TipBook'));
 
 const establishTheme = (prefersDarkMode: boolean) => {
   let theme = generateTheme(prefersDarkMode);
@@ -66,13 +68,25 @@ const App = () => {
               <main>
                 <Routes>
                   <Route path={HOME_PATH} element={<Home />} />
-                  <Route path={ABOUT_PATH} element={<About />} />
-                  <Route path={DASHBOARD_PATH} element={<Dashboard />} />
-                  <Route path={PRACTICE_PATH} element={<PracticeGround />} />
-                  <Route path={COMPARE_PATH} element={<CompareBoard />} />
-                  <Route path={TIPS_PATH} element={<TipBook />} />
-                  <Route path={USER_REGISTRATION_PATH} element={<RegistrationForm />} />
-                  <Route path="*" element={<PageNotFoundView />} />
+                  <Route path={ABOUT_PATH} element={<SuspendableScreen screen={<About />} />} />
+                  <Route
+                    path={DASHBOARD_PATH}
+                    element={<SuspendableScreen screen={<Dashboard />} />}
+                  />
+                  <Route
+                    path={PRACTICE_PATH}
+                    element={<SuspendableScreen screen={<PracticeGround />} />}
+                  />
+                  <Route
+                    path={COMPARE_PATH}
+                    element={<SuspendableScreen screen={<CompareBoard />} />}
+                  />
+                  <Route path={TIPS_PATH} element={<SuspendableScreen screen={<TipBook />} />} />
+                  <Route
+                    path={USER_SIGN_UP_PATH}
+                    element={<SuspendableScreen screen={<SignUpForm />} />}
+                  />
+                  <Route path="*" element={<SuspendableScreen screen={<PageNotFoundView />} />} />
                 </Routes>
                 <SnackbarWrapper />
               </main>

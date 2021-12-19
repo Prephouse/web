@@ -7,7 +7,7 @@ import { Divider, Switch, styled } from '@mui/material';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
-import { changePrefersDarkMode } from '../../store/settings/actions';
+import { changePrefersDarkMode } from '../../store/preference/actions';
 
 import profileActions from '../../values/actionbar/profileActions';
 

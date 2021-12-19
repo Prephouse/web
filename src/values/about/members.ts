@@ -7,7 +7,7 @@ type Member = {
   github?: string;
 };
 
-const members: Member[] = [
+const members: readonly Member[] = [
   {
     name: 'Vijay Ganesh',
     img: 'generic-person.png',
