@@ -39,9 +39,9 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
   const getSessionTypeName = (st: SessionType) => {
     let name = '';
     if (st === SessionType.Interview) {
-      name = intl.formatMessage({ id: 'practice.preferences.type.interview2' });
+      name = intl.formatMessage({ id: 'practice.setting.type.interview2' });
     } else if (st === SessionType.Presentation) {
-      name = intl.formatMessage({ id: 'practice.preferences.type.presentation2' });
+      name = intl.formatMessage({ id: 'practice.setting.type.presentation2' });
     }
     return name;
   };
@@ -87,10 +87,10 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
             <Box sx={{ padding: 2 }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
-                  {intl.formatMessage({ id: 'practice.preferences.medium.title' })}
+                  {intl.formatMessage({ id: 'practice.setting.medium.title' })}
                 </FormLabel>
                 <FormHelperText>
-                  {intl.formatMessage({ id: 'practice.preferences.medium.helper' })}
+                  {intl.formatMessage({ id: 'practice.setting.medium.helper' })}
                 </FormHelperText>
                 <RadioGroup
                   row
@@ -103,12 +103,12 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   <FormControlLabel
                     value={SessionMedium.VideoAudio}
                     control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.preferences.medium.videoAudio' })}
+                    label={intl.formatMessage({ id: 'practice.setting.medium.videoAudio' })}
                   />
                   <FormControlLabel
                     value={SessionMedium.AudioOnly}
                     control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.preferences.medium.audio' })}
+                    label={intl.formatMessage({ id: 'practice.setting.medium.audio' })}
                   />
                 </RadioGroup>
                 {touched.medium && errors.medium && <FormErrorMessage msg={errors.medium} />}
@@ -119,7 +119,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 sx={{ margin: theme => theme.spacing(1, 0) }}
               >
                 {intl.formatMessage(
-                  { id: 'practice.preferences.medium.videoAudio.description' },
+                  { id: 'practice.setting.medium.videoAudio.description' },
                   { session_type_name: getSessionTypeName(SessionType.Interview) }
                 )}
               </Alert>
@@ -127,11 +127,11 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
             <Box sx={{ padding: 2 }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
-                  {intl.formatMessage({ id: 'practice.preferences.source.title' })}
+                  {intl.formatMessage({ id: 'practice.setting.source.title' })}
                 </FormLabel>
                 <FormHelperText>
                   {intl.formatMessage(
-                    { id: 'practice.preferences.source.helper' },
+                    { id: 'practice.setting.source.helper' },
                     { session_type_name: getSessionTypeName(SessionType.Interview) }
                   )}
                 </FormHelperText>
@@ -146,12 +146,12 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   <FormControlLabel
                     value={SessionOrigin.Record}
                     control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.preferences.source.record' })}
+                    label={intl.formatMessage({ id: 'practice.setting.source.record' })}
                   />
                   <FormControlLabel
                     value={SessionOrigin.Upload}
                     control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.preferences.source.upload' })}
+                    label={intl.formatMessage({ id: 'practice.setting.source.upload' })}
                   />
                 </RadioGroup>
                 {touched.origin && errors.origin && <FormErrorMessage msg={errors.origin} />}
@@ -183,7 +183,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 sx={{ margin: theme => theme.spacing(1, 0) }}
               >
                 {intl.formatMessage(
-                  { id: 'practice.preferences.source.record.description' },
+                  { id: 'practice.setting.source.record.description' },
                   { session_type_name: getSessionTypeName(SessionType.Interview) }
                 )}
               </Alert>
@@ -191,10 +191,10 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
             <Box sx={{ padding: 2 }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
-                  {intl.formatMessage({ id: 'practice.preferences.liveFeedback.title' })}
+                  {intl.formatMessage({ id: 'practice.setting.liveFeedback.title' })}
                 </FormLabel>
                 <FormHelperText>
-                  {intl.formatMessage({ id: 'practice.preferences.liveFeedback.helper' })}
+                  {intl.formatMessage({ id: 'practice.setting.liveFeedback.helper' })}
                 </FormHelperText>
                 <RadioGroup
                   row
@@ -224,12 +224,12 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 severity="info"
                 sx={{ margin: theme => theme.spacing(1, 0) }}
               >
-                {intl.formatMessage({ id: 'practice.preferences.liveFeedback.description' })}
+                {intl.formatMessage({ id: 'practice.setting.liveFeedback.description' })}
               </Alert>
             </Box>
             <FormButtons
-              primaryText={intl.formatMessage({ id: 'practice.preferences.confirm' })}
-              secondaryText={intl.formatMessage({ id: 'practice.preferences.restart' })}
+              primaryText={intl.formatMessage({ id: 'practice.setting.confirm' })}
+              secondaryText={intl.formatMessage({ id: 'practice.setting.restart' })}
               onSecondaryClick={onBack}
             />
           </Form>

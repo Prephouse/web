@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
 import practiceReducer from './practice/reducer';
-import preferenceReducer from './preferences/reducer';
+import preferenceReducer from './preference/reducer';
 
 export const rootReducer = combineReducers({ practiceReducer, settingsReducer: preferenceReducer });
 
