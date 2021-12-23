@@ -1,8 +1,21 @@
-import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
-
 export const SET_PRACTICE_SETTINGS = 'setPracticeSettings';
 export const SET_MEDIA_SOURCE = 'setMediaSource';
 export const CLEAR_MEDIA_SOURCE = 'clearMediaSource';
+
+export enum SessionMedium {
+  VideoAudio,
+  AudioOnly,
+}
+
+export enum SessionType {
+  Interview,
+  Presentation,
+}
+
+export enum SessionOrigin {
+  Record,
+  Upload,
+}
 
 export type PracticeReduxState = {
   sessionType: SessionType;

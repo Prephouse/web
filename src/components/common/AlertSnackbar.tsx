@@ -1,7 +1,7 @@
 import { Alert, Snackbar } from '@mui/material';
 
 export interface BaseProps {
-  severity: 'success' | 'info' | 'warning' | 'error' | undefined;
+  severity: 'success' | 'warning' | 'error';
   duration?: number;
   message: string;
 }

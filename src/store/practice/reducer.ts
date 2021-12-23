@@ -1,9 +1,14 @@
 import { Reducer } from 'redux';
 
-import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
-
 import type { PracticeReduxAction, PracticeReduxState } from './types';
-import { CLEAR_MEDIA_SOURCE, SET_MEDIA_SOURCE, SET_PRACTICE_SETTINGS } from './types';
+import {
+  CLEAR_MEDIA_SOURCE,
+  SET_MEDIA_SOURCE,
+  SET_PRACTICE_SETTINGS,
+  SessionMedium,
+  SessionOrigin,
+  SessionType,
+} from './types';
 
 const initState: PracticeReduxState = {
   sessionType: SessionType.Interview,

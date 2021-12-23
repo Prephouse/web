@@ -1,7 +1,7 @@
 import enUs from './translations/en-US/index.json';
 
-const strings = {
+const messages = {
   'en-US': enUs,
 };
 
-export default strings;
+export default messages;

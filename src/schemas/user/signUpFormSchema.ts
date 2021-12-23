@@ -9,7 +9,7 @@ import {
 
 export const getFormValidationSchema = (intl: IntlShape) => {
   const z1 = z.string({
-    required_error: intl.formatMessage({ id: 'common.form.field.required' }),
+    required_error: intl.formatMessage({ id: 'common.field.required' }),
   });
   return z
     .object({

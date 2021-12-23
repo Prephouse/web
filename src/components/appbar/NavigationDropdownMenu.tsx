@@ -9,7 +9,7 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { changePrefersDarkMode } from '../../store/preference/actions';
 
-import profileActions from '../../values/actionbar/profileActions';
+import profileActions from '../../values/appbar/profileActions';
 
 import DropdownMenuItem from '../common/DropdownMenuItem';
 
@@ -38,7 +38,7 @@ const Neon = styled('div')((props: Record<'lightUp', boolean>) => {
   return {};
 });
 
-const ProfileMenu = () => {
+const NavigationDropdownMenu = () => {
   const prefersDarkMode: boolean = useAppSelector(state => state.preferenceReducer.prefersDarkMode);
   const dispatch = useAppDispatch();
 
@@ -60,7 +60,7 @@ const ProfileMenu = () => {
       <DropdownMenuItem
         primary={
           <Neon lightUp={prefersDarkMode}>
-            {[...intl.formatMessage({ id: 'app.setting.darkMode' })].map(c => (
+            {[...intl.formatMessage({ id: 'app.preference.darkMode' })].map(c => (
               <span key={`neon-char-${c}-${c + 1}`}>{c}</span>
             ))}
           </Neon>
@@ -80,4 +80,4 @@ const ProfileMenu = () => {
   );
 };
 
-export default ProfileMenu;
+export default NavigationDropdownMenu;

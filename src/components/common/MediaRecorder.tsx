@@ -1,6 +1,13 @@
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
-import { MediaRecordingStatus } from '../../utils/enums';
+export enum MediaRecordingStatus {
+  Idle = 'idle',
+  AcquiringMedia = 'acquiring_media',
+  Recording = 'recording',
+  Stopping = 'stopping',
+  Stopped = 'stopped',
+  Paused = 'paused',
+}
 
 interface RenderProps {
   startRecording: () => void;

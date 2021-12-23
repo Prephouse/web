@@ -4,7 +4,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Button, ButtonGroup } from '@mui/material';
 
-import { MediaRecordingStatus } from '../../../utils/enums';
+import { MediaRecordingStatus } from '../../common/MediaRecorder';
 
 interface Props {
   startRecording: () => void;
