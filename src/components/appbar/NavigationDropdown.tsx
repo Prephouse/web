@@ -1,14 +1,17 @@
 import { SetStateAction, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { Avatar, Button, IconButton, Typography, useTheme } from '@mui/material';
 
 import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
 
 import DropdownMenu from '../common/DropdownMenu';
-import ProfileMenu from './ProfileMenu';
+import NavigationDropdownMenu from './NavigationDropdownMenu';
 
 const NavigationDropdown = () => {
   const theme = useTheme();
+
+  const intl = useIntl();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
   const handleOpenMenu = (event: { currentTarget: SetStateAction<HTMLElement | null> }) => {
@@ -29,7 +32,7 @@ const NavigationDropdown = () => {
   );
 
   return (
-    <nav>
+    <nav aria-label={intl.formatMessage({ id: 'app.navigation.dropdown' })}>
       <Button
         sx={{
           borderRadius: theme.spacing(3),
@@ -78,7 +81,7 @@ const NavigationDropdown = () => {
         anchorEl={anchorElMenu}
         onClose={handleCloseMenu}
       >
-        <ProfileMenu />
+        <NavigationDropdownMenu />
       </DropdownMenu>
     </nav>
   );

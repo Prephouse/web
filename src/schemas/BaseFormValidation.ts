@@ -1,12 +1,12 @@
 import { FormikErrors } from 'formik';
 
 /**
- * @deprecated Replace with zod schemas validation
+ * @deprecated Replace with zod schema validation
  */
 export abstract class BaseFormValidation<T> {
   protected errors: FormikErrors<T> = {};
 
-  constructor(protected values: T, protected readonly requiredFieldMsg: string) {}
+  protected constructor(protected values: T, protected readonly requiredFieldMsg: string) {}
 
   get erroneous(): boolean {
     return !!this.errors;

@@ -10,22 +10,18 @@ import { HOME_PATH } from '../../strings/paths';
 
 import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
 
-import navigationDestinations from '../../values/actionbar/navigationDestinations';
+import navigationDestinations from '../../values/appbar/navigationDestinations';
 
 import HeavyDivider from '../common/HeavyDivider';
 import PlainRouterLink from '../common/PlainRouterLink';
-import ProfileDropdown from './ProfileDropdown';
-
-interface Props {
-  children: ReactElement;
-}
+import ProfileDropdown from './NavigationDropdown';
 
 const BlackToolbar = styled(Toolbar)(({ theme }) => ({
   backgroundColor: NAVIGATION_BLACK,
   color: theme.palette.common.white,
 }));
 
-const ElevationScroll = ({ children }: Props) => {
+const ElevationScroll = ({ children }: { children: ReactElement }) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -38,11 +34,11 @@ const ElevationScroll = ({ children }: Props) => {
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-const ActionBar = () => {
+const PrephouseAppBar = () => {
   const intl = useIntl();
 
   return (
-    <header>
+    <>
       <ElevationScroll>
         <AppBar position="fixed">
           <BlackToolbar>
@@ -59,7 +55,7 @@ const ActionBar = () => {
               </PlainRouterLink>
             </Typography>
             <span style={{ flexGrow: 1 }} />
-            <nav>
+            <nav aria-label={intl.formatMessage({ id: 'app.navigation.bar' })}>
               {navigationDestinations.map(({ path, titleId }) => (
                 <Button
                   key={`nav-button-${titleId}`}
@@ -87,8 +83,8 @@ const ActionBar = () => {
         </AppBar>
       </ElevationScroll>
       <Offset />
-    </header>
+    </>
   );
 };
 
-export default ActionBar;
+export default PrephouseAppBar;

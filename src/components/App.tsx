@@ -11,6 +11,7 @@ import useAppSelector from '../hooks/useAppSelector';
 import usePrevious from '../hooks/usePrevious';
 import { SnackbarWrapper } from '../hooks/useSnackbar';
 
+import messages from '../strings/messages';
 import {
   ABOUT_PATH,
   COMPARE_PATH,
@@ -20,11 +21,10 @@ import {
   TIPS_PATH,
   USER_SIGN_UP_PATH,
 } from '../strings/paths';
-import strings from '../strings/strings';
 
 import generateTheme from '../styles/themes';
 
-import ActionBar from './actionbar/ActionBar';
+import PrephouseAppBar from './appbar/PrephouseAppBar';
 import SnackbarContextProvider from './common/SnackbarContextProvider';
 import SuspendableScreen from './common/SuspendableScreen';
 import PageNotFoundView from './error/PageNotFoundView';
@@ -59,12 +59,12 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <IntlProvider locale="en-US" defaultLocale="en-US" messages={strings['en-US']}>
+      <IntlProvider locale="en-US" defaultLocale="en-US" messages={messages['en-US']}>
         <HelmetProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <SnackbarContextProvider>
-              <ActionBar />
+              <PrephouseAppBar />
               <main>
                 <Routes>
                   <Route path={HOME_PATH} element={<Home />} />
@@ -86,7 +86,7 @@ const App = () => {
                     path={USER_SIGN_UP_PATH}
                     element={<SuspendableScreen screen={<SignUpForm />} />}
                   />
-                  <Route path="*" element={<SuspendableScreen screen={<PageNotFoundView />} />} />
+                  <Route path="*" element={<PageNotFoundView />} />
                 </Routes>
                 <SnackbarWrapper />
               </main>

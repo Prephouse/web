@@ -1,19 +1,13 @@
 type Member = {
   name: string;
-  img: string;
+  img: `${string}.jpg`;
   bio: string;
-  website?: string;
-  linkedin?: string;
-  github?: string;
+  website?: `https://www.${string}`;
+  linkedin?: `https://www.linkedin.com/in/${string}`;
+  github?: `https://github.com/${string}`;
 };
 
 const members: readonly Member[] = [
-  {
-    name: 'Vijay Ganesh',
-    img: 'generic-person.png',
-    bio: `
-      Our amazing consultant.`,
-  },
   {
     name: 'Jason Antao',
     img: 'jason-antao.jpg',
@@ -55,7 +49,6 @@ const members: readonly Member[] = [
     img: 'mivia-li.jpg',
     bio: `
       TBD`,
-    website: '/about',
     linkedin: 'https://www.linkedin.com/in/mivia-li/',
     github: 'https://github.com/Mivialll',
   },

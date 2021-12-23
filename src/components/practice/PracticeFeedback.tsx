@@ -91,17 +91,27 @@ const PracticeFeedback = ({ src }: Props) => {
         src={src}
         ref={playerRef}
         style={{ width: '100%', transform: 'scaleX(-1)' }}
-      />
+      >
+        <track kind="captions" srcLang="en" />
+      </video>
       <Paper sx={{ margin: theme.spacing(3, 0) }}>
         <Grid container>
           <Grid item xs={10} sx={{ padding: theme.spacing(2) }}>
             <Stack direction="row" spacing={2} alignItems="center">
               {play ? (
-                <IconButton onClick={handlePause} size="large">
+                <IconButton
+                  onClick={handlePause}
+                  size="large"
+                  aria-label={intl.formatMessage({ id: 'common.pause' })}
+                >
                   <PauseIcon />
                 </IconButton>
               ) : (
-                <IconButton onClick={handlePlay} size="large">
+                <IconButton
+                  onClick={handlePlay}
+                  size="large"
+                  aria-label={intl.formatMessage({ id: 'common.play' })}
+                >
                   <PlayArrowIcon />
                 </IconButton>
               )}

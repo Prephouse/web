@@ -1,7 +1,5 @@
-import { SessionMedium, SessionOrigin } from '../../utils/enums';
-
 import { AppDispatch } from '../store';
-import { SET_MEDIA_SOURCE, SET_PRACTICE_SETTINGS } from './types';
+import { SET_MEDIA_SOURCE, SET_PRACTICE_SETTINGS, SessionMedium, SessionOrigin } from './types';
 
 export const setPracticeSettings =
   (medium: SessionMedium, origin: SessionOrigin, allowLiveFeedback: boolean) =>

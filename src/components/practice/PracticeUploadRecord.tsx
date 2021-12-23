@@ -4,8 +4,7 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
 import { setMediaSource } from '../../store/practice/actions';
-
-import { SessionMedium, SessionOrigin } from '../../utils/enums';
+import { SessionMedium, SessionOrigin } from '../../store/practice/types';
 
 import FormButtons from '../common/FormButtons';
 import AudioRecordZone from './media/AudioRecordZone';

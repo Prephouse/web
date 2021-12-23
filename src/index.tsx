@@ -1,6 +1,6 @@
 import axios from 'axios';
 import camelcaseKeys from 'camelcase-keys';
-import { StrictMode } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import snakecaseKeys from 'snakecase-keys';
@@ -12,7 +12,7 @@ import reportWebVitals from './reportWebVitals';
 
 axios.defaults.baseURL = process.env.REACT_APP_PREPHOUSE_BASE_URL;
 axios.interceptors.request.use(config => {
-  const c = config;
+  const c = { ...config };
   if (config.params) {
     c.params = snakecaseKeys(config.params);
   }
@@ -23,12 +23,12 @@ axios.interceptors.request.use(config => {
 });
 axios.interceptors.response.use(
   config => {
-    const c = config;
+    const c = { ...config };
     c.data = camelcaseKeys(config.data);
     return c;
   },
   error => {
-    const e = error;
+    const e = { ...error };
     if (error.response) {
       e.response.data = camelcaseKeys(error.response.data);
     }
@@ -36,12 +36,21 @@ axios.interceptors.response.use(
   }
 );
 
+/*
+if (process.env.NODE_ENV !== 'production') {
+  import('@axe-core/react').then(axe => {
+    axe.default(React, ReactDOM, 1_000);
+    return;
+  });
+}
+*/
+
 ReactDOM.render(
-  <StrictMode>
+  <React.StrictMode>
     <ReduxProvider store={store}>
       <App />
     </ReduxProvider>
-  </StrictMode>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

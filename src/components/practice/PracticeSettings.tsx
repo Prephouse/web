@@ -19,8 +19,7 @@ import useAppSelector from '../../hooks/useAppSelector';
 import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
 
 import { setPracticeSettings } from '../../store/practice/actions';
-
-import { SessionMedium, SessionOrigin, SessionType } from '../../utils/enums';
+import { SessionMedium, SessionOrigin, SessionType } from '../../store/practice/types';
 
 import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
@@ -79,7 +78,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
     >
       {({ touched, values, errors, setFieldValue, setFieldError, submitForm }) => {
         const onOriginPermissionDenied = () => {
-          setFieldError('origin', intl.formatMessage({ id: 'common.form.field.denied' }));
+          setFieldError('origin', intl.formatMessage({ id: 'common.permission.denied' }));
         };
 
         return (
