@@ -26,6 +26,7 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
   return (
     <Typography
       component="div"
+      role="status"
       variant="body2"
       align="left"
       sx={{

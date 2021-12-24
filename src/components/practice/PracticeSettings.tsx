@@ -103,16 +103,22 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                     value={SessionMedium.VideoAudio}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.setting.medium.videoAudio' })}
+                    aria-describedby="sessionMediumDescription"
+                    aria-invalid={errors.medium && touched.medium ? 'true' : 'false'}
                   />
                   <FormControlLabel
                     value={SessionMedium.AudioOnly}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.setting.medium.audio' })}
+                    aria-describedby="sessionMediumDescription"
+                    aria-invalid={errors.medium && touched.medium ? 'true' : 'false'}
                   />
                 </RadioGroup>
                 {touched.medium && errors.medium && <FormErrorMessage msg={errors.medium} />}
               </FormControl>
               <Alert
+                id="sessionMediumDescription"
+                role="status"
                 variant="outlined"
                 severity="info"
                 sx={{ margin: theme => theme.spacing(1, 0) }}
@@ -146,11 +152,15 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                     value={SessionOrigin.Record}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.setting.source.record' })}
+                    aria-describedby="sessionOriginDescription"
+                    aria-invalid={errors.origin && touched.origin ? 'true' : 'false'}
                   />
                   <FormControlLabel
                     value={SessionOrigin.Upload}
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'practice.setting.source.upload' })}
+                    aria-describedby="sessionOriginDescription"
+                    aria-invalid={errors.origin && touched.origin ? 'true' : 'false'}
                   />
                 </RadioGroup>
                 {touched.origin && errors.origin && <FormErrorMessage msg={errors.origin} />}
@@ -177,6 +187,8 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 />
               )}
               <Alert
+                id="sessionOriginDescription"
+                role="status"
                 variant="outlined"
                 severity="info"
                 sx={{ margin: theme => theme.spacing(1, 0) }}
@@ -207,11 +219,19 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                     value="true"
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'common.enabled' })}
+                    aria-describedby="allowLiveFeedbackRadioDescription"
+                    aria-invalid={
+                      errors.allowLiveFeedback && touched.allowLiveFeedback ? 'true' : 'false'
+                    }
                   />
                   <FormControlLabel
                     value="false"
                     control={<Radio />}
                     label={intl.formatMessage({ id: 'common.disabled' })}
+                    aria-describedby="allowLiveFeedbackRadioDescription"
+                    aria-invalid={
+                      errors.allowLiveFeedback && touched.allowLiveFeedback ? 'true' : 'false'
+                    }
                   />
                 </RadioGroup>
                 {touched.allowLiveFeedback && errors.allowLiveFeedback && (
@@ -219,6 +239,8 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 )}
               </FormControl>
               <Alert
+                id="allowLiveFeedbackRadioDescription"
+                role="status"
                 variant="outlined"
                 severity="info"
                 sx={{ margin: theme => theme.spacing(1, 0) }}

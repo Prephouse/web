@@ -1,16 +1,24 @@
 import { SetStateAction, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { Avatar, Button, IconButton, Typography, useTheme } from '@mui/material';
+import { Avatar, Button, IconButton, Typography } from '@mui/material';
 
 import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
 
 import DropdownMenu from '../common/DropdownMenu';
 import NavigationDropdownMenu from './NavigationDropdownMenu';
 
-const NavigationDropdown = () => {
-  const theme = useTheme();
+const ScaledAvatar = (
+  <Avatar
+    sx={{
+      width: 32,
+      height: 32,
+    }}
+    alt="Chandler Lei"
+  />
+);
 
+const NavigationDropdown = () => {
   const intl = useIntl();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
@@ -21,30 +29,20 @@ const NavigationDropdown = () => {
     setAnchorElMenu(null);
   };
 
-  const ScaledAvatar = (
-    <Avatar
-      sx={{
-        width: 32,
-        height: 32,
-      }}
-      alt="Chandler Lei"
-    />
-  );
-
   return (
     <nav aria-label={intl.formatMessage({ id: 'app.navigation.dropdown' })}>
       <Button
         sx={{
-          borderRadius: theme.spacing(3),
+          borderRadius: 3,
           textTransform: 'none',
           textDecoration: 'none',
-          color: theme.palette.common.white,
-          display: 'none',
+          color: 'common.white',
+          display: {
+            xs: 'none',
+            md: 'flex',
+          },
           '&:hover': {
             backgroundColor: NAVIGATION_HOVER_GREY,
-          },
-          [theme.breakpoints.up('md')]: {
-            display: 'flex',
           },
         }}
         startIcon={ScaledAvatar}
@@ -62,15 +60,19 @@ const NavigationDropdown = () => {
       </Button>
       <IconButton
         sx={{
-          color: theme.palette.common.white,
-          display: 'none',
+          color: 'common.white',
+          display: {
+            xs: 'flex',
+            md: 'none',
+          },
           '&:hover': {
             backgroundColor: NAVIGATION_HOVER_GREY,
           },
         }}
+        size="large"
         onClick={handleOpenMenu}
         aria-haspopup="true"
-        size="large"
+        aria-label={intl.formatMessage({ id: 'app.navigation.dropdown.show' })}
       >
         {ScaledAvatar}
       </IconButton>

@@ -47,7 +47,7 @@ const SignUpForm = () => {
           validateOnBlur={false}
           validateOnChange={false}
         >
-          {({ values, errors, resetForm, submitForm }) => {
+          {({ values, errors, touched, resetForm, submitForm }) => {
             const onSubmit = (event: FormEvent<HTMLFormElement>) => {
               event.preventDefault();
               submitForm();
@@ -66,6 +66,7 @@ const SignUpForm = () => {
                       label={intl.formatMessage({ id: 'user.signup.firstName' })}
                       errorMsg={errors.firstName}
                       aria-required="true"
+                      aria-invalid={errors.firstName && touched.firstName ? 'true' : 'false'}
                     />
                     <Field
                       as={FormInput}
@@ -73,6 +74,7 @@ const SignUpForm = () => {
                       label={intl.formatMessage({ id: 'user.signup.lastName' })}
                       errorMsg={errors.lastName}
                       aria-required="true"
+                      aria-invalid={errors.lastName && touched.lastName ? 'true' : 'false'}
                     />
                     <Field
                       as={FormInput}
@@ -81,6 +83,7 @@ const SignUpForm = () => {
                       label={intl.formatMessage({ id: 'user.signup.email' })}
                       errorMsg={errors.email}
                       aria-required="true"
+                      aria-invalid={errors.email && touched.email ? 'true' : 'false'}
                     />
                     <Field
                       as={FormInput}
@@ -93,6 +96,7 @@ const SignUpForm = () => {
                       aria-required="true"
                       aria-owns={psiPopoverId}
                       aria-haspopup="true"
+                      aria-invalid={errors.password && touched.password ? 'true' : 'false'}
                     />
                     <Popover
                       id={psiPopoverId}
@@ -112,6 +116,11 @@ const SignUpForm = () => {
                       type="password"
                       label={intl.formatMessage({ id: 'user.signup.password.confirm' })}
                       errorMsg={errors.passwordConfirmation}
+                      aria-invalid={
+                        errors.passwordConfirmation && touched.passwordConfirmation
+                          ? 'true'
+                          : 'false'
+                      }
                     />
                   </FormGroupCompact>
                   <FormButtons

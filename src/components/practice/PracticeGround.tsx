@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
-import { Paper, Step, StepLabel, Stepper } from '@mui/material';
+import { Paper, Step, StepLabel, Stepper, useMediaQuery, useTheme } from '@mui/material';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
@@ -21,6 +21,9 @@ import PracticeUploadRecord from './PracticeUploadRecord';
 const PracticeGround = () => {
   const source = useAppSelector(state => state.practiceReducer.source);
   const dispatch = useAppDispatch();
+
+  const theme = useTheme();
+  const showHorizontalStepper = useMediaQuery(theme.breakpoints.up('sm'));
 
   const intl = useIntl();
 
@@ -68,7 +71,11 @@ const PracticeGround = () => {
             padding: 3,
           }}
         >
-          <Stepper activeStep={step} alternativeLabel>
+          <Stepper
+            activeStep={step}
+            alternativeLabel={showHorizontalStepper}
+            orientation={showHorizontalStepper ? 'horizontal' : 'vertical'}
+          >
             {practiceSteps.map(labelId => (
               <Step key={labelId}>
                 <StepLabel>{intl.formatMessage({ id: labelId })}</StepLabel>

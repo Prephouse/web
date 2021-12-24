@@ -96,7 +96,7 @@ const PracticeFeedback = ({ src }: Props) => {
       </video>
       <Paper sx={{ margin: theme.spacing(3, 0) }}>
         <Grid container>
-          <Grid item xs={10} sx={{ padding: theme.spacing(2) }}>
+          <Grid item xs={10} sx={{ padding: 2 }}>
             <Stack direction="row" spacing={2} alignItems="center">
               {play ? (
                 <IconButton
@@ -123,6 +123,7 @@ const PracticeFeedback = ({ src }: Props) => {
                 currentTime={currentTime}
                 duration={duration ?? 0}
                 handleSeek={handleSeek}
+                aria-label={intl.formatMessage({ id: 'practice.feedback.playback.seek' })}
               />
             </Stack>
           </Grid>
@@ -131,7 +132,7 @@ const PracticeFeedback = ({ src }: Props) => {
             xs={2}
             sx={{
               backgroundColor: GREY_500,
-              padding: theme.spacing(2),
+              padding: 2,
             }}
           >
             <Stack spacing={2} direction="row" alignItems="center">
@@ -141,6 +142,7 @@ const PracticeFeedback = ({ src }: Props) => {
                 onChange={handleVolumeChange}
                 valueLabelDisplay="auto"
                 valueLabelFormat={x => `${x}%`}
+                aria-label={intl.formatMessage({ id: 'practice.feedback.playback.volume' })}
               />
               <VolumeUp />
             </Stack>
