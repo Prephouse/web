@@ -83,11 +83,12 @@ projects.
 
 We support both Visual Studio Code and WebStorm out of the box with the proper configurations
 automatically calibrated. Furthermore, we recommend installing the _React Developer Tools_
-([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] | [Edge][react-ext-edge]) and _Redux
-DevTools_ ([Chrome][redux-ext-chrome] | [Firefox][redux-ext-firefox]) browser extensions.
+([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] | [Edge][react-ext-edge]), _Redux
+DevTools_ ([Chrome][redux-ext-chrome] | [Firefox][redux-ext-firefox]) and _axe DevTools_
+([Chrome][axe-chrome]) browser extensions.
 
 [react-ext-chrome]:
-  https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
+  https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
   'Chrome Extension'
 [react-ext-firefox]:
   https://addons.mozilla.org/en-CA/firefox/addon/react-devtools/
@@ -101,6 +102,9 @@ DevTools_ ([Chrome][redux-ext-chrome] | [Firefox][redux-ext-firefox]) browser ex
 [redux-ext-firefox]:
   https://addons.mozilla.org/en-CA/firefox/addon/reduxdevtools/
   'Firefox Browser Add-On'
+[axe-chrome]:
+  https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd
+  'Chrome Extension'
 
 ## Code Style
 

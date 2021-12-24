@@ -4,9 +4,10 @@ interface Props {
   currentTime: number;
   duration: number;
   handleSeek: (event: Event, newValue: number | number[]) => void;
+  'aria-label'?: string;
 }
 
-const MediaSeekSlider = ({ currentTime, duration, handleSeek }: Props) => {
+const MediaSeekSlider = ({ currentTime, duration, handleSeek, 'aria-label': ariaLabel }: Props) => {
   const theme = useTheme();
 
   return (
@@ -41,6 +42,7 @@ const MediaSeekSlider = ({ currentTime, duration, handleSeek }: Props) => {
           opacity: 0.28,
         },
       }}
+      aria-label={ariaLabel}
     />
   );
 };

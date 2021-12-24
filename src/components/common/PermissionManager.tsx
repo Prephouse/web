@@ -27,7 +27,7 @@ function usePermissionManager({ requests, onDenied }: HookProps): RenderProps {
         if (requests.has(device.kind)) {
           if (!device.label) {
             ret.set(device.kind, {
-              id: device.deviceId,
+              id: `${device.deviceId}/${device.groupId}`,
               label: device.label,
               declineMessage: requests.get(device.kind)?.declineMessage,
             });

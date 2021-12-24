@@ -1,25 +1,20 @@
-import { ReactElement, cloneElement } from 'react';
+import { ReactElement, cloneElement, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { Button, Typography, styled, useScrollTrigger } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-
-import { HOME_PATH } from '../../strings/paths';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Button, IconButton, Toolbar, styled, useScrollTrigger } from '@mui/material';
 
 import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
 
 import navigationDestinations from '../../values/appbar/navigationDestinations';
 
 import HeavyDivider from '../common/HeavyDivider';
-import PlainRouterLink from '../common/PlainRouterLink';
-import ProfileDropdown from './NavigationDropdown';
+import NavigationDrawer from './NavigationDrawer';
+import NavigationDropdown from './NavigationDropdown';
+import NavigationHeading from './NavigationHeading';
 
-const BlackToolbar = styled(Toolbar)(({ theme }) => ({
-  backgroundColor: NAVIGATION_BLACK,
-  color: theme.palette.common.white,
-}));
+const FULL_NAVIGATION_BREAKPOINT = 'md';
 
 const ElevationScroll = ({ children }: { children: ReactElement }) => {
   const trigger = useScrollTrigger({
@@ -32,30 +27,50 @@ const ElevationScroll = ({ children }: { children: ReactElement }) => {
   });
 };
 
+const NavigationGroup = styled('nav')(({ theme }) => ({
+  display: 'flex',
+  [theme.breakpoints.down(FULL_NAVIGATION_BREAKPOINT)]: {
+    display: 'none',
+  },
+}));
+
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const PrephouseAppBar = () => {
   const intl = useIntl();
 
+  const [drawerOpened, setDrawerOpened] = useState(false);
+  const handleDrawerOpened = (open = !drawerOpened) => setDrawerOpened(open);
+
   return (
     <>
       <ElevationScroll>
         <AppBar position="fixed">
-          <BlackToolbar>
-            <Typography
-              component="h1"
-              variant="h4"
+          <Toolbar
+            sx={{
+              backgroundColor: NAVIGATION_BLACK,
+              color: 'common.white',
+            }}
+          >
+            <IconButton
               sx={{
-                display: 'inline-block',
                 marginRight: 2,
+                display: {
+                  xs: 'flex',
+                  [FULL_NAVIGATION_BREAKPOINT]: 'none',
+                },
               }}
+              size="large"
+              edge="start"
+              color="inherit"
+              onClick={() => handleDrawerOpened()}
+              aria-label={intl.formatMessage({ id: 'app.navigation.drawer' })}
             >
-              <PlainRouterLink to={HOME_PATH}>
-                {intl.formatMessage({ id: 'app.title' })}
-              </PlainRouterLink>
-            </Typography>
+              <MenuIcon />
+            </IconButton>
+            <NavigationHeading />
             <span style={{ flexGrow: 1 }} />
-            <nav aria-label={intl.formatMessage({ id: 'app.navigation.bar' })}>
+            <NavigationGroup aria-label={intl.formatMessage({ id: 'app.navigation.bar' })}>
               {navigationDestinations.map(({ path, titleId }) => (
                 <Button
                   key={`nav-button-${titleId}`}
@@ -76,13 +91,14 @@ const PrephouseAppBar = () => {
                   {intl.formatMessage({ id: titleId })}
                 </Button>
               ))}
-            </nav>
+            </NavigationGroup>
             <HeavyDivider orientation="vertical" />
-            <ProfileDropdown />
-          </BlackToolbar>
+            <NavigationDropdown />
+          </Toolbar>
         </AppBar>
       </ElevationScroll>
       <Offset />
+      <NavigationDrawer drawerOpened={drawerOpened} onDrawerOpened={handleDrawerOpened} />
     </>
   );
 };

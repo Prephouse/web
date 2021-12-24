@@ -104,5 +104,5 @@
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off"
   },
-  "ignorePatterns": [".eslintrc.i18n.js"]
+  "ignorePatterns": [".eslintrc.i18n.js", "src/serviceWorker.ts"]
 }
