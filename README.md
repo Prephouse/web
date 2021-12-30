@@ -56,7 +56,7 @@ the respective environment.
   in [package.json](package.json)
 - Run `pnpm i` on your CLI when you need to install any new packages
 - Run `pnpm store prune` on your CLI at your own convenience if your machine is low on disk space
-  and contains orphan node modules in the pnpm store
+  and contains orphan node modules in its pnpm store
 - A hot reload of the Prephouse website will be triggered whenever you modify the [src](src)
   directory or its files
 

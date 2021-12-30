@@ -39,7 +39,7 @@ const Neon = styled('div')((props: Record<'lightUp', boolean>) => {
 });
 
 const NavigationDropdownMenu = () => {
-  const prefersDarkMode: boolean = useAppSelector(state => state.preferenceReducer.prefersDarkMode);
+  const prefersDarkMode: boolean = useAppSelector(state => state.preference.prefersDarkMode);
   const dispatch = useAppDispatch();
 
   const intl = useIntl();

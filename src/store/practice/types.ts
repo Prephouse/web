@@ -1,6 +1,6 @@
-export const SET_PRACTICE_SETTINGS = 'setPracticeSettings';
-export const SET_MEDIA_SOURCE = 'setMediaSource';
-export const CLEAR_MEDIA_SOURCE = 'clearMediaSource';
+export const SET_PRACTICE_SETTINGS = 'practice/setPracticeSettings';
+export const SET_MEDIA_SOURCE = 'practice/setMediaSource';
+export const CLEAR_MEDIA_SOURCE = 'practice/clearMediaSource';
 
 export enum SessionMedium {
   VideoAudio,

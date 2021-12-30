@@ -17,10 +17,10 @@ interface Props {
 }
 
 const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
-  const sessionType = useAppSelector(state => state.practiceReducer.sessionType);
-  const medium = useAppSelector(state => state.practiceReducer.medium);
-  const origin = useAppSelector(state => state.practiceReducer.origin);
-  const source = useAppSelector(state => state.practiceReducer.source);
+  const sessionType = useAppSelector(state => state.practice.sessionType);
+  const medium = useAppSelector(state => state.practice.medium);
+  const origin = useAppSelector(state => state.practice.origin);
+  const source = useAppSelector(state => state.practice.source);
   const dispatch = useAppDispatch();
 
   const intl = useIntl();
