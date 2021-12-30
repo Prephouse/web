@@ -19,7 +19,7 @@ import PracticeSettings from './PracticeSettings';
 import PracticeUploadRecord from './PracticeUploadRecord';
 
 const PracticeGround = () => {
-  const source = useAppSelector(state => state.practiceReducer.source);
+  const source = useAppSelector(state => state.practice.source);
   const dispatch = useAppDispatch();
 
   const theme = useTheme();

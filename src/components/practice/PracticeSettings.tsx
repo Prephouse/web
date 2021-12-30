@@ -65,9 +65,9 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
   return (
     <Formik
       initialValues={{
-        medium: useAppSelector(state => state.practiceReducer.medium),
-        origin: useAppSelector(state => state.practiceReducer.origin),
-        allowLiveFeedback: useAppSelector(state => state.practiceReducer.allowLiveFeedback),
+        medium: useAppSelector(state => state.practice.medium),
+        origin: useAppSelector(state => state.practice.origin),
+        allowLiveFeedback: useAppSelector(state => state.practice.allowLiveFeedback),
       }}
       validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
       onSubmit={values => {
