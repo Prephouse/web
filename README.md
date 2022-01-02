@@ -6,12 +6,12 @@
 
 ## Instructions
 
-You can run the Prephouse website in development mode in either your local environment or a Docker
-container.
+You can run the Prephouse website in development mode on either your local development server or a
+Docker container.
 
 ### Setup
 
-#### Local Environment
+#### Local Development Server
 
 1. Download and install [Node.js 16][node]
 2. Install the [pnpm][] package manager
@@ -26,28 +26,19 @@ container.
 
 ### Startup
 
-Once you have set up the local environment or Docker container, you can run the Prephouse website in
-the respective environment.
+Once you have set up the local development server or Docker container, you can run the Prephouse
+website in the respective environment.
 
-#### Local Environment
+#### Local Development Server
 
 1. Run `pnpm start` on your CLI
 2. Navigate to <http://localhost:3000> on your web browser
-
-> You may encounter an issue with OpenSSL when running `pnpm start` on Node.js 17. You should
-> therefore either use Node.js 16 (the latest LTS version) _or_ set
-> `NODE_OPTIONS=--openssl-legacy-provider` as an environment variable.
 
 #### Docker Container
 
 1. Run Docker Desktop on your machine
 2. Run `docker-compose up` on your CLI
 3. Navigate to <http://localhost:3000> on your web browser
-
-[node]: https://nodejs.org/en/
-[pnpm]: https://pnpm.io/installation
-[docker-desktop]: https://www.docker.com/products/docker-desktop
-[docker-compose]: https://docs.docker.com/compose/install/
 
 ### Development
 
@@ -59,8 +50,37 @@ the respective environment.
   and contains orphan node modules in its pnpm store
 - A hot reload of the Prephouse website will be triggered whenever you modify the [src](src)
   directory or its files
+- If you want to serve your local development server over HTTPS, then follow these steps on your CLI
+  **in the root directory of this repository**
+
+  1. Install the [mkcert][] tool
+  2. Run `mkcert -install` to install a local certificate authority (CA)
+  3. Run `mkdir -p .cert`
+  4. Run `mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"` to create an SSL
+     certificate
+  5. Run `pnpm startsecure`
+  6. Navigate to <https://localhost:3000> on your web browser \
+     <br />
+
+  > You must ensure that both the key.pem and cert.pem are stored in the .cert directory as that
+  > directory is (a) where webpack is configured to look and (b) configured to be ignored by git.
+  > Never commit the certificate to the git repository.
+
+[node]: https://nodejs.org/en/
+[pnpm]: https://pnpm.io/installation
+[docker-desktop]: https://www.docker.com/products/docker-desktop
+[docker-compose]: https://docs.docker.com/compose/install/
+[mkcert]: https://github.com/FiloSottile/mkcert#installation
 
 ## Troubleshooting
+
+### OpenSSL provider
+
+If you encounter an issue with OpenSSL when running `pnpm start` on Node.js 17, you should either
+use Node.js 16 (the latest LTS version) _or_ set `NODE_OPTIONS=--openssl-legacy-provider` as a local
+environment variable.
+
+### Dependency resolution
 
 If pnpm fails to install a particular package or find the required dependencies, you should delete
 the project-level node modules folder and run `pnpm i --frozen-lockfile`. As a last resort, you
@@ -71,7 +91,7 @@ projects.
 
 ## Browser Compatibility
 
-**Last Updated** Nov 11, 2021
+**Last Updated** Nov 11 2021
 
 - Chrome 80+
 - Edge 80+

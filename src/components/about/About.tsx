@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import PageContainer from '../common/PageContainer';
 import TeamPanel from './TeamPanel';
 
-const Mission = () => {
+const About = () => {
   const intl = useIntl();
 
   return (
@@ -17,4 +17,4 @@ const Mission = () => {
   );
 };
 
-export default Mission;
+export default About;
