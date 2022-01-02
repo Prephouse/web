@@ -1,6 +1,6 @@
 import { PREFERS_DARK_MODE_KEY } from '../../strings/keys';
 
-import { AppDispatch } from '../store';
+import type { AppDispatch } from '../store';
 import { CHANGE_PREFERS_DARK_MODE } from './types';
 
 export const changePrefersDarkMode = (prefersDarkMode: boolean) => (dispatch: AppDispatch) => {
