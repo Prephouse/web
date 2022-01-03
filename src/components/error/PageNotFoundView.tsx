@@ -7,7 +7,7 @@ import { Link, Typography } from '@mui/material';
 
 import * as paths from '../../strings/paths';
 
-import { findClosestPathname } from '../../utils/stringUtils';
+import { findClosestPathname } from '../../utils/string';
 
 import PageContainer from '../common/PageContainer';
 
@@ -16,7 +16,7 @@ const PageNotFoundView = () => {
 
   const [closestPathname, setClosestPathname] = useState<string | undefined>();
 
-  useEffect(() => findClosestPathname(paths, setClosestPathname), []);
+  useEffect(() => findClosestPathname(window.location.pathname, paths, setClosestPathname), []);
 
   return (
     <PageContainer>

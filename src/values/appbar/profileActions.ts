@@ -6,22 +6,22 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { USER_SIGN_IN_PATH, USER_SIGN_UP_PATH } from '../../strings/paths';
 
 type ProfileAction = {
-  readonly primaryNameId: string;
+  readonly nameId: string;
   readonly icon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
   readonly to: string;
 };
 
-const actions: readonly ProfileAction[] = Object.freeze([
+const actions: readonly ProfileAction[] = [
   {
-    primaryNameId: 'user.signin.action',
+    nameId: 'user.signin',
     icon: PersonIcon,
     to: USER_SIGN_IN_PATH,
   },
   {
-    primaryNameId: 'user.signup.action',
+    nameId: 'user.signup',
     icon: HowToRegIcon,
     to: USER_SIGN_UP_PATH,
   },
-]);
+];
 
 export default actions;

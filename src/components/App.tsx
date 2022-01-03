@@ -50,7 +50,7 @@ const App = () => {
   const [,] = useState(rollbar);
   const [theme, setTheme] = useState(establishTheme(prefersDarkMode));
 
-  const prevPref = usePrevious<boolean>(prefersDarkMode);
+  const prevPref = usePrevious(prefersDarkMode);
   useEffect(() => {
     if (prevPref !== prefersDarkMode) {
       setTheme(establishTheme(prefersDarkMode));
