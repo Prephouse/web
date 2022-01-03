@@ -3,7 +3,7 @@ import { PureComponent } from 'react';
 import { Menu, MenuProps } from '@mui/material';
 
 class DropdownMenu extends PureComponent<MenuProps> {
-  render() {
+  override render() {
     return (
       <Menu
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
