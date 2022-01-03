@@ -1,3 +1,9 @@
+/**
+ * Determines whether two pathname can be treated as 'similar'
+ * @param pathname1
+ * @param pathname2
+ * @return `true` if sufficiently similar pathname; `false` otherwise
+ */
 export function hasSimilarPathname(pathname1: string, pathname2: string) {
   return (
     !/^.*\/:.*$/i.test(pathname1) &&
@@ -5,6 +11,12 @@ export function hasSimilarPathname(pathname1: string, pathname2: string) {
   );
 }
 
+/**
+ * Finds the most similar pathname
+ * @param currPath the pathname to find for similarity
+ * @param possiblePaths a record of the paths to check for
+ * @param onFoundClosestPathname callback called when the most similar pathname has been found
+ */
 export function findClosestPathname(
   currPath: string,
   possiblePaths: Record<string, string>,

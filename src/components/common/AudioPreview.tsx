@@ -2,6 +2,8 @@ import { useRef } from 'react';
 
 import { useTheme } from '@mui/material';
 
+import OutOfBoundError from '../../errors/OutOfBoundError';
+
 import { GREY_400 } from '../../styles/colours';
 
 interface Props {
@@ -46,7 +48,7 @@ const AudioPreview = ({ stream, height = 96 }: Props) => {
         for (let i = 0; i < bufferLength; i += 1) {
           const d = dataArray[i];
           if (d === undefined) {
-            throw new Error();
+            throw new OutOfBoundError(i, bufferLength);
           }
 
           const v = d / 128.0;

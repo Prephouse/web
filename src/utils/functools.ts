@@ -4,7 +4,7 @@ type Arr = readonly unknown[];
 
 /**
  * Useful for currying; mostly equivalent in behaviour to the
- * <a href="https://docs.python.org/3/library/functools.html#functools.partial">`partial`</a>
+ * {@link https://docs.python.org/3/library/functools.html#functools.partial|`partial`}
  * function in the functools Python module except the TS variant directly returns the partial
  * function rather than a partial object
  * @param f function to curry
@@ -61,6 +61,15 @@ type FirstParameterOf<T extends Fn[]> = Head<T> extends Fn ? Head<Parameters<Hea
 
 type Return<T extends Fn[]> = Last<T> extends Fn ? ReturnType<Last<T>> : never;
 
+/**
+ * Perform a sequence of operations sequentially
+ * @param args operation functions
+ * @return return value of the final operation
+ * @example
+ *   const foo = (arg: number) => arg * 2
+ *   const bar = (arg: number) => arg + '500'
+ *   pipe(foo, bar)(3) // returns 6500
+ */
 export function pipe<
   T extends Fn,
   Fns extends T[],

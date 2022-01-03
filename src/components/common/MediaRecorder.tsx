@@ -1,5 +1,7 @@
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
+import BrowserSupportError from '../../errors/BrowserSupportError';
+
 export const enum MediaRecordingStatus {
   Idle = 'idle',
   AcquiringMedia = 'acquiring_media',
@@ -69,14 +71,14 @@ function useMediaRecorder({
 
   useEffect(() => {
     if (!window.MediaRecorder) {
-      throw new Error('Browser not supported');
+      throw new BrowserSupportError();
     }
 
     if (
       mediaRecorderOptions?.mimeType &&
       !MediaRecorder.isTypeSupported(mediaRecorderOptions.mimeType)
     ) {
-      throw new Error('Specified MIME type not supported on this browser');
+      throw new BrowserSupportError('Specified MIME type not supported on this browser');
     }
 
     if (!mediaStream.current) {

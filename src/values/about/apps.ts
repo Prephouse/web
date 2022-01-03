@@ -3,7 +3,7 @@ interface App {
   readonly internalName: `ph-${string}`;
   readonly description: string;
   readonly points?: string[];
-  readonly techStack: string[];
+  readonly techStack: [language: string, ...libraries: string[]];
   readonly productionUrl?: `https://www.${string}`;
   readonly sourceCodeUrl?: string;
 }
