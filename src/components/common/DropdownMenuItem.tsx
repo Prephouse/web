@@ -12,7 +12,7 @@ interface Props {
 }
 
 class DropdownMenuItem extends PureComponent<Props> {
-  render() {
+  override render() {
     const { primary, icon, selected = false, onClick, children, ...otherProps } = this.props;
     return (
       <MenuItem onClick={onClick} selected={selected} {...otherProps}>

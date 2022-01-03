@@ -46,13 +46,13 @@ const NavigationDropdownMenu = () => {
 
   return (
     <>
-      {profileActions.map(({ primaryNameId, icon: Icon, to }) => (
+      {profileActions.map(({ nameId, icon: Icon, to }) => (
         <DropdownMenuItem
-          key={`action-menu-item-${primaryNameId}`}
+          key={`action-menu-item-${nameId}`}
           button
           component={RouterLink}
           to={to}
-          primary={intl.formatMessage({ id: primaryNameId })}
+          primary={intl.formatMessage({ id: nameId })}
           icon={<Icon />}
         />
       ))}

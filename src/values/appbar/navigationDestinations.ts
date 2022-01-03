@@ -11,7 +11,7 @@ type NavigationDestination = {
   readonly titleId: string;
 };
 
-const navigationDestinations: readonly NavigationDestination[] = Object.freeze([
+const navigationDestinations: readonly NavigationDestination[] = [
   {
     path: ABOUT_PATH,
     titleId: 'about.title',
@@ -32,6 +32,6 @@ const navigationDestinations: readonly NavigationDestination[] = Object.freeze([
     path: TIPS_PATH,
     titleId: 'tips.title',
   },
-]);
+];
 
 export default navigationDestinations;

@@ -15,7 +15,7 @@ const TeamPanel = () => {
 
   return (
     <section id="prephouse-team">
-      <Typography gutterBottom variant="h4" component="h2">
+      <Typography gutterBottom component="h2" variant="h4">
         {intl.formatMessage({ id: 'about.team' })}
       </Typography>
       <Grid container direction="column" wrap="wrap" spacing={3}>
