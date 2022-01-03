@@ -1,11 +1,11 @@
 interface App {
-  marketingName: string;
-  internalName: `ph-${string}`;
-  description: string;
-  points?: string[];
-  techStack: string[];
-  productionUrl?: `https://www.${string}`;
-  sourceCodeUrl?: string;
+  readonly marketingName: string;
+  readonly internalName: `ph-${string}`;
+  readonly description: string;
+  readonly points?: string[];
+  readonly techStack: string[];
+  readonly productionUrl?: `https://www.${string}`;
+  readonly sourceCodeUrl?: string;
 }
 
 const apps: readonly App[] = [

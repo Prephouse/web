@@ -1,10 +1,10 @@
 type Member = {
-  name: string;
-  img: `${string}.jpg`;
-  bio: string;
-  website?: `https://www.${string}`;
-  linkedin?: `https://www.linkedin.com/in/${string}`;
-  github?: `https://github.com/${string}`;
+  readonly name: string;
+  readonly img: `${string}.jpg`;
+  readonly bio: string;
+  readonly website?: `https://www.${string}`;
+  readonly linkedin?: `https://www.linkedin.com/in/${string}`;
+  readonly github?: `https://github.com/${string}`;
 };
 
 const members: readonly Member[] = [

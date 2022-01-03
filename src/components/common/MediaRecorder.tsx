@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
-export enum MediaRecordingStatus {
+export const enum MediaRecordingStatus {
   Idle = 'idle',
   AcquiringMedia = 'acquiring_media',
   Recording = 'recording',

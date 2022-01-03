@@ -6,10 +6,11 @@ export function hasSimilarPathname(pathname1: string, pathname2: string) {
 }
 
 export function findClosestPathname(
-  paths: Record<string, string>,
+  currPath: string,
+  possiblePaths: Record<string, string>,
   onFoundClosestPathname: (res: string | undefined) => void
 ) {
   onFoundClosestPathname(
-    Object.values(paths).find(p => p !== '/' && hasSimilarPathname(p, window.location.pathname))
+    Object.values(possiblePaths).find(p => p !== '/' && hasSimilarPathname(p, currPath))
   );
 }

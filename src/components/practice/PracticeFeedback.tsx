@@ -9,7 +9,7 @@ import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@m
 
 import { GREY_500 } from '../../styles/colours';
 
-import { roundAsDecimal } from '../../utils/mathUtils';
+import { roundAsDecimal } from '../../utils/math';
 
 import MediaSeekSlider from '../common/MediaSeekSlider';
 
