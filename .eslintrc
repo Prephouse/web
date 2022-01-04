@@ -41,7 +41,8 @@
       {
         "selector": ["variable"],
         "format": ["camelCase"],
-        "leadingUnderscore": "allow"
+        "leadingUnderscore": "allow",
+        "trailingUnderscore": "allow"
       },
       {
         "selector": ["variable"],

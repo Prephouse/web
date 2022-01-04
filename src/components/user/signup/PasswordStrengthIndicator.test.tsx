@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import React from 'react';
 import { IntlProvider } from 'react-intl';
 
-import messages from '../../../strings/messages';
+import enUs from '../../../strings/translations/en-US/index.json';
 
 import PasswordStrengthMeter from './PasswordStrengthIndicator';
 
@@ -11,7 +11,7 @@ let wrapper: ReturnType<typeof mount>;
 
 const initPsmComponent = function initPsmComponent(password: string) {
   wrapper = mount(
-    <IntlProvider locale={locale} messages={messages[locale]}>
+    <IntlProvider locale={locale} messages={enUs}>
       <PasswordStrengthMeter password={password} />
     </IntlProvider>
   );

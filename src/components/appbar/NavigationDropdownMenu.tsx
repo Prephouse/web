@@ -2,6 +2,8 @@ import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Brightness4Icon from '@mui/icons-material/Brightness4';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LanguageIcon from '@mui/icons-material/Language';
 import { Divider, Switch, styled } from '@mui/material';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
@@ -13,8 +15,8 @@ import profileActions from '../../values/appbar/profileActions';
 
 import DropdownMenuItem from '../common/DropdownMenuItem';
 
-const Neon = styled('div')((props: Record<'lightUp', boolean>) => {
-  if (props.lightUp) {
+const Neon = styled('div')((props: { lightup: string }) => {
+  if (props.lightup === 'true') {
     return {
       '@media (prefers-reduced-motion: no-preference)': {
         textShadow:
@@ -38,7 +40,11 @@ const Neon = styled('div')((props: Record<'lightUp', boolean>) => {
   return {};
 });
 
-const NavigationDropdownMenu = () => {
+interface Props {
+  onSwitchMenu: (nextMenu: string) => void;
+}
+
+const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
   const prefersDarkMode: boolean = useAppSelector(state => state.preference.prefersDarkMode);
   const dispatch = useAppDispatch();
 
@@ -59,7 +65,7 @@ const NavigationDropdownMenu = () => {
       <Divider />
       <DropdownMenuItem
         primary={
-          <Neon lightUp={prefersDarkMode}>
+          <Neon lightup={prefersDarkMode.toString()}>
             {[...intl.formatMessage({ id: 'app.preference.darkMode' })].map(c => (
               <span key={`neon-char-${c}-${c + 1}`}>{c}</span>
             ))}
@@ -75,6 +81,13 @@ const NavigationDropdownMenu = () => {
             role: 'switch',
           }}
         />
+      </DropdownMenuItem>
+      <DropdownMenuItem
+        primary={intl.formatMessage({ id: 'app.preference.language' })}
+        icon={<LanguageIcon />}
+        onClick={() => onSwitchMenu('language')}
+      >
+        <ChevronRightIcon />
       </DropdownMenuItem>
     </>
   );
