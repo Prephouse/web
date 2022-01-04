@@ -13,16 +13,16 @@ Docker container.
 
 #### Local Development Server
 
-1. Download and install [Node.js 16][node]
-2. Install the [pnpm][] package manager
-3. Run `pnpm install` on your command line interface (CLI) to install the
-   [project dependencies](package.json)
+1. Download and install [Node.js 16][node] and the [pnpm][] package manager
+2. Copy the environment variable files (.env.\*) to the root directory of this repository
+3. Run `pnpm install` to install the [project dependencies](package.json)
 
 #### Docker Container
 
 1. Download and install [Docker Desktop][docker-desktop] and [Docker Compose][docker-compose]
-2. Run Docker Desktop on your machine
-3. Run `docker-compose build` on your command line interface (CLI)
+2. Copy the environment variable files (.env.\*) to the root directory of this repository
+3. Run Docker Desktop on your machine
+4. Run `docker-compose build`
 
 ### Startup
 
@@ -31,23 +31,23 @@ website in the respective environment.
 
 #### Local Development Server
 
-1. Run `pnpm start` on your CLI
+1. Run `pnpm start`
 2. Navigate to <http://localhost:3000> on your web browser
 
 #### Docker Container
 
 1. Run Docker Desktop on your machine
-2. Run `docker-compose up` on your CLI
+2. Run `docker-compose up`
 3. Navigate to <http://localhost:3000> on your web browser
 
 ### Development
 
-- Run `pnpm add -D <package-name>` and `pnpm add <package-name>` on your CLI so that the
-  corresponding package is included as a development dependency or universal dependency respectively
-  in [package.json](package.json)
-- Run `pnpm i` on your CLI when you need to install any new packages
-- Run `pnpm store prune` on your CLI at your own convenience if your machine is low on disk space
-  and contains orphan node modules in its pnpm store
+- Run `pnpm add -D <package-name>` and `pnpm add <package-name>` so that the corresponding package
+  is included as a development dependency or universal dependency respectively in
+  [package.json](package.json)
+- Run `pnpm i` when you need to install any new packages
+- Run `pnpm store prune` at your own convenience if your machine is low on disk space and contains
+  orphan node modules in its pnpm store
 - A hot reload of the Prephouse website will be triggered whenever you modify the [src](src)
   directory or its files
 - If you want to serve your local development server over HTTPS, then follow these steps on your CLI
@@ -101,11 +101,10 @@ projects.
 
 ## Developer Tools
 
-We support both Visual Studio Code and WebStorm out of the box with the proper configurations
-automatically calibrated. Furthermore, we recommend installing the _React Developer Tools_
-([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] | [Edge][react-ext-edge]), _Redux
-DevTools_ ([Chrome][redux-ext-chrome] | [Firefox][redux-ext-firefox]) and _axe DevTools_
-([Chrome][axe-chrome]) browser extensions.
+We support Visual Studio Code and WebStorm out of the box. Furthermore, we recommend installing
+the _React Developer Tools_ ([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] |
+[Edge][react-ext-edge]), _Redux DevTools_ ([Chrome][redux-ext-chrome] |
+[Firefox][redux-ext-firefox]) and _axe DevTools_ ([Chrome][axe-chrome]) browser extensions.
 
 [react-ext-chrome]:
   https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
