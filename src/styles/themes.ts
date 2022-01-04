@@ -1,24 +1,26 @@
 import { createTheme } from '@mui/material';
+import { Localization } from '@mui/material/locale';
 
 import { BLUE_500, BLUE_900, GREY_200, GREY_300, GREY_500, GREY_600, PURPLE_500 } from './colours';
 
-export default function generateTheme(prefersDarkMode = false) {
-  return createTheme({
-    palette: {
-      mode: prefersDarkMode ? 'dark' : 'light',
-      primary: {
-        main: prefersDarkMode ? BLUE_500 : BLUE_900,
+export default function generateTheme(localization: Localization, prefersDarkMode = false) {
+  return createTheme(
+    {
+      palette: {
+        mode: prefersDarkMode ? 'dark' : 'light',
+        primary: {
+          main: prefersDarkMode ? BLUE_500 : BLUE_900,
+        },
+        secondary: {
+          main: PURPLE_500,
+        },
       },
-      secondary: {
-        main: PURPLE_500,
+      typography: {
+        fontFamily: ['Doppio One', 'sans-serif'].join(','),
       },
-    },
-    typography: {
-      fontFamily: ['Doppio One', 'sans-serif'].join(','),
-    },
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: `
+      components: {
+        MuiCssBaseline: {
+          styleOverrides: `
           html {
             height: 100%;
           }
@@ -109,23 +111,25 @@ export default function generateTheme(prefersDarkMode = false) {
             }
           }
         `,
-      },
-      MuiMenuItem: {
-        styleOverrides: {
-          root: {
-            '&:hover': {
-              backgroundColor: prefersDarkMode ? GREY_600 : GREY_300,
+        },
+        MuiMenuItem: {
+          styleOverrides: {
+            root: {
+              '&:hover': {
+                backgroundColor: prefersDarkMode ? GREY_600 : GREY_300,
+              },
+            },
+          },
+        },
+        MuiAccordionSummary: {
+          styleOverrides: {
+            root: {
+              backgroundColor: GREY_500,
             },
           },
         },
       },
-      MuiAccordionSummary: {
-        styleOverrides: {
-          root: {
-            backgroundColor: GREY_500,
-          },
-        },
-      },
     },
-  });
+    localization
+  );
 }

@@ -49,7 +49,7 @@ const NavigationDrawer = ({ drawerOpened, onDrawerOpened }: Props) => {
         <Divider />
         <List disablePadding>
           {navigationDestinations.map(({ path, titleId }) => (
-            <ListItem key={`nav-drawer-item-${titleId}`} button component={RouterLink} to={path}>
+            <ListItem key={`nav-drawer-item-${titleId}`} component={RouterLink} to={path} button>
               <ListItemText primary={intl.formatMessage({ id: titleId })} />
             </ListItem>
           ))}

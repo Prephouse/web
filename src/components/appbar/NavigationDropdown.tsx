@@ -6,6 +6,7 @@ import { Avatar, Button, IconButton, Typography } from '@mui/material';
 import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
 
 import DropdownMenu from '../common/DropdownMenu';
+import LanguageDropdownMenu from './LanguageDropdownMenu';
 import NavigationDropdownMenu from './NavigationDropdownMenu';
 
 const ScaledAvatar = (
@@ -27,6 +28,16 @@ const NavigationDropdown = () => {
   };
   const handleCloseMenu = () => {
     setAnchorElMenu(null);
+  };
+
+  const [selectedMenuName, setSelectedMenuName] = useState<keyof typeof menus>('default');
+  const handleSwitchMenu = (newMenuName: string) =>
+    setSelectedMenuName(newMenuName as keyof typeof menus);
+  const handleMenuBack = () => handleSwitchMenu('default');
+
+  const menus = {
+    default: <NavigationDropdownMenu onSwitchMenu={handleSwitchMenu} />,
+    language: <LanguageDropdownMenu onMenuBack={handleMenuBack} />,
   };
 
   return (
@@ -78,12 +89,17 @@ const NavigationDropdown = () => {
       </IconButton>
       <DropdownMenu
         id="primary-nav-menu"
-        sx={{ minWidth: 256 }}
+        sx={{
+          '& .MuiPaper-root': {
+            marginTop: 1,
+            minWidth: 256,
+          },
+        }}
         open={Boolean(anchorElMenu)}
         anchorEl={anchorElMenu}
         onClose={handleCloseMenu}
       >
-        <NavigationDropdownMenu />
+        {menus[selectedMenuName]}
       </DropdownMenu>
     </nav>
   );
