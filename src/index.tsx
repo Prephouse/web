@@ -23,11 +23,7 @@ axios.interceptors.request.use(config => {
   return c;
 });
 axios.interceptors.response.use(
-  config => {
-    const c = { ...config };
-    c.data = camelcaseKeys(config.data);
-    return c;
-  },
+  config => ({ ...config, data: camelcaseKeys(config.data) }),
   error => {
     const e = { ...error };
     if (error.response) {
@@ -36,15 +32,6 @@ axios.interceptors.response.use(
     return Promise.reject(e);
   }
 );
-
-/*
-if (process.env.NODE_ENV !== 'production') {
-  import('@axe-core/react').then(axe => {
-    axe.default(React, ReactDOM, 1_000);
-    return;
-  });
-}
-*/
 
 ReactDOM.render(
   <React.StrictMode>

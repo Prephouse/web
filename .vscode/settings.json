@@ -1,13 +1,12 @@
 {
-  "typescript.format.enable": false,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "git.enableSmartCommit": true,
-  "git.fetchOnPull": true,
-  "git.confirmSync": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.snippetSuggestions": "top",
+  "editor.tabCompletion": "on",
+  "emmet.showSuggestionsAsSnippets": true,
   "eslint.alwaysShowStatus": true,
-  "prettier.requireConfig": true,
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
   "files.associations": {
     "*.html": "html",
     "*.svg": "typescriptreact"
@@ -15,13 +14,14 @@
   "files.exclude": {
     "**/node_modules": true
   },
-  "emmet.showSuggestionsAsSnippets": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.tabCompletion": "on",
-  "editor.snippetSuggestions": "top",
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": "active",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.fetchOnPull": true,
+  "prettier.requireConfig": true,
+  "typescript.format.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
   "[javascript]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,

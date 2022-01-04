@@ -1,11 +1,10 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, HTMLProps, ReactNode } from 'react';
 
 import Flex from './Flex';
 
-interface Props {
+interface Props extends HTMLProps<HTMLDivElement> {
   style?: CSSProperties;
   children?: ReactNode;
-  [x: string]: unknown;
 }
 
 const CenteredDiv = ({ style, children, ...otherProps }: Props) => (

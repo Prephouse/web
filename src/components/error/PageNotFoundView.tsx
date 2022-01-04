@@ -19,38 +19,40 @@ const PageNotFoundView = () => {
   useEffect(() => findClosestPathname(window.location.pathname, paths, setClosestPathname), []);
 
   return (
-    <PageContainer>
+    <>
       <Helmet>
         <title>{intl.formatMessage({ id: 'common.http.404' })} &ndash; Prephouse</title>
       </Helmet>
-      <Typography component="h2" variant="h3" gutterBottom>
-        <span role="img" aria-label={intl.formatMessage({ id: 'common.emotion.annoyed' })}>
-          &#128533;
-        </span>
-        {intl.formatMessage({ id: 'common.http.404' })}
-      </Typography>
-      <Typography variant="body1">
-        {closestPathname && (
-          <>
-            <br />
-            {intl.formatMessage(
-              { id: 'common.http.404.redirect' },
-              {
-                url: (
-                  <Link
-                    key={`redirect-suggestion-${closestPathname}`}
-                    component={RouterLink}
-                    to={closestPathname}
-                  >
-                    {`${window.location.protocol}//${window.location.host}${closestPathname}`}
-                  </Link>
-                ),
-              }
-            )}
-          </>
-        )}
-      </Typography>
-    </PageContainer>
+      <PageContainer>
+        <Typography component="h2" variant="h3" gutterBottom>
+          <span role="img" aria-label={intl.formatMessage({ id: 'common.emotion.annoyed' })}>
+            &#128533;
+          </span>
+          {intl.formatMessage({ id: 'common.http.404' })}
+        </Typography>
+        <Typography variant="body1">
+          {closestPathname && (
+            <>
+              <br />
+              {intl.formatMessage(
+                { id: 'common.http.404.redirect' },
+                {
+                  url: (
+                    <Link
+                      key={`redirect-suggestion-${closestPathname}`}
+                      component={RouterLink}
+                      to={closestPathname}
+                    >
+                      {`${window.location.protocol}//${window.location.host}${closestPathname}`}
+                    </Link>
+                  ),
+                }
+              )}
+            </>
+          )}
+        </Typography>
+      </PageContainer>
+    </>
   );
 };
 

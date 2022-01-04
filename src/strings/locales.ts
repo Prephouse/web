@@ -1,12 +1,13 @@
 import { Localization, enUS, frFR, jaJP, zhCN, zhTW } from '@mui/material/locale';
 
 export type BcpName = 'en-US' | 'en-GB' | 'fr-FR' | 'zh-CN' | 'zh-TW' | 'ja-JP';
+export const DEFAULT_LOCALE: BcpName = 'en-US';
 
-export type TranslatedStr = {
+export interface TranslatedStr {
   messages: { default: { [id: string]: string } };
   mui: Localization;
   fnDate: { default: object };
-};
+}
 
 /**
  * @property display the full name of the language in that respecitve language
@@ -14,13 +15,13 @@ export type TranslatedStr = {
  * @property date date-fns locale tag
  * @property dir writing direction (ltr = left-to-right, rtl = right-to-left)
  */
-type LocaleDict = {
+interface LocaleDict {
   display: string;
   dir: 'ltr' | 'rtl';
   getStrings: () => Promise<TranslatedStr>;
-};
+}
 
-const locale: Record<BcpName, LocaleDict> = {
+const locales: Record<BcpName, LocaleDict> = {
   'en-US': {
     display: 'English (US)',
     dir: 'ltr',
@@ -77,4 +78,4 @@ const locale: Record<BcpName, LocaleDict> = {
   },
 };
 
-export default locale;
+export default locales;

@@ -1,5 +1,5 @@
 class BrowserSupportError extends Error {
-  constructor(message?: string, public override readonly name: string = 'BrowserSupportError') {
+  constructor(message?: string, override readonly name: string = 'BrowserSupportError') {
     super(message);
   }
 }

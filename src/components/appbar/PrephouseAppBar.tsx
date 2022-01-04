@@ -1,4 +1,4 @@
-import { ReactElement, cloneElement, useState } from 'react';
+import { ReactElement, cloneElement, memo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -103,4 +103,4 @@ const PrephouseAppBar = () => {
   );
 };
 
-export default PrephouseAppBar;
+export default memo(PrephouseAppBar);

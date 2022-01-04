@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
 import PauseIcon from '@mui/icons-material/Pause';
@@ -153,4 +153,4 @@ const PracticeFeedback = ({ src }: Props) => {
   );
 };
 
-export default PracticeFeedback;
+export default memo(PracticeFeedback);

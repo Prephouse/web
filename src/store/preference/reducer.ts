@@ -2,6 +2,7 @@ import { Reducer } from 'redux';
 
 import { PREFERS_DARK_MODE_KEY, SESSION_LOCALE_KEY } from '../../strings/keys';
 import type { BcpName } from '../../strings/locales';
+import { DEFAULT_LOCALE } from '../../strings/locales';
 
 import type { PreferenceReduxAction, PreferenceReduxState } from './types';
 import { CHANGE_LOCALE, CHANGE_PREFERS_DARK_MODE } from './types';
@@ -13,7 +14,8 @@ const initializePrefersDarkMode = (): boolean => {
   return window.matchMedia('(prefers-color-scheme: dark)').matches;
 };
 
-const initializeLocale = () => (sessionStorage.getItem(SESSION_LOCALE_KEY) ?? 'en-US') as BcpName;
+const initializeLocale = () =>
+  (sessionStorage.getItem(SESSION_LOCALE_KEY) ?? DEFAULT_LOCALE) as BcpName;
 
 const initState: PreferenceReduxState = {
   prefersDarkMode: initializePrefersDarkMode(),

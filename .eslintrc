@@ -27,6 +27,7 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:eslint-comments/recommended",
+    "plugin:etc/recommended",
     "plugin:jest/recommended",
     "plugin:promise/recommended",
     "plugin:react-hooks/recommended",
@@ -83,13 +84,16 @@
     "@typescript-eslint/prefer-reduce-type-parameter": "error",
     "@typescript-eslint/switch-exhaustiveness-check": "error",
     "@typescript-eslint/type-annotation-spacing": "error",
+    "etc/no-commented-out-code": "warn",
+    "etc/no-const-enum": ["error", { "allowLocal": true }], // const enums are erased at compile-time and thus, when exported, become problematic in JS
+    "etc/throw-error": "error",
     "formatjs/enforce-placeholders": "error",
     "formatjs/no-camel-case": "error",
     "formatjs/no-emoji": "error",
     "formatjs/no-multiple-whitespaces": "error",
     "formatjs/no-offset": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "import/order": "off",
+    "import/order": "off", // prevent conflicts with the Trivago import sorting prettier plugin
     "import/prefer-default-export": "off",
     "no-console": "warn",
     "no-restricted-imports": [
@@ -98,7 +102,7 @@
     ],
     "no-useless-return": "off",
     "promise/catch-or-return": "off",
-    "radix": "error",
+    "radix": "error", // for radix = 10 on integers, use the parseSafeDecInt function in utils/string.ts instead
     "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
     "react/jsx-props-no-spreading": "off",
     "react/jsx-uses-react": "off",

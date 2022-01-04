@@ -1,9 +1,8 @@
-import { CSSProperties, ReactNode } from 'react';
+import { CSSProperties, HTMLProps, ReactNode } from 'react';
 
-interface Props {
-  children?: ReactNode;
+interface Props extends HTMLProps<HTMLDivElement> {
   style?: CSSProperties;
-  [x: string]: unknown;
+  children?: ReactNode;
 }
 
 const Flex = ({ children, style, ...otherProps }: Props) => (

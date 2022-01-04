@@ -6,10 +6,10 @@ import {
   TIPS_PATH,
 } from '../../strings/paths';
 
-type NavigationDestination = {
+interface NavigationDestination {
   readonly path: string;
   readonly titleId: string;
-};
+}
 
 const navigationDestinations: readonly NavigationDestination[] = [
   {

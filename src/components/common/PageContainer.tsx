@@ -33,7 +33,6 @@ const PageContainer = styled(Container)(({ theme }) => ({
     '&:last-child': {
       padding: theme.spacing(3, 0, 0),
     },
-    // overflowX: "scroll",
   },
 }));
 

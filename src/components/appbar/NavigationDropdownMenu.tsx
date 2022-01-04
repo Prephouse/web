@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Divider, Switch, styled } from '@mui/material';
+import { Divider, Switch } from '@mui/material';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
@@ -14,31 +14,7 @@ import { changePrefersDarkMode } from '../../store/preference/actions';
 import profileActions from '../../values/appbar/profileActions';
 
 import DropdownMenuItem from '../common/DropdownMenuItem';
-
-const Neon = styled('div')((props: { lightup: string }) => {
-  if (props.lightup === 'true') {
-    return {
-      '@media (prefers-reduced-motion: no-preference)': {
-        textShadow:
-          '0 0 2px, 0 0 1em #4444ff, 0 0 0.5em #4444ff, 0 0 0.1em #4444ff, 0 8px 4px #000',
-        '& > span': {
-          animation: 'blink linear infinite 3s',
-        },
-        '& > span:first-of-type': {
-          animation: 'blink linear infinite 5s',
-        },
-        '& > span:nth-of-type(3n + 1)': {
-          animation: 'blink linear infinite 4s',
-        },
-        '& > span:nth-last-of-type(even)': {
-          animation: 'blink linear infinite 6s',
-        },
-      },
-    };
-  }
-
-  return {};
-});
+import DarkModeNeon from './DarkModeNeon';
 
 interface Props {
   onSwitchMenu: (nextMenu: string) => void;
@@ -64,13 +40,7 @@ const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
       ))}
       <Divider />
       <DropdownMenuItem
-        primary={
-          <Neon lightup={prefersDarkMode.toString()}>
-            {[...intl.formatMessage({ id: 'app.preference.darkMode' })].map(c => (
-              <span key={`neon-char-${c}-${c + 1}`}>{c}</span>
-            ))}
-          </Neon>
-        }
+        primary={<DarkModeNeon prefersDarkMode={prefersDarkMode} />}
         icon={<Brightness4Icon />}
       >
         <Switch

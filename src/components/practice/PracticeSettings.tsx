@@ -11,6 +11,7 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  Typography,
 } from '@mui/material';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
@@ -20,6 +21,8 @@ import { getFormValidationSchema } from '../../schemas/practice/practiceFormSche
 
 import { setPracticeSettings } from '../../store/practice/actions';
 import { SessionMedium, SessionOrigin, SessionType } from '../../store/practice/types';
+
+import { parseSafeDecInt } from '../../utils/string';
 
 import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
@@ -96,7 +99,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   name="medium"
                   value={values.medium}
                   onChange={event => {
-                    setFieldValue('medium', parseInt(event.currentTarget.value, 10));
+                    setFieldValue('medium', parseSafeDecInt(event.currentTarget.value));
                   }}
                 >
                   <FormControlLabel
@@ -145,7 +148,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   name="origin"
                   value={values.origin}
                   onChange={event => {
-                    setFieldValue('origin', parseInt(event.currentTarget.value, 10));
+                    setFieldValue('origin', parseSafeDecInt(event.currentTarget.value));
                   }}
                 >
                   <FormControlLabel
@@ -174,11 +177,13 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                       return (
                         <Alert variant="outlined" severity="error">
                           {intl.formatMessage({ id: 'common.permission.decline' })}
-                          {[...permissions.values()]
-                            .filter(v => !v.label)
-                            .map(v => (
-                              <div key={`decline-message-${v.id}`}>&bull; {v.declineMessage}</div>
-                            ))}
+                          <Typography component="ul" variant="inherit">
+                            {[...permissions.values()]
+                              .filter(v => !v.label)
+                              .map(v => (
+                                <li key={`decline-message-${v.id}`}>{v.declineMessage}</li>
+                              ))}
+                          </Typography>
                         </Alert>
                       );
                     }

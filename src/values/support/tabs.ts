@@ -8,11 +8,11 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 import BugReportForm from '../../components/support/BugReportForm';
 import FeedbackForm from '../../components/support/FeedbackForm';
 
-type Tab = {
+interface Tab {
   id: `support.${string}`;
   page: JSXElementConstructor<unknown>;
   icon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
-};
+}
 
 const tabs: readonly Tab[] = [
   {

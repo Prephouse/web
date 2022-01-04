@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
@@ -22,35 +22,29 @@ const PracticeGround = () => {
   const source = useAppSelector(state => state.practice.source);
   const dispatch = useAppDispatch();
 
+  const [step, setStep] = useState<number>(0);
+  const goToNextStep = useCallback(() => setStep(step + 1), [step]);
+  const goToPreviousStep = useCallback(() => setStep(step - 1), [step]);
+  const clearMediaWithNextStep = useCallback(() => {
+    clearMediaSource()(dispatch);
+    setStep(step + 1);
+  }, [dispatch, step]);
+
   const theme = useTheme();
   const showHorizontalStepper = useMediaQuery(theme.breakpoints.up('sm'));
 
   const intl = useIntl();
 
-  const [step, setStep] = useState<number>(0);
-
   const visitNextStep = () => {
     switch (step) {
       case 0:
-        return <PracticeIntroduction onNext={() => setStep(step + 1)} />;
+        return <PracticeIntroduction onNext={goToNextStep} />;
       case 1:
-        return (
-          <PracticeSettings onBack={() => setStep(step - 1)} onNext={() => setStep(step + 1)} />
-        );
+        return <PracticeSettings onBack={goToPreviousStep} onNext={goToNextStep} />;
       case 2:
-        return (
-          <PracticeInstructions
-            onBack={() => setStep(step - 1)}
-            onNext={() => {
-              clearMediaSource()(dispatch);
-              setStep(step + 1);
-            }}
-          />
-        );
+        return <PracticeInstructions onBack={goToPreviousStep} onNext={clearMediaWithNextStep} />;
       case 3:
-        return (
-          <PracticeUploadRecord onBack={() => setStep(step - 1)} onNext={() => setStep(step + 1)} />
-        );
+        return <PracticeUploadRecord onBack={goToPreviousStep} onNext={goToNextStep} />;
       case 4:
         return <PracticeFeedback src={source} />;
       default:

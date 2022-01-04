@@ -10,14 +10,16 @@ const About = () => {
   const intl = useIntl();
 
   return (
-    <PageContainer>
+    <>
       <Helmet>
         <title>{intl.formatMessage({ id: 'about.title' })}</title>
       </Helmet>
-      <IntroductoryPanel />
-      <TeamPanel />
-      <AppPanel />
-    </PageContainer>
+      <PageContainer>
+        <IntroductoryPanel />
+        <TeamPanel />
+        <AppPanel />
+      </PageContainer>
+    </>
   );
 };
 

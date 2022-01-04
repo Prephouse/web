@@ -6,11 +6,11 @@ import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 import { SUPPORT_PATH, USER_SIGN_IN_PATH, USER_SIGN_UP_PATH } from '../../strings/paths';
 
-type ProfileAction = {
+interface ProfileAction {
   readonly nameId: string;
   readonly icon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
   readonly to: string;
-};
+}
 
 const actions: readonly ProfileAction[] = [
   {

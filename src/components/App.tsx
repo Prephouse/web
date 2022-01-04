@@ -14,8 +14,7 @@ import useAppSelector from '../hooks/useAppSelector';
 import usePrevious from '../hooks/usePrevious';
 import { SnackbarWrapper } from '../hooks/useSnackbar';
 
-import locales from '../strings/locales';
-import type { TranslatedStr } from '../strings/locales';
+import locales, { DEFAULT_LOCALE, TranslatedStr } from '../strings/locales';
 import {
   ABOUT_PATH,
   COMPARE_PATH,
@@ -56,7 +55,7 @@ const App = () => {
 
   const [,] = useState(rollbar);
   const [translatedStr, setTranslatedStr] = useState<TranslatedStr | Record<string, never>>({});
-  const [theme, setTheme] = useState(establishTheme(translatedStr.mui, prefersDarkMode));
+  const [theme, setTheme] = useState(() => establishTheme(translatedStr.mui, prefersDarkMode));
 
   const prevPref = usePrevious(prefersDarkMode);
   const prevLocale = usePrevious(locale);
@@ -77,7 +76,11 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <IntlProvider locale={locale} defaultLocale="en-US" messages={translatedStr.messages.default}>
+      <IntlProvider
+        locale={locale}
+        defaultLocale={DEFAULT_LOCALE}
+        messages={translatedStr.messages.default}
+      >
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={translatedStr.fnDate.default}>
           <HelmetProvider>
             <ThemeProvider theme={theme}>

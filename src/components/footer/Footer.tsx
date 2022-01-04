@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { Box } from '@mui/material';
 
 import { NAVIGATION_BLACK } from '../../styles/colours';
@@ -8,4 +10,4 @@ const Footer = () => (
   </Box>
 );
 
-export default Footer;
+export default memo(Footer);

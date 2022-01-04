@@ -18,6 +18,7 @@ interface Props extends OutlinedInputProps {
   type?: string;
   errorMsg?: string;
   helperText?: string;
+  required?: boolean;
   children?: ReactNode;
 }
 
@@ -30,9 +31,10 @@ const FormInput = ({
   errorMsg = '',
   helperText = '',
   children,
+  required = false,
   ...otherProps
 }: Props) => (
-  <FormControl variant="outlined" style={{ width: '100%' }}>
+  <FormControl variant="outlined" style={{ width: '100%' }} required={required}>
     <InputLabel htmlFor={label}>{label}</InputLabel>
     <OutlinedInput
       id={label}

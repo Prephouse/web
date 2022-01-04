@@ -38,7 +38,7 @@ const BugReportForm = () => {
                 as={FormInput}
                 name="title"
                 label={intl.formatMessage({ id: 'support.bugReport.title' })}
-                aria-required="true"
+                required
                 errorMsg={errors.title}
               />
               <Field

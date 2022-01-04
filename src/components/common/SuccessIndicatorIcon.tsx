@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { styled } from '@mui/material';
 
 interface Props {
@@ -19,4 +21,4 @@ const SuccessIndicatorIcon = ({ success }: Props) => (
   />
 );
 
-export default SuccessIndicatorIcon;
+export default memo(SuccessIndicatorIcon);

@@ -10,7 +10,7 @@ import {
   getFormValidationSchema,
 } from '../../schemas/support/feedbackFormSchema';
 
-import initialValues from '../../values/support/bugReportFormValues';
+import initialValues from '../../values/support/feedbackFormValues';
 
 import FormButtons from '../common/FormButtons';
 import FormGroupCompact from '../common/FormGroupCompact';
@@ -40,10 +40,6 @@ const FeedbackForm = () => {
             <FormGroupCompact>
               <Autocomplete
                 options={categories}
-                // groupBy={option => {
-                //   const firstLetter = option.charAt(0)?.toUpperCase();
-                //   return /[0-9]/.test(firstLetter) ? '0-9' : firstLetter;
-                // }}
                 defaultValue={categories[0]}
                 autoComplete
                 openOnFocus
@@ -54,7 +50,7 @@ const FeedbackForm = () => {
                     {...props}
                     label={intl.formatMessage({ id: 'support.feedback.category' })}
                     fullWidth
-                    aria-required="true"
+                    required
                   />
                 )}
               />
@@ -62,7 +58,7 @@ const FeedbackForm = () => {
                 as={FormInput}
                 name="title"
                 label={intl.formatMessage({ id: 'support.feedback.title' })}
-                aria-required="true"
+                required
                 errorMsg={errors.title}
               />
               <Field

@@ -43,7 +43,7 @@ const AppPanel = () => {
                     {app.points && (
                       <ul>
                         {app.points.map(v => (
-                          <li key={`${app.internalName}-point`}>{v}</li>
+                          <li key={`${app.internalName}-point-${v}`}>{v}</li>
                         ))}
                       </ul>
                     )}

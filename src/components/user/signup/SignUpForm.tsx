@@ -65,7 +65,7 @@ const SignUpForm = () => {
                       name="firstName"
                       label={intl.formatMessage({ id: 'user.signup.firstName' })}
                       errorMsg={errors.firstName}
-                      aria-required="true"
+                      required
                       aria-invalid={errors.firstName && touched.firstName ? 'true' : 'false'}
                     />
                     <Field
@@ -73,7 +73,7 @@ const SignUpForm = () => {
                       name="lastName"
                       label={intl.formatMessage({ id: 'user.signup.lastName' })}
                       errorMsg={errors.lastName}
-                      aria-required="true"
+                      required
                       aria-invalid={errors.lastName && touched.lastName ? 'true' : 'false'}
                     />
                     <Field
@@ -82,7 +82,7 @@ const SignUpForm = () => {
                       autoComplete="email"
                       label={intl.formatMessage({ id: 'user.signup.email' })}
                       errorMsg={errors.email}
-                      aria-required="true"
+                      required
                       aria-invalid={errors.email && touched.email ? 'true' : 'false'}
                     />
                     <Field
@@ -93,7 +93,7 @@ const SignUpForm = () => {
                       errorMsg={errors.password}
                       onMouseDown={handlePsiOpen}
                       onBlur={handlePsiClose}
-                      aria-required="true"
+                      required
                       aria-owns={psiPopoverId}
                       aria-haspopup="true"
                       aria-invalid={errors.password && touched.password ? 'true' : 'false'}
@@ -116,6 +116,7 @@ const SignUpForm = () => {
                       type="password"
                       label={intl.formatMessage({ id: 'user.signup.password.confirm' })}
                       errorMsg={errors.passwordConfirmation}
+                      required
                       aria-invalid={
                         errors.passwordConfirmation && touched.passwordConfirmation
                           ? 'true'

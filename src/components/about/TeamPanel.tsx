@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useIntl } from 'react-intl';
 
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -30,7 +29,13 @@ const TeamPanel = () => {
             <Grid item key={member.name}>
               <HorizontalCard
                 img={
-                  <img src={`/images/${member.img}`} alt={member.name} width={240} height={240} />
+                  <img
+                    src={`/images/${member.img}`}
+                    alt={member.name}
+                    width={240}
+                    height={240}
+                    loading="lazy"
+                  />
                 }
                 header={<b>{member.name}</b>}
                 body={member.bio}
@@ -44,4 +49,4 @@ const TeamPanel = () => {
   );
 };
 
-export default memo(TeamPanel);
+export default TeamPanel;

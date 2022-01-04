@@ -2,10 +2,12 @@ import { Reducer } from 'redux';
 
 import { SUPPORT_TAB_INDEX_KEY } from '../../strings/keys';
 
+import { parseSafeDecInt } from '../../utils/string';
+
 import { SET_SUPPORT_TAB, SupportReduxAction, SupportReduxState } from './types';
 
 const initState: SupportReduxState = {
-  tabIndex: parseInt(sessionStorage.getItem(SUPPORT_TAB_INDEX_KEY) ?? '0', 10),
+  tabIndex: parseSafeDecInt(sessionStorage.getItem(SUPPORT_TAB_INDEX_KEY) ?? '0'),
   ticketSubmitStatus: {
     submitted: false,
     success: false,

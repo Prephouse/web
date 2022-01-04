@@ -2,7 +2,7 @@ import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
 import BrowserSupportError from '../../errors/BrowserSupportError';
 
-export const enum MediaRecordingStatus {
+export enum MediaRecordingStatus {
   Idle = 'idle',
   AcquiringMedia = 'acquiring_media',
   Recording = 'recording',
@@ -56,7 +56,6 @@ function useMediaRecorder({
   const [mediaBlobUrl, setMediaBlobUrl] = useState<string | null>(null);
   const [startTimeSec, setStartTimeSec] = useState(0);
   const [endTimeSec, setEndTimeSec] = useState(0);
-  // const [errors, setErrors] = useState<MediaRecordingError[]>([]);
 
   const getMediaStream = useCallback(async () => {
     setStatus(MediaRecordingStatus.AcquiringMedia);

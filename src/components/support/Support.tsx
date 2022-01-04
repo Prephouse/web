@@ -24,49 +24,51 @@ const Support = () => {
     setSupportTab(newValue)(dispatch);
 
   return (
-    <Box
-      sx={{
-        mx: {
-          xs: 0,
-          md: 2,
-        },
-      }}
-    >
+    <>
       <Helmet>
         <title>{intl.formatMessage({ id: 'support.title' })}</title>
       </Helmet>
-      <TabContext value={tabIndex.toString()}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList
-            onChange={handleTabChange}
-            indicatorColor="primary"
-            aria-label={intl.formatMessage({ id: 'support.tabs' })}
-            allowScrollButtonsMobile
-          >
-            {tabs.map(({ id, icon: Icon }, index) => (
-              <Tab
-                key={`support-tab-${id}`}
-                id={id}
-                value={index.toString()}
-                icon={<Icon />}
-                iconPosition="start"
-                label={intl.formatMessage({ id })}
-              />
-            ))}
-          </TabList>
-        </Box>
-        {tabs.map(({ id, page: Page }, index) => (
-          <TabPanel
-            key={`support-tab-panel-${id}`}
-            id={`tab-panel-${id}`}
-            value={index.toString()}
-            dir={theme.direction}
-          >
-            <Page />
-          </TabPanel>
-        ))}
-      </TabContext>
-    </Box>
+      <Box
+        sx={{
+          mx: {
+            xs: 0,
+            md: 2,
+          },
+        }}
+      >
+        <TabContext value={tabIndex.toString()}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <TabList
+              onChange={handleTabChange}
+              indicatorColor="primary"
+              aria-label={intl.formatMessage({ id: 'support.tabs' })}
+              allowScrollButtonsMobile
+            >
+              {tabs.map(({ id, icon: Icon }, index) => (
+                <Tab
+                  key={`support-tab-${id}`}
+                  id={id}
+                  value={index.toString()}
+                  icon={<Icon />}
+                  iconPosition="start"
+                  label={intl.formatMessage({ id })}
+                />
+              ))}
+            </TabList>
+          </Box>
+          {tabs.map(({ id, page: Page }, index) => (
+            <TabPanel
+              key={`support-tab-panel-${id}`}
+              id={`tab-panel-${id}`}
+              value={index.toString()}
+              dir={theme.direction}
+            >
+              <Page />
+            </TabPanel>
+          ))}
+        </TabContext>
+      </Box>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 
 import { useTheme } from '@mui/material';
 
@@ -74,4 +74,4 @@ const AudioPreview = ({ stream, height = 96 }: Props) => {
   return <canvas ref={canvasRef} style={{ width: '100%', height }} />;
 };
 
-export default AudioPreview;
+export default memo(AudioPreview);
