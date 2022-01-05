@@ -1,10 +1,10 @@
 {
   "recommendations": [
-    "formulahendry.auto-rename-tag",
-    "dsznajder.es7-react-js-snippets",
     "dbaeumer.vscode-eslint",
+    "dsznajder.es7-react-js-snippets",
     "esbenp.prettier-vscode",
-    "stylelint.vscode-stylelint",
-    "firefox-devtools.vscode-firefox-debug"
+    "firefox-devtools.vscode-firefox-debug",
+    "formulahendry.auto-rename-tag",
+    "stylelint.vscode-stylelint"
   ]
 }

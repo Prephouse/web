@@ -42,8 +42,8 @@ website in the respective environment.
 
 ### Development
 
-- Run `pnpm add -D <package-name>` and `pnpm add <package-name>` so that the corresponding package
-  is included as a development dependency or universal dependency respectively in
+- Run `pnpm add -D <package-name>` or `pnpm add <package-name>` to install the corresponding npm
+  package as a development dependency or universal dependency respectively in
   [package.json](package.json)
 - Run `pnpm i` when you need to install any new packages
 - Run `pnpm store prune` at your own convenience if your machine is low on disk space and contains
@@ -101,8 +101,8 @@ projects.
 
 ## Developer Tools
 
-We support Visual Studio Code and WebStorm out of the box. Furthermore, we recommend installing
-the _React Developer Tools_ ([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] |
+We support Visual Studio Code and WebStorm out of the box. Furthermore, we recommend installing the
+_React Developer Tools_ ([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] |
 [Edge][react-ext-edge]), _Redux DevTools_ ([Chrome][redux-ext-chrome] |
 [Firefox][redux-ext-firefox]) and _axe DevTools_ ([Chrome][axe-chrome]) browser extensions.
 

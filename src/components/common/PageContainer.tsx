@@ -24,14 +24,14 @@ const PageContainer = styled(Container)(({ theme }) => ({
     display: 'inline-block',
     boxSizing: 'border-box',
     width: '100%',
-    '&:not(:first-of-type):not(:last-of-type)': {
-      padding: theme.spacing(3, 0),
-    },
     '&:first-of-type': {
       padding: theme.spacing(0, 0, 3),
     },
     '&:last-child': {
       padding: theme.spacing(3, 0, 0),
+    },
+    '&:not(:first-of-type):not(:last-of-type)': {
+      padding: theme.spacing(3, 0),
     },
   },
 }));
