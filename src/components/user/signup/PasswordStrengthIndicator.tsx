@@ -43,7 +43,7 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
         style={{ width: '100%' }}
         aria-valuetext={passwordScoreToTextual(score)}
       />
-      <div id="password-strength">
+      <div id="password-strength" data-testid="password-strength">
         <strong>{passwordScoreToTextual(score)}</strong>
       </div>
       <br />

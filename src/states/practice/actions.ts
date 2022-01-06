@@ -1,4 +1,4 @@
-import type { AppDispatch } from '../store';
+import type { AppDispatch } from '../../store';
 import { SET_MEDIA_SOURCE, SET_PRACTICE_SETTINGS, SessionMedium, SessionOrigin } from './types';
 
 export const setPracticeSettings =

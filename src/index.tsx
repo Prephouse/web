@@ -5,11 +5,10 @@ import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import snakecaseKeys from 'snakecase-keys';
 
-import { store } from './store/store';
-
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
+import { store } from './store';
 
 axios.defaults.baseURL = process.env.REACT_APP_PREPHOUSE_BASE_URL;
 axios.interceptors.request.use(config => {

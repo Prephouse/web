@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import { z } from 'zod';
 
-import { SessionMedium, SessionOrigin } from '../../store/practice/types';
+import { SessionMedium, SessionOrigin } from '../../states/practice/types';
 
 export const getFormValidationSchema = (intl: IntlShape) => {
   const fieldParams = {

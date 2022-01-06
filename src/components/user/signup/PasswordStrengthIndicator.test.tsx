@@ -1,54 +1,33 @@
-import { mount } from 'enzyme';
-import React from 'react';
-import { IntlProvider } from 'react-intl';
-
-import enUs from '../../../strings/translations/en-US/index.json';
+import { render, screen } from 'testing';
 
 import PasswordStrengthMeter from './PasswordStrengthIndicator';
 
-const locale = 'en-US';
-let wrapper: ReturnType<typeof mount>;
-
-const initPsmComponent = function initPsmComponent(password: string) {
-  wrapper = mount(
-    <IntlProvider locale={locale} messages={enUs}>
-      <PasswordStrengthMeter password={password} />
-    </IntlProvider>
-  );
-};
-
-const matchMeterText = function matchMeterText(expected: string) {
-  expect(wrapper.find('#password-strength').text()).toBe(expected);
-};
-
 describe('Password Strength Indicator', () => {
-  // eslint-disable-next-line jest/expect-expect
   it('indicate extremely weak password (0)', () => {
-    initPsmComponent('a');
-    matchMeterText('Extremely Weak');
+    render(<PasswordStrengthMeter password="a" />);
+    expect(screen.getByTestId('password-strength')).toHaveTextContent('Extremely Weak');
   });
 
-  // eslint-disable-next-line jest/expect-expect
   it('indicate very weak password (1)', () => {
-    initPsmComponent('sdffa');
-    matchMeterText('Very Weak');
+    render(<PasswordStrengthMeter password="sdffa" />);
+    expect(screen.getByTestId('password-strength')).toHaveTextContent('Very Weak');
   });
 
   // eslint-disable-next-line jest/expect-expect
   it('indicate weak password (2)', () => {
-    initPsmComponent('sd234ffa');
-    matchMeterText('Weak');
+    render(<PasswordStrengthMeter password="sd234ffa" />);
+    expect(screen.getByTestId('password-strength')).toHaveTextContent('Weak');
   });
 
   // eslint-disable-next-line jest/expect-expect
   it('indicate adequate password (3)', () => {
-    initPsmComponent('sd234ff313');
-    matchMeterText('Adequate');
+    render(<PasswordStrengthMeter password="sd234ff313" />);
+    expect(screen.getByTestId('password-strength')).toHaveTextContent('Adequate');
   });
 
   // eslint-disable-next-line jest/expect-expect
   it('indicate strong password (4)', () => {
-    initPsmComponent('sd234ff31332a');
-    matchMeterText('Strong');
+    render(<PasswordStrengthMeter password="sd234ff31332a" />);
+    expect(screen.getByTestId('password-strength')).toHaveTextContent('Strong');
   });
 });

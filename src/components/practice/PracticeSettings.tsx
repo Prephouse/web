@@ -19,11 +19,10 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
 
-import { setPracticeSettings } from '../../store/practice/actions';
-import { SessionMedium, SessionOrigin, SessionType } from '../../store/practice/types';
-
 import { parseSafeDecInt } from '../../utils/string';
 
+import { setPracticeSettings } from '../../states/practice/actions';
+import { SessionMedium, SessionOrigin, SessionType } from '../../states/practice/types';
 import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
 import PermissionManager, { PermissionRequest } from '../common/PermissionManager';

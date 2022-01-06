@@ -9,10 +9,9 @@ import { Divider, Switch } from '@mui/material';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
-import { changePrefersDarkMode } from '../../store/preference/actions';
-
 import profileActions from '../../values/appbar/profileActions';
 
+import { changePrefersDarkMode } from '../../states/preference/actions';
 import DropdownMenuItem from '../common/DropdownMenuItem';
 import DarkModeNeon from './DarkModeNeon';
 
