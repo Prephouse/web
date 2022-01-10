@@ -4,7 +4,7 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
 import { setMediaSource } from '../../states/practice/actions';
-import { SessionMedium, SessionOrigin } from '../../states/practice/types';
+import { SessionMedium, SessionOrigin } from '../../states/practice/enums';
 import FormButtons from '../common/FormButtons';
 import AudioRecordZone from './media/AudioRecordZone';
 import MediaUploadZone from './media/MediaUploadZone';
@@ -25,7 +25,7 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
   const intl = useIntl();
 
   const handleSubmission = (src: string) => {
-    setMediaSource(src)(dispatch);
+    dispatch(setMediaSource(src));
   };
 
   const establishZone = () => {

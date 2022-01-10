@@ -1,41 +1,37 @@
-import { Reducer } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
 
-import type { PracticeReduxAction, PracticeReduxState } from './types';
-import {
-  CLEAR_MEDIA_SOURCE,
-  SET_MEDIA_SOURCE,
-  SET_PRACTICE_SETTINGS,
-  SessionMedium,
-  SessionOrigin,
-  SessionType,
-} from './types';
+import { clearMediaSource, setMediaSource, setPracticeSettings } from './actions';
+import { SessionMedium, SessionOrigin, SessionType } from './enums';
+
+interface PracticeReduxState {
+  sessionType: SessionType;
+  medium: SessionMedium;
+  origin: SessionOrigin;
+  allowLiveFeedback: boolean;
+  source: string | undefined;
+}
 
 const initState: PracticeReduxState = {
   sessionType: SessionType.Interview,
   medium: SessionMedium.VideoAudio,
   origin: SessionOrigin.Record,
   allowLiveFeedback: true,
+  source: undefined,
 };
 
-const practiceReducer: Reducer<PracticeReduxState, PracticeReduxAction> = (
-  state = initState,
-  action
-) => {
-  switch (action.type) {
-    case SET_PRACTICE_SETTINGS:
-      return {
-        ...state,
-        medium: action.payload.medium,
-        origin: action.payload.origin,
-        allowLiveFeedback: action.payload.allowLiveFeedback,
-      };
-    case SET_MEDIA_SOURCE:
-      return { ...state, source: action.payload.source };
-    case CLEAR_MEDIA_SOURCE:
-      return { ...state, source: undefined };
-    default:
-      return state;
-  }
-};
+const practiceReducer = createReducer(initState, builder => {
+  builder
+    .addCase(setPracticeSettings, (state, action) => {
+      state.medium = action.payload.medium;
+      state.origin = action.payload.origin;
+      state.allowLiveFeedback = action.payload.allowLiveFeedback;
+    })
+    .addCase(setMediaSource, (state, action) => {
+      state.source = action.payload;
+    })
+    .addCase(clearMediaSource, state => {
+      state.source = undefined;
+    });
+});
 
 export default practiceReducer;

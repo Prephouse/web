@@ -25,7 +25,7 @@ const PracticeGround = () => {
   const goToNextStep = useCallback(() => setStep(step + 1), [step]);
   const goToPreviousStep = useCallback(() => setStep(step - 1), [step]);
   const clearMediaWithNextStep = useCallback(() => {
-    clearMediaSource()(dispatch);
+    dispatch(clearMediaSource());
     setStep(step + 1);
   }, [dispatch, step]);
 

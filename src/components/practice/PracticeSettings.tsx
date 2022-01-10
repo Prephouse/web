@@ -19,10 +19,10 @@ import useAppSelector from '../../hooks/useAppSelector';
 
 import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
 
-import { parseSafeDecInt } from '../../utils/string';
+import { parseStrictDecInt } from '../../utils/string';
 
 import { setPracticeSettings } from '../../states/practice/actions';
-import { SessionMedium, SessionOrigin, SessionType } from '../../states/practice/types';
+import { SessionMedium, SessionOrigin, SessionType } from '../../states/practice/enums';
 import FormButtons from '../common/FormButtons';
 import FormErrorMessage from '../common/FormErrorMessage';
 import PermissionManager, { PermissionRequest } from '../common/PermissionManager';
@@ -74,7 +74,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
       validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
       onSubmit={values => {
         const { medium, origin, allowLiveFeedback } = values;
-        setPracticeSettings(medium, origin, allowLiveFeedback)(dispatch);
+        dispatch(setPracticeSettings(medium, origin, allowLiveFeedback));
         onNext();
       }}
     >
@@ -98,7 +98,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   name="medium"
                   value={values.medium}
                   onChange={event => {
-                    setFieldValue('medium', parseSafeDecInt(event.currentTarget.value));
+                    setFieldValue('medium', parseStrictDecInt(event.currentTarget.value));
                   }}
                 >
                   <FormControlLabel
@@ -147,7 +147,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   name="origin"
                   value={values.origin}
                   onChange={event => {
-                    setFieldValue('origin', parseSafeDecInt(event.currentTarget.value));
+                    setFieldValue('origin', parseStrictDecInt(event.currentTarget.value));
                   }}
                 >
                   <FormControlLabel

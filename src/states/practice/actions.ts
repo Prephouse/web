@@ -1,25 +1,18 @@
-import type { AppDispatch } from '../../store';
-import { SET_MEDIA_SOURCE, SET_PRACTICE_SETTINGS, SessionMedium, SessionOrigin } from './types';
+import { createAction } from '@reduxjs/toolkit';
 
-export const setPracticeSettings =
-  (medium: SessionMedium, origin: SessionOrigin, allowLiveFeedback: boolean) =>
-  (dispatch: AppDispatch) => {
-    dispatch({
-      type: SET_PRACTICE_SETTINGS,
-      payload: { medium, origin, allowLiveFeedback },
-    });
-  };
+import { SessionMedium, SessionOrigin } from './enums';
 
-export const setMediaSource = (source: string) => (dispatch: AppDispatch) => {
-  dispatch({
-    type: SET_MEDIA_SOURCE,
-    payload: { source },
-  });
-};
+export const setPracticeSettings = createAction(
+  'practice/setPracticeSettings',
+  (medium: SessionMedium, origin: SessionOrigin, allowLiveFeedback: boolean) => ({
+    payload: {
+      medium,
+      origin,
+      allowLiveFeedback,
+    },
+  })
+);
 
-export const clearMediaSource = () => (dispatch: AppDispatch) => {
-  dispatch({
-    type: SET_MEDIA_SOURCE,
-    payload: {},
-  });
-};
+export const setMediaSource = createAction<string>('practice/setMediaSource');
+
+export const clearMediaSource = createAction<void>('practice/clearMediaSource');

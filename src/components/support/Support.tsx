@@ -21,7 +21,7 @@ const Support = () => {
   const intl = useIntl();
 
   const handleTabChange = (event: SyntheticEvent, newValue: number) =>
-    setSupportTab(newValue)(dispatch);
+    dispatch(setSupportTab(newValue));
 
   return (
     <>

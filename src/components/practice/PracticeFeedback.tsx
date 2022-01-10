@@ -14,7 +14,7 @@ import { roundAsDecimal } from '../../utils/math';
 import MediaSeekSlider from '../common/MediaSeekSlider';
 
 interface Props {
-  src?: string;
+  src: string | undefined;
 }
 
 const PracticeFeedback = ({ src }: Props) => {

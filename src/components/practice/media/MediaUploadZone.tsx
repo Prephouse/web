@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { Box, Typography } from '@mui/material';
 
-import { SessionMedium, SessionType } from '../../../states/practice/types';
+import { SessionMedium, SessionType } from '../../../states/practice/enums';
 
 interface Props {
   sessionType: SessionType;

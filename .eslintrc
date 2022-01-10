@@ -102,12 +102,21 @@
     ],
     "no-useless-return": "off",
     "promise/catch-or-return": "off",
-    "radix": "error", // for radix = 10 on integers, use the parseSafeDecInt function in utils/string.ts instead
+    "radix": "error", // for radix = 10 on integers, use the parseStrictDecInt function in utils/string.ts instead
     "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
     "react/jsx-props-no-spreading": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off"
   },
-  "ignorePatterns": [".eslintrc.i18n.js", "src/serviceWorker.ts"]
+  "ignorePatterns": [".eslintrc.i18n.js", "src/serviceWorker.ts"],
+  "overrides": [
+    {
+      "files": ["src/states/**/actions.ts", "src/states/**/reducer.ts"],
+      "rules": {
+        "func-names": "off",
+        "no-param-reassign": "off"
+      }
+    }
+  ]
 }

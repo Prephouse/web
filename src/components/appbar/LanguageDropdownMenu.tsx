@@ -34,7 +34,7 @@ const LanguageDropdownMenu = ({ onMenuBack }: Props) => {
           primary={display}
           selected={bcp === locale}
           onClick={() => {
-            changeLocale(bcp as BcpName)(dispatch);
+            dispatch(changeLocale(bcp as BcpName));
           }}
         />
       ))}

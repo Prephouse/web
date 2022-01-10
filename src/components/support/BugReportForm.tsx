@@ -31,6 +31,7 @@ const BugReportForm = () => {
           submitForm();
         };
 
+        // noinspection RequiredAttributes
         return (
           <Form onSubmit={onSubmit}>
             <FormGroupCompact>

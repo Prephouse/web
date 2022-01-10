@@ -45,7 +45,7 @@ const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
         <Switch
           name="dark-mode-switch"
           checked={prefersDarkMode}
-          onChange={() => changePrefersDarkMode(!prefersDarkMode)(dispatch)}
+          onChange={() => dispatch(changePrefersDarkMode(!prefersDarkMode))}
           inputProps={{
             role: 'switch',
           }}

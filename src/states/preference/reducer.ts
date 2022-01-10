@@ -1,39 +1,38 @@
-import { Reducer } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
 
 import { PREFERS_DARK_MODE_KEY, SESSION_LOCALE_KEY } from '../../strings/keys';
 import type { BcpName } from '../../strings/locales';
 import { DEFAULT_LOCALE } from '../../strings/locales';
 
-import type { PreferenceReduxAction, PreferenceReduxState } from './types';
-import { CHANGE_LOCALE, CHANGE_PREFERS_DARK_MODE } from './types';
+import { changeLocale, changePrefersDarkMode } from './actions';
 
-const initializePrefersDarkMode = (): boolean => {
-  if (PREFERS_DARK_MODE_KEY in localStorage) {
-    return localStorage.getItem(PREFERS_DARK_MODE_KEY) === 'true';
-  }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
-};
-
-const initializeLocale = () =>
-  (sessionStorage.getItem(SESSION_LOCALE_KEY) ?? DEFAULT_LOCALE) as BcpName;
+interface PreferenceReduxState {
+  prefersDarkMode: boolean;
+  locale: BcpName;
+}
 
 const initState: PreferenceReduxState = {
-  prefersDarkMode: initializePrefersDarkMode(),
-  locale: initializeLocale(),
+  prefersDarkMode: (function (): boolean {
+    if (PREFERS_DARK_MODE_KEY in localStorage) {
+      return localStorage.getItem(PREFERS_DARK_MODE_KEY) === 'true';
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  })(),
+  locale: (function () {
+    return (sessionStorage.getItem(SESSION_LOCALE_KEY) ?? DEFAULT_LOCALE) as BcpName;
+  })(),
 };
 
-const preferenceReducer: Reducer<PreferenceReduxState, PreferenceReduxAction> = (
-  state = initState,
-  action
-) => {
-  switch (action.type) {
-    case CHANGE_PREFERS_DARK_MODE:
-      return { ...state, prefersDarkMode: action.payload.prefersDarkMode };
-    case CHANGE_LOCALE:
-      return { ...state, locale: action.payload.locale };
-    default:
-      return state;
-  }
-};
+const preferenceReducer = createReducer(initState, builder => {
+  builder
+    .addCase(changePrefersDarkMode, (state, action) => {
+      localStorage.setItem(PREFERS_DARK_MODE_KEY, action.payload.toString());
+      state.prefersDarkMode = action.payload;
+    })
+    .addCase(changeLocale, (state, action) => {
+      sessionStorage.setItem(SESSION_LOCALE_KEY, action.payload);
+      state.locale = action.payload;
+    });
+});
 
 export default preferenceReducer;

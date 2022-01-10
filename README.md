@@ -130,10 +130,10 @@ _React Developer Tools_ ([Chrome][react-ext-chrome] | [Firefox][react-ext-firefo
 We are following, with some exceptions, the commonly recommended TypeScript and React styling rules
 which includes the rules specified in the [_Airbnb JavaScript Style Guide_][airbnb-style-guide]
 (adopted for TypeScript) and the recommended rules for the [_TypeScript ESLint
-plugin_][ts-eslint-plugin]. To this end, we utilize [Prettier](.prettierrc) and [ESLint](.eslintrc)
-to enforce these styling rules. If you use VSCode or WebStorm, your code will be auto-formatted
-whenever you save it. Moreover, a pre-commit hook has been created to enforce these styling rules
-when you attempt to commit your code to the git repository.
+plugin_][ts-eslint-plugin]. To this end, we utilize [Prettier](.prettierrc), [ESLint](.eslintrc) and
+[Stylelint](.stylelintrc) to enforce these styling rules. If you use VSCode or WebStorm, your code
+will be auto-formatted whenever you save it. Moreover, a pre-commit hook has been created to enforce
+these styling rules when you attempt to commit your code to the git repository.
 
 [airbnb-style-guide]: https://github.com/airbnb/javascript
 [ts-eslint-plugin]:
@@ -141,9 +141,9 @@ when you attempt to commit your code to the git repository.
 
 ## Internalization
 
-You should place any translatable strings in the appropriate locale within the
-[translations](./src/strings/translations) directory. Then, you can use the [react-intl][react-intl]
-library in the code to retrieve the translated strings for the current user locale.
+Place any translatable strings in the appropriate locale within the
+[translations](./src/strings/translations) directory. Then, use the [react-intl][react-intl] library
+in the code to retrieve the translated strings for the current user locale.
 
 The strings should be formatted as [ICU messages][icu-message]. Take extra pre-caution for strings
 that may be pluralized.

@@ -1,13 +1,23 @@
-import { Reducer } from 'redux';
+import { createReducer } from '@reduxjs/toolkit';
 
 import { SUPPORT_TAB_INDEX_KEY } from '../../strings/keys';
 
-import { parseSafeDecInt } from '../../utils/string';
+import { parseStrictDecInt } from '../../utils/string';
 
-import { SET_SUPPORT_TAB, SupportReduxAction, SupportReduxState } from './types';
+import { setSupportTab } from './actions';
+
+interface SupportReduxState {
+  tabIndex: number;
+  ticketSubmitStatus: {
+    submitted: boolean;
+    success: boolean;
+    ticketId: string | null;
+    messageId: string;
+  };
+}
 
 const initState: SupportReduxState = {
-  tabIndex: parseSafeDecInt(sessionStorage.getItem(SUPPORT_TAB_INDEX_KEY) ?? '0'),
+  tabIndex: parseStrictDecInt(sessionStorage.getItem(SUPPORT_TAB_INDEX_KEY) ?? '0'),
   ticketSubmitStatus: {
     submitted: false,
     success: false,
@@ -16,19 +26,11 @@ const initState: SupportReduxState = {
   },
 };
 
-const supportReducer: Reducer<SupportReduxState, SupportReduxAction> = (
-  state = initState,
-  action
-) => {
-  switch (action.type) {
-    case SET_SUPPORT_TAB:
-      return {
-        ...state,
-        tabIndex: action.payload.tabIndex,
-      };
-    default:
-      return state;
-  }
-};
+const supportReducer = createReducer(initState, builder => {
+  builder.addCase(setSupportTab, (state, action) => {
+    sessionStorage.setItem(SUPPORT_TAB_INDEX_KEY, action.payload.toString());
+    state.tabIndex = action.payload;
+  });
+});
 
 export default supportReducer;
