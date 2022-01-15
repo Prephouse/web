@@ -6,7 +6,7 @@ export const feedbackApi = createApi({
   reducerPath: 'feedbackApi',
   baseQuery: baseQuery(),
   endpoints: builder => ({
-    getFeedback: builder.query({
+    getFeedback: builder.query<unknown, void>({
       query: () => ({ url: '/feedback/' }),
     }),
   }),

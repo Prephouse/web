@@ -1,28 +1,39 @@
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import camelcaseKeys from 'camelcase-keys';
+import snakecaseKeys from 'snakecase-keys';
+
+const toCamelCaseKeys = (obj: Parameters<typeof camelcaseKeys>[0]) =>
+  obj ? camelcaseKeys(obj) : obj;
+const toSnakeCaseKeys = (obj: Parameters<typeof snakecaseKeys>[0]) =>
+  obj ? snakecaseKeys(obj) : obj;
 
 const baseQuery =
   ({
-    baseUrl,
+    baseUrl = process.env.REACT_APP_PREPHOUSE_BASE_URL,
   }: {
     baseUrl?: string;
   } = {}): BaseQueryFn<{
     url: string;
+    params?: AxiosRequestConfig['params'];
     method?: AxiosRequestConfig['method'];
     data?: AxiosRequestConfig['data'];
   }> =>
-  async ({ url, method = 'get', data }) => {
+  async ({ method = 'get', url, params, data }) => {
     try {
-      const config: AxiosRequestConfig = { url, method, data };
-      if (baseUrl) {
-        config.baseURL = baseUrl;
-      }
+      const config: AxiosRequestConfig = {
+        baseURL: baseUrl,
+        data: toSnakeCaseKeys(data),
+        params: toSnakeCaseKeys(params),
+        method,
+        url,
+      };
       const result = await axios(config);
-      return { data: result.data };
+      return { data: toCamelCaseKeys(result.data) };
     } catch (axiosError) {
       const err = axiosError as AxiosError;
       return {
-        error: { status: err.response?.status, data: err.response?.data },
+        error: { status: err.response?.status, data: toCamelCaseKeys(err.response?.data) },
       };
     }
   };
