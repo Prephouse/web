@@ -28,7 +28,6 @@ import {
 
 import generateTheme from '../styles/themes';
 
-import { useGetFeedbackQuery } from '../services/feedback';
 import PrephouseAppBar from './appbar/PrephouseAppBar';
 import SnackbarContextProvider from './common/SnackbarContextProvider';
 import SuspendableScreen from './common/SuspendableScreen';

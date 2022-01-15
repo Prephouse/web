@@ -1,3 +1,8 @@
-class ValueError extends Error {}
+class ValueError extends Error {
+  constructor(message?: string) {
+    super(message);
+    this.name = 'ValueError';
+  }
+}
 
 export default ValueError;

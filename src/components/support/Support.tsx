@@ -8,9 +8,9 @@ import { Box, Tab, useTheme } from '@mui/material';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
-import tabs from '../../values/support/tabs';
-
 import { setSupportTab } from '../../states/support/actions';
+
+import tabs from '../../values/support/tabs';
 
 const Support = () => {
   const tabIndex = useAppSelector(state => state.support.tabIndex);

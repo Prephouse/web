@@ -7,9 +7,10 @@ import { Paper, Step, StepLabel, Stepper, useMediaQuery, useTheme } from '@mui/m
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useAppSelector from '../../hooks/useAppSelector';
 
+import { clearMediaSource } from '../../states/practice/actions';
+
 import practiceSteps from '../../values/practice/practiceSteps';
 
-import { clearMediaSource } from '../../states/practice/actions';
 import PageContainer from '../common/PageContainer';
 import PracticeFeedback from './PracticeFeedback';
 import PracticeInstructions from './PracticeInstructions';

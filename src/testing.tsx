@@ -7,11 +7,11 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { combineReducers } from 'redux';
 
-import enUs from './strings/translations/en-US/index.json';
-
 import practiceReducer from './states/practice/reducer';
 import preferenceReducer from './states/preference/reducer';
 import supportReducer from './states/support/reducer';
+
+import enUs from './strings/translations/en-US/index.json';
 
 function customRender(
   ui: ReactElement,
