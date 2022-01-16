@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
-import { feedbackApi } from './services/feedback';
+import { prephouseApi } from './services/prephouse';
 
 import practiceReducer from './states/practice/reducer';
 import preferenceReducer from './states/preference/reducer';
@@ -11,12 +11,12 @@ export const rootReducer = combineReducers({
   practice: practiceReducer,
   preference: preferenceReducer,
   support: supportReducer,
-  [feedbackApi.reducerPath]: feedbackApi.reducer,
+  [prephouseApi.reducerPath]: prephouseApi.reducer,
 });
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(feedbackApi.middleware),
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(prephouseApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

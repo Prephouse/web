@@ -5,16 +5,10 @@ export const DEFAULT_LOCALE: BcpName = 'en-US';
 
 export interface TranslatedStr {
   messages: { default: { [id: string]: string } };
-  mui: Localization;
   fnDate: { default: object };
+  mui: Localization;
 }
 
-/**
- * @property display the full name of the language in that respecitve language
- * @property mui MUI locale tag
- * @property date date-fns locale tag
- * @property dir writing direction (ltr = left-to-right, rtl = right-to-left)
- */
 interface LocaleDict {
   display: string;
   dir: 'ltr' | 'rtl';
@@ -25,56 +19,68 @@ const locales: Record<BcpName, LocaleDict> = {
   'en-US': {
     display: 'English (US)',
     dir: 'ltr',
-    getStrings: async () => ({
-      messages: await import('./translations/en-US/index.json'),
-      mui: enUS,
-      fnDate: await import('date-fns/locale/en-US'),
-    }),
+    async getStrings() {
+      return {
+        messages: await import('./translations/en-US/index.json'),
+        fnDate: await import('date-fns/locale/en-US'),
+        mui: enUS,
+      };
+    },
   },
   'en-GB': {
     display: 'English (UK)',
     dir: 'ltr',
-    getStrings: async () => ({
-      messages: await import('./translations/en-US/index.json'),
-      mui: enUS,
-      fnDate: await import('date-fns/locale/en-GB'),
-    }),
+    async getStrings() {
+      return {
+        messages: await import('./translations/en-US/index.json'),
+        fnDate: await import('date-fns/locale/en-GB'),
+        mui: enUS,
+      };
+    },
   },
   'fr-FR': {
     display: 'Français',
     dir: 'ltr',
-    getStrings: async () => ({
-      messages: await import('./translations/en-US/index.json'),
-      mui: frFR,
-      fnDate: await import('date-fns/locale/fr'),
-    }),
+    async getStrings() {
+      return {
+        messages: await import('./translations/en-US/index.json'),
+        fnDate: await import('date-fns/locale/fr'),
+        mui: frFR,
+      };
+    },
   },
   'zh-CN': {
     display: '中文（简体）',
     dir: 'ltr',
-    getStrings: async () => ({
-      messages: await import('./translations/en-US/index.json'),
-      mui: zhCN,
-      fnDate: await import('date-fns/locale/zh-CN'),
-    }),
+    async getStrings() {
+      return {
+        messages: await import('./translations/en-US/index.json'),
+        fnDate: await import('date-fns/locale/zh-CN'),
+        mui: zhCN,
+      };
+    },
   },
   'zh-TW': {
     display: '中文（繁體）',
     dir: 'ltr',
-    getStrings: async () => ({
-      messages: await import('./translations/en-US/index.json'),
-      mui: zhTW,
-      fnDate: await import('date-fns/locale/zh-TW'),
-    }),
+    async getStrings() {
+      return {
+        messages: await import('./translations/en-US/index.json'),
+        fnDate: await import('date-fns/locale/zh-TW'),
+        mui: zhTW,
+      };
+    },
   },
   'ja-JP': {
     display: '日本語',
     dir: 'ltr',
-    getStrings: async () => ({
-      messages: await import('./translations/en-US/index.json'),
-      mui: jaJP,
-      fnDate: await import('date-fns/locale/ja'),
-    }),
+    async getStrings() {
+      return {
+        messages: await import('./translations/en-US/index.json'),
+        fnDate: await import('date-fns/locale/ja'),
+        mui: jaJP,
+      };
+    },
   },
 };
 

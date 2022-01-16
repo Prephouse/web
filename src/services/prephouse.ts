@@ -2,8 +2,8 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 
 import baseQuery from './baseQuery';
 
-export const feedbackApi = createApi({
-  reducerPath: 'feedbackApi',
+export const prephouseApi = createApi({
+  reducerPath: 'prephouseApi',
   baseQuery: baseQuery(),
   endpoints: builder => ({
     getFeedback: builder.query<unknown, void>({
@@ -12,4 +12,4 @@ export const feedbackApi = createApi({
   }),
 });
 
-export const { useGetFeedbackQuery } = feedbackApi;
+export const { useGetFeedbackQuery } = prephouseApi;

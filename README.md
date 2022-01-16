@@ -6,39 +6,16 @@
 
 ## Instructions
 
-You can run the Prephouse website in development mode on either your local development server or a
-Docker container.
-
 ### Setup
-
-#### Local Development Server
 
 1. Download and install [Node.js 16][node] and the [pnpm][] package manager
 2. Copy the environment variable files (.env.\*) to the root directory of this repository
-3. Run `pnpm install` to install the [project dependencies](package.json)
-
-#### Docker Container
-
-1. Download and install [Docker Desktop][docker-desktop] and [Docker Compose][docker-compose]
-2. Copy the environment variable files (.env.\*) to the root directory of this repository
-3. Run Docker Desktop on your machine
-4. Run `docker-compose build`
+3. Run `pnpm i` to install the [project dependencies](package.json)
 
 ### Startup
 
-Once you have set up the local development server or Docker container, you can run the Prephouse
-website in the respective environment.
-
-#### Local Development Server
-
 1. Run `pnpm start`
 2. Navigate to <http://localhost:3000> on your web browser
-
-#### Docker Container
-
-1. Run Docker Desktop on your machine
-2. Run `docker-compose up`
-3. Navigate to <http://localhost:3000> on your web browser
 
 ### Development
 
@@ -48,8 +25,8 @@ website in the respective environment.
 - Run `pnpm i` when you need to install any new packages
 - Run `pnpm store prune` at your own convenience if your machine is low on disk space and contains
   orphan node modules in its pnpm store
-- A hot reload of the Prephouse website will be triggered whenever you modify the [src](src)
-  directory or its files
+- A hot reload of the Prephouse website will be triggered whenever you add or modify files in
+  the [src](src) directory
 - If you want to serve your local development server over HTTPS, then follow these steps on your CLI
   **in the root directory of this repository**
 
@@ -71,33 +48,6 @@ website in the respective environment.
 [docker-desktop]: https://www.docker.com/products/docker-desktop
 [docker-compose]: https://docs.docker.com/compose/install/
 [mkcert]: https://github.com/FiloSottile/mkcert#installation
-
-## Troubleshooting
-
-### OpenSSL provider
-
-If you encounter an issue with OpenSSL when running `pnpm start` on Node.js 17, you should either
-use Node.js 16 (the latest LTS version) _or_ set `NODE_OPTIONS=--openssl-legacy-provider` as a local
-environment variable.
-
-### Dependency resolution
-
-If pnpm fails to install a particular package or find the required dependencies, you should delete
-the project-level node modules folder and run `pnpm i --frozen-lockfile`. As a last resort, you
-could also try deleting your pnpm store (run `pnpm store path` to get the path of the store) and/or
-the pnpm state directory and pnpm-lock.yaml file which usually share the same parent directory as
-the store. However, this last resort may drastically affect the installation time for other pnpm
-projects.
-
-## Browser Compatibility
-
-**Last Updated** Nov 11 2021
-
-- Chrome 80+
-- Edge 80+
-- Firefox 74+
-- Opera 67+
-- Safari 13.1+
 
 ## Developer Tools
 
@@ -139,16 +89,90 @@ these styling rules when you attempt to commit your code to the git repository.
 [ts-eslint-plugin]:
   https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin
 
-## Internalization
+## Troubleshooting
 
-Place any translatable strings in the appropriate locale within the
-[translations](./src/strings/translations) directory. Then, use the [react-intl][react-intl] library
-in the code to retrieve the translated strings for the current user locale.
+### OpenSSL provider
 
-The strings should be formatted as [ICU messages][icu-message]. Take extra pre-caution for strings
-that may be pluralized.
+If you encounter an issue with OpenSSL when running `pnpm start` on Node.js 17, you should either
+use Node.js 16 (the latest LTS version) _or_ set `NODE_OPTIONS=--openssl-legacy-provider` as a local
+environment variable.
+
+### Dependency resolution
+
+If pnpm fails to install a particular package or find the required dependencies, you should delete
+the project-level node modules folder and run `pnpm i --frozen-lockfile`. As a last resort, you
+could also try deleting your pnpm store (run `pnpm store path` to get the path of the store) and/or
+the pnpm state directory and pnpm-lock.yaml file which usually share the same parent directory as
+the store. However, this last resort may drastically affect the installation time for other pnpm
+projects.
+
+### Missing RTK Query hook
+
+You may have built a query or mutation inside a `createApi` function call using the RTK Query
+library but cannot find the hook for that query or mutation in the return value of `createApi`.
+In such case, you should check that you imported `createApi` from the `@reduxjs/toolkit/query/react`
+module and _not_ the `@reduxjs/toolkit/query` module (note the `/react` in the suffix of the name of the
+former module). The former module is designed specifically for React projects, and thus automatically
+generates the necessary React hooks, whereas the latter module is designed for JavaScript projects
+in general.
+
+```typescript
+// GOOD
+import { createApi } from '@reduxjs/toolkit/query/react';
+// BAD
+import { createApi } from '@reduxjs/toolkit/query';
+
+const someApi = createApi({
+  /* some stuff */
+  endpoints: builder => ({
+    getA: builder.query(
+      /* query implementation */
+    ),
+  }),
+});
+
+// with the BAD example, the createApi function wouldn't generate the useGetAQuery hook
+// and hence this export statement would fail
+export const { useGetAQuery } = someApi;
+```
+
+## Implementation
+
+### Internalization (i18n)
+
+If you need to add a new _user-facing_ string (not, for example, a JavaScript `Error` message)
+on the client side, write out that string in English and follow these steps to ensure that it
+can get localized to other locales in the future.
+
+1. Check whether one or more words in the string may be pluralized in some instances, e.g., `1 dog`
+   and `3 dogs`
+2. Format the string as an [ICU message][icu-message]
+3. Place the string in the [index.json](./src/strings/translations/en-US/index.json) file for the en-US locale
+4. Use the [react-intl][react-intl] library to retrieve the string in a React component
+
+You can substitute the placeholder of an ICU message with almost any JSX element when using
+the [react-intl][react-intl] library.
+
+```typescript jsx
+// assume that index.json contains the { "a.b.c": "Hello, {world}" } key value pair
+const intl = useIntl();
+// GOOD
+intl.formatMessage({ id: 'a.b.c' }, { world: "World!" })
+// GOOD
+intl.formatMessage({ id: 'a.b.c' }, { world: (<b>World!</b>) });
+```
+
+Any user-facing numbers, currencies, dates and times should also be localized using the
+respective functions in the [react-intl][react-intl] library. However, you do _not_ need
+to be concerned about the localization for the _built-in_ MUI components, except in
+parts of the component that have been overwritten (e.g., where some default text has been
+replaced with a custom one), as the default localization has already been handled by
+open source contributors of the MUI library.
+
+The localized strings are loaded asynchronously for each locale in order to optimize site loading performance.
+Further information on the i18n implementation can be found in the [locales.ts](src/strings/locales.ts) file.
 
 [react-intl]: https://formatjs.io/docs/react-intl/
 [icu-message]:
-  https://lokalise.com/blog/complete-guide-to-icu-message-format/
-  'A complete guide to the ICU message format'
+https://lokalise.com/blog/complete-guide-to-icu-message-format/
+'A complete guide to the ICU message format'
