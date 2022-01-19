@@ -25,8 +25,8 @@
 - Run `pnpm i` when you need to install any new packages
 - Run `pnpm store prune` at your own convenience if your machine is low on disk space and contains
   orphan node modules in its pnpm store
-- A hot reload of the Prephouse website will be triggered whenever you add or modify files in
-  the [src](src) directory
+- A hot reload of the Prephouse website will be triggered whenever you add or modify files in the
+  [src](src) directory
 - If you want to serve your local development server over HTTPS, then follow these steps on your CLI
   **in the root directory of this repository**
 
@@ -109,12 +109,12 @@ projects.
 ### Missing RTK Query hook
 
 You may have built a query or mutation inside a `createApi` function call using the RTK Query
-library but cannot find the hook for that query or mutation in the return value of `createApi`.
-In such case, you should check that you imported `createApi` from the `@reduxjs/toolkit/query/react`
-module and _not_ the `@reduxjs/toolkit/query` module (note the `/react` in the suffix of the name of the
-former module). The former module is designed specifically for React projects, and thus automatically
-generates the necessary React hooks, whereas the latter module is designed for JavaScript projects
-in general.
+library but cannot find the hook for that query or mutation in the return value of `createApi`. In
+such case, you should check that you imported `createApi` from the `@reduxjs/toolkit/query/react`
+module and _not_ the `@reduxjs/toolkit/query` module (note the `/react` in the suffix of the name of
+the former module). The former module is designed specifically for React projects, and thus
+automatically generates the necessary React hooks, whereas the latter module is designed for
+JavaScript projects in general.
 
 ```typescript
 // GOOD
@@ -138,41 +138,118 @@ export const { useGetAQuery } = someApi;
 
 ## Implementation
 
+This section clarifies some details on the implementation of the frontend subsystem. We try to defer
+as many details as possible to the official library documentations, but sometimes our implementation
+may deviate from other similar projects.
+
 ### Internalization (i18n)
 
-If you need to add a new _user-facing_ string (not, for example, a JavaScript `Error` message)
-on the client side, write out that string in English and follow these steps to ensure that it
-can get localized to other locales in the future.
+If you need to add a new _user-facing_ string (not, for example, a JavaScript `Error` message) on
+the client side, write out that string in English and follow these steps to ensure that it can get
+localized to other locales in the future.
 
 1. Check whether one or more words in the string may be pluralized in some instances, e.g., `1 dog`
    and `3 dogs`
 2. Format the string as an [ICU message][icu-message]
-3. Place the string in the [index.json](./src/strings/translations/en-US/index.json) file for the en-US locale
+3. Place the string in the [index.json](./src/strings/translations/en-US/index.json) file for the
+   en-US locale
 4. Use the [react-intl][react-intl] library to retrieve the string in a React component
 
-You can substitute the placeholder of an ICU message with almost any JSX element when using
-the [react-intl][react-intl] library.
+You can substitute the placeholder of an ICU message with almost any JSX element when using the
+[react-intl][react-intl] library.
 
 ```typescript jsx
 // assume that index.json contains the { "a.b.c": "Hello, {world}" } key value pair
 const intl = useIntl();
 // GOOD
-intl.formatMessage({ id: 'a.b.c' }, { world: "World!" })
+intl.formatMessage({ id: 'a.b.c' }, { world: 'World!' });
 // GOOD
-intl.formatMessage({ id: 'a.b.c' }, { world: (<b>World!</b>) });
+intl.formatMessage({ id: 'a.b.c' }, { world: <b>World!</b> });
 ```
 
-Any user-facing numbers, currencies, dates and times should also be localized using the
-respective functions in the [react-intl][react-intl] library. However, you do _not_ need
-to be concerned about the localization for the _built-in_ MUI components, except in
-parts of the component that have been overwritten (e.g., where some default text has been
-replaced with a custom one), as the default localization has already been handled by
-open source contributors of the MUI library.
+Any user-facing numbers, currencies, dates and times should also be localized using the respective
+functions in the react-intl library. However, you do _not_ need to be concerned about the
+localization for the _built-in_ MUI components, except in parts of the component that have been
+overwritten (e.g., where some default text has been replaced with a custom one), as the default
+localization has already been handled by open source contributors of the MUI library.
 
-The localized strings are loaded asynchronously for each locale in order to optimize site loading performance.
-Further information on the i18n implementation can be found in the [locales.ts](src/strings/locales.ts) file.
+The localized strings are loaded asynchronously for each locale in order to optimize site loading
+performance. Further information on the i18n implementation can be found in the
+[locales.ts](src/strings/locales.ts) file.
 
 [react-intl]: https://formatjs.io/docs/react-intl/
 [icu-message]:
-https://lokalise.com/blog/complete-guide-to-icu-message-format/
-'A complete guide to the ICU message format'
+  https://lokalise.com/blog/complete-guide-to-icu-message-format/
+  'A complete guide to the ICU message format'
+
+### Client-server communication
+
+We use the [RTK Query][rtk-query] library to fetch and cache data from servers, including from the
+Prephouse backend server, through queries and mutations. The library integrates very well with Redux
+(see [Global State Management](#global-state-management)) and handles a lot of the boilerplate code
+for us. The library is by default framework-agnostic, but we want to utilize React hooks to call our
+queries and mutations so make sure to use the React "version" of the library.
+
+```typescript
+// GOOD — React version of RTX Query
+import { createApi } from '@reduxjs/toolkit/query/react';
+// BAD — default (general) version of RTX Query
+import { createApi } from '@reduxjs/toolkit/query';
+```
+
+Follow the official RTK Query documentation for instructions on implementing a new query or mutation
+on the client. Do _not_ use the RTK Query version of the `baseQuery` function; we have our own
+custom implementations of that function as highlighted in the subsequent paragraphs of this readme.
+The queries and mutations should be placed in the proper service in the [services](src/services)
+directory. We have one separate service for each base URL.
+
+For REST APIs, although RTK Query provides its own HTTP client, we use [Axios][axios] as our HTTP
+client as the latter provides more customization options. We provide
+[`baseQuery`](src/services/query.ts) and [`rawBaseQuery`](src/services/query.ts) functions that you
+can utilize as the base query in the RTK Query `createApi` function. The `baseQuery` function
+automatically converts the HTTP request and response keys to snake case and camel case respectively.
+This is particularly important for the Prephouse APIs since our backend server expects snake case in
+accordance with our Python variable naming rules but the client uses camel case. On the other hand,
+the `rawBaseQuery` function does _not_ perform any pre- or post-processing on the HTTP request and
+response data.
+
+For GraphQL APIs, we provide the [`graphqlBaseQuery`](src/services/query.ts) function with
+[graphql-request][graphql-request] as the GraphQL client.
+
+[rtk-query]: https://redux-toolkit.js.org/rtk-query/overview
+[axios]: https://axios-http.com/docs/intro
+[graphql-request]: https://github.com/prisma-labs/graphql-request
+
+### Global state management
+
+We use [react-redux][react-redux] to manage the global application states. The Redux actions and
+reducers can be found in the [states](src/states) directory, and the corresponding Redux store in
+[store.ts](src/store.ts).
+
+We follow most rules, including all priority A rules, in the [Redux Style Guide][react-style-guide].
+However, we continue to use JavaScript functions and operators, such as the spread operator, instead
+of Immer to immutably update the Redux states.
+
+We utilize the `createAction` and `createReducer` functions in the [Redux Toolkit][redux-toolkit] to
+create our actions and reducers respectively. Furthermore, we use the
+[`useAppDispatch`](src/hooks/useAppDispatch.ts) and [`useAppSelector`](src/hooks/useAppSelector.ts)
+hooks in lieu of the react-redux `useDispatch` and `useSelector` hooks respectively (see the
+following code block for how their behaviours differ). These approaches minimize the amount of
+boilerplate code, which was a common criticism of Redux in the past, in our Redux logic.
+
+```typescript
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/store';
+
+import { useAppSelector } from 'src/hooks/useAppSelector';
+
+// GOOD - minimal boilerplate code
+const firstName1 = useAppSelector(state => state.person.firstName);
+
+// BAD — must always specify the type of the `state` parameter
+const firstName2 = useSelector((state: RootState) => state.person.firstName);
+```
+
+[react-redux]: https://redux.js.org/usage/index
+[react-style-guide]: https://redux.js.org/style-guide/style-guide
+[redux-toolkit]: https://redux-toolkit.js.org/usage/usage-guide
