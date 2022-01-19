@@ -10,9 +10,7 @@ const TipBook = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'tips.title' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'tips.title' })} />
       <PageContainer>
         <Typography component="h2" variant="h4">
           {intl.formatMessage({ id: 'tips.title.expanded' })}

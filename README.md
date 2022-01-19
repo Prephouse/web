@@ -37,7 +37,6 @@
      certificate
   5. Run `pnpm startsecure`
   6. Navigate to <https://localhost:3000> on your web browser \
-     <br />
 
   > You must ensure that both the key.pem and cert.pem are stored in the .cert directory as that
   > directory is (a) where webpack is configured to look and (b) configured to be ignored by git.
@@ -117,10 +116,9 @@ automatically generates the necessary React hooks, whereas the latter module is 
 JavaScript projects in general.
 
 ```typescript
-// GOOD
-import { createApi } from '@reduxjs/toolkit/query/react';
-// BAD
-import { createApi } from '@reduxjs/toolkit/query';
+
+/* GOOD */ import { createApi } from '@reduxjs/toolkit/query/react';
+/* BAD  */ import { createApi } from '@reduxjs/toolkit/query';
 
 const someApi = createApi({
   /* some stuff */
@@ -131,7 +129,7 @@ const someApi = createApi({
   }),
 });
 
-// with the BAD example, the createApi function wouldn't generate the useGetAQuery hook
+// with the BAD import, the createApi function wouldn't generate the useGetAQuery hook
 // and hence this export statement would fail
 export const { useGetAQuery } = someApi;
 ```
@@ -144,19 +142,18 @@ may deviate from other similar projects.
 
 ### Internalization (i18n)
 
-If you need to add a new _user-facing_ string (not, for example, a JavaScript `Error` message) on
-the client side, write out that string in English and follow these steps to ensure that it can get
-localized to other locales in the future.
+If you need to add a new _user-facing_ string (not, for example, a JavaScript `Error` message or
+Rollbar messages) on the client side, write out that string in English and follow these steps to
+ensure that it can get localized to other locales in the future.
 
-1. Check whether one or more words in the string may be pluralized in some instances, e.g., `1 dog`
-   and `3 dogs`
+1. Check whether one or more words in the string may be pluralized in some instances, e.g., 1 dog
+   and 3 dogs
 2. Format the string as an [ICU message][icu-message]
 3. Place the string in the [index.json](./src/strings/translations/en-US/index.json) file for the
    en-US locale
 4. Use the [react-intl][react-intl] library to retrieve the string in a React component
 
-You can substitute the placeholder of an ICU message with almost any JSX element when using the
-[react-intl][react-intl] library.
+You can substitute the placeholder of an ICU message with almost any JSX element.
 
 ```typescript jsx
 // assume that index.json contains the { "a.b.c": "Hello, {world}" } key value pair
@@ -253,3 +250,58 @@ const firstName2 = useSelector((state: RootState) => state.person.firstName);
 [react-redux]: https://redux.js.org/usage/index
 [react-style-guide]: https://redux.js.org/style-guide/style-guide
 [redux-toolkit]: https://redux-toolkit.js.org/usage/usage-guide
+
+### Form management
+
+We utilize the [Formik][formik] library to create our HTML forms and manage the state of such forms.
+The library can be easily integrated with the MUI components as demonstrated
+[here][formik-mui-example].
+
+[formik]: https://formik.org/
+[formik-mui-example]: https://formik.org/docs/examples/with-material-ui
+
+### Schema declaration and validation
+
+We utilize the [Zod][zod] library to declare and validate the schema of values, such as form input
+values or API response values, on the client. We refer to any schema declared using Zod as a "zod
+schema".
+
+In order to declare a zod schema, follow these steps:
+
+1. Implement your zod schema, or a function that generates a dynamic zod schema; consult the Zod
+   documentation
+2. Place your zod schema in the [schemas](src/schemas) directory
+3. Declare the TypeScript type for the schema using the `infer` function in Zod
+
+As highlighted in step 2, Zod is able to infer and generate the TypeScript types of the schemas at
+compile-time. Consequently, we can ensure type safety when working with the corresponding data, such
+as when setting initial input values in our HTML forms as exemplified in the following code block.
+
+```typescript
+import { z } from 'zod';
+
+const schema = z.object({
+  school: z.string(),
+});
+type Schema = z.infer<typeof schema>;
+
+const initialValues: Schema = {
+  school: 'University of Waterloo',
+};
+```
+
+In order to validate the inputs of a Formik form (see [Form Management](#form-management)) against a
+zod schema, call the `toFormikValidationSchema` function from the zod-formik-adapter library on that
+schema. This function returns a Formik validation schema that can then be passed on the
+`validationSchema` prop in the `Formik` component. As long as the keys in the zod schema object
+matches the names of each form input component (e.g., the name prop in the Formik `Field`
+component), the form inputs will be automatically validated by Formik with minimal boilerplate code
+and any error message will be passed on from the zod schema to the corresponding erroneous form
+input.
+
+Any client-side schema validation should **not** serve as a replacement for server-side validation.
+A user can change the JavaScript logic on the client and thus bypass the validation. Instead,
+client-side validation is designed to avoid the need to make unnecessary API calls that the client
+already knows would fail on the server.
+
+[zod]: https://github.com/colinhacks/zod

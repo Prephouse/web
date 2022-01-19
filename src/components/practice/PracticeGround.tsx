@@ -54,9 +54,7 @@ const PracticeGround = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'practice.title.expanded' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'practice.title.expanded' })} />
       <PageContainer>
         <Paper
           elevation={3}

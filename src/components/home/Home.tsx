@@ -8,9 +8,7 @@ const Home = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'app.title' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'app.title' })} />
       <CenteredDiv style={{ height: '70vh' }} />
     </>
   );

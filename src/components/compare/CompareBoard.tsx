@@ -8,9 +8,7 @@ const CompareBoard = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'compare.title' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'compare.title' })} />
       <PageContainer />
     </>
   );

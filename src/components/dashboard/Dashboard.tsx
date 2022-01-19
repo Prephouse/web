@@ -8,9 +8,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'dashboard.title' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'dashboard.title' })} />
       <PageContainer />
     </>
   );

@@ -25,9 +25,7 @@ const Support = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'support.title' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'support.title' })} />
       <Box
         sx={{
           mx: {

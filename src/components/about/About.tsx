@@ -11,9 +11,7 @@ const About = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'about.title' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'about.title' })} />
       <PageContainer>
         <IntroductoryPanel />
         <TeamPanel />

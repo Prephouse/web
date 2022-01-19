@@ -36,9 +36,7 @@ const SignUpForm = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{intl.formatMessage({ id: 'user.signup.title' })}</title>
-      </Helmet>
+      <Helmet title={intl.formatMessage({ id: 'user.signup.title' })} />
       <PageContainer maxWidth="md">
         <Formik
           initialValues={initialValues}
