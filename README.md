@@ -25,8 +25,8 @@
 - Run `pnpm i` when you need to install any new packages
 - Run `pnpm store prune` at your own convenience if your machine is low on disk space and contains
   orphan node modules in its pnpm store
-- A hot reload of the Prephouse website will be triggered whenever you add or modify files in the
-  [src](src) directory
+- A hot reload of the Prephouse website will be triggered whenever you add, modify or delete any files
+  in the [src](src) directory
 - If you want to serve your local development server over HTTPS, then follow these steps on your CLI
   **in the root directory of this repository**
 
@@ -36,7 +36,7 @@
   4. Run `mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"` to create an SSL
      certificate
   5. Run `pnpm startsecure`
-  6. Navigate to <https://localhost:3000> on your web browser \
+  6. Navigate to <https://localhost:3000> on your web browser
 
   > You must ensure that both the key.pem and cert.pem are stored in the .cert directory as that
   > directory is (a) where webpack is configured to look and (b) configured to be ignored by git.
@@ -93,7 +93,7 @@ these styling rules when you attempt to commit your code to the git repository.
 ### OpenSSL provider
 
 If you encounter an issue with OpenSSL when running `pnpm start` on Node.js 17, you should either
-use Node.js 16 (the latest LTS version) _or_ set `NODE_OPTIONS=--openssl-legacy-provider` as a local
+use Node.js 16 (the latest LTS version) **or** set `NODE_OPTIONS=--openssl-legacy-provider` as a local
 environment variable.
 
 ### Dependency resolution
@@ -110,7 +110,7 @@ projects.
 You may have built a query or mutation inside a `createApi` function call using the RTK Query
 library but cannot find the hook for that query or mutation in the return value of `createApi`. In
 such case, you should check that you imported `createApi` from the `@reduxjs/toolkit/query/react`
-module and _not_ the `@reduxjs/toolkit/query` module (note the `/react` in the suffix of the name of
+module and **not** the `@reduxjs/toolkit/query` module (note the `/react` in the suffix of the name of
 the former module). The former module is designed specifically for React projects, and thus
 automatically generates the necessary React hooks, whereas the latter module is designed for
 JavaScript projects in general.
@@ -142,7 +142,7 @@ may deviate from other similar projects.
 
 ### Internalization (i18n)
 
-If you need to add a new _user-facing_ string (not, for example, a JavaScript `Error` message or
+If you need to add a new **user-facing** string (not, for example, a JavaScript `Error` message or
 Rollbar messages) on the client side, write out that string in English and follow these steps to
 ensure that it can get localized to other locales in the future.
 
@@ -165,8 +165,8 @@ intl.formatMessage({ id: 'a.b.c' }, { world: <b>World!</b> });
 ```
 
 Any user-facing numbers, currencies, dates and times should also be localized using the respective
-functions in the react-intl library. However, you do _not_ need to be concerned about the
-localization for the _built-in_ MUI components, except in parts of the component that have been
+functions in the react-intl library. However, you do **not** need to be concerned about the
+localization for the **built-in** MUI components, except in parts of the component that have been
 overwritten (e.g., where some default text has been replaced with a custom one), as the default
 localization has already been handled by open source contributors of the MUI library.
 
@@ -195,7 +195,7 @@ import { createApi } from '@reduxjs/toolkit/query';
 ```
 
 Follow the official RTK Query documentation for instructions on implementing a new query or mutation
-on the client. Do _not_ use the RTK Query version of the `baseQuery` function; we have our own
+on the client. Do **not** use the RTK Query version of the `baseQuery` function; we have our own
 custom implementations of that function as highlighted in the subsequent paragraphs of this readme.
 The queries and mutations should be placed in the proper service in the [services](src/services)
 directory. We have one separate service for each base URL.
@@ -207,7 +207,7 @@ can utilize as the base query in the RTK Query `createApi` function. The `baseQu
 automatically converts the HTTP request and response keys to snake case and camel case respectively.
 This is particularly important for the Prephouse APIs since our backend server expects snake case in
 accordance with our Python variable naming rules but the client uses camel case. On the other hand,
-the `rawBaseQuery` function does _not_ perform any pre- or post-processing on the HTTP request and
+the `rawBaseQuery` function does **not** perform any pre- or post-processing on the HTTP request and
 response data.
 
 For GraphQL APIs, we provide the [`graphqlBaseQuery`](src/services/query.ts) function with
@@ -253,7 +253,7 @@ const firstName2 = useSelector((state: RootState) => state.person.firstName);
 
 ### Form management
 
-We utilize the [Formik][formik] library to create our HTML forms and manage the state of such forms.
+We use the [Formik][formik] library to create our HTML forms and manage the state of such forms.
 The library can be easily integrated with the MUI components as demonstrated
 [here][formik-mui-example].
 
@@ -262,7 +262,7 @@ The library can be easily integrated with the MUI components as demonstrated
 
 ### Schema declaration and validation
 
-We utilize the [Zod][zod] library to declare and validate the schema of values, such as form input
+We use the [Zod][zod] library to declare and validate the schema of values, such as form input
 values or API response values, on the client. We refer to any schema declared using Zod as a "zod
 schema".
 
