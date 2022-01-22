@@ -8,6 +8,8 @@ import { Popover, Typography } from '@mui/material';
 
 import { getFormValidationSchema } from '../../../schemas/user/signUpFormSchema';
 
+import { useSignUpUserMutation } from '../../../services/prephouse';
+
 import initialValues from '../../../values/user/signUpFormValues';
 
 import FormButtons from '../../common/FormButtons';
@@ -32,7 +34,7 @@ const SignUpForm = () => {
     setAnchorElPsi(null);
   };
 
-  const registerUser = () => {};
+  const [registerUser] = useSignUpUserMutation();
 
   return (
     <>
@@ -40,7 +42,14 @@ const SignUpForm = () => {
       <PageContainer maxWidth="md">
         <Formik
           initialValues={initialValues}
-          onSubmit={registerUser}
+          onSubmit={values =>
+            registerUser({
+              firstName: values.firstName,
+              lastName: values.lastName,
+              email: values.email,
+              password: values.password,
+            })
+          }
           validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
           validateOnBlur={false}
           validateOnChange={false}

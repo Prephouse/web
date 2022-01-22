@@ -1,7 +1,6 @@
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import camelcaseKeys from 'camelcase-keys';
-import { ClientError as GqlClientError, request as gqlRequest } from 'graphql-request';
 import snakecaseKeys from 'snakecase-keys';
 
 const toCamelCaseKeys = (obj: Parameters<typeof camelcaseKeys>[0]) =>
@@ -66,19 +65,5 @@ export const rawBaseQuery =
       return {
         error: { status: err.response?.status, data: err.response?.data },
       };
-    }
-  };
-
-export const graphqlBaseQuery =
-  ({ baseUrl }: { baseUrl: string }) =>
-  async ({ body }: { body: string }) => {
-    try {
-      const result = await gqlRequest(baseUrl, body);
-      return { data: result };
-    } catch (error) {
-      if (error instanceof GqlClientError) {
-        return { error: { status: error.response.status, data: error } };
-      }
-      return { error: { status: 500, data: error } };
     }
   };

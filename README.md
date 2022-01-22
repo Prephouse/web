@@ -25,8 +25,8 @@
 - Run `pnpm i` when you need to install any new packages
 - Run `pnpm store prune` at your own convenience if your machine is low on disk space and contains
   orphan node modules in its pnpm store
-- A hot reload of the Prephouse website will be triggered whenever you add, modify or delete any files
-  in the [src](src) directory
+- A hot reload of the Prephouse website will be triggered whenever you add, modify or delete any
+  files in the [src](src) directory
 - If you want to serve your local development server over HTTPS, then follow these steps on your CLI
   **in the root directory of this repository**
 
@@ -93,8 +93,8 @@ these styling rules when you attempt to commit your code to the git repository.
 ### OpenSSL provider
 
 If you encounter an issue with OpenSSL when running `pnpm start` on Node.js 17, you should either
-use Node.js 16 (the latest LTS version) **or** set `NODE_OPTIONS=--openssl-legacy-provider` as a local
-environment variable.
+use Node.js 16 (the latest LTS version) **or** set `NODE_OPTIONS=--openssl-legacy-provider` as a
+local environment variable.
 
 ### Dependency resolution
 
@@ -110,8 +110,8 @@ projects.
 You may have built a query or mutation inside a `createApi` function call using the RTK Query
 library but cannot find the hook for that query or mutation in the return value of `createApi`. In
 such case, you should check that you imported `createApi` from the `@reduxjs/toolkit/query/react`
-module and **not** the `@reduxjs/toolkit/query` module (note the `/react` in the suffix of the name of
-the former module). The former module is designed specifically for React projects, and thus
+module and **not** the `@reduxjs/toolkit/query` module (note the `/react` in the suffix of the name
+of the former module). The former module is designed specifically for React projects, and thus
 automatically generates the necessary React hooks, whereas the latter module is designed for
 JavaScript projects in general.
 
@@ -210,9 +210,6 @@ accordance with our Python variable naming rules but the client uses camel case.
 the `rawBaseQuery` function does **not** perform any pre- or post-processing on the HTTP request and
 response data.
 
-For GraphQL APIs, we provide the [`graphqlBaseQuery`](src/services/query.ts) function with
-[graphql-request][graphql-request] as the GraphQL client.
-
 [rtk-query]: https://redux-toolkit.js.org/rtk-query/overview
 [axios]: https://axios-http.com/docs/intro
 [graphql-request]: https://github.com/prisma-labs/graphql-request
@@ -253,9 +250,8 @@ const firstName2 = useSelector((state: RootState) => state.person.firstName);
 
 ### Form management
 
-We use the [Formik][formik] library to create our HTML forms and manage the state of such forms.
-The library can be easily integrated with the MUI components as demonstrated
-[here][formik-mui-example].
+We use the [Formik][formik] library to create our HTML forms and manage the state of such forms. The
+library can be easily integrated with the MUI components as demonstrated [here][formik-mui-example].
 
 [formik]: https://formik.org/
 [formik-mui-example]: https://formik.org/docs/examples/with-material-ui
