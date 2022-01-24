@@ -19,7 +19,7 @@ const ScaledAvatar = (
   />
 );
 
-const NavigationDropdown = () => {
+const NavigationProfile = () => {
   const intl = useIntl();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
@@ -105,4 +105,4 @@ const NavigationDropdown = () => {
   );
 };
 
-export default NavigationDropdown;
+export default NavigationProfile;

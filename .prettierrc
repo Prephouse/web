@@ -6,6 +6,7 @@
   "singleQuote": true,
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
+    "^firebase/(.*)$",
     "^@mui/(.*)$",
     "^(.*)libs/(.*)",
     "^(.*)hooks/(.*)",

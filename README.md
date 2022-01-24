@@ -32,7 +32,7 @@
 
   1. Install the [mkcert][] tool
   2. Run `mkcert -install` to install a local certificate authority (CA)
-  3. Run `mkdir -p .cert`
+  3. Run `mkdir .cert`
   4. Run `mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"` to create an SSL
      certificate
   5. Run `pnpm startsecure`
@@ -181,10 +181,10 @@ performance. Further information on the i18n implementation can be found in the
 
 ### Client-server communication
 
-We use the [RTK Query][rtk-query] library to fetch and cache data from servers, including from the
-Prephouse backend server, through queries and mutations. The library integrates very well with Redux
-(see [Global State Management](#global-state-management)) and handles a lot of the boilerplate code
-for us. The library is by default framework-agnostic, but we want to utilize React hooks to call our
+We use [RTK Query][rtk-query] to fetch and cache data from servers, including from the Prephouse
+backend server, through queries and mutations. The library integrates very well with Redux (see
+[Global State Management](#global-state-management)) and handles a lot of the boilerplate code for
+us. The library is by default framework-agnostic, but we want to utilize React hooks to call our
 queries and mutations so make sure to use the React "version" of the library.
 
 ```typescript
@@ -250,17 +250,16 @@ const firstName2 = useSelector((state: RootState) => state.person.firstName);
 
 ### Form management
 
-We use the [Formik][formik] library to create our HTML forms and manage the state of such forms. The
-library can be easily integrated with the MUI components as demonstrated [here][formik-mui-example].
+We use [Formik][formik] to create our HTML forms and manage the state of such forms. The library can
+be easily integrated with the MUI components as demonstrated [here][formik-mui-example].
 
 [formik]: https://formik.org/
 [formik-mui-example]: https://formik.org/docs/examples/with-material-ui
 
 ### Schema declaration and validation
 
-We use the [Zod][zod] library to declare and validate the schema of values, such as form input
-values or API response values, on the client. We refer to any schema declared using Zod as a "zod
-schema".
+We use [Zod][zod] to declare and validate the schema of values, such as form input values or API
+response values, on the client. We refer to any schema declared using Zod as a "zod schema".
 
 In order to declare a zod schema, follow these steps:
 

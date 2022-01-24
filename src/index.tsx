@@ -2,18 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 
+import initializeFirebase from 'libs/firebase';
+
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 import { store } from './store';
-import firebaseConfig from 'libs/firebase';
 
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-getAnalytics(app);
+initializeFirebase();
 
 ReactDOM.render(
   <React.StrictMode>

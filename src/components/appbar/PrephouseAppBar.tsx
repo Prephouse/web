@@ -10,9 +10,9 @@ import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
 import navigationDestinations from '../../values/appbar/navigationDestinations';
 
 import HeavyDivider from '../common/HeavyDivider';
-import NavigationDrawer from './NavigationDrawer';
-import NavigationDropdown from './NavigationDropdown';
+import NavigationHamburgerMenu from './NavigationHamburgerMenu';
 import NavigationHeading from './NavigationHeading';
+import NavigationProfile from './NavigationProfile';
 
 const FULL_NAVIGATION_BREAKPOINT = 'md';
 
@@ -93,12 +93,12 @@ const PrephouseAppBar = () => {
               ))}
             </NavigationGroup>
             <HeavyDivider orientation="vertical" />
-            <NavigationDropdown />
+            <NavigationProfile />
           </Toolbar>
         </AppBar>
       </ElevationScroll>
       <Offset />
-      <NavigationDrawer drawerOpened={drawerOpened} onDrawerOpened={handleDrawerOpened} />
+      <NavigationHamburgerMenu drawerOpened={drawerOpened} onDrawerOpened={handleDrawerOpened} />
     </>
   );
 };
