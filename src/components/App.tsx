@@ -23,6 +23,7 @@ import {
   PRACTICE_PATH,
   SUPPORT_PATH,
   TIPS_PATH,
+  USER_SIGN_IN_PATH,
   USER_SIGN_UP_PATH,
 } from '../strings/paths';
 
@@ -39,6 +40,7 @@ const About = lazy(() => import('./about/About'));
 const CompareBoard = lazy(() => import('./compare/CompareBoard'));
 const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 const PracticeGround = lazy(() => import('./practice/PracticeGround'));
+const SignInForm = lazy(() => import('./user/signin/SignInForm'));
 const SignUpForm = lazy(() => import('./user/signup/SignUpForm'));
 const Support = lazy(() => import('./support/Support'));
 const TipBook = lazy(() => import('./tips/TipBook'));
@@ -104,6 +106,10 @@ const App = () => {
                       element={<SuspendableScreen screen={<CompareBoard />} />}
                     />
                     <Route path={TIPS_PATH} element={<SuspendableScreen screen={<TipBook />} />} />
+                    <Route
+                      path={USER_SIGN_IN_PATH}
+                      element={<SuspendableScreen screen={<SignInForm />} />}
+                    />
                     <Route
                       path={USER_SIGN_UP_PATH}
                       element={<SuspendableScreen screen={<SignUpForm />} />}
