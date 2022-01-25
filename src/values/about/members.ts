@@ -52,6 +52,20 @@ const members: readonly Member[] = [
     linkedin: 'https://www.linkedin.com/in/mivia-li/',
     github: 'https://github.com/Mivialll',
   },
+  {
+    name: 'Priyanka Hariharan',
+    img: 'priyanka-hariharan.jpg',
+    bio: `TBD`,
+    linkedin: 'https://www.linkedin.com/in/priyanka-h/',
+    github: 'https://github.com/PriyankaH21',
+  },
+  {
+    name: 'Boris Nguyen',
+    img: 'boris-nguyen.jpg',
+    bio: `TBD`,
+    linkedin: 'https://www.linkedin.com/in/boris-nguyen/',
+    github: 'https://github.com/boris-nguyen',
+  },
 ];
 
 export default members;
