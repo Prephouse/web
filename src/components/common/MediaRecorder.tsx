@@ -1,6 +1,6 @@
 import { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 
-import BrowserSupportError from '../../errors/BrowserSupportError';
+import BrowserSupportError from 'errors/BrowserSupportError';
 
 export enum MediaRecordingStatus {
   Idle = 'idle',

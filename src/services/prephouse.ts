@@ -1,8 +1,8 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { UserSignUpFormFields } from '../schemas/user/signUpFormSchema';
+import { baseQuery } from 'libs/query';
 
-import { baseQuery } from './query';
+import { UserSignUpFormFields } from 'schemas/user/signUpFormSchema';
 
 export const prephouseApi = createApi({
   reducerPath: 'prephouseApi',

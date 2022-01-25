@@ -1,6 +1,6 @@
-import { render, screen } from 'testing';
+import PasswordStrengthMeter from 'components/user/signup/PasswordStrengthIndicator';
 
-import PasswordStrengthMeter from './PasswordStrengthIndicator';
+import { render, screen } from 'libs/test';
 
 describe('Password Strength Indicator', () => {
   it('indicate extremely weak password (0)', () => {

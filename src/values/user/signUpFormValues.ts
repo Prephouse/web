@@ -1,4 +1,4 @@
-import type { UserSignUpFormFields } from '../../schemas/user/signUpFormSchema';
+import type { UserSignUpFormFields } from 'schemas/user/signUpFormSchema';
 
 const initialValues: UserSignUpFormFields = {
   firstName: '',

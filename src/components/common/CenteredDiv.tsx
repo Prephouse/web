@@ -1,6 +1,6 @@
 import { CSSProperties, HTMLProps, ReactNode } from 'react';
 
-import Flex from './Flex';
+import Flex from 'components/common/Flex';
 
 interface Props extends HTMLProps<HTMLDivElement> {
   style?: CSSProperties;

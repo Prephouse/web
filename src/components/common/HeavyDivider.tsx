@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import Divider from '@mui/material/Divider';
 
-import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
+import { NAVIGATION_HOVER_GREY } from 'styles/colours';
 
 interface HeavyDividerProps {
   orientation?: 'horizontal' | 'vertical';

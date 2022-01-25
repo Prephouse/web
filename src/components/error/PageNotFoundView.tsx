@@ -5,11 +5,11 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { Link, Typography } from '@mui/material';
 
-import * as paths from '../../strings/paths';
+import PageContainer from 'components/common/PageContainer';
 
-import { findClosestPathname } from '../../utils/string';
+import * as paths from 'strings/paths';
 
-import PageContainer from '../common/PageContainer';
+import { findClosestPathname } from 'utils/string';
 
 const PageNotFoundView = () => {
   const intl = useIntl();

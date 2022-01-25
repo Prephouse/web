@@ -1,10 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
-import PageContainer from '../common/PageContainer';
-import AppPanel from './AppPanel';
-import IntroductoryPanel from './IntroductoryPanel';
-import TeamPanel from './TeamPanel';
+import AppPanel from 'components/about/AppPanel';
+import IntroductoryPanel from 'components/about/IntroductoryPanel';
+import TeamPanel from 'components/about/TeamPanel';
+import PageContainer from 'components/common/PageContainer';
 
 const About = () => {
   const intl = useIntl();

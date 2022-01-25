@@ -1,15 +1,15 @@
 import { useIntl } from 'react-intl';
 
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useAppSelector from '../../hooks/useAppSelector';
+import FormButtons from 'components/common/FormButtons';
+import AudioRecordZone from 'components/practice/media/AudioRecordZone';
+import MediaUploadZone from 'components/practice/media/MediaUploadZone';
+import VideoRecordZone from 'components/practice/media/VideoRecordZone';
 
-import { setMediaSource } from '../../states/practice/actions';
-import { SessionMedium, SessionOrigin } from '../../states/practice/enums';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 
-import FormButtons from '../common/FormButtons';
-import AudioRecordZone from './media/AudioRecordZone';
-import MediaUploadZone from './media/MediaUploadZone';
-import VideoRecordZone from './media/VideoRecordZone';
+import { setMediaSource } from 'states/practice/actions';
+import { SessionMedium, SessionOrigin } from 'states/practice/enums';
 
 interface Props {
   onNext: () => void;

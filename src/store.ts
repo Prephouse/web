@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 
-import { prephouseApi } from './services/prephouse';
+import { prephouseApi } from 'services/prephouse';
 
-import practiceReducer from './states/practice/reducer';
-import preferenceReducer from './states/preference/reducer';
-import supportReducer from './states/support/reducer';
+import practiceReducer from 'states/practice/reducer';
+import preferenceReducer from 'states/preference/reducer';
+import supportReducer from 'states/support/reducer';
 
 export const rootReducer = combineReducers({
   practice: practiceReducer,

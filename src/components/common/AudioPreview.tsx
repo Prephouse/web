@@ -2,9 +2,9 @@ import { memo, useRef } from 'react';
 
 import { useTheme } from '@mui/material';
 
-import OutOfBoundError from '../../errors/OutOfBoundError';
+import OutOfBoundError from 'errors/OutOfBoundError';
 
-import { GREY_400 } from '../../styles/colours';
+import { GREY_400 } from 'styles/colours';
 
 interface Props {
   stream: MediaStream | null;

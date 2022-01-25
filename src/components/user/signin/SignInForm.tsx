@@ -1,20 +1,20 @@
 import { Field, Form, Formik } from 'formik';
-import { FormEvent, MouseEvent as ReactMouseEvent, useState } from 'react';
+import { FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Typography } from '@mui/material';
 
-import { getCredentials } from '../../../schemas/user/signInFormSchema';
+import FormButtons from 'components/common/FormButtons';
+import FormGroupCompact from 'components/common/FormGroupCompact';
+import FormInput from 'components/common/FormInput';
+import FormPaper from 'components/common/FormPaper';
+import PageContainer from 'components/common/PageContainer';
 
-import signinInitialValues from '../../../values/user/signInFormValues';
+import { getCredentials } from 'schemas/user/signInFormSchema';
 
-import FormButtons from '../../common/FormButtons';
-import FormGroupCompact from '../../common/FormGroupCompact';
-import FormInput from '../../common/FormInput';
-import FormPaper from '../../common/FormPaper';
-import PageContainer from '../../common/PageContainer';
+import signinInitialValues from 'values/user/signInFormValues';
 
 const SignInForm = () => {
   const intl = useIntl();

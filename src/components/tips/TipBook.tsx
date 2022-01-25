@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 
 import { Pagination, Typography } from '@mui/material';
 
-import PageContainer from '../common/PageContainer';
+import PageContainer from 'components/common/PageContainer';
 
 const TipBook = () => {
   const intl = useIntl();

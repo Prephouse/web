@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl';
 
 import { Box, Slider, Stack, Typography } from '@mui/material';
 
-import AudioPreview from '../../common/AudioPreview';
-import PrephouseMediaRecorder from '../../common/MediaRecorder';
-import VideoPreview from '../../common/VideoPreview';
-import LiveRecordButtons from './LiveRecordButtons';
+import AudioPreview from 'components/common/AudioPreview';
+import PrephouseMediaRecorder from 'components/common/MediaRecorder';
+import VideoPreview from 'components/common/VideoPreview';
+import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
 
 interface Props {
   onSubmit: (src: string) => void;

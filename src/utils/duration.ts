@@ -1,6 +1,6 @@
 import type { TimeUnit as ChartDurationUnit } from 'chart.js';
 
-import ValueError from '../errors/ValueError';
+import ValueError from 'errors/ValueError';
 
 export enum DurationUnit {
   Millisecond = 0,

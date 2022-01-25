@@ -2,9 +2,9 @@ import { useIntl } from 'react-intl';
 
 import { SxProps, Theme, Typography } from '@mui/material';
 
-import { HOME_PATH } from '../../strings/paths';
+import PlainRouterLink from 'components/common/PlainRouterLink';
 
-import PlainRouterLink from '../common/PlainRouterLink';
+import { HOME_PATH } from 'strings/paths';
 
 interface Props {
   sx?: SxProps<Theme>;

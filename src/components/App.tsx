@@ -8,13 +8,20 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
 import { Localization } from '@mui/material/locale';
 
-import rollbar from '../libs/rollbar';
+import PrephouseAppBar from 'components/appbar/PrephouseAppBar';
+import SnackbarProvider from 'components/common/SnackbarProvider';
+import SuspendableScreen from 'components/common/SuspendableScreen';
+import PageNotFoundView from 'components/error/PageNotFoundView';
+import Footer from 'components/footer/Footer';
+import Home from 'components/home/Home';
 
-import useAppSelector from '../hooks/useAppSelector';
-import usePrevious from '../hooks/usePrevious';
-import { SnackbarWrapper } from '../hooks/useSnackbar';
+import useAppSelector from 'hooks/useAppSelector';
+import usePrevious from 'hooks/usePrevious';
+import { SnackbarWrapper } from 'hooks/useSnackbar';
 
-import locales, { DEFAULT_LOCALE, TranslatedStr } from '../strings/locales';
+import rollbar from 'libs/rollbar';
+
+import locales, { DEFAULT_LOCALE, TranslatedStr } from 'strings/locales';
 import {
   ABOUT_PATH,
   COMPARE_PATH,
@@ -25,25 +32,18 @@ import {
   TIPS_PATH,
   USER_SIGN_IN_PATH,
   USER_SIGN_UP_PATH,
-} from '../strings/paths';
+} from 'strings/paths';
 
-import generateTheme from '../styles/themes';
+import generateTheme from 'styles/themes';
 
-import PrephouseAppBar from './appbar/PrephouseAppBar';
-import SnackbarContextProvider from './common/SnackbarContextProvider';
-import SuspendableScreen from './common/SuspendableScreen';
-import PageNotFoundView from './error/PageNotFoundView';
-import Footer from './footer/Footer';
-import Home from './home/Home';
-
-const About = lazy(() => import('./about/About'));
-const CompareBoard = lazy(() => import('./compare/CompareBoard'));
-const Dashboard = lazy(() => import('./dashboard/Dashboard'));
-const PracticeGround = lazy(() => import('./practice/PracticeGround'));
-const SignInForm = lazy(() => import('./user/signin/SignInForm'));
-const SignUpForm = lazy(() => import('./user/signup/SignUpForm'));
-const Support = lazy(() => import('./support/Support'));
-const TipBook = lazy(() => import('./tips/TipBook'));
+const About = lazy(() => import('components/about/About'));
+const CompareBoard = lazy(() => import('components/compare/CompareBoard'));
+const Dashboard = lazy(() => import('components/dashboard/Dashboard'));
+const PracticeGround = lazy(() => import('components/practice/PracticeGround'));
+const SignInForm = lazy(() => import('components/user/signin/SignInForm'));
+const SignUpForm = lazy(() => import('components/user/signup/SignUpForm'));
+const Support = lazy(() => import('components/support/Support'));
+const TipBook = lazy(() => import('components/tips/TipBook'));
 
 const establishTheme = (localization: Localization, prefersDarkMode: boolean) => {
   let theme = generateTheme(localization, prefersDarkMode);
@@ -87,7 +87,7 @@ const App = () => {
           <HelmetProvider>
             <ThemeProvider theme={theme}>
               <CssBaseline />
-              <SnackbarContextProvider>
+              <SnackbarProvider>
                 <PrephouseAppBar />
                 <main>
                   <Routes>
@@ -122,7 +122,7 @@ const App = () => {
                   </Routes>
                   <SnackbarWrapper />
                 </main>
-              </SnackbarContextProvider>
+              </SnackbarProvider>
               <Footer />
             </ThemeProvider>
           </HelmetProvider>

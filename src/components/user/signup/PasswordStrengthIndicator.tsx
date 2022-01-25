@@ -4,12 +4,12 @@ import zxcvbn from 'zxcvbn';
 
 import { Typography } from '@mui/material';
 
-import { getPasswordValidators } from '../../../utils/validators';
+import IconicText from 'components/common/IconicText';
+import SuccessIndicatorIcon from 'components/common/SuccessIndicatorIcon';
 
-import badPasswords from '../../../values/user/badPasswords';
+import { getPasswordValidators } from 'utils/validators';
 
-import IconicText from '../../common/IconicText';
-import SuccessIndicatorIcon from '../../common/SuccessIndicatorIcon';
+import badPasswords from 'values/user/badPasswords';
 
 interface Props {
   password: string;

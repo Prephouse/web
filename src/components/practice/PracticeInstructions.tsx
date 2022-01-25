@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 
-import FormButtons from '../common/FormButtons';
+import FormButtons from 'components/common/FormButtons';
 
 interface Props {
   onNext: () => void;

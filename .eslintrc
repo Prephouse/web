@@ -93,6 +93,7 @@
     "formatjs/no-multiple-whitespaces": "error",
     "formatjs/no-offset": "error",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-relative-parent-imports": "error",
     "import/order": "off", // prevent conflicts with the Trivago import sorting prettier plugin
     "import/prefer-default-export": "off",
     "no-console": "warn",

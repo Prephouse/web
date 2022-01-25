@@ -22,14 +22,14 @@ const apps: readonly App[] = [
       "Served over HTTPS with a SSL certificate from the Let's Encrypt CA",
       'Hosted on Netlify',
     ],
-    techStack: ['TypeScript', 'React', 'Redux', 'Axios', 'MUI5', 'Emotion', 'Jest', 'Enzyme'],
+    techStack: ['TypeScript', 'React', 'Redux', 'MUI5', 'Emotion', 'Jest', 'React Testing Library'],
     productionUrl: 'https://www.prephouse.io',
   },
   {
     marketingName: 'Prephouse Backend',
     internalName: 'ph-backend',
     description: `
-      Our backend server — which includes the REST APIs, Flask-SQLAlchemy models,
+      Our backend server — which includes the REST APIs, Flask-SQLAlchemy models
       and Marshmallow schemas — for our client-facing apps`,
     points: [
       'Enforces a HSTS mechanism',

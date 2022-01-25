@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
-import PageContainer from '../common/PageContainer';
+import PageContainer from 'components/common/PageContainer';
 
 const CompareBoard = () => {
   const intl = useIntl();

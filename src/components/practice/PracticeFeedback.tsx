@@ -7,11 +7,11 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@mui/material';
 
-import { GREY_500 } from '../../styles/colours';
+import MediaSeekSlider from 'components/common/MediaSeekSlider';
 
-import { roundAsDecimal } from '../../utils/math';
+import { GREY_500 } from 'styles/colours';
 
-import MediaSeekSlider from '../common/MediaSeekSlider';
+import { roundAsDecimal } from 'utils/math';
 
 interface Props {
   src: string | undefined;

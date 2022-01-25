@@ -5,9 +5,9 @@ import CodeIcon from '@mui/icons-material/Code';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Chip, Grid, Typography } from '@mui/material';
 
-import apps from '../../values/about/apps';
+import HorizontalCard from 'components/common/HorizontalCard';
 
-import HorizontalCard from '../common/HorizontalCard';
+import apps from 'values/about/apps';
 
 const AppPanel = () => {
   const intl = useIntl();

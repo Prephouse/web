@@ -5,16 +5,13 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Autocomplete, TextField } from '@mui/material';
 
-import {
-  FeedbackCategory,
-  getFormValidationSchema,
-} from '../../schemas/support/feedbackFormSchema';
+import FormButtons from 'components/common/FormButtons';
+import FormGroupCompact from 'components/common/FormGroupCompact';
+import FormInput from 'components/common/FormInput';
 
-import initialValues from '../../values/support/feedbackFormValues';
+import { FeedbackCategory, getFormValidationSchema } from 'schemas/support/feedbackFormSchema';
 
-import FormButtons from '../common/FormButtons';
-import FormGroupCompact from '../common/FormGroupCompact';
-import FormInput from '../common/FormInput';
+import initialValues from 'values/support/feedbackFormValues';
 
 const FeedbackForm = () => {
   const intl = useIntl();

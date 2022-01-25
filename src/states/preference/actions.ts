@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import type { BcpName } from '../../strings/locales';
+import type { BcpName } from 'strings/locales';
 
 export const changePrefersDarkMode = createAction<boolean>('preference/changePrefersDarkMode');
 

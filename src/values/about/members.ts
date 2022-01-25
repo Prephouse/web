@@ -29,7 +29,7 @@ const members: readonly Member[] = [
       Computer Engineering student and 16+ months of co-op experience, he carries a huge arsenal of problem-solving
       tools.`,
     website: 'https://www.jadonfan.com/',
-    linkedin: 'https://www.linkedin.com/in/jadon-fan-414993141/',
+    linkedin: 'https://www.linkedin.com/in/jadon-fan/',
     github: 'https://github.com/JadonFan',
   },
   {
@@ -41,7 +41,7 @@ const members: readonly Member[] = [
       a breadth of skills ranging from design to development to deployment. He wears a lot of different hats and
       loves applying himself to causes that can drive societal impact in the world.`,
     website: 'https://www.chandlerlei.dev/',
-    linkedin: 'https://www.linkedin.com/in/qian-chandler-l-486069137/',
+    linkedin: 'https://www.linkedin.com/in/chandlerlei/',
     github: 'https://github.com/chandlerlei2017',
   },
   {

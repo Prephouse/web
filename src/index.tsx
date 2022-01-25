@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
+import { store } from 'store';
+
+import App from './components/App';
 
 import initializeFirebase from 'libs/firebase';
 
-import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
-import { store } from './store';
-
-initializeFirebase();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +18,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+initializeFirebase();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

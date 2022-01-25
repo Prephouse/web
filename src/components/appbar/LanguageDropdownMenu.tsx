@@ -2,15 +2,15 @@ import { useIntl } from 'react-intl';
 
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useAppSelector from '../../hooks/useAppSelector';
+import DropdownMenuItem from 'components/common/DropdownMenuItem';
 
-import { changeLocale } from '../../states/preference/actions';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 
-import locales from '../../strings/locales';
-import type { BcpName } from '../../strings/locales';
+import { changeLocale } from 'states/preference/actions';
 
-import DropdownMenuItem from '../common/DropdownMenuItem';
+import locales from 'strings/locales';
+import type { BcpName } from 'strings/locales';
 
 interface Props {
   onMenuBack: () => void;

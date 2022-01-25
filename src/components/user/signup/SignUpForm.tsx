@@ -6,18 +6,18 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Popover, Typography } from '@mui/material';
 
-import { getFormValidationSchema } from '../../../schemas/user/signUpFormSchema';
+import FormButtons from 'components/common/FormButtons';
+import FormGroupCompact from 'components/common/FormGroupCompact';
+import FormInput from 'components/common/FormInput';
+import FormPaper from 'components/common/FormPaper';
+import PageContainer from 'components/common/PageContainer';
+import PasswordStrengthIndicator from 'components/user/signup/PasswordStrengthIndicator';
 
-import { useSignUpUserMutation } from '../../../services/prephouse';
+import { getFormValidationSchema } from 'schemas/user/signUpFormSchema';
 
-import initialValues from '../../../values/user/signUpFormValues';
+import { useSignUpUserMutation } from 'services/prephouse';
 
-import FormButtons from '../../common/FormButtons';
-import FormGroupCompact from '../../common/FormGroupCompact';
-import FormInput from '../../common/FormInput';
-import FormPaper from '../../common/FormPaper';
-import PageContainer from '../../common/PageContainer';
-import PasswordStrengthIndicator from './PasswordStrengthIndicator';
+import initialValues from 'values/user/signUpFormValues';
 
 const SignUpForm = () => {
   const intl = useIntl();

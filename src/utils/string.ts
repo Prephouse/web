@@ -1,4 +1,4 @@
-import ValueError from '../errors/ValueError';
+import ValueError from 'errors/ValueError';
 
 /**
  * Determines whether two pathname can be treated as 'similar'

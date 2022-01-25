@@ -5,12 +5,12 @@ import { useIntl } from 'react-intl';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Tab, useTheme } from '@mui/material';
 
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useAppSelector from '../../hooks/useAppSelector';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 
-import { setSupportTab } from '../../states/support/actions';
+import { setSupportTab } from 'states/support/actions';
 
-import tabs from '../../values/support/tabs';
+import tabs from 'values/support/tabs';
 
 const Support = () => {
   const tabIndex = useAppSelector(state => state.support.tabIndex);

@@ -5,14 +5,14 @@ import { Link as RouterLink } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Button, IconButton, Toolbar, styled, useScrollTrigger } from '@mui/material';
 
-import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from '../../styles/colours';
+import NavigationHamburgerMenu from 'components/appbar/NavigationHamburgerMenu';
+import NavigationHeading from 'components/appbar/NavigationHeading';
+import NavigationProfile from 'components/appbar/NavigationProfile';
+import HeavyDivider from 'components/common/HeavyDivider';
 
-import navigationDestinations from '../../values/appbar/navigationDestinations';
+import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from 'styles/colours';
 
-import HeavyDivider from '../common/HeavyDivider';
-import NavigationHamburgerMenu from './NavigationHamburgerMenu';
-import NavigationHeading from './NavigationHeading';
-import NavigationProfile from './NavigationProfile';
+import navigationDestinations from 'values/appbar/navigationDestinations';
 
 const FULL_NAVIGATION_BREAKPOINT = 'md';
 

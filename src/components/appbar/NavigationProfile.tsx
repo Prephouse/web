@@ -3,11 +3,11 @@ import { useIntl } from 'react-intl';
 
 import { Avatar, Button, IconButton, Typography } from '@mui/material';
 
-import { NAVIGATION_HOVER_GREY } from '../../styles/colours';
+import LanguageDropdownMenu from 'components/appbar/LanguageDropdownMenu';
+import NavigationDropdownMenu from 'components/appbar/NavigationDropdownMenu';
+import DropdownMenu from 'components/common/DropdownMenu';
 
-import DropdownMenu from '../common/DropdownMenu';
-import LanguageDropdownMenu from './LanguageDropdownMenu';
-import NavigationDropdownMenu from './NavigationDropdownMenu';
+import { NAVIGATION_HOVER_GREY } from 'styles/colours';
 
 const ScaledAvatar = (
   <Avatar

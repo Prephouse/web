@@ -21,6 +21,7 @@
   "git.fetchOnPull": true,
   "prettier.requireConfig": true,
   "typescript.format.enable": false,
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/typescript/lib",
   "[javascript]": {
     "editor.tabSize": 2,

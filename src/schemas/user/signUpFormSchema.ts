@@ -5,7 +5,7 @@ import {
   validatePasswordMinimumLength,
   validatePasswordNumericality,
   validatePasswordUppercase,
-} from '../../utils/validators';
+} from 'utils/validators';
 
 export const getFormValidationSchema = (intl: IntlShape) => {
   const z1 = z.string({

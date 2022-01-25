@@ -1,4 +1,4 @@
-import type { BugReportFormFields } from '../../schemas/support/bugReportFormSchema';
+import type { BugReportFormFields } from 'schemas/support/bugReportFormSchema';
 
 const initialValues: BugReportFormFields = {
   title: '',

@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
-import CenteredDiv from '../common/CenteredDiv';
+import CenteredDiv from 'components/common/CenteredDiv';
 
 const Home = () => {
   const intl = useIntl();

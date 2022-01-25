@@ -27,10 +27,17 @@
   orphan node modules in its pnpm store
 - A hot reload of the Prephouse website will be triggered whenever you add, modify or delete any
   files in the [src](src) directory
+- Place any client-side images in the [public/images](public/images) directory
+  - Try to compress your image using some online tool (e.g., [tinypng][tinypng] for png, jpeg and
+    webp files)
+  - If the image is used exclusively in an HTML `img` element with a fixed width and height, resize
+    the image to be close to the width and image of the HTML element
+  - If the image is large, convert it to the WebP format and place that in the
+    [public/images](public/images) as the primary along with the original image as a fallback
 - If you want to serve your local development server over HTTPS, then follow these steps on your CLI
   **in the root directory of this repository**
 
-  1. Install the [mkcert][] tool
+  1. Install the [mkcert][mkcert] tool
   2. Run `mkcert -install` to install a local certificate authority (CA)
   3. Run `mkdir .cert`
   4. Run `mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"` to create an SSL
@@ -46,6 +53,7 @@
 [pnpm]: https://pnpm.io/installation
 [docker-desktop]: https://www.docker.com/products/docker-desktop
 [docker-compose]: https://docs.docker.com/compose/install/
+[tinypng]: https://tinypng.com/
 [mkcert]: https://github.com/FiloSottile/mkcert#installation
 
 ## Developer Tools
@@ -105,7 +113,7 @@ the pnpm state directory and pnpm-lock.yaml file which usually share the same pa
 the store. However, this last resort may drastically affect the installation time for other pnpm
 projects.
 
-### Missing RTK Query hook
+### RTK Query hook
 
 You may have built a query or mutation inside a `createApi` function call using the RTK Query
 library but cannot find the hook for that query or mutation in the return value of `createApi`. In
@@ -123,7 +131,7 @@ JavaScript projects in general.
 const someApi = createApi({
   /* some stuff */
   endpoints: builder => ({
-    getA: builder.query(
+    getSomething: builder.query(
       /* query implementation */
     ),
   }),
@@ -131,7 +139,7 @@ const someApi = createApi({
 
 // with the BAD import, the createApi function wouldn't generate the useGetAQuery hook
 // and hence this export statement would fail
-export const { useGetAQuery } = someApi;
+export const { useGetSomethingQuery } = someApi;
 ```
 
 ## Implementation
@@ -171,8 +179,8 @@ overwritten (e.g., where some default text has been replaced with a custom one),
 localization has already been handled by open source contributors of the MUI library.
 
 The localized strings are loaded asynchronously for each locale in order to optimize site loading
-performance. Further information on the i18n implementation can be found in the
-[locales.ts](src/strings/locales.ts) file.
+performance. Further information on the i18n implementation can be found in
+[locales.ts](src/strings/locales.ts).
 
 [react-intl]: https://formatjs.io/docs/react-intl/
 [icu-message]:
@@ -202,12 +210,12 @@ directory. We have one separate service for each base URL.
 
 For REST APIs, although RTK Query provides its own HTTP client, we use [Axios][axios] as our HTTP
 client as the latter provides more customization options. We provide
-[`baseQuery`](src/services/query.ts) and [`rawBaseQuery`](src/services/query.ts) functions that you
-can utilize as the base query in the RTK Query `createApi` function. The `baseQuery` function
+[`baseQuery`](src/libs/query.ts) and [`rawBaseQuery`](src/libs/query.ts) functions that you can
+utilize as the base query in the RTK Query `createApi` function. The `baseQuery` function
 automatically converts the HTTP request and response keys to snake case and camel case respectively.
 This is particularly important for the Prephouse APIs since our backend server expects snake case in
-accordance with our Python variable naming rules but the client uses camel case. On the other hand,
-the `rawBaseQuery` function does **not** perform any pre- or post-processing on the HTTP request and
+accordance with our Python naming rules but the client uses camel case. On the other hand, the
+`rawBaseQuery` function does **not** perform any pre- or post-processing on the HTTP request and
 response data.
 
 [rtk-query]: https://redux-toolkit.js.org/rtk-query/overview

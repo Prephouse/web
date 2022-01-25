@@ -16,11 +16,11 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { NAVIGATION_BLACK } from '../../styles/colours';
+import NavigationHeading from 'components/appbar/NavigationHeading';
 
-import navigationDestinations from '../../values/appbar/navigationDestinations';
+import { NAVIGATION_BLACK } from 'styles/colours';
 
-import NavigationHeading from './NavigationHeading';
+import navigationDestinations from 'values/appbar/navigationDestinations';
 
 interface Props {
   drawerOpened: boolean;

@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { PREFERS_DARK_MODE_KEY, SESSION_LOCALE_KEY } from '../../strings/keys';
-import type { BcpName } from '../../strings/locales';
-import { DEFAULT_LOCALE } from '../../strings/locales';
+import { PREFERS_DARK_MODE_KEY, SESSION_LOCALE_KEY } from 'strings/keys';
+import type { BcpName } from 'strings/locales';
+import { DEFAULT_LOCALE } from 'strings/locales';
 
 import { changeLocale, changePrefersDarkMode } from './actions';
 

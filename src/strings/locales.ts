@@ -21,7 +21,7 @@ const locales: Record<BcpName, LocaleDict> = {
     dir: 'ltr',
     async getStrings() {
       return {
-        messages: await import('./translations/en-US/index.json'),
+        messages: await import('strings/translations/en-US/index.json'),
         fnDate: await import('date-fns/locale/en-US'),
         mui: enUS,
       };
@@ -32,7 +32,7 @@ const locales: Record<BcpName, LocaleDict> = {
     dir: 'ltr',
     async getStrings() {
       return {
-        messages: await import('./translations/en-US/index.json'),
+        messages: await import('strings/translations/en-US/index.json'),
         fnDate: await import('date-fns/locale/en-GB'),
         mui: enUS,
       };
@@ -43,7 +43,7 @@ const locales: Record<BcpName, LocaleDict> = {
     dir: 'ltr',
     async getStrings() {
       return {
-        messages: await import('./translations/en-US/index.json'),
+        messages: await import('strings/translations/en-US/index.json'),
         fnDate: await import('date-fns/locale/fr'),
         mui: frFR,
       };
@@ -54,7 +54,7 @@ const locales: Record<BcpName, LocaleDict> = {
     dir: 'ltr',
     async getStrings() {
       return {
-        messages: await import('./translations/en-US/index.json'),
+        messages: await import('strings/translations/en-US/index.json'),
         fnDate: await import('date-fns/locale/zh-CN'),
         mui: zhCN,
       };
@@ -65,7 +65,7 @@ const locales: Record<BcpName, LocaleDict> = {
     dir: 'ltr',
     async getStrings() {
       return {
-        messages: await import('./translations/en-US/index.json'),
+        messages: await import('strings/translations/en-US/index.json'),
         fnDate: await import('date-fns/locale/zh-TW'),
         mui: zhTW,
       };
@@ -76,7 +76,7 @@ const locales: Record<BcpName, LocaleDict> = {
     dir: 'ltr',
     async getStrings() {
       return {
-        messages: await import('./translations/en-US/index.json'),
+        messages: await import('strings/translations/en-US/index.json'),
         fnDate: await import('date-fns/locale/ja'),
         mui: jaJP,
       };

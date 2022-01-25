@@ -1,7 +1,15 @@
 import { createTheme } from '@mui/material';
 import { Localization } from '@mui/material/locale';
 
-import { BLUE_500, BLUE_900, GREY_200, GREY_300, GREY_500, GREY_600, PURPLE_500 } from './colours';
+import {
+  BLUE_500,
+  BLUE_900,
+  GREY_200,
+  GREY_300,
+  GREY_500,
+  GREY_600,
+  PURPLE_500,
+} from 'styles/colours';
 
 export default function generateTheme(localization: Localization, prefersDarkMode = false) {
   return createTheme(

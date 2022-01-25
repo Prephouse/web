@@ -1,4 +1,4 @@
-import type { UserSignInFormFields } from '../../schemas/user/signInFormSchema';
+import type { UserSignInFormFields } from 'schemas/user/signInFormSchema';
 
 const signinInitialValues: UserSignInFormFields = {
   email: '',

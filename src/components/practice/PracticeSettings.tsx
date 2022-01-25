@@ -14,19 +14,19 @@ import {
   Typography,
 } from '@mui/material';
 
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useAppSelector from '../../hooks/useAppSelector';
+import FormButtons from 'components/common/FormButtons';
+import FormErrorMessage from 'components/common/FormErrorMessage';
+import PermissionManager, { PermissionRequest } from 'components/common/PermissionManager';
 
-import { getFormValidationSchema } from '../../schemas/practice/practiceFormSchema';
+import useAppDispatch from 'hooks/useAppDispatch';
+import useAppSelector from 'hooks/useAppSelector';
 
-import { setPracticeSettings } from '../../states/practice/actions';
-import { SessionMedium, SessionOrigin, SessionType } from '../../states/practice/enums';
+import { getFormValidationSchema } from 'schemas/practice/practiceFormSchema';
 
-import { parseStrictDecInt } from '../../utils/string';
+import { setPracticeSettings } from 'states/practice/actions';
+import { SessionMedium, SessionOrigin, SessionType } from 'states/practice/enums';
 
-import FormButtons from '../common/FormButtons';
-import FormErrorMessage from '../common/FormErrorMessage';
-import PermissionManager, { PermissionRequest } from '../common/PermissionManager';
+import { parseStrictDecInt } from 'utils/string';
 
 interface Props {
   onBack: () => void;

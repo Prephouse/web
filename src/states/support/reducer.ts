@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { SUPPORT_TAB_INDEX_KEY } from '../../strings/keys';
+import { SUPPORT_TAB_INDEX_KEY } from 'strings/keys';
 
-import { parseStrictDecInt } from '../../utils/string';
+import { parseStrictDecInt } from 'utils/string';
 
 import { setSupportTab } from './actions';
 
