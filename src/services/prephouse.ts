@@ -11,15 +11,15 @@ export const prephouseApi = createApi({
   endpoints: builder => ({
     signUpUser: builder.mutation<unknown, Omit<UserSignUpFormFields, 'passwordConfirmation'>>({
       query: ({ firstName, lastName, email, password }) => {
-        const bodyFormData = new FormData();
-        bodyFormData.append('first_name', firstName);
-        bodyFormData.append('last_name', lastName);
-        bodyFormData.append('email', email);
-        bodyFormData.append('password', password);
+        const formData = new FormData();
+        formData.append('first_name', firstName);
+        formData.append('last_name', lastName);
+        formData.append('email', email);
+        formData.append('password', password);
         return {
           url: '/user/sign-up',
           method: 'post',
-          data: bodyFormData,
+          data: formData,
         };
       },
     }),
@@ -29,4 +29,4 @@ export const prephouseApi = createApi({
   }),
 });
 
-export const { useSignUpUserMutation, useGetFeedbackQuery } = prephouseApi;
+export const { useSignUpUserMutation } = prephouseApi;

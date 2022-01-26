@@ -1,23 +1,14 @@
 import { SetStateAction, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { Avatar, Button, IconButton, Typography } from '@mui/material';
+import { Button, IconButton, Typography } from '@mui/material';
 
 import LanguageDropdownMenu from 'components/appbar/LanguageDropdownMenu';
 import NavigationDropdownMenu from 'components/appbar/NavigationDropdownMenu';
 import DropdownMenu from 'components/common/DropdownMenu';
+import UserAvatar from 'components/common/UserAvatar';
 
 import { NAVIGATION_HOVER_GREY } from 'styles/colours';
-
-const ScaledAvatar = (
-  <Avatar
-    sx={{
-      width: 32,
-      height: 32,
-    }}
-    alt="Chandler Lei"
-  />
-);
 
 const NavigationProfile = () => {
   const intl = useIntl();
@@ -56,7 +47,7 @@ const NavigationProfile = () => {
             backgroundColor: NAVIGATION_HOVER_GREY,
           },
         }}
-        startIcon={ScaledAvatar}
+        startIcon={<UserAvatar />}
         onClick={handleOpenMenu}
         aria-haspopup="true"
       >
@@ -85,7 +76,7 @@ const NavigationProfile = () => {
         aria-haspopup="true"
         aria-label={intl.formatMessage({ id: 'app.navigation.dropdown.show' })}
       >
-        {ScaledAvatar}
+        <UserAvatar />
       </IconButton>
       <DropdownMenu
         id="primary-nav-menu"

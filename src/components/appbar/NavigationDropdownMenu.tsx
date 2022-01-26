@@ -21,7 +21,7 @@ interface Props {
 }
 
 const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
-  const prefersDarkMode: boolean = useAppSelector(state => state.preference.prefersDarkMode);
+  const prefersDarkMode = useAppSelector(state => state.preference.prefersDarkMode);
   const dispatch = useAppDispatch();
 
   const intl = useIntl();

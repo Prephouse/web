@@ -7,7 +7,7 @@ import practiceReducer from 'states/practice/reducer';
 import preferenceReducer from 'states/preference/reducer';
 import supportReducer from 'states/support/reducer';
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
   practice: practiceReducer,
   preference: preferenceReducer,
   support: supportReducer,

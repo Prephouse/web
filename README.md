@@ -32,8 +32,9 @@
     webp files)
   - If the image is used exclusively in an HTML `img` element with a fixed width and height, resize
     the image to be close to the width and image of the HTML element
-  - If the image is large, convert it to the WebP format and place that in the
-    [public/images](public/images) as the primary along with the original image as a fallback
+  - If the image is large, convert it to the WebP format and place that in
+    [public/images](public/images) as the primary image along with the original image as a fallback
+    image
 - If you want to serve your local development server over HTTPS, then follow these steps on your CLI
   **in the root directory of this repository**
 
@@ -124,7 +125,6 @@ automatically generates the necessary React hooks, whereas the latter module is 
 JavaScript projects in general.
 
 ```typescript
-
 /* GOOD */ import { createApi } from '@reduxjs/toolkit/query/react';
 /* BAD  */ import { createApi } from '@reduxjs/toolkit/query';
 

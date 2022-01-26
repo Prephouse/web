@@ -1,4 +1,4 @@
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 import { useIntl } from 'react-intl';
 import zxcvbn from 'zxcvbn';
 
@@ -7,7 +7,11 @@ import { Typography } from '@mui/material';
 import IconicText from 'components/common/IconicText';
 import SuccessIndicatorIcon from 'components/common/SuccessIndicatorIcon';
 
-import { getPasswordValidators } from 'utils/validators';
+import {
+  validatePasswordMinimumLength,
+  validatePasswordNumericality,
+  validatePasswordUppercase,
+} from 'utils/validators';
 
 import badPasswords from 'values/user/badPasswords';
 
@@ -49,14 +53,18 @@ const PasswordStrengthIndicator = ({ password }: Props) => {
       <br />
       {intl.formatMessage({ id: 'user.signup.password.requirement' })}
       <br />
-      {getPasswordValidators().map(({ id, validator }) => (
-        <Fragment key={`password-requirement-${id}`}>
-          <IconicText
-            text={intl.formatMessage({ id })}
-            icon={<SuccessIndicatorIcon success={validator(password)} />}
-          />
-        </Fragment>
-      ))}
+      <IconicText
+        text={intl.formatMessage({ id: 'user.signup.password.length' })}
+        icon={<SuccessIndicatorIcon success={validatePasswordMinimumLength(password)} />}
+      />
+      <IconicText
+        text={intl.formatMessage({ id: 'user.signup.password.oneUpper' })}
+        icon={<SuccessIndicatorIcon success={validatePasswordUppercase(password)} />}
+      />
+      <IconicText
+        text={intl.formatMessage({ id: 'user.signup.password.oneNumber' })}
+        icon={<SuccessIndicatorIcon success={validatePasswordNumericality(password)} />}
+      />
     </Typography>
   );
 };
