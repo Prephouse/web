@@ -6,7 +6,9 @@
   "singleQuote": true,
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
-    "^firebase/(.*)$",
+    "^@testing-library(.*)$",
+    "^((redux)|(@reduxjs/toolkit))(.*)$",
+    "^firebase(.*)$",
     "^@mui/(.*)$",
     "^(.*)components/(.*)",
     "^(.*)errors/(.*)",

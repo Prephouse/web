@@ -1,10 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
-import { RenderOptions, render } from '@testing-library/react';
 import { FC, ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
 import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+
+import { RenderOptions, render } from '@testing-library/react';
+
+import { configureStore } from '@reduxjs/toolkit';
+import { EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
 import { combineReducers } from 'redux';
 
 import practiceReducer from 'states/practice/reducer';

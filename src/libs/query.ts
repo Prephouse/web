@@ -1,7 +1,8 @@
-import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import camelcaseKeys from 'camelcase-keys';
 import snakecaseKeys from 'snakecase-keys';
+
+import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
 const toCamelCaseKeys = (obj: Parameters<typeof camelcaseKeys>[0]) =>
   obj ? camelcaseKeys(obj) : obj;
