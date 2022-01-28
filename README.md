@@ -141,3 +141,170 @@ const someApi = createApi({
 // and hence this export statement would fail
 export const { useGetSomethingQuery } = someApi;
 ```
+
+## Implementation
+
+This section clarifies some details on the implementation of the frontend subsystem. We try to defer
+as many details as possible to the official library documentations, but sometimes our implementation
+may deviate from other similar projects.
+
+### Internalization (i18n)
+
+If you need to add a new **user-facing** string (not, for example, a JavaScript `Error` message or
+Rollbar messages) on the client side, write out that string in English and follow these steps to
+ensure that it can get localized to other locales in the future.
+
+1. Check whether one or more words in the string may be pluralized in some instances, e.g., 1 dog
+   and 3 dogs
+2. Format the string as an [ICU message][icu-message]
+3. Place the string in the [index.json](./src/strings/translations/en-US/index.json) file for the
+   en-US locale
+4. Use the [react-intl][react-intl] library to retrieve the string in a React component
+
+You can substitute the placeholder of an ICU message with almost any JSX element.
+
+```typescript jsx
+// assume that index.json contains the { "a.b.c": "Hello, {world}" } key value pair
+const intl = useIntl();
+// GOOD
+intl.formatMessage({ id: 'a.b.c' }, { world: 'World!' });
+// GOOD
+intl.formatMessage({ id: 'a.b.c' }, { world: <b>World!</b> });
+```
+
+Any user-facing numbers, currencies, dates and times should also be localized using the respective
+functions in the react-intl library. However, you do **not** need to be concerned about the
+localization for the **built-in** MUI components, except in parts of the component that have been
+overwritten (e.g., where some default text has been replaced with a custom one), as the default
+localization has already been handled by open source contributors of the MUI library.
+
+The localized strings are loaded asynchronously for each locale in order to optimize site loading
+performance. Further information on the i18n implementation can be found in
+[locales.ts](src/strings/locales.ts).
+
+[react-intl]: https://formatjs.io/docs/react-intl/
+[icu-message]:
+  https://lokalise.com/blog/complete-guide-to-icu-message-format/
+  'A complete guide to the ICU message format'
+
+### Client-server communication
+
+We use [RTK Query][rtk-query] to fetch and cache data from servers, including from the Prephouse
+backend server, through queries and mutations. The library integrates very well with Redux (see
+[Global State Management](#global-state-management)) and handles a lot of the boilerplate code for
+us. The library is by default framework-agnostic, but we want to utilize React hooks to call our
+queries and mutations so make sure to use the React "version" of the library.
+
+```typescript
+// GOOD — React version of RTX Query
+import { createApi } from '@reduxjs/toolkit/query/react';
+// BAD — default (general) version of RTX Query
+import { createApi } from '@reduxjs/toolkit/query';
+```
+
+Follow the official RTK Query documentation for instructions on implementing a new query or mutation
+on the client. Do **not** use the RTK Query version of the `baseQuery` function; we have our own
+custom implementations of that function as highlighted in the subsequent paragraphs of this readme.
+The queries and mutations should be placed in the proper service in the [services](src/services)
+directory. We have one separate service for each base URL.
+
+For REST APIs, although RTK Query provides its own HTTP client, we use [Axios][axios] as our HTTP
+client as the latter provides more customization options. We provide
+[`baseQuery`](src/libs/query.ts) and [`rawBaseQuery`](src/libs/query.ts) functions that you can
+utilize as the base query in the RTK Query `createApi` function. The `baseQuery` function
+automatically converts the HTTP request and response keys to snake case and camel case respectively.
+This is particularly important for the Prephouse APIs since our backend server expects snake case in
+accordance with our Python naming rules but the client uses camel case. On the other hand, the
+`rawBaseQuery` function does **not** perform any pre- or post-processing on the HTTP request and
+response data.
+
+[rtk-query]: https://redux-toolkit.js.org/rtk-query/overview
+[axios]: https://axios-http.com/docs/intro
+[graphql-request]: https://github.com/prisma-labs/graphql-request
+
+### Global state management
+
+We use [react-redux][react-redux] to manage the global application states. The Redux actions and
+reducers can be found in the [states](src/states) directory, and the corresponding Redux store in
+[store.ts](src/store.ts).
+
+We follow most rules, including all priority A rules, in the [Redux Style Guide][react-style-guide].
+However, we continue to use JavaScript functions and operators, such as the spread operator, instead
+of Immer to immutably update the Redux states.
+
+We utilize the `createAction` and `createReducer` functions in the [Redux Toolkit][redux-toolkit] to
+create our actions and reducers respectively. Furthermore, we use the
+[`useAppDispatch`](src/hooks/useAppDispatch.ts) and [`useAppSelector`](src/hooks/useAppSelector.ts)
+hooks in lieu of the react-redux `useDispatch` and `useSelector` hooks respectively (see the
+following code block for how their behaviours differ). These approaches minimize the amount of
+boilerplate code, which was a common criticism of Redux in the past, in our Redux logic.
+
+```typescript
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/store';
+
+import { useAppSelector } from 'src/hooks/useAppSelector';
+
+// GOOD - minimal boilerplate code
+const firstName1 = useAppSelector(state => state.person.firstName);
+
+// BAD — must always specify the type of the `state` parameter
+const firstName2 = useSelector((state: RootState) => state.person.firstName);
+```
+
+[react-redux]: https://redux.js.org/usage/index
+[react-style-guide]: https://redux.js.org/style-guide/style-guide
+[redux-toolkit]: https://redux-toolkit.js.org/usage/usage-guide
+
+### Form management
+
+We use [Formik][formik] to create our HTML forms and manage the state of such forms. The library can
+be easily integrated with the MUI components as demonstrated [here][formik-mui-example].
+
+[formik]: https://formik.org/
+[formik-mui-example]: https://formik.org/docs/examples/with-material-ui
+
+### Schema declaration and validation
+
+We use [Zod][zod] to declare and validate the schema of values, such as form input values or API
+response values, on the client. We refer to any schema declared using Zod as a "zod schema".
+
+In order to declare a zod schema, follow these steps:
+
+1. Implement your zod schema, or a function that generates a dynamic zod schema; consult the Zod
+   documentation
+2. Place your zod schema in the [schemas](src/schemas) directory
+3. Declare the TypeScript type for the schema using the `infer` function in Zod
+
+As highlighted in step 2, Zod is able to infer and generate the TypeScript types of the schemas at
+compile-time. Consequently, we can ensure type safety when working with the corresponding data, such
+as when setting initial input values in our HTML forms as exemplified in the following code block.
+
+```typescript
+import { z } from 'zod';
+
+const schema = z.object({
+  school: z.string(),
+});
+type Schema = z.infer<typeof schema>;
+
+const initialValues: Schema = {
+  school: 'University of Waterloo',
+};
+```
+
+In order to validate the inputs of a Formik form (see [Form Management](#form-management)) against a
+zod schema, call the `toFormikValidationSchema` function from the zod-formik-adapter library on that
+schema. This function returns a Formik validation schema that can then be passed on the
+`validationSchema` prop in the `Formik` component. As long as the keys in the zod schema object
+matches the names of each form input component (e.g., the name prop in the Formik `Field`
+component), the form inputs will be automatically validated by Formik with minimal boilerplate code
+and any error message will be passed on from the zod schema to the corresponding erroneous form
+input.
+
+Any client-side schema validation should **not** serve as a replacement for server-side validation.
+A user can change the JavaScript logic on the client and thus bypass the validation. Instead,
+client-side validation is designed to avoid the need to make unnecessary API calls that the client
+already knows would fail on the server.
+
+[zod]: https://github.com/colinhacks/zod
