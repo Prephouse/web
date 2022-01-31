@@ -1,49 +1,57 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 
-export type PermissionMap = Map<string, { id: string; label: string; declineMessage?: string }>;
-
-export type PermissionRequest = Map<string, { declineMessage: string }>;
+export type PermissionRequestMap = Map<string, { declineMessage: string }>;
+export type PermissionAccessMap = Map<
+  string,
+  { id: string; label: string; declineMessage?: string }
+>;
 
 interface RenderProps {
-  permissions: PermissionMap;
+  permissions: PermissionAccessMap;
 }
 
 interface HookProps {
-  requests: PermissionRequest;
+  requests: PermissionRequestMap;
   onDenied: () => void;
 }
 
 interface Props extends HookProps {
-  render: (props: RenderProps) => ReactElement;
+  render: (props: RenderProps) => ReactElement | null;
 }
 
 function usePermissionManager({ requests, onDenied }: HookProps): RenderProps {
-  const [permissions, setPermissions] = useState<PermissionMap>(new Map());
+  const [permissions, setPermissions] = useState<PermissionAccessMap>(new Map());
 
-  const findPermissions = () => {
-    navigator.mediaDevices.enumerateDevices().then(devices => {
-      const ret: PermissionMap = new Map();
-      devices.forEach(device => {
-        if (requests.has(device.kind)) {
-          if (!device.label) {
-            ret.set(device.kind, {
-              id: `${device.deviceId}/${device.groupId}`,
-              label: device.label,
-              declineMessage: requests.get(device.kind)?.declineMessage,
-            });
-          } else {
-            onDenied();
-          }
+  useEffect(() => {
+    let isSubscribed = true;
+
+    if (permissions.size === 0) {
+      navigator.mediaDevices.enumerateDevices().then(devices => {
+        if (isSubscribed) {
+          const ret: PermissionAccessMap = new Map();
+          devices.forEach(device => {
+            if (requests.has(device.kind)) {
+              if (!device.label) {
+                ret.set(device.kind, {
+                  id: `${device.deviceId}/${device.groupId}`,
+                  label: device.label,
+                  declineMessage: requests.get(device.kind)?.declineMessage,
+                });
+              } else {
+                onDenied();
+              }
+            }
+          });
+          setPermissions(ret);
         }
+        return;
       });
-      setPermissions(ret);
-      return;
-    });
-  };
+    }
 
-  if (permissions.size === 0) {
-    findPermissions();
-  }
+    return () => {
+      isSubscribed = false;
+    };
+  }, [onDenied, permissions.size, requests]);
 
   return {
     permissions,

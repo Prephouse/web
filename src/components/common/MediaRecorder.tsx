@@ -36,7 +36,7 @@ interface HookProps {
 }
 
 interface Props extends HookProps {
-  render: (props: RenderProps) => ReactElement;
+  render: (props: RenderProps) => ReactElement | null;
 }
 
 function useMediaRecorder({

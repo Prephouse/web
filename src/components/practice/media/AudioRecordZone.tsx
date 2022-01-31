@@ -27,7 +27,7 @@ const AudioRecordZone = ({ onSubmit }: Props) => {
       }) => {
         if (blobUrl) {
           onSubmit(blobUrl);
-          return <> </>;
+          return null;
         }
 
         return (

@@ -16,7 +16,7 @@ import {
 
 import FormButtons from 'components/common/FormButtons';
 import FormErrorMessage from 'components/common/FormErrorMessage';
-import PermissionManager, { PermissionRequest } from 'components/common/PermissionManager';
+import PermissionManager, { PermissionRequestMap } from 'components/common/PermissionManager';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
@@ -48,8 +48,8 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
     return name;
   };
 
-  const getPermissions = (medium: SessionMedium): PermissionRequest => {
-    const permissions: PermissionRequest = new Map([
+  const getPermissions = (medium: SessionMedium): PermissionRequestMap => {
+    const permissions: PermissionRequestMap = new Map([
       [
         'audioinput',
         {
@@ -187,7 +187,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                         </Alert>
                       );
                     }
-                    return <> </>;
+                    return null;
                   }}
                 />
               )}
