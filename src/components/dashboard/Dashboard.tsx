@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
-import PageContainer from 'components/common/PageContainer';
+import PageContainer from 'components/common/container/PageContainer';
 
 const Dashboard = () => {
   const intl = useIntl();

@@ -44,7 +44,6 @@ function usePermissionManager({ requests, onDenied }: HookProps): RenderProps {
           });
           setPermissions(ret);
         }
-        return;
       });
     }
 

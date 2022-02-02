@@ -7,7 +7,7 @@ import VolumeDown from '@mui/icons-material/VolumeDown';
 import VolumeUp from '@mui/icons-material/VolumeUp';
 import { Grid, IconButton, Paper, Slider, Stack, Typography, useTheme } from '@mui/material';
 
-import MediaSeekSlider from 'components/common/MediaSeekSlider';
+import MediaSeekSlider from 'components/common/media/MediaSeekSlider';
 
 import { GREY_500 } from 'styles/colours';
 

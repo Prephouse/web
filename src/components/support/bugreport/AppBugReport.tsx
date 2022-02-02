@@ -6,15 +6,15 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 import { DateTimePicker } from '@mui/lab';
 import { TextField } from '@mui/material';
 
-import FormButtons from 'components/common/FormButtons';
-import FormGroupCompact from 'components/common/FormGroupCompact';
-import FormInput from 'components/common/FormInput';
+import FormButtons from 'components/common/form/FormButtons';
+import FormGroupCompact from 'components/common/form/FormGroupCompact';
+import FormInput from 'components/common/form/FormInput';
 
 import { getFormValidationSchema } from 'schemas/support/bugReportFormSchema';
 
 import initialValues from 'values/support/bugReportFormValues';
 
-const BugReportForm = () => {
+const AppBugReport = () => {
   const intl = useIntl();
 
   return (
@@ -79,4 +79,4 @@ const BugReportForm = () => {
   );
 };
 
-export default BugReportForm;
+export default AppBugReport;

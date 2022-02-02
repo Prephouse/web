@@ -5,7 +5,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { Link, Typography } from '@mui/material';
 
-import PageContainer from 'components/common/PageContainer';
+import PageContainer from 'components/common/container/PageContainer';
 
 import * as paths from 'strings/paths';
 

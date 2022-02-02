@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 
 import { Pagination, Typography } from '@mui/material';
 
-import PageContainer from 'components/common/PageContainer';
+import PageContainer from 'components/common/container/PageContainer';
 
-const TipBook = () => {
+const Tips = () => {
   const intl = useIntl();
 
   return (
@@ -29,4 +29,4 @@ const TipBook = () => {
   );
 };
 
-export default TipBook;
+export default Tips;

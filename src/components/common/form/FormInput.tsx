@@ -8,7 +8,7 @@ import {
   OutlinedInputProps,
 } from '@mui/material';
 
-import FormErrorMessage from 'components/common/FormErrorMessage';
+import FormErrorMessage from 'components/common/form/FormErrorMessage';
 
 interface Props extends OutlinedInputProps {
   name: string;

@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 
 import { SxProps, Theme, Typography } from '@mui/material';
 
-import PlainRouterLink from 'components/common/PlainRouterLink';
+import PlainRouterLink from 'components/common/router/PlainRouterLink';
 
 import { HOME_PATH } from 'strings/paths';
 

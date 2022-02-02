@@ -8,7 +8,6 @@ const reportWebVitals = (onPerfEntry?: ReportHandler) => {
       getFCP(onPerfEntry);
       getLCP(onPerfEntry);
       getTTFB(onPerfEntry);
-      return;
     });
   }
 };

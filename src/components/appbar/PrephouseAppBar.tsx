@@ -3,11 +3,19 @@ import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Button, IconButton, Toolbar, styled, useScrollTrigger } from '@mui/material';
+import {
+  AppBar,
+  Button,
+  IconButton,
+  Stack,
+  Toolbar,
+  styled,
+  useScrollTrigger,
+} from '@mui/material';
 
-import NavigationHamburgerMenu from 'components/appbar/NavigationHamburgerMenu';
 import NavigationHeading from 'components/appbar/NavigationHeading';
-import NavigationProfile from 'components/appbar/NavigationProfile';
+import NavigationHamburgerMenu from 'components/appbar/hamburger/NavigationHamburgerMenu';
+import NavigationProfile from 'components/appbar/profile/NavigationProfile';
 import HeavyDivider from 'components/common/HeavyDivider';
 
 import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from 'styles/colours';
@@ -27,20 +35,15 @@ const ElevationScroll = ({ children }: { children: ReactElement }) => {
   });
 };
 
-const NavigationGroup = styled('nav')(({ theme }) => ({
-  display: 'flex',
-  [theme.breakpoints.down(FULL_NAVIGATION_BREAKPOINT)]: {
-    display: 'none',
-  },
-}));
-
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const PrephouseAppBar = () => {
   const intl = useIntl();
 
   const [drawerOpened, setDrawerOpened] = useState(false);
-  const handleDrawerOpened = (open = !drawerOpened) => setDrawerOpened(open);
+  const handleDrawerOpened = (open = !drawerOpened) => {
+    setDrawerOpened(open);
+  };
 
   return (
     <>
@@ -70,12 +73,22 @@ const PrephouseAppBar = () => {
             </IconButton>
             <NavigationHeading />
             <span style={{ flexGrow: 1 }} />
-            <NavigationGroup aria-label={intl.formatMessage({ id: 'app.navigation.bar' })}>
+            <Stack
+              sx={{
+                display: {
+                  xs: 'none',
+                  [FULL_NAVIGATION_BREAKPOINT]: 'flex',
+                },
+              }}
+              component="nav"
+              direction="row"
+              spacing={0.5}
+              aria-label={intl.formatMessage({ id: 'app.navigation.bar' })}
+            >
               {navigationDestinations.map(({ path, titleId }) => (
                 <Button
                   key={`nav-button-${titleId}`}
                   sx={{
-                    marginRight: 1,
                     color: 'primary.contrastText',
                     borderRadius: 3,
                     textTransform: 'none',
@@ -91,7 +104,7 @@ const PrephouseAppBar = () => {
                   {intl.formatMessage({ id: titleId })}
                 </Button>
               ))}
-            </NavigationGroup>
+            </Stack>
             <HeavyDivider orientation="vertical" />
             <NavigationProfile />
           </Toolbar>

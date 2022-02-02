@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import AppPanel from 'components/about/AppPanel';
 import IntroductoryPanel from 'components/about/IntroductoryPanel';
 import TeamPanel from 'components/about/TeamPanel';
-import PageContainer from 'components/common/PageContainer';
+import PageContainer from 'components/common/container/PageContainer';
 
 const About = () => {
   const intl = useIntl();

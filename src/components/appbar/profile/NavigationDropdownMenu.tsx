@@ -6,8 +6,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Divider, Switch } from '@mui/material';
 
-import DarkModeNeon from 'components/appbar/DarkModeNeon';
-import DropdownMenuItem from 'components/common/DropdownMenuItem';
+import DarkModeNeon from 'components/appbar/profile/DarkModeNeon';
+import DropdownMenuItem from 'components/common/menu/DropdownMenuItem';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
@@ -31,7 +31,6 @@ const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
       {profileActions.map(({ nameId, icon: Icon, to }) => (
         <DropdownMenuItem
           key={`action-menu-item-${nameId}`}
-          button
           component={RouterLink}
           to={to}
           primary={intl.formatMessage({ id: nameId })}

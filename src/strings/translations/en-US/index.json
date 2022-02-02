@@ -77,7 +77,7 @@
   "practice.title": "Practice",
   "practice.title.expanded": "Practice Ground",
   "practice.upload": "Upload an existing mock interview or presentation",
-  "practice.upload.dragDrop": "Drag and drop a video or audio file here, or click here to select a file",
+  "practice.upload.dragDrop": "Drag and drop a .mp4 or .wav file here, or click here to select a file",
   "practice.upload.drop": "Drop a video or audio file file here",
   "practice.upload.mime.error": "We cannot accept this file",
   "practice.upload.mime.warning": "We will not be able to accept this file",
@@ -104,10 +104,9 @@
   "tips.title": "Tips",
   "tips.title.expanded": "Tips for success",
   "user.signin": "Sign in",
-  "user.signup.username": "Email Address",
-  "user.signin.password": "Password",
-  "user.signin.message": "Sign in",
   "user.signin.email.error": "Invalid email address",
+  "user.signin.message": "Sign in",
+  "user.signin.password": "Password",
   "user.signin.title": "Login",
   "user.signup": "Sign up",
   "user.signup.clear": "Clear fields",
@@ -130,5 +129,6 @@
   "user.signup.password.strength.4": "Strong",
   "user.signup.password.strength.aria": "password strength meter",
   "user.signup.register": "Create account",
-  "user.signup.title": "Create your personalized account"
+  "user.signup.title": "Create your personalized account",
+  "user.signup.username": "Email Address"
 }

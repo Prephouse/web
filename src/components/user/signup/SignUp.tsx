@@ -6,11 +6,11 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Popover, Typography } from '@mui/material';
 
-import FormButtons from 'components/common/FormButtons';
-import FormGroupCompact from 'components/common/FormGroupCompact';
-import FormInput from 'components/common/FormInput';
-import FormPaper from 'components/common/FormPaper';
-import PageContainer from 'components/common/PageContainer';
+import PageContainer from 'components/common/container/PageContainer';
+import FormButtons from 'components/common/form/FormButtons';
+import FormGroupCompact from 'components/common/form/FormGroupCompact';
+import FormInput from 'components/common/form/FormInput';
+import FormPaper from 'components/common/form/FormPaper';
 import PasswordStrengthIndicator from 'components/user/signup/PasswordStrengthIndicator';
 
 import { getFormValidationSchema } from 'schemas/user/signUpFormSchema';
@@ -19,7 +19,7 @@ import { useSignUpUserMutation } from 'services/prephouse';
 
 import initialValues from 'values/user/signUpFormValues';
 
-const SignUpForm = () => {
+const SignUp = () => {
   const intl = useIntl();
 
   const [anchorElPsi, setAnchorElPsi] = useState<HTMLElement | null>(null);
@@ -146,4 +146,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignUp;

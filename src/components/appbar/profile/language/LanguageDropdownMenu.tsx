@@ -2,7 +2,7 @@ import { useIntl } from 'react-intl';
 
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-import DropdownMenuItem from 'components/common/DropdownMenuItem';
+import DropdownMenuItem from 'components/common/menu/DropdownMenuItem';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';

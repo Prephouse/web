@@ -43,7 +43,7 @@
   3. Run `mkdir .cert`
   4. Run `mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"` to create an SSL
      certificate
-  5. Run `pnpm startsecure`
+  5. Run `pnpm start:secure`
   6. Navigate to <https://localhost:3000> on your web browser
 
   > You must ensure that both the key.pem and cert.pem are stored in the .cert directory as that

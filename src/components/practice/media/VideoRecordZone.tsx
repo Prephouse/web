@@ -3,9 +3,9 @@ import { useIntl } from 'react-intl';
 
 import { Box, Slider, Stack, Typography } from '@mui/material';
 
-import AudioPreview from 'components/common/AudioPreview';
-import PrephouseMediaRecorder from 'components/common/MediaRecorder';
-import VideoPreview from 'components/common/VideoPreview';
+import AudioPreview from 'components/common/media/AudioPreview';
+import PrephouseMediaRecorder from 'components/common/media/MediaRecorder';
+import VideoPreview from 'components/common/media/VideoPreview';
 import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
 
 interface Props {

@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import { Box } from '@mui/material';
 
-import AudioPreview from 'components/common/AudioPreview';
-import PrephouseMediaRecorder from 'components/common/MediaRecorder';
+import AudioPreview from 'components/common/media/AudioPreview';
+import PrephouseMediaRecorder from 'components/common/media/MediaRecorder';
 import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
 
 interface Props {

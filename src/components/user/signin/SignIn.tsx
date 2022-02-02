@@ -6,17 +6,17 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Typography } from '@mui/material';
 
-import FormButtons from 'components/common/FormButtons';
-import FormGroupCompact from 'components/common/FormGroupCompact';
-import FormInput from 'components/common/FormInput';
-import FormPaper from 'components/common/FormPaper';
-import PageContainer from 'components/common/PageContainer';
+import PageContainer from 'components/common/container/PageContainer';
+import FormButtons from 'components/common/form/FormButtons';
+import FormGroupCompact from 'components/common/form/FormGroupCompact';
+import FormInput from 'components/common/form/FormInput';
+import FormPaper from 'components/common/form/FormPaper';
 
 import { getCredentials } from 'schemas/user/signInFormSchema';
 
 import signinInitialValues from 'values/user/signInFormValues';
 
-const SignInForm = () => {
+const SignIn = () => {
   const intl = useIntl();
 
   const signIn = () => {};
@@ -72,4 +72,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignIn;

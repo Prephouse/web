@@ -9,9 +9,9 @@ import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
 import { Localization } from '@mui/material/locale';
 
 import PrephouseAppBar from 'components/appbar/PrephouseAppBar';
-import SnackbarProvider from 'components/common/SnackbarProvider';
-import SuspendableScreen from 'components/common/SuspendableScreen';
-import PageNotFoundView from 'components/error/PageNotFoundView';
+import PageNotFoundView from 'components/common/PageNotFoundView';
+import SuspendableScreen from 'components/common/router/SuspendableScreen';
+import SnackbarProvider from 'components/common/snackbar/SnackbarProvider';
 import Footer from 'components/footer/Footer';
 import Home from 'components/home/Home';
 
@@ -37,13 +37,13 @@ import {
 import generateTheme from 'styles/themes';
 
 const About = lazy(() => import('components/about/About'));
-const CompareBoard = lazy(() => import('components/compare/CompareBoard'));
+const CompareBoard = lazy(() => import('components/compare/Compare'));
 const Dashboard = lazy(() => import('components/dashboard/Dashboard'));
-const PracticeGround = lazy(() => import('components/practice/PracticeGround'));
-const SignInForm = lazy(() => import('components/user/signin/SignInForm'));
-const SignUpForm = lazy(() => import('components/user/signup/SignUpForm'));
+const PracticeGround = lazy(() => import('components/practice/Practice'));
+const SignInForm = lazy(() => import('components/user/signin/SignIn'));
+const SignUpForm = lazy(() => import('components/user/signup/SignUp'));
 const Support = lazy(() => import('components/support/Support'));
-const TipBook = lazy(() => import('components/tips/TipBook'));
+const TipBook = lazy(() => import('components/tips/Tips'));
 
 const establishTheme = (localization: Localization, prefersDarkMode: boolean) => {
   let theme = generateTheme(localization, prefersDarkMode);
@@ -69,7 +69,6 @@ const App = () => {
 
   useMemo(() => locales[locale].getStrings(), [locale]).then(value => {
     setTranslatedStr(value);
-    return;
   });
 
   if (!translatedStr.messages || !translatedStr.fnDate) {

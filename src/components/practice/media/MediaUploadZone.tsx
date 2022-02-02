@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useIntl } from 'react-intl';
 
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { Box, Typography } from '@mui/material';
 
 import { SessionMedium, SessionType } from 'states/practice/enums';
@@ -69,9 +70,19 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
       my={3}
       border="0.5px dashed"
       borderRadius="6px"
-      sx={{ cursor: 'pointer', minHeight: 300 }}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        cursor: 'pointer',
+        minHeight: 300,
+        '& > *': {
+          alignSelf: 'center',
+        },
+      }}
       {...rootProps}
     >
+      <FileUploadIcon fontSize="large" sx={{ margin: 1 }} />
       <Typography component="div" variant="h6" gutterBottom>
         {intl.formatMessage({ id: 'practice.upload' })}
       </Typography>

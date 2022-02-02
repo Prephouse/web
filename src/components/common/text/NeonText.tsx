@@ -4,7 +4,7 @@ interface Props {
   lightup: string;
 }
 
-const Neon = styled('div')((props: Props) => {
+const NeonText = styled('div')((props: Props) => {
   if (props.lightup === 'true') {
     return {
       '@media (prefers-reduced-motion: no-preference)': {
@@ -29,4 +29,4 @@ const Neon = styled('div')((props: Props) => {
   return {};
 });
 
-export default Neon;
+export default NeonText;

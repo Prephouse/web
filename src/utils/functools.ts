@@ -14,7 +14,7 @@ type Arr = readonly unknown[];
  * @see https://javascript.info/currying-partials
  * @example
  *   const foo = (x: number, y: number, z: number) => x + y + z
- *   const bar = partial(1, 2)
+ *   const bar = partial(foo, 1, 2)
  *   bar(3) // returns 6
  */
 export function partial<T extends Arr, U extends Arr, R>(
@@ -49,9 +49,10 @@ type Allowed<T extends Fn[], Cache extends Fn[] = []> = T extends []
   : T extends [infer Fst, ...infer Lst]
   ? Fst extends Fn
     ? Lst extends Fn[]
-      ? // @ts-ignore
-        Head<Lst> extends Head<Parameters<Head<Lst>>>
-        ? Allowed<Lst, [...Cache, Fst]>
+      ? Head<Lst> extends Fn
+        ? ReturnType<Fst> extends Head<Parameters<Head<Lst>>>
+          ? Allowed<Lst, [...Cache, Fst]>
+          : never
         : never
       : never
     : never
@@ -67,8 +68,8 @@ type Return<T extends Fn[]> = Last<T> extends Fn ? ReturnType<Last<T>> : never;
  * @return return value of the final operation
  * @example
  *   const foo = (arg: number) => arg * 2
- *   const bar = (arg: number) => arg + '500'
- *   pipe(foo, bar)(3) // returns 6500
+ *   const bar = (arg: number) => `${arg}500`
+ *   pipe(foo, bar)(3) // returns '6500'
  */
 export function pipe<
   T extends Fn,

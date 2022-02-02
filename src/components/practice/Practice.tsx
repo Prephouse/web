@@ -4,12 +4,12 @@ import { useIntl } from 'react-intl';
 
 import { Paper, Step, StepLabel, Stepper, useMediaQuery, useTheme } from '@mui/material';
 
-import PageContainer from 'components/common/PageContainer';
-import PracticeFeedback from 'components/practice/PracticeFeedback';
-import PracticeInstructions from 'components/practice/PracticeInstructions';
-import PracticeIntroduction from 'components/practice/PracticeIntroduction';
-import PracticeSettings from 'components/practice/PracticeSettings';
-import PracticeUploadRecord from 'components/practice/PracticeUploadRecord';
+import PageContainer from 'components/common/container/PageContainer';
+import PracticeFeedback from 'components/practice/steps/PracticeFeedback';
+import PracticeInstructions from 'components/practice/steps/PracticeInstructions';
+import PracticeIntroduction from 'components/practice/steps/PracticeIntroduction';
+import PracticeSettings from 'components/practice/steps/PracticeSettings';
+import PracticeUploadRecord from 'components/practice/steps/PracticeUploadRecord';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
@@ -18,7 +18,7 @@ import { clearMediaSource } from 'states/practice/actions';
 
 import practiceSteps from 'values/practice/practiceSteps';
 
-const PracticeGround = () => {
+const Practice = () => {
   const source = useAppSelector(state => state.practice.source);
   const dispatch = useAppDispatch();
 
@@ -81,4 +81,4 @@ const PracticeGround = () => {
   );
 };
 
-export default PracticeGround;
+export default Practice;

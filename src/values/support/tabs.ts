@@ -5,8 +5,8 @@ import FeedbackIcon from '@mui/icons-material/Feedback';
 import { SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
-import BugReportForm from 'components/support/BugReportForm';
-import FeedbackForm from 'components/support/FeedbackForm';
+import AppBugReport from 'components/support/bugreport/AppBugReport';
+import AppFeedback from 'components/support/feedback/AppFeedback';
 
 interface Tab {
   id: `support.${string}`;
@@ -17,12 +17,12 @@ interface Tab {
 const tabs: readonly Tab[] = [
   {
     id: 'support.feedback',
-    page: FeedbackForm,
+    page: AppFeedback,
     icon: FeedbackIcon,
   },
   {
     id: 'support.bugReport',
-    page: BugReportForm,
+    page: AppBugReport,
     icon: BugReportIcon,
   },
 ];

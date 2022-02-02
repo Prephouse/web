@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl';
 
 import { Button, IconButton, Typography } from '@mui/material';
 
-import LanguageDropdownMenu from 'components/appbar/LanguageDropdownMenu';
-import NavigationDropdownMenu from 'components/appbar/NavigationDropdownMenu';
-import DropdownMenu from 'components/common/DropdownMenu';
+import NavigationDropdownMenu from 'components/appbar/profile/NavigationDropdownMenu';
+import LanguageDropdownMenu from 'components/appbar/profile/language/LanguageDropdownMenu';
 import UserAvatar from 'components/common/UserAvatar';
+import DropdownMenu from 'components/common/menu/DropdownMenu';
 
 import { NAVIGATION_HOVER_GREY } from 'styles/colours';
 

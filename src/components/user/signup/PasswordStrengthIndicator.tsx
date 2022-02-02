@@ -4,8 +4,8 @@ import zxcvbn from 'zxcvbn';
 
 import { Typography } from '@mui/material';
 
-import IconicText from 'components/common/IconicText';
 import SuccessIndicatorIcon from 'components/common/SuccessIndicatorIcon';
+import IconicText from 'components/common/text/IconicText';
 
 import {
   validatePasswordMinimumLength,

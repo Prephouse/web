@@ -5,6 +5,7 @@
     "esbenp.prettier-vscode",
     "firefox-devtools.vscode-firefox-debug",
     "formulahendry.auto-rename-tag",
+    "Orta.vscode-jest",
     "stylelint.vscode-stylelint"
   ]
 }

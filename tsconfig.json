@@ -16,11 +16,11 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
-    "useDefineForClassFields": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    "useDefineForClassFields": true
   },
   "include": ["src"]
 }

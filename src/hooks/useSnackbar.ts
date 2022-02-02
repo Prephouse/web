@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, createContext, createElement, useContext } from 'react';
 
-import AlertSnackbar, { BaseProps } from 'components/common/AlertSnackbar';
+import AlertSnackbar, { BaseProps } from 'components/common/snackbar/AlertSnackbar';
 
 export type SnackbarContextType = {
   snackbar: BaseProps | null;

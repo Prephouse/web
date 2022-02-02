@@ -1,6 +1,6 @@
 import { ReactNode, useMemo, useState } from 'react';
 
-import { BaseProps } from 'components/common/AlertSnackbar';
+import { BaseProps } from 'components/common/snackbar/AlertSnackbar';
 
 import { SnackbarContext } from 'hooks/useSnackbar';
 

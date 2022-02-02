@@ -5,15 +5,15 @@ import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Autocomplete, TextField } from '@mui/material';
 
-import FormButtons from 'components/common/FormButtons';
-import FormGroupCompact from 'components/common/FormGroupCompact';
-import FormInput from 'components/common/FormInput';
+import FormButtons from 'components/common/form/FormButtons';
+import FormGroupCompact from 'components/common/form/FormGroupCompact';
+import FormInput from 'components/common/form/FormInput';
 
 import { FeedbackCategory, getFormValidationSchema } from 'schemas/support/feedbackFormSchema';
 
 import initialValues from 'values/support/feedbackFormValues';
 
-const FeedbackForm = () => {
+const AppFeedback = () => {
   const intl = useIntl();
 
   const categories = FeedbackCategory.options.map(id => intl.formatMessage({ id }));
@@ -75,4 +75,4 @@ const FeedbackForm = () => {
   );
 };
 
-export default FeedbackForm;
+export default AppFeedback;

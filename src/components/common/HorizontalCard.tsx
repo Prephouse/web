@@ -1,16 +1,7 @@
 import { CSSProperties, ElementType, ReactNode } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  Divider,
-  SvgIconTypeMap,
-  Typography,
-  styled,
-} from '@mui/material';
+import { Box, Button, Card, CardContent, Divider, SvgIconTypeMap, Typography } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 
 interface Props {
@@ -22,15 +13,6 @@ interface Props {
   actions?: { href?: string; nameId: string; icon: OverridableComponent<SvgIconTypeMap> }[];
   style?: CSSProperties;
 }
-
-const ImageWrapper = styled('div')(({ theme }) => ({
-  '@media (max-width: 768px)': {
-    display: 'flex',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: theme.spacing(1),
-  },
-}));
 
 const HorizontalCard = ({
   img,
@@ -53,7 +35,20 @@ const HorizontalCard = ({
       }}
       style={{ ...style }}
     >
-      {img && <ImageWrapper>{img}</ImageWrapper>}
+      {img && (
+        <Box
+          sx={{
+            '@media (max-width: 768px)': {
+              display: 'flex',
+              justifyContent: 'center',
+              width: '100%',
+              marginBottom: 1,
+            },
+          }}
+        >
+          {img}
+        </Box>
+      )}
       <CardContent
         sx={{
           display: 'flex',

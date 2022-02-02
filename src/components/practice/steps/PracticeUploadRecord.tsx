@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 
-import FormButtons from 'components/common/FormButtons';
+import FormButtons from 'components/common/form/FormButtons';
 import AudioRecordZone from 'components/practice/media/AudioRecordZone';
 import MediaUploadZone from 'components/practice/media/MediaUploadZone';
 import VideoRecordZone from 'components/practice/media/VideoRecordZone';

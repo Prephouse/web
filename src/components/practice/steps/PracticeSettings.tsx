@@ -14,9 +14,9 @@ import {
   Typography,
 } from '@mui/material';
 
-import FormButtons from 'components/common/FormButtons';
-import FormErrorMessage from 'components/common/FormErrorMessage';
 import PermissionManager, { PermissionRequestMap } from 'components/common/PermissionManager';
+import FormButtons from 'components/common/form/FormButtons';
+import FormErrorMessage from 'components/common/form/FormErrorMessage';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
