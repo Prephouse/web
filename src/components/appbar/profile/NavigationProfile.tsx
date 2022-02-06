@@ -8,9 +8,12 @@ import LanguageDropdownMenu from 'components/appbar/profile/language/LanguageDro
 import UserAvatar from 'components/common/UserAvatar';
 import DropdownMenu from 'components/common/menu/DropdownMenu';
 
+import useAppSelector from 'hooks/useAppSelector';
+
 import { NAVIGATION_HOVER_GREY } from 'styles/colours';
 
 const NavigationProfile = () => {
+  const user = useAppSelector(state => state.auth.user);
   const intl = useIntl();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
@@ -46,6 +49,9 @@ const NavigationProfile = () => {
           '&:hover': {
             backgroundColor: NAVIGATION_HOVER_GREY,
           },
+          startIcon: {
+            margin: 0,
+          },
         }}
         startIcon={<UserAvatar />}
         onClick={handleOpenMenu}
@@ -57,7 +63,7 @@ const NavigationProfile = () => {
             textOverflow: 'ellipsis',
           }}
         >
-          Chandler Lei
+          {user?.displayName || intl.formatMessage({ id: 'user' })}
         </Typography>
       </Button>
       <IconButton

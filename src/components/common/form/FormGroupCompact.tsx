@@ -1,10 +1,8 @@
 import { FormGroup, styled } from '@mui/material';
 
 const FormGroupCompact = styled(FormGroup)(({ theme }) => ({
-  margin: theme.spacing(2, 0),
-  '& > *': {
-    margin: `${theme.spacing(1, 0)} !important`,
-  },
+  marginTop: theme.spacing(2),
+  gap: theme.spacing(2),
 }));
 
 export default FormGroupCompact;

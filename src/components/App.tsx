@@ -3,6 +3,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { getAuth } from 'firebase/auth';
+
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
@@ -14,12 +16,16 @@ import SuspendableScreen from 'components/common/router/SuspendableScreen';
 import SnackbarProvider from 'components/common/snackbar/SnackbarProvider';
 import Footer from 'components/footer/Footer';
 import Home from 'components/home/Home';
+import PrivateRoute from 'components/navigation/PrivateRoute';
 
+import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 import usePrevious from 'hooks/usePrevious';
 import { SnackbarWrapper } from 'hooks/useSnackbar';
 
 import rollbar from 'libs/rollbar';
+
+import { setUser } from 'states/auth/actions';
 
 import locales, { DEFAULT_LOCALE, TranslatedStr } from 'strings/locales';
 import {
@@ -52,6 +58,8 @@ const establishTheme = (localization: Localization, prefersDarkMode: boolean) =>
 };
 
 const App = () => {
+  const dispatch = useAppDispatch();
+
   const prefersDarkMode = useAppSelector(state => state.preference.prefersDarkMode);
   const locale = useAppSelector(state => state.preference.locale);
 
@@ -70,6 +78,18 @@ const App = () => {
   useMemo(() => locales[locale].getStrings(), [locale]).then(value => {
     setTranslatedStr(value);
   });
+
+  useEffect(() => {
+    const auth = getAuth();
+
+    auth?.onAuthStateChanged(user => {
+      dispatch(
+        setUser(
+          user ? (({ uid, displayName, photoURL }) => ({ uid, displayName, photoURL }))(user) : null
+        )
+      );
+    });
+  }, [dispatch]);
 
   if (!translatedStr.messages || !translatedStr.fnDate) {
     return null;
@@ -94,15 +114,39 @@ const App = () => {
                     <Route path={ABOUT_PATH} element={<SuspendableScreen screen={<About />} />} />
                     <Route
                       path={DASHBOARD_PATH}
-                      element={<SuspendableScreen screen={<Dashboard />} />}
+                      element={
+                        <SuspendableScreen
+                          screen={
+                            <PrivateRoute>
+                              <Dashboard />
+                            </PrivateRoute>
+                          }
+                        />
+                      }
                     />
                     <Route
                       path={PRACTICE_PATH}
-                      element={<SuspendableScreen screen={<PracticeGround />} />}
+                      element={
+                        <SuspendableScreen
+                          screen={
+                            <PrivateRoute>
+                              <PracticeGround />
+                            </PrivateRoute>
+                          }
+                        />
+                      }
                     />
                     <Route
                       path={COMPARE_PATH}
-                      element={<SuspendableScreen screen={<CompareBoard />} />}
+                      element={
+                        <SuspendableScreen
+                          screen={
+                            <PrivateRoute>
+                              <CompareBoard />
+                            </PrivateRoute>
+                          }
+                        />
+                      }
                     />
                     <Route path={TIPS_PATH} element={<SuspendableScreen screen={<TipBook />} />} />
                     <Route
