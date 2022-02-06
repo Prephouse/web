@@ -8,9 +8,10 @@
 
 ### Setup
 
-1. Download and install [Node.js 16][node] and the [pnpm][] package manager
+1. Download and install [Node.js 17][node] and the [pnpm][] package manager
 2. Copy the environment variable files (.env.\*) to the root directory of this repository
-3. Run `pnpm i` to install the [project dependencies](package.json)
+3. Run `pnpm i -g typescript@4` to install the TypeScript libraries and compiler
+4. Run `pnpm i` to install the project [dependencies](package.json)
 
 ### Startup
 
@@ -46,9 +47,9 @@
   5. Run `pnpm start:secure`
   6. Navigate to <https://localhost:3000> on your web browser
 
-  > You must ensure that both the key.pem and cert.pem are stored in the .cert directory as that
-  > directory is (a) where webpack is configured to look and (b) configured to be ignored by git.
-  > Never commit the certificate to the git repository.
+  > Both key.pem and cert.pem must be stored in the .cert directory as webpack will search that
+  > directory for the certificate during the build process, and git will ignore that directory. Do
+  > **not** commit the certificate to the git repository.
 
 [node]: https://nodejs.org/en/
 [pnpm]: https://pnpm.io/installation
@@ -98,12 +99,6 @@ these styling rules when you attempt to commit your code to the git repository.
   https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin
 
 ## Troubleshooting
-
-### OpenSSL provider
-
-If you encounter an issue with OpenSSL when running `pnpm start` on Node.js 17, you should either
-use Node.js 16 (the latest LTS version) **or** set `NODE_OPTIONS=--openssl-legacy-provider` as a
-local environment variable.
 
 ### Dependency resolution
 

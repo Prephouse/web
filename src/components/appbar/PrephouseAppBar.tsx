@@ -67,7 +67,7 @@ const PrephouseAppBar = () => {
               edge="start"
               color="inherit"
               onClick={() => handleDrawerOpened()}
-              aria-label={intl.formatMessage({ id: 'app.navigation.drawer' })}
+              aria-label={intl.formatMessage({ id: 'app.navigation.drawer.open' })}
             >
               <MenuIcon />
             </IconButton>

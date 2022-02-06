@@ -65,7 +65,7 @@ const NavigationHamburgerMenu = ({ drawerOpened, onDrawerOpened }: Props) => {
             edge="start"
             color="inherit"
             onClick={() => toggleDrawer(false)}
-            aria-label={intl.formatMessage({ id: 'app.navigation.drawer' })}
+            aria-label={intl.formatMessage({ id: 'app.navigation.drawer.close' })}
           >
             <CloseIcon />
           </IconButton>
