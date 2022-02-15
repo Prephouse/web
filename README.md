@@ -20,12 +20,34 @@
 
 ### Development
 
+#### Packages
+
 - Run `pnpm add -D <package-name>` or `pnpm add <package-name>` to install the corresponding npm
   package as a development dependency or universal dependency respectively in
   [package.json](package.json)
 - Run `pnpm i` when you need to install any new packages
 - Run `pnpm store prune` at your own convenience if your machine is low on disk space and contains
   orphan node modules in its pnpm store
+
+#### Serve over HTTPS
+
+If you want to serve your local development server over HTTPS, then follow these steps **in the root
+directory of this repository**.
+
+1. Install the [mkcert][mkcert] tool
+2. Run `mkcert -install` to install a local certificate authority (CA)
+3. Run `mkdir .cert`
+4. Run `mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"` to create an SSL
+   certificate
+5. Run `pnpm start:secure`
+6. Navigate to <https://localhost:3000> on your web browser
+
+Both key.pem and cert.pem must be stored in the .cert directory as webpack will search that
+directory for the certificate during the build process, and git will ignore that directory. Do
+**not** commit the certificate to the git repository.
+
+#### Miscellaneous
+
 - A hot reload of the Prephouse website will be triggered whenever you add, modify or delete any
   files in the [src](src) directory
 - Place any client-side images in the [public/images](public/images) directory
@@ -36,20 +58,6 @@
   - If the image is large, convert it to the WebP format and place that in
     [public/images](public/images) as the primary image along with the original image as a fallback
     image
-- If you want to serve your local development server over HTTPS, then follow these steps on your CLI
-  **in the root directory of this repository**
-
-  1. Install the [mkcert][mkcert] tool
-  2. Run `mkcert -install` to install a local certificate authority (CA)
-  3. Run `mkdir .cert`
-  4. Run `mkcert -key-file ./.cert/key.pem -cert-file ./.cert/cert.pem "localhost"` to create an SSL
-     certificate
-  5. Run `pnpm start:secure`
-  6. Navigate to <https://localhost:3000> on your web browser
-
-  > Both key.pem and cert.pem must be stored in the .cert directory as webpack will search that
-  > directory for the certificate during the build process, and git will ignore that directory. Do
-  > **not** commit the certificate to the git repository.
 
 [node]: https://nodejs.org/en/
 [pnpm]: https://pnpm.io/installation
@@ -64,6 +72,10 @@ We support Visual Studio Code and WebStorm out of the box. Furthermore, we recom
 _React Developer Tools_ ([Chrome][react-ext-chrome] | [Firefox][react-ext-firefox] |
 [Edge][react-ext-edge]), _Redux DevTools_ ([Chrome][redux-ext-chrome] |
 [Firefox][redux-ext-firefox]) and _axe DevTools_ ([Chrome][axe-chrome]) browser extensions.
+
+If you use WebStorm 2020.2 or later, you should set pnpm as the project package manager in the IDE
+preferences (Preferences > Languages & Frameworks > Node.js). This way, you can run pnpm commands on
+WebStorm. Consult the relevant WebStorm [help page][pnpm-ws-help] for more information.
 
 [react-ext-chrome]:
   https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
@@ -83,6 +95,8 @@ _React Developer Tools_ ([Chrome][react-ext-chrome] | [Firefox][react-ext-firefo
 [axe-chrome]:
   https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd
   'Chrome Extension'
+[pnpm-ws-help]:
+  https://www.jetbrains.com/help/webstorm/installing-and-removing-external-software-using-node-package-manager.html
 
 ## Code Style
 
@@ -91,8 +105,8 @@ which includes the rules specified in the [_Airbnb JavaScript Style Guide_][airb
 (adopted for TypeScript) and the recommended rules for the [_TypeScript ESLint
 plugin_][ts-eslint-plugin]. To this end, we utilize [Prettier](.prettierrc), [ESLint](.eslintrc) and
 [Stylelint](.stylelintrc) to enforce these styling rules. If you use VSCode or WebStorm, your code
-will be auto-formatted whenever you save it. Moreover, a pre-commit hook has been created to enforce
-these styling rules when you attempt to commit your code to the git repository.
+will be auto-formatted whenever you save it. Moreover, the pre-commit hook will check your code for
+any violations of these styling rules.
 
 [airbnb-style-guide]: https://github.com/airbnb/javascript
 [ts-eslint-plugin]:

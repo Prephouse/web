@@ -2,7 +2,7 @@
   'src/**/*.+(js|jsx|ts|tsx)': [
     "eslint --fix",
     "prettier . --write",
-    "stylelint **/*.{js,ts,tsx}"
+    "stylelint **/*.{js,jsx,ts,tsx}"
   ],
   'src/**/*.+(json|toml|yml|yaml)': [
     "prettier . --write"

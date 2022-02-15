@@ -9,10 +9,10 @@ import preferenceReducer from 'states/preference/reducer';
 import supportReducer from 'states/support/reducer';
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   practice: practiceReducer,
   preference: preferenceReducer,
   support: supportReducer,
-  auth: authReducer,
   [prephouseApi.reducerPath]: prephouseApi.reducer,
 });
 

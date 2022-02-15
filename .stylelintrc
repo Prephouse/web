@@ -3,6 +3,12 @@
   "plugins": ["stylelint-order"],
   "customSyntax": "@stylelint/postcss-css-in-js",
   "rules": {
+    "function-no-unknown": [
+      true,
+      {
+        "ignoreFunctions": ["/^theme..*/"]
+      }
+    ],
     "order/order": ["custom-properties", "declarations"],
     "order/properties-order": ["width", "height"]
   },
