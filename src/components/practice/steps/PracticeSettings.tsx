@@ -124,7 +124,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 role="status"
                 variant="outlined"
                 severity="info"
-                sx={{ margin: theme => theme.spacing(1, 0) }}
+                sx={{ my: 1 }}
               >
                 {intl.formatMessage(
                   { id: 'practice.setting.medium.videoAudio.description' },
@@ -196,7 +196,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 role="status"
                 variant="outlined"
                 severity="info"
-                sx={{ margin: theme => theme.spacing(1, 0) }}
+                sx={{ my: 1 }}
               >
                 {intl.formatMessage(
                   { id: 'practice.setting.source.record.description' },
@@ -248,7 +248,7 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 role="status"
                 variant="outlined"
                 severity="info"
-                sx={{ margin: theme => theme.spacing(1, 0) }}
+                sx={{ my: 1 }}
               >
                 {intl.formatMessage({ id: 'practice.setting.liveFeedback.description' })}
               </Alert>

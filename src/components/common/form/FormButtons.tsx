@@ -37,7 +37,7 @@ const FormButtons = ({
       variant="contained"
       color="primary"
       fullWidth
-      sx={{ margin: theme => theme.spacing(0.5, 0) }}
+      sx={{ mt: 1, mb: 0.5 }}
       onClick={onPrimaryClick}
       disabled={isLoading || primaryDisabled}
     >
@@ -55,7 +55,7 @@ const FormButtons = ({
         variant="contained"
         color={secondaryColor}
         fullWidth
-        sx={{ margin: theme => theme.spacing(0.5, 0) }}
+        sx={{ my: 0.5 }}
         onClick={onSecondaryClick}
       >
         {secondaryText}

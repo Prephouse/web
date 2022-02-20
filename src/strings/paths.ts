@@ -6,7 +6,7 @@ export const DASHBOARD_PATH = '/dashboard';
 
 export const PRACTICE_PATH = '/practice';
 
-export const COMPARE_PATH = '/compare';
+export const LEADERBOARD_PATH = '/leaderboard';
 
 export const TIPS_PATH = '/tips';
 

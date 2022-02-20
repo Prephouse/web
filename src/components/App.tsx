@@ -30,9 +30,9 @@ import { setUser } from 'states/auth/actions';
 import locales, { DEFAULT_LOCALE, TranslatedStr } from 'strings/locales';
 import {
   ABOUT_PATH,
-  COMPARE_PATH,
   DASHBOARD_PATH,
   HOME_PATH,
+  LEADERBOARD_PATH,
   PRACTICE_PATH,
   SUPPORT_PATH,
   TIPS_PATH,
@@ -43,7 +43,7 @@ import {
 import generateTheme from 'styles/themes';
 
 const About = lazy(() => import('components/about/About'));
-const CompareBoard = lazy(() => import('components/compare/Compare'));
+const CompareBoard = lazy(() => import('components/leaderboard/Leaderboard'));
 const Dashboard = lazy(() => import('components/dashboard/Dashboard'));
 const PracticeGround = lazy(() => import('components/practice/Practice'));
 const SignInForm = lazy(() => import('components/user/signin/SignIn'));
@@ -137,7 +137,7 @@ const App = () => {
                       }
                     />
                     <Route
-                      path={COMPARE_PATH}
+                      path={LEADERBOARD_PATH}
                       element={
                         <SuspendableScreen
                           screen={

@@ -24,7 +24,7 @@ const IdpAuthButton = ({
     variant="contained"
     onClick={onClick}
     sx={{
-      margin: theme => theme.spacing(0.5, 0),
+      my: 0.5,
       justifyContent: 'flex-start',
       ...(color ? { color } : {}),
       ...(backgroundColor ? { backgroundColor } : {}),

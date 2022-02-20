@@ -1,4 +1,10 @@
-import { ABOUT_PATH, COMPARE_PATH, DASHBOARD_PATH, PRACTICE_PATH, TIPS_PATH } from 'strings/paths';
+import {
+  ABOUT_PATH,
+  DASHBOARD_PATH,
+  LEADERBOARD_PATH,
+  PRACTICE_PATH,
+  TIPS_PATH,
+} from 'strings/paths';
 
 interface NavigationDestination {
   readonly path: string;
@@ -19,8 +25,8 @@ const navigationDestinations: readonly NavigationDestination[] = [
     titleId: 'practice.title',
   },
   {
-    path: COMPARE_PATH,
-    titleId: 'compare.title',
+    path: LEADERBOARD_PATH,
+    titleId: 'leaderboard.title',
   },
   {
     path: TIPS_PATH,

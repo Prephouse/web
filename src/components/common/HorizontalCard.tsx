@@ -67,7 +67,7 @@ const HorizontalCard = ({
           </Typography>
           <Typography
             sx={{
-              padding: theme => theme.spacing(1, 0),
+              py: 1,
             }}
             component={bodyComponent}
             variant="body2"

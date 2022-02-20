@@ -7,9 +7,9 @@ import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import { getAuth } from 'firebase/auth';
 
 const toCamelCaseKeys = (obj: Parameters<typeof camelcaseKeys>[0]) =>
-  obj ? camelcaseKeys(obj) : obj;
+  obj ? camelcaseKeys(obj, { deep: true }) : obj;
 const toSnakeCaseKeys = (obj: Parameters<typeof snakecaseKeys>[0]) =>
-  obj ? snakecaseKeys(obj) : obj;
+  obj ? snakecaseKeys(obj, { deep: true }) : obj;
 
 export const baseQuery =
   ({
