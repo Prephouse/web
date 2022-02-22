@@ -83,6 +83,7 @@ const App = () => {
     const auth = getAuth();
 
     auth?.onAuthStateChanged(user => {
+      localStorage.setItem('user', JSON.stringify(user));
       dispatch(
         setUser(
           user ? (({ uid, displayName, photoURL }) => ({ uid, displayName, photoURL }))(user) : null

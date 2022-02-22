@@ -7,7 +7,7 @@ interface AuthReduxState {
 }
 
 const initState: AuthReduxState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem('user') ?? 'null'),
 };
 
 const authReducer = createReducer(initState, builder => {
