@@ -3,6 +3,7 @@ import {
   EmailAuthProvider,
   FacebookAuthProvider,
   GoogleAuthProvider,
+  User,
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
@@ -93,3 +94,11 @@ export const logOut = async (onSuccess?: () => void, onError?: (code?: string) =
     onError?.((err as FirebaseError).code);
   }
 };
+
+export const getCurrentAuthUser = () =>
+  new Promise<User | null>(resolve => {
+    const auth = getAuth();
+    auth?.onAuthStateChanged(u => {
+      resolve(u);
+    });
+  });

@@ -4,7 +4,7 @@ import snakecaseKeys from 'snakecase-keys';
 
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 
-import { getAuth } from 'firebase/auth';
+import { getCurrentAuthUser } from 'services/firebase';
 
 const toCamelCaseKeys = (obj: Parameters<typeof camelcaseKeys>[0]) =>
   obj ? camelcaseKeys(obj, { deep: true }) : obj;
@@ -24,8 +24,8 @@ export const baseQuery =
   }> =>
   async ({ method = 'get', url, params, data }) => {
     try {
-      const idToken = await getAuth().currentUser?.getIdToken();
-
+      const user = await getCurrentAuthUser();
+      const idToken = await user?.getIdToken();
       const config: AxiosRequestConfig = {
         baseURL: baseUrl,
         data: toSnakeCaseKeys(data),
