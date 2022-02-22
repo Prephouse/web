@@ -6,14 +6,16 @@ const apiRequestSchema = z.object({
   randomize: z.boolean(),
 });
 
-const apiResponseSchema = z.array(z.object({
-  id: z.number(),
-  category: z.number(),
-  question: z.string(),
-  description: z.string(),
-  sampleAnswer: z.string(),
-  frequency: z.number(),
-}));
+const apiResponseSchema = z.array(
+  z.object({
+    id: z.number(),
+    category: z.number(),
+    question: z.string(),
+    description: z.string(),
+    sampleAnswer: z.string(),
+    frequency: z.number(),
+  })
+);
 
 export type QuestionRequestSchema = z.infer<typeof apiRequestSchema>;
 export type QuestionResponseSchema = z.infer<typeof apiResponseSchema>;

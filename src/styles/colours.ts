@@ -22,3 +22,23 @@ export const NAVIGATION_HOVER_GREY = GREY_700;
 export const FACEBOOK_BLUE = BLUE_800;
 export const FACEBOOK_BLUE_HOVER = BLUE_900;
 export const GOOGLE_GREY_HOVER = GREY_50;
+
+const defaultPalette = [
+  '#FFADAD',
+  '#FFD6A5',
+  '#CAFFBF',
+  '#9BF6FF',
+  '#A0C4FF',
+  '#BDB2FF',
+  '#FFC6FF',
+];
+
+export class ColorPicker {
+  constructor(public palette: string[] = defaultPalette, public index: number = 0) {}
+
+  getColor(): string {
+    const color = this.palette[this.index];
+    this.index = (this.index + 1) % this.palette.length;
+    return color ?? '';
+  }
+}

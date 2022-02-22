@@ -30,10 +30,10 @@ import { setUser } from 'states/auth/actions';
 import locales, { DEFAULT_LOCALE, TranslatedStr } from 'strings/locales';
 import {
   ABOUT_PATH,
-  DASHBOARD_PATH,
   HOME_PATH,
   LEADERBOARD_PATH,
   PRACTICE_PATH,
+  PROGRESS_PATH,
   SUPPORT_PATH,
   TIPS_PATH,
   USER_SIGN_IN_PATH,
@@ -44,7 +44,7 @@ import generateTheme from 'styles/themes';
 
 const About = lazy(() => import('components/about/About'));
 const CompareBoard = lazy(() => import('components/leaderboard/Leaderboard'));
-const Dashboard = lazy(() => import('components/dashboard/Dashboard'));
+const Progress = lazy(() => import('components/progress/Progress'));
 const PracticeGround = lazy(() => import('components/practice/Practice'));
 const SignInForm = lazy(() => import('components/user/signin/SignIn'));
 const SignUpForm = lazy(() => import('components/user/signup/SignUp'));
@@ -114,12 +114,12 @@ const App = () => {
                     <Route path={HOME_PATH} element={<Home />} />
                     <Route path={ABOUT_PATH} element={<SuspendableScreen screen={<About />} />} />
                     <Route
-                      path={DASHBOARD_PATH}
+                      path={PROGRESS_PATH}
                       element={
                         <SuspendableScreen
                           screen={
                             <PrivateRoute>
-                              <Dashboard />
+                              <Progress />
                             </PrivateRoute>
                           }
                         />

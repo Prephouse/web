@@ -1,3 +1,4 @@
+import { Chart, registerables } from 'chart.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -10,6 +11,7 @@ import initializeFirebase from 'libs/firebase';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorker from './serviceWorker';
 
+Chart.register(...registerables);
 ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider store={store}>

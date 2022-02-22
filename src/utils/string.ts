@@ -44,3 +44,16 @@ export function parseStrictDecInt(str: string) {
   }
   return Math.trunc(f);
 }
+
+/**
+ * Converts camel case string to a human readable one
+ * @param str the camel case string
+ * @return human readable string
+ * */
+export function camelCaseToWords(str: string) {
+  const res = str
+    .replace(/([a-z\d])([A-Z])/g, '$1 $2')
+    .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1 $2');
+
+  return res.charAt(0).toUpperCase() + res.slice(1);
+}

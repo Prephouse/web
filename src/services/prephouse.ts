@@ -10,9 +10,10 @@ import type {
   LeaderboardRequestSchema,
   LeaderboardResponseSchema,
 } from 'schemas/leaderboard/leaderboardSchema';
+import type { ScoresPerCategoryResponseSchema } from 'schemas/progress/scoresPerCategorySchema';
 import type {
   QuestionRequestSchema,
-  QuestionResponseSchema
+  QuestionResponseSchema,
 } from 'schemas/question/questionSchema';
 
 export const prephouseApi = createApi({
@@ -29,10 +30,18 @@ export const prephouseApi = createApi({
     >({
       query: () => ({ url: '/leaderboard/overview/' }),
     }),
+    getProgress: builder.query<ScoresPerCategoryResponseSchema, void>({
+      query: () => ({ url: '/progress/scores_per_category/' }),
+    }),
     getQuestion: builder.query<QuestionResponseSchema, QuestionRequestSchema>({
       query: params => ({ url: '/question/', params }),
     }),
   }),
 });
 
-export const { useGetLeaderboardQuery, useGetLeaderboardOverviewQuery, useGetQuestionQuery } = prephouseApi;
+export const {
+  useGetLeaderboardQuery,
+  useGetLeaderboardOverviewQuery,
+  useGetProgressQuery,
+  useGetQuestionQuery,
+} = prephouseApi;

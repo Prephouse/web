@@ -1,8 +1,8 @@
 import {
   ABOUT_PATH,
-  DASHBOARD_PATH,
   LEADERBOARD_PATH,
   PRACTICE_PATH,
+  PROGRESS_PATH,
   TIPS_PATH,
 } from 'strings/paths';
 
@@ -17,8 +17,8 @@ const navigationDestinations: readonly NavigationDestination[] = [
     titleId: 'about.title',
   },
   {
-    path: DASHBOARD_PATH,
-    titleId: 'dashboard.title',
+    path: PROGRESS_PATH,
+    titleId: 'progress.title',
   },
   {
     path: PRACTICE_PATH,
