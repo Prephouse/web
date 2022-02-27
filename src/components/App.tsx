@@ -34,8 +34,8 @@ import {
   LEADERBOARD_PATH,
   PRACTICE_PATH,
   PROGRESS_PATH,
+  QUESTION_BANK_PATH,
   SUPPORT_PATH,
-  TIPS_PATH,
   USER_SIGN_IN_PATH,
   USER_SIGN_UP_PATH,
 } from 'strings/paths';
@@ -43,13 +43,13 @@ import {
 import generateTheme from 'styles/themes';
 
 const About = lazy(() => import('components/about/About'));
-const CompareBoard = lazy(() => import('components/leaderboard/Leaderboard'));
 const Progress = lazy(() => import('components/progress/Progress'));
+const Leaderboard = lazy(() => import('components/leaderboard/Leaderboard'));
 const PracticeGround = lazy(() => import('components/practice/Practice'));
 const SignInForm = lazy(() => import('components/user/signin/SignIn'));
 const SignUpForm = lazy(() => import('components/user/signup/SignUp'));
 const Support = lazy(() => import('components/support/Support'));
-const TipBook = lazy(() => import('components/tips/Tips'));
+const QuestionBank = lazy(() => import('components/bank/Bank'));
 
 const establishTheme = (localization: Localization, prefersDarkMode: boolean) => {
   let theme = generateTheme(localization, prefersDarkMode);
@@ -141,13 +141,16 @@ const App = () => {
                         <SuspendableScreen
                           screen={
                             <PrivateRoute>
-                              <CompareBoard />
+                              <Leaderboard />
                             </PrivateRoute>
                           }
                         />
                       }
                     />
-                    <Route path={TIPS_PATH} element={<SuspendableScreen screen={<TipBook />} />} />
+                    <Route
+                      path={QUESTION_BANK_PATH}
+                      element={<SuspendableScreen screen={<QuestionBank />} />}
+                    />
                     <Route
                       path={USER_SIGN_IN_PATH}
                       element={<SuspendableScreen screen={<SignInForm />} />}

@@ -3,7 +3,7 @@ import {
   LEADERBOARD_PATH,
   PRACTICE_PATH,
   PROGRESS_PATH,
-  TIPS_PATH,
+  QUESTION_BANK_PATH,
 } from 'strings/paths';
 
 interface NavigationDestination {
@@ -29,8 +29,8 @@ const navigationDestinations: readonly NavigationDestination[] = [
     titleId: 'leaderboard.title',
   },
   {
-    path: TIPS_PATH,
-    titleId: 'tips.title',
+    path: QUESTION_BANK_PATH,
+    titleId: 'bank.title',
   },
 ];
 

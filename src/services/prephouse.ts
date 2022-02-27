@@ -15,6 +15,10 @@ import type {
   ScoresPerSessionResponseSchema,
 } from 'schemas/progress/scoresPerCategorySchema';
 import type {
+  QuestionCategoriesRequestSchema,
+  QuestionCategoriesResponseSchema,
+} from 'schemas/question/questionCategoriesSchema';
+import type {
   QuestionRequestSchema,
   QuestionResponseSchema,
 } from 'schemas/question/questionSchema';
@@ -42,6 +46,12 @@ export const prephouseApi = createApi({
     getQuestion: builder.query<QuestionResponseSchema, QuestionRequestSchema>({
       query: params => ({ url: '/question/', params }),
     }),
+    getQuestionCategories: builder.query<
+      QuestionCategoriesResponseSchema,
+      QuestionCategoriesRequestSchema
+    >({
+      query: () => ({ url: '/question/categories/' }),
+    }),
   }),
 });
 
@@ -51,4 +61,5 @@ export const {
   useGetProgressQuery,
   useGetProgressSessionsQuery,
   useGetQuestionQuery,
+  useGetQuestionCategoriesQuery,
 } = prephouseApi;
