@@ -1,4 +1,7 @@
-.github
-.vscode
-node_modules
+.cert/
+.github/
+.husky/
+.vscode/
+node_modules/
 pnpm-lock.yaml
+tsconfig.tsbuildinfo
