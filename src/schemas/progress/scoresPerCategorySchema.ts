@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const apiResponseSchema = z.object({
+const scoresPerCategorySchema = z.object({
   overallScores: z.array(z.number().nonnegative()),
   dates: z.array(z.string()),
   silentPausesScores: z.array(z.number().nonnegative()),
@@ -12,4 +12,24 @@ const apiResponseSchema = z.object({
   fillerWordsScores: z.array(z.number().nonnegative()),
 });
 
-export type ScoresPerCategoryResponseSchema = z.infer<typeof apiResponseSchema>;
+const scoresPerSessionSchema = z.object({
+  sessions: z.array(
+    z.object({
+      date: z.string(),
+      sessionId: z.string(),
+      sessionCategory: z.string(),
+      overallScore: z.number().nonnegative(),
+      silentPausesScore: z.number().nonnegative(),
+      volumeScore: z.number().nonnegative(),
+      backgroundLightScore: z.number().nonnegative(),
+      gazeDirectionScore: z.number().nonnegative(),
+      emotionScore: z.number().nonnegative(),
+      pitchScore: z.number().nonnegative(),
+      fillerWordsScore: z.number().nonnegative(),
+    })
+  ),
+});
+
+export type ScoresPerCategoryResponseSchema = z.infer<typeof scoresPerCategorySchema>;
+
+export type ScoresPerSessionResponseSchema = z.infer<typeof scoresPerSessionSchema>;

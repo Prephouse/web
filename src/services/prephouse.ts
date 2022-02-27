@@ -10,7 +10,10 @@ import type {
   LeaderboardRequestSchema,
   LeaderboardResponseSchema,
 } from 'schemas/leaderboard/leaderboardSchema';
-import type { ScoresPerCategoryResponseSchema } from 'schemas/progress/scoresPerCategorySchema';
+import type {
+  ScoresPerCategoryResponseSchema,
+  ScoresPerSessionResponseSchema,
+} from 'schemas/progress/scoresPerCategorySchema';
 import type {
   QuestionRequestSchema,
   QuestionResponseSchema,
@@ -33,6 +36,9 @@ export const prephouseApi = createApi({
     getProgress: builder.query<ScoresPerCategoryResponseSchema, void>({
       query: () => ({ url: '/progress/scores_per_category/' }),
     }),
+    getProgressSessions: builder.query<ScoresPerSessionResponseSchema, void>({
+      query: () => ({ url: '/progress/scores_per_session/' }),
+    }),
     getQuestion: builder.query<QuestionResponseSchema, QuestionRequestSchema>({
       query: params => ({ url: '/question/', params }),
     }),
@@ -43,5 +49,6 @@ export const {
   useGetLeaderboardQuery,
   useGetLeaderboardOverviewQuery,
   useGetProgressQuery,
+  useGetProgressSessionsQuery,
   useGetQuestionQuery,
 } = prephouseApi;
