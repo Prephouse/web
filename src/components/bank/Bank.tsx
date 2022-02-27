@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
@@ -27,9 +27,11 @@ const Bank = () => {
   const { data: categories } = useGetQuestionCategoriesQuery();
   const { data: questions } = useGetQuestionQuery();
 
-  const [selectedCategories, setSelectedCategories] = useState(
-    Object.values(categories?.categories ?? {})
-  );
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSelectedCategories(Object.values(categories?.categories ?? {}));
+  }, [categories]);
 
   const filteredQuestions = useMemo(
     () => questions?.filter(question => selectedCategories.includes(question.categoryName)),
@@ -92,7 +94,7 @@ const Bank = () => {
                   {intl.formatMessage({ id: 'bank.question.sampleAnswer' })}
                 </Typography>
                 <Typography paragraph>
-                  {question.sampleAnswer ?? (
+                  {question.sampleAnswer || (
                     <i>{intl.formatMessage({ id: 'bank.question.sampleAnswer.empty' })}</i>
                   )}
                 </Typography>
