@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import { FormEvent } from 'react';
 import { useIntl } from 'react-intl';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Autocomplete, TextField } from '@mui/material';
 
@@ -10,6 +9,8 @@ import FormGroupCompact from 'components/common/form/FormGroupCompact';
 import FormInput from 'components/common/form/FormInput';
 
 import { FeedbackCategory, getFormValidationSchema } from 'schemas/support/feedbackFormSchema';
+
+import { toFormikValidationSchema } from 'utils/zodFormikAdapter';
 
 import initialValues from 'values/support/feedbackFormValues';
 

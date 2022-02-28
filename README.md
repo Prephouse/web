@@ -18,6 +18,15 @@
 1. Run `pnpm start`
 2. Navigate to <http://localhost:3000> on your web browser
 
+### Deployment
+
+The production version of the Prephouse website is hosted on Netlify. You can sign in to Netlify
+with the Prephouse admin account to view the deployment history and the status of any current
+deployments. We created a continuous deployment (CD) pipeline that automatically deploys changes in
+the release branch to the production environment. To trigger this pipeline, you need to create a
+pull request on GitHub from the main branch, and include your changes in the PR. Once the PR is
+merged to the release branch, Netlify will automatically create a new build.
+
 ### Development
 
 #### Packages

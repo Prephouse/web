@@ -1,7 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import { FormEvent } from 'react';
 import { useIntl } from 'react-intl';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { DateTimePicker } from '@mui/lab';
 import { TextField } from '@mui/material';
@@ -11,6 +10,8 @@ import FormGroupCompact from 'components/common/form/FormGroupCompact';
 import FormInput from 'components/common/form/FormInput';
 
 import { getFormValidationSchema } from 'schemas/support/bugReportFormSchema';
+
+import { toFormikValidationSchema } from 'utils/zodFormikAdapter';
 
 import initialValues from 'values/support/bugReportFormValues';
 

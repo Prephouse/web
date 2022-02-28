@@ -1,6 +1,5 @@
 import { Form, Formik } from 'formik';
 import { useIntl } from 'react-intl';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import {
   Alert,
@@ -27,6 +26,7 @@ import { setPracticeSettings } from 'states/practice/actions';
 import { SessionMedium, SessionOrigin, SessionType } from 'states/practice/enums';
 
 import { parseStrictDecInt } from 'utils/string';
+import { toFormikValidationSchema } from 'utils/zodFormikAdapter';
 
 interface Props {
   onBack: () => void;

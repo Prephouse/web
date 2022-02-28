@@ -3,7 +3,6 @@ import { FormEvent, MouseEvent as ReactMouseEvent, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
-import { toFormikValidationSchema } from 'zod-formik-adapter';
 
 import { Divider, Popover, Typography } from '@mui/material';
 
@@ -28,6 +27,8 @@ import {
 import { PRACTICE_PATH } from 'strings/paths';
 
 import { FACEBOOK_BLUE, FACEBOOK_BLUE_HOVER, GOOGLE_GREY_HOVER, GREY_600 } from 'styles/colours';
+
+import { toFormikValidationSchema } from 'utils/zodFormikAdapter';
 
 import initialValues from 'values/user/signUpFormValues';
 
