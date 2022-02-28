@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 import { clearMediaSource, setMediaSource, setPracticeSettings } from './actions';
-import { SessionMedium, SessionOrigin, SessionType } from './enums';
+import { InterviewType, SessionMedium, SessionOrigin, SessionType } from './enums';
 
 interface PracticeReduxState {
   sessionType: SessionType;
@@ -9,6 +9,7 @@ interface PracticeReduxState {
   origin: SessionOrigin;
   allowLiveFeedback: boolean;
   source: string | undefined;
+  interviewType: InterviewType;
 }
 
 const initState: PracticeReduxState = {
@@ -17,6 +18,7 @@ const initState: PracticeReduxState = {
   origin: SessionOrigin.Record,
   allowLiveFeedback: true,
   source: undefined,
+  interviewType: InterviewType.Session,
 };
 
 const practiceReducer = createReducer(initState, builder => {
@@ -25,6 +27,7 @@ const practiceReducer = createReducer(initState, builder => {
       state.medium = action.payload.medium;
       state.origin = action.payload.origin;
       state.allowLiveFeedback = action.payload.allowLiveFeedback;
+      state.interviewType = action.payload.interviewType;
     })
     .addCase(setMediaSource, (state, action) => {
       state.source = action.payload;

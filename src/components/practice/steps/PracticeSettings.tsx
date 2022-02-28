@@ -23,7 +23,7 @@ import useAppSelector from 'hooks/useAppSelector';
 import { getFormValidationSchema } from 'schemas/practice/practiceFormSchema';
 
 import { setPracticeSettings } from 'states/practice/actions';
-import { SessionMedium, SessionOrigin, SessionType } from 'states/practice/enums';
+import { InterviewType, SessionMedium, SessionOrigin, SessionType } from 'states/practice/enums';
 
 import { parseStrictDecInt } from 'utils/string';
 import { toFormikValidationSchema } from 'utils/zodFormikAdapter';
@@ -71,11 +71,12 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
         medium: useAppSelector(state => state.practice.medium),
         origin: useAppSelector(state => state.practice.origin),
         allowLiveFeedback: useAppSelector(state => state.practice.allowLiveFeedback),
+        interviewType: useAppSelector(state => state.practice.interviewType),
       }}
       validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
       onSubmit={values => {
-        const { medium, origin, allowLiveFeedback } = values;
-        dispatch(setPracticeSettings(medium, origin, allowLiveFeedback));
+        const { medium, origin, allowLiveFeedback, interviewType } = values;
+        dispatch(setPracticeSettings(medium, origin, allowLiveFeedback, interviewType));
         onNext();
       }}
     >
@@ -252,6 +253,42 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
               >
                 {intl.formatMessage({ id: 'practice.setting.liveFeedback.description' })}
               </Alert>
+            </Box>
+            <Box sx={{ padding: 2 }}>
+              <FormControl component="fieldset" required>
+                <FormLabel component="legend">
+                  {intl.formatMessage({ id: 'practice.setting.interview.title' })}
+                </FormLabel>
+                <FormHelperText>
+                  {intl.formatMessage({ id: 'practice.setting.interview.title.description' })}
+                </FormHelperText>
+                <RadioGroup
+                  row
+                  name="origin"
+                  value={values.interviewType}
+                  onChange={event => {
+                    setFieldValue('origin', parseStrictDecInt(event.currentTarget.value));
+                  }}
+                >
+                  <FormControlLabel
+                    value={InterviewType.Session}
+                    control={<Radio />}
+                    label={intl.formatMessage({ id: 'practice.setting.interview.session' })}
+                    aria-describedby="startInterviewPerSession"
+                    aria-invalid={errors.interviewType && touched.interviewType ? 'true' : 'false'}
+                  />
+                  <FormControlLabel
+                    value={InterviewType.Question}
+                    control={<Radio />}
+                    label={intl.formatMessage({ id: 'practice.setting.interview.question' })}
+                    aria-describedby="startInterviewPerQuestion"
+                    aria-invalid={errors.interviewType && touched.interviewType ? 'true' : 'false'}
+                  />
+                </RadioGroup>
+                {touched.interviewType && errors.interviewType && (
+                  <FormErrorMessage msg={errors.interviewType} />
+                )}
+              </FormControl>
             </Box>
             <FormButtons
               primaryText={intl.formatMessage({ id: 'practice.setting.confirm' })}
