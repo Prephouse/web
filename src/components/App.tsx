@@ -3,6 +3,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { getAuth } from 'firebase/auth';
+
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
@@ -22,8 +24,6 @@ import usePrevious from 'hooks/usePrevious';
 import { SnackbarWrapper } from 'hooks/useSnackbar';
 
 import rollbar from 'libs/rollbar';
-
-import { getCurrentAuthUser } from 'services/firebase';
 
 import { setUser } from 'states/auth/actions';
 
@@ -80,7 +80,8 @@ const App = () => {
   });
 
   useEffect(() => {
-    getCurrentAuthUser().then(user => {
+    const auth = getAuth();
+    auth?.onAuthStateChanged(user => {
       localStorage.setItem('user', JSON.stringify(user));
       dispatch(
         setUser(
