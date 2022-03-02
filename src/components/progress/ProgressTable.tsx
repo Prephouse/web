@@ -18,7 +18,7 @@ const ProgressTable = () => {
 
   return (
     <TableContainer component={Paper}>
-      <Table stickyHeader aria-label="some table">
+      <Table stickyHeader aria-label={intl.formatMessage({ id: 'progress.title' })}>
         <TableHead>
           <TableRow>
             <TableCell align="center" padding="checkbox" sx={{ px: 2 }}>

@@ -70,13 +70,12 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
       initialValues={{
         medium: useAppSelector(state => state.practice.medium),
         origin: useAppSelector(state => state.practice.origin),
-        allowLiveFeedback: useAppSelector(state => state.practice.allowLiveFeedback),
         interviewType: useAppSelector(state => state.practice.interviewType),
       }}
       validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
       onSubmit={values => {
-        const { medium, origin, allowLiveFeedback, interviewType } = values;
-        dispatch(setPracticeSettings(medium, origin, allowLiveFeedback, interviewType));
+        const { medium, origin, interviewType } = values;
+        dispatch(setPracticeSettings(medium, origin, interviewType));
         onNext();
       }}
     >
@@ -203,55 +202,6 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   { id: 'practice.setting.source.record.description' },
                   { session_type_name: getSessionTypeName(SessionType.Interview) }
                 )}
-              </Alert>
-            </Box>
-            <Box sx={{ padding: 2 }}>
-              <FormControl component="fieldset" required>
-                <FormLabel component="legend">
-                  {intl.formatMessage({ id: 'practice.setting.liveFeedback.title' })}
-                </FormLabel>
-                <FormHelperText>
-                  {intl.formatMessage({ id: 'practice.setting.liveFeedback.helper' })}
-                </FormHelperText>
-                <RadioGroup
-                  row
-                  name="allowLiveFeedback"
-                  value={values.allowLiveFeedback}
-                  onChange={event => {
-                    setFieldValue('allowLiveFeedback', event.currentTarget.value === 'true');
-                  }}
-                >
-                  <FormControlLabel
-                    value="true"
-                    control={<Radio />}
-                    label={intl.formatMessage({ id: 'common.enabled' })}
-                    aria-describedby="allowLiveFeedbackRadioDescription"
-                    aria-invalid={
-                      errors.allowLiveFeedback && touched.allowLiveFeedback ? 'true' : 'false'
-                    }
-                  />
-                  <FormControlLabel
-                    value="false"
-                    control={<Radio />}
-                    label={intl.formatMessage({ id: 'common.disabled' })}
-                    aria-describedby="allowLiveFeedbackRadioDescription"
-                    aria-invalid={
-                      errors.allowLiveFeedback && touched.allowLiveFeedback ? 'true' : 'false'
-                    }
-                  />
-                </RadioGroup>
-                {touched.allowLiveFeedback && errors.allowLiveFeedback && (
-                  <FormErrorMessage msg={errors.allowLiveFeedback} />
-                )}
-              </FormControl>
-              <Alert
-                id="allowLiveFeedbackRadioDescription"
-                role="status"
-                variant="outlined"
-                severity="info"
-                sx={{ my: 1 }}
-              >
-                {intl.formatMessage({ id: 'practice.setting.liveFeedback.description' })}
               </Alert>
             </Box>
             <Box sx={{ padding: 2 }}>

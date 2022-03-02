@@ -101,7 +101,7 @@ const SignUp = () => {
                       name="firstName"
                       label={intl.formatMessage({ id: 'user.signup.firstName' })}
                       errorMsg={errors.firstName}
-                      required
+                      aria-required="true"
                       aria-invalid={errors.firstName && touched.firstName ? 'true' : 'false'}
                     />
                     <Field
@@ -109,7 +109,7 @@ const SignUp = () => {
                       name="lastName"
                       label={intl.formatMessage({ id: 'user.signup.lastName' })}
                       errorMsg={errors.lastName}
-                      required
+                      aria-required="true"
                       aria-invalid={errors.lastName && touched.lastName ? 'true' : 'false'}
                     />
                     <Field
@@ -118,18 +118,19 @@ const SignUp = () => {
                       autoComplete="email"
                       label={intl.formatMessage({ id: 'user.signup.email' })}
                       errorMsg={errors.email}
-                      required
+                      aria-required="true"
                       aria-invalid={errors.email && touched.email ? 'true' : 'false'}
                     />
                     <Field
                       as={FormInput}
                       name="password"
                       type="password"
+                      autoComplete="new-password"
                       label={intl.formatMessage({ id: 'user.signup.password' })}
                       errorMsg={errors.password}
                       onMouseDown={handlePsiOpen}
                       onBlur={handlePsiClose}
-                      required
+                      aria-required="true"
                       aria-owns={psiPopoverId}
                       aria-haspopup="true"
                       aria-invalid={errors.password && touched.password ? 'true' : 'false'}
@@ -150,9 +151,10 @@ const SignUp = () => {
                       as={FormInput}
                       name="passwordConfirmation"
                       type="password"
+                      autoComplete="new-password"
                       label={intl.formatMessage({ id: 'user.signup.password.confirm' })}
                       errorMsg={errors.passwordConfirmation}
-                      required
+                      aria-required="true"
                       aria-invalid={
                         errors.passwordConfirmation && touched.passwordConfirmation
                           ? 'true'

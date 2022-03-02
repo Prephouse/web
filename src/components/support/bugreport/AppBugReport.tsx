@@ -32,7 +32,6 @@ const AppBugReport = () => {
           submitForm();
         };
 
-        // noinspection RequiredAttributes
         return (
           <Form onSubmit={onSubmit}>
             <FormGroupCompact>
@@ -40,7 +39,7 @@ const AppBugReport = () => {
                 as={FormInput}
                 name="title"
                 label={intl.formatMessage({ id: 'support.bugReport.title' })}
-                required
+                aria-required="true"
                 errorMsg={errors.title}
               />
               <Field

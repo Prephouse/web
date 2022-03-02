@@ -59,7 +59,7 @@ const Leaderboard = () => {
           </Paper>
         </Stack>
         <TableContainer component={Paper}>
-          <Table stickyHeader aria-label="some table">
+          <Table stickyHeader aria-label={intl.formatMessage({ id: 'leaderboard.title' })}>
             <TableHead>
               <TableRow>
                 <TableCell align="center" padding="checkbox" sx={{ px: 2 }}>
@@ -75,7 +75,7 @@ const Leaderboard = () => {
                   {intl.formatMessage({ id: 'leaderboard.table.date' })}
                 </TableCell>
                 <TableCell align="center">
-                  {intl.formatMessage({ id: 'leaderboard.table.category' })}
+                  {intl.formatMessage({ id: 'leaderboard.table.type' })}
                 </TableCell>
                 <TableCell align="center">
                   {intl.formatMessage({ id: 'leaderboard.table.engine' })}

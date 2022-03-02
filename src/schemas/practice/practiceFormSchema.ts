@@ -11,7 +11,6 @@ export const getFormValidationSchema = (intl: IntlShape) => {
   return z.object({
     medium: z.nativeEnum(SessionMedium, fieldParams),
     origin: z.nativeEnum(SessionOrigin, fieldParams),
-    allowLiveFeedback: z.boolean(fieldParams),
     interviewType: z.nativeEnum(InterviewType, fieldParams),
   });
 };

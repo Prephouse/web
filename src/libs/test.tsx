@@ -30,7 +30,7 @@ function customRender(
     ...options
   }: {
     preloadedState?: Record<string, unknown>;
-    store?: EnhancedStore;
+    store?: ReturnType<typeof configureStore>;
     options?: Omit<RenderOptions, 'wrapper'>;
   } = {}
 ) {

@@ -4,16 +4,10 @@ import { InterviewType, SessionMedium, SessionOrigin } from './enums';
 
 export const setPracticeSettings = createAction(
   'practice/setPracticeSettings',
-  (
-    medium: SessionMedium,
-    origin: SessionOrigin,
-    allowLiveFeedback: boolean,
-    interviewType: InterviewType
-  ) => ({
+  (medium: SessionMedium, origin: SessionOrigin, interviewType: InterviewType) => ({
     payload: {
       medium,
       origin,
-      allowLiveFeedback,
       interviewType,
     },
   })

@@ -48,7 +48,7 @@ const AppFeedback = () => {
                     {...props}
                     label={intl.formatMessage({ id: 'support.feedback.category' })}
                     fullWidth
-                    required
+                    aria-required="true"
                   />
                 )}
               />
@@ -56,7 +56,7 @@ const AppFeedback = () => {
                 as={FormInput}
                 name="title"
                 label={intl.formatMessage({ id: 'support.feedback.title' })}
-                required
+                aria-required="true"
                 errorMsg={errors.title}
               />
               <Field

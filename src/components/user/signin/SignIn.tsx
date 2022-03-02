@@ -80,6 +80,7 @@ const SignIn = () => {
                       as={FormInput}
                       name="password"
                       type="password"
+                      autoComplete="current-password"
                       label={intl.formatMessage({ id: 'user.signin.password' })}
                     />
                   </FormGroupCompact>

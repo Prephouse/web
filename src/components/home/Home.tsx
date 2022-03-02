@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <>
       <Helmet title={intl.formatMessage({ id: 'app.title' })} />
-      <CenteredDiv style={{ height: '70vh' }}>
+      <CenteredDiv style={{ minHeight: '70vh' }}>
         <Stack
           direction="column"
           justifyContent="center"
