@@ -22,6 +22,7 @@ import type {
   QuestionRequestSchema,
   QuestionResponseSchema,
 } from 'schemas/question/questionSchema';
+import type { UploadQuestionResponseSchema } from 'schemas/upload/uploadQuestionSchema';
 
 export const prephouseApi = createApi({
   reducerPath: 'prephouseApi',
@@ -52,6 +53,9 @@ export const prephouseApi = createApi({
     >({
       query: () => ({ url: '/question/categories/' }),
     }),
+    addUploadQuestion: builder.mutation<UploadQuestionResponseSchema, void>({
+      query: () => ({ url: '/upload/question/', method: 'POST' }),
+    }),
   }),
 });
 
@@ -62,4 +66,5 @@ export const {
   useGetProgressSessionsQuery,
   useGetQuestionQuery,
   useGetQuestionCategoriesQuery,
+  useAddUploadQuestionMutation,
 } = prephouseApi;

@@ -6,6 +6,7 @@ import { store } from 'store';
 
 import App from './components/App';
 
+import configureAWS from 'libs/aws';
 import initializeFirebase from 'libs/firebase';
 
 import reportWebVitals from './reportWebVitals';
@@ -22,6 +23,8 @@ ReactDOM.render(
 );
 
 initializeFirebase();
+
+configureAWS();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

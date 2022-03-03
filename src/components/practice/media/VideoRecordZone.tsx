@@ -1,3 +1,4 @@
+import AWS from 'aws-sdk';
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 
@@ -7,6 +8,8 @@ import AudioPreview from 'components/common/media/AudioPreview';
 import PrephouseMediaRecorder from 'components/common/media/MediaRecorder';
 import VideoPreview from 'components/common/media/VideoPreview';
 import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
+
+import { useAddUploadQuestionMutation } from 'services/prephouse';
 
 interface Props {
   onSubmit: (src: string) => void;
@@ -22,11 +25,24 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
     setPreviewWidth(newValue as number);
   };
 
+  const [addUploadQuestion] = useAddUploadQuestionMutation({});
+
   return (
     <PrephouseMediaRecorder
       video
       audio
-      onStop={burl => setBlobUrl(burl)}
+      onStop={async (blobUrlString, blob) => {
+        const value = await addUploadQuestion().unwrap();
+        const upload = new AWS.S3.ManagedUpload({
+          params: {
+            Bucket: process.env.REACT_APP_AWS_VIDEO_BUCKET ?? 'prephouse-video',
+            Key: `${value.id}.mp4`,
+            ContentType: 'video/mp4',
+            Body: blob,
+          },
+        });
+        const promise = upload.promise();
+      }}
       render={({
         status,
         startRecording,
