@@ -5,12 +5,22 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from 
 interface Props {
   open: boolean;
   dialogContentText?: string;
-  onCancel?: (...args: unknown[]) => void;
-  onReject?: (...args: unknown[]) => void;
+  approveText?: string;
   onApprove: (...args: unknown[]) => void;
+  rejectText?: string;
+  onReject?: (...args: unknown[]) => void;
+  onCancel?: (...args: unknown[]) => void;
 }
 
-const ConfirmationDialog = ({ open, dialogContentText, onCancel, onReject, onApprove }: Props) => {
+const ConfirmationDialog = ({
+  open,
+  dialogContentText,
+  approveText,
+  onApprove,
+  rejectText,
+  onReject,
+  onCancel,
+}: Props) => {
   const intl = useIntl();
 
   return (
@@ -28,9 +38,13 @@ const ConfirmationDialog = ({ open, dialogContentText, onCancel, onReject, onApp
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onReject}>{intl.formatMessage({ id: 'common.no' })}</Button>
+        {onReject && (
+          <Button onClick={onReject}>
+            {rejectText || intl.formatMessage({ id: 'common.no' })}
+          </Button>
+        )}
         <Button onClick={onApprove} autoFocus>
-          {intl.formatMessage({ id: 'common.yes' })}
+          {approveText || intl.formatMessage({ id: 'common.yes' })}
         </Button>
       </DialogActions>
     </Dialog>
