@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl';
+import { Link as RouterLink } from 'react-router-dom';
 
 import {
+  Link,
   Paper,
   Table,
   TableBody,
@@ -57,23 +59,35 @@ const ProgressTable = () => {
           {progressSessionsData?.sessions.map(session => (
             <TableRow key={session.sessionId.toString()}>
               <TableCell align="center">
-                {intl.formatDate(new Date(session.date), {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                })}
+                <Link component={RouterLink} to={`/session/${session.sessionId}`}>
+                  {intl.formatDate(new Date(session.date), {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  })}
+                </Link>
               </TableCell>
               <TableCell align="center">{session.sessionCategory}</TableCell>
-              <TableCell align="center">{intl.formatNumber(session.overallScore)}</TableCell>
               <TableCell align="center">
-                {intl.formatNumber(session.backgroundLightScore)}
+                {intl.formatNumber(session.scores?.overallScore)}
               </TableCell>
-              <TableCell align="center">{intl.formatNumber(session.emotionScore)}</TableCell>
-              <TableCell align="center">{intl.formatNumber(session.fillerWordsScore)}</TableCell>
-              <TableCell align="center">{intl.formatNumber(session.gazeDirectionScore)}</TableCell>
-              <TableCell align="center">{intl.formatNumber(session.pitchScore)}</TableCell>
-              <TableCell align="center">{intl.formatNumber(session.silentPausesScore)}</TableCell>
-              <TableCell align="center">{intl.formatNumber(session.volumeScore)}</TableCell>
+              <TableCell align="center">
+                {intl.formatNumber(session.scores?.backgroundLightScore)}
+              </TableCell>
+              <TableCell align="center">
+                {intl.formatNumber(session.scores?.emotionScore)}
+              </TableCell>
+              <TableCell align="center">
+                {intl.formatNumber(session.scores?.fillerWordsScore)}
+              </TableCell>
+              <TableCell align="center">
+                {intl.formatNumber(session.scores?.gazeDirectionScore)}
+              </TableCell>
+              <TableCell align="center">{intl.formatNumber(session.scores?.pitchScore)}</TableCell>
+              <TableCell align="center">
+                {intl.formatNumber(session.scores?.silentPausesScore)}
+              </TableCell>
+              <TableCell align="center">{intl.formatNumber(session.scores?.volumeScore)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

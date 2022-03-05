@@ -23,22 +23,35 @@ export const FACEBOOK_BLUE = BLUE_800;
 export const FACEBOOK_BLUE_HOVER = BLUE_900;
 export const GOOGLE_GREY_HOVER = GREY_50;
 
-const defaultPalette = [
-  '#FFADAD',
-  '#FFD6A5',
-  '#CAFFBF',
-  '#9BF6FF',
-  '#A0C4FF',
-  '#BDB2FF',
-  '#FFC6FF',
+type ColourType = [number, number, number, number?];
+
+const defaultPalette: ColourType[] = [
+  [255, 173, 173],
+  [255, 214, 165],
+  [202, 255, 191],
+  [155, 246, 255],
+  [160, 196, 255],
+  [189, 178, 255],
+  [255, 198, 255],
 ];
 
 export class ColorPicker {
-  constructor(public palette: string[] = defaultPalette, public index: number = 0) {}
+  constructor(public palette: ColourType[] = defaultPalette, public index: number = 0) {}
+
+  static getColorString(colour: ColourType | undefined, opacity?: number): string {
+    const opacityColour = opacity ? colour?.concat(opacity) : colour;
+    return `rgb(${opacityColour?.join(',')})`;
+  }
 
   getColor(): string {
-    const color = this.palette[this.index];
+    const colour = this.palette[this.index];
     this.index = (this.index + 1) % this.palette.length;
-    return color ?? '';
+    return ColorPicker.getColorString(colour);
+  }
+
+  getColorPair(opacity: number): [string, string] {
+    const colour = this.palette[this.index];
+    this.index = (this.index + 1) % this.palette.length;
+    return [ColorPicker.getColorString(colour), ColorPicker.getColorString(colour, opacity)];
   }
 }

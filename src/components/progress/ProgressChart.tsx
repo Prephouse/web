@@ -9,24 +9,28 @@ import { ColorPicker } from 'styles/colours';
 
 import { camelCaseToWords } from 'utils/string';
 
-const ProgressGraph = () => {
+const ProgressChart = () => {
   const intl = useIntl();
   const { data: progressData } = useGetProgressQuery();
+
+  const labels = useMemo(
+    () => progressData?.dates?.map(date => new Date(date).toDateString()),
+    [progressData]
+  );
+
   const datasets = useMemo(() => {
     const colorPicker = new ColorPicker();
 
-    return Object.entries(progressData ?? {})
-      .filter(entries => entries[0] !== 'dates')
-      .map(([key, value]) => ({
-        label: camelCaseToWords(key),
-        data: value,
-        borderColor: colorPicker.getColor(),
-        hidden: localStorage.getItem(camelCaseToWords(key)) === 'true',
-      }));
+    return Object.entries(progressData?.scores ?? {}).map(([key, value]) => ({
+      label: camelCaseToWords(key),
+      data: value,
+      borderColor: colorPicker.getColor(),
+      hidden: localStorage.getItem(camelCaseToWords(key)) === 'true',
+    }));
   }, [progressData]);
 
   const chartData = {
-    labels: progressData?.dates?.map(date => new Date(date).toDateString()),
+    labels,
     datasets,
   };
 
@@ -36,15 +40,17 @@ const ProgressGraph = () => {
         display: true,
         title: {
           display: true,
-          text: intl.formatMessage({ id: 'progress.graph.xLabel' }),
+          text: intl.formatMessage({ id: 'progress.chart.xLabel' }),
         },
       },
       y: {
         display: true,
         title: {
           display: true,
-          text: intl.formatMessage({ id: 'progress.graph.yLabel' }),
+          text: intl.formatMessage({ id: 'progress.chart.yLabel' }),
         },
+        min: 0,
+        max: 100,
       },
     },
     plugins: {
@@ -63,4 +69,4 @@ const ProgressGraph = () => {
   return <Line data={chartData} options={chartOptions} />;
 };
 
-export default ProgressGraph;
+export default ProgressChart;

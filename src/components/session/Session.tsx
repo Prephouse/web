@@ -1,0 +1,40 @@
+import { Helmet } from 'react-helmet-async';
+import { useIntl } from 'react-intl';
+import { useParams } from 'react-router-dom';
+
+import { Typography } from '@mui/material';
+
+import PageContainer from 'components/common/container/PageContainer';
+
+import { useGetSessionQuery } from 'services/prephouse';
+
+import ScoreChart from './ScoreChart';
+
+const Session = () => {
+  const { id } = useParams();
+  const intl = useIntl();
+  const { data: sessionData } = useGetSessionQuery({ session_id: id ?? '' });
+  const dateString = sessionData?.date
+    ? intl.formatDate(new Date(sessionData?.date), {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      })
+    : '';
+  const title = `${intl.formatMessage({ id: 'session.title' })} - ${dateString}`;
+
+  return (
+    <>
+      <Helmet title={title} />
+      <PageContainer>
+        <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
+          {title}
+        </Typography>
+        <ScoreChart sessionData={sessionData} />
+        {/* TODO: Textual Feedback Here */}
+      </PageContainer>
+    </>
+  );
+};
+
+export default Session;

@@ -49,7 +49,7 @@ const Leaderboard = () => {
           </Paper>
           <Paper variant="outlined" sx={{ width: '100%', padding: 2 }}>
             <Typography component="h3">
-              {intl.formatMessage({ id: 'leaderboard.score.best' })}
+              {intl.formatMessage({ id: 'leaderboard.score.latest' })}
             </Typography>
             <Typography variant="h2">
               {leaderboardOverview?.latestOverallScore

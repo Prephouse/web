@@ -35,6 +35,7 @@ import {
   PRACTICE_PATH,
   PROGRESS_PATH,
   QUESTION_BANK_PATH,
+  SESSION_PATH,
   SUPPORT_PATH,
   USER_SIGN_IN_PATH,
   USER_SIGN_UP_PATH,
@@ -50,6 +51,7 @@ const SignInForm = lazy(() => import('components/user/signin/SignIn'));
 const SignUpForm = lazy(() => import('components/user/signup/SignUp'));
 const Support = lazy(() => import('components/support/Support'));
 const QuestionBank = lazy(() => import('components/bank/Bank'));
+const Session = lazy(() => import('components/session/Session'));
 
 const establishTheme = (localization: Localization, prefersDarkMode: boolean) => {
   let theme = generateTheme(localization, prefersDarkMode);
@@ -143,6 +145,18 @@ const App = () => {
                           screen={
                             <PrivateRoute>
                               <Leaderboard />
+                            </PrivateRoute>
+                          }
+                        />
+                      }
+                    />
+                    <Route
+                      path={SESSION_PATH}
+                      element={
+                        <SuspendableScreen
+                          screen={
+                            <PrivateRoute>
+                              <Session />
                             </PrivateRoute>
                           }
                         />

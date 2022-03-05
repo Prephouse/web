@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 
 import PageContainer from 'components/common/container/PageContainer';
 
-import ProgressGraph from './ProgressGraph';
+import ProgressGraph from './ProgressChart';
 import ProgressTable from './ProgressTable';
 
 const Progress = () => {

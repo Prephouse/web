@@ -22,6 +22,7 @@ import type {
   QuestionRequestSchema,
   QuestionResponseSchema,
 } from 'schemas/question/questionSchema';
+import { SessionRequestSchema, SessionResponseSchema } from 'schemas/session/sessionSchema';
 import type { UploadQuestionResponseSchema } from 'schemas/upload/uploadQuestionSchema';
 
 export const prephouseApi = createApi({
@@ -38,11 +39,14 @@ export const prephouseApi = createApi({
     >({
       query: () => ({ url: '/leaderboard/overview/' }),
     }),
+    getSession: builder.query<SessionResponseSchema, SessionRequestSchema>({
+      query: params => ({ url: '/progress/scores_for_session/', params }),
+    }),
     getProgress: builder.query<ScoresPerCategoryResponseSchema, void>({
-      query: () => ({ url: '/progress/scores_per_category/' }),
+      query: () => ({ url: '/progress/scores_by_feature/' }),
     }),
     getProgressSessions: builder.query<ScoresPerSessionResponseSchema, void>({
-      query: () => ({ url: '/progress/scores_per_session/' }),
+      query: () => ({ url: '/progress/scores_by_session/' }),
     }),
     getQuestion: builder.query<QuestionResponseSchema, QuestionRequestSchema>({
       query: params => ({ url: '/question/', params }),
@@ -62,6 +66,7 @@ export const prephouseApi = createApi({
 export const {
   useGetLeaderboardQuery,
   useGetLeaderboardOverviewQuery,
+  useGetSessionQuery,
   useGetProgressQuery,
   useGetProgressSessionsQuery,
   useGetQuestionQuery,
