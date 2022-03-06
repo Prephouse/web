@@ -7,7 +7,7 @@ import AudioPreview from 'components/common/media/AudioPreview';
 import PrephouseMediaRecorder from 'components/common/media/MediaRecorder';
 import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
 
-import { useAddUploadQuestionMutation } from 'services/prephouse';
+import { useAddUploadQuestionMutation, useAddUploadRecordMutation } from 'services/prephouse';
 
 interface Props {
   onSubmit: (src: string) => void;
@@ -16,12 +16,14 @@ interface Props {
 const AudioRecordZone = ({ onSubmit }: Props) => {
   const [blobUrl] = useState<string | null>(null);
   const [addUploadQuestion] = useAddUploadQuestionMutation({});
+  const [addUploadRecord] = useAddUploadRecordMutation({});
 
   return (
     <PrephouseMediaRecorder
       audio
-      onStop={async (bUrl, blob) => {
-        const value = await addUploadQuestion().unwrap();
+      onStop={async (blobUrlString, blob) => {
+        const uploadRecord = await addUploadRecord({ category: 0 }).unwrap();
+        const value = await addUploadQuestion({ upload_id: uploadRecord.id }).unwrap();
         const upload = new AWS.S3.ManagedUpload({
           params: {
             Bucket: process.env.REACT_APP_AWS_AUDIO_BUCKET ?? 'prephouse-audio-tracks',

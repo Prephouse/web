@@ -27,7 +27,14 @@ import type {
   UploadInstructionsRequestSchema,
   UploadInstructionsResponseSchema,
 } from 'schemas/upload/uploadInstructionsSchema';
-import type { UploadQuestionResponseSchema } from 'schemas/upload/uploadQuestionSchema';
+import type {
+  UploadQuestionRequestSchema,
+  UploadQuestionResponseSchema,
+} from 'schemas/upload/uploadQuestionSchema';
+import type {
+  UploadRecordRequestSchema,
+  UploadRecordResponseSchema,
+} from 'schemas/upload/uploadRecordSchema';
 
 export const prephouseApi = createApi({
   reducerPath: 'prephouseApi',
@@ -67,8 +74,11 @@ export const prephouseApi = createApi({
     >({
       query: () => ({ url: '/question/categories/' }),
     }),
-    addUploadQuestion: builder.mutation<UploadQuestionResponseSchema, void>({
-      query: () => ({ url: '/upload/question/', method: 'POST' }),
+    addUploadQuestion: builder.mutation<UploadQuestionResponseSchema, UploadQuestionRequestSchema>({
+      query: params => ({ url: '/upload/question/', method: 'POST', params }),
+    }),
+    addUploadRecord: builder.mutation<UploadRecordResponseSchema, UploadRecordRequestSchema>({
+      query: params => ({ url: '/upload/record/', method: 'POST', params }),
     }),
   }),
 });
@@ -83,4 +93,5 @@ export const {
   useGetQuestionQuery,
   useGetQuestionCategoriesQuery,
   useAddUploadQuestionMutation,
+  useAddUploadRecordMutation,
 } = prephouseApi;
