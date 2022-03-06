@@ -22,6 +22,7 @@ const practiceReducer = createReducer(initState, builder => {
     .addCase(setPracticeSettings, (state, action) => {
       state.medium = action.payload.medium;
       state.origin = action.payload.origin;
+      state.sessionType = action.payload.sessionType;
     })
     .addCase(setMediaSource, (state, action) => {
       state.source = action.payload;

@@ -1,6 +1,6 @@
 import { MouseEvent as ReactMouseEvent } from 'react';
 
-import { Box, Button, CircularProgress } from '@mui/material';
+import { Box, Button, CircularProgress, Stack, SxProps } from '@mui/material';
 
 interface Props {
   primaryText: string;
@@ -19,6 +19,7 @@ interface Props {
     | 'info'
     | 'warning'
     | undefined;
+  sx?: SxProps;
 }
 
 const FormButtons = ({
@@ -30,38 +31,47 @@ const FormButtons = ({
   secondaryColor = 'secondary',
   isLoading = false,
   loadingText,
+  sx,
 }: Props) => (
-  <Box>
-    <Button
-      type="submit"
-      variant="contained"
-      color="primary"
-      fullWidth
-      sx={{ mt: 1, mb: 0.5 }}
-      onClick={onPrimaryClick}
-      disabled={isLoading || primaryDisabled}
-    >
-      {isLoading ? (
-        <>
-          <CircularProgress size={24} />
-          {loadingText && <Button> &emsp;{loadingText}&hellip;</Button>}
-        </>
-      ) : (
-        primaryText
+  <Stack
+    direction="row"
+    spacing={2}
+    sx={{ alignItems: 'baseline', justifyContent: 'space-between' }}
+  >
+    <Box sx={{ width: '25%' }}>
+      {secondaryText && (
+        <Button
+          variant="contained"
+          color={secondaryColor}
+          fullWidth
+          sx={{ my: 0.5, ...sx }}
+          onClick={onSecondaryClick}
+        >
+          {secondaryText}
+        </Button>
       )}
-    </Button>
-    {secondaryText && (
+    </Box>
+    <Box sx={{ width: '25%' }}>
       <Button
+        type="submit"
         variant="contained"
-        color={secondaryColor}
+        color="primary"
         fullWidth
-        sx={{ my: 0.5 }}
-        onClick={onSecondaryClick}
+        sx={{ mt: 1, mb: 0.5, ...sx }}
+        onClick={onPrimaryClick}
+        disabled={isLoading || primaryDisabled}
       >
-        {secondaryText}
+        {isLoading ? (
+          <>
+            <CircularProgress size={24} />
+            {loadingText && <Button> &emsp;{loadingText}&hellip;</Button>}
+          </>
+        ) : (
+          primaryText
+        )}
       </Button>
-    )}
-  </Box>
+    </Box>
+  </Stack>
 );
 
 export default FormButtons;

@@ -70,11 +70,12 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
       initialValues={{
         medium: useAppSelector(state => state.practice.medium),
         origin: useAppSelector(state => state.practice.origin),
+        sessionType: useAppSelector(state => state.practice.sessionType),
       }}
       validationSchema={toFormikValidationSchema(getFormValidationSchema(intl))}
       onSubmit={values => {
-        const { medium, origin } = values;
-        dispatch(setPracticeSettings(medium, origin));
+        const { medium, origin, sessionType } = values;
+        dispatch(setPracticeSettings(medium, origin, sessionType));
         onNext();
       }}
     >
@@ -202,6 +203,42 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                   { session_type_name: getSessionTypeName(SessionType.Interview) }
                 )}
               </Alert>
+            </Box>
+            <Box sx={{ padding: 2 }}>
+              <FormControl component="fieldset" required>
+                <FormLabel component="legend">
+                  {intl.formatMessage({ id: 'practice.setting.type.title' })}
+                </FormLabel>
+                <FormHelperText>
+                  {intl.formatMessage({ id: 'practice.setting.type.helper' })}
+                </FormHelperText>
+                <RadioGroup
+                  row
+                  name="sessionType"
+                  value={values.sessionType}
+                  onChange={event => {
+                    setFieldValue('sessionType', parseStrictDecInt(event.currentTarget.value));
+                  }}
+                >
+                  <FormControlLabel
+                    value={SessionType.Interview}
+                    control={<Radio />}
+                    label={intl.formatMessage({ id: 'practice.setting.type.interview' })}
+                    aria-describedby="sessionTypeDescription"
+                    aria-invalid={errors.sessionType && touched.sessionType ? 'true' : 'false'}
+                  />
+                  <FormControlLabel
+                    value={SessionType.Presentation}
+                    control={<Radio />}
+                    label={intl.formatMessage({ id: 'practice.setting.type.presentation' })}
+                    aria-describedby="sessionTypeDescription"
+                    aria-invalid={errors.sessionType && touched.sessionType ? 'true' : 'false'}
+                  />
+                </RadioGroup>
+                {touched.sessionType && errors.sessionType && (
+                  <FormErrorMessage msg={errors.sessionType} />
+                )}
+              </FormControl>
             </Box>
             <FormButtons
               primaryText={intl.formatMessage({ id: 'practice.setting.confirm' })}
