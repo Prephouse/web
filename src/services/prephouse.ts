@@ -22,7 +22,11 @@ import type {
   QuestionRequestSchema,
   QuestionResponseSchema,
 } from 'schemas/question/questionSchema';
-import { SessionRequestSchema, SessionResponseSchema } from 'schemas/session/sessionSchema';
+import type { SessionRequestSchema, SessionResponseSchema } from 'schemas/session/sessionSchema';
+import type {
+  UploadInstructionsRequestSchema,
+  UploadInstructionsResponseSchema,
+} from 'schemas/upload/uploadInstructionsSchema';
 import type { UploadQuestionResponseSchema } from 'schemas/upload/uploadQuestionSchema';
 
 export const prephouseApi = createApi({
@@ -30,6 +34,12 @@ export const prephouseApi = createApi({
   baseQuery: baseQuery(),
   tagTypes: ['Prephouse'],
   endpoints: builder => ({
+    getUploadInstructions: builder.query<
+      UploadInstructionsResponseSchema,
+      UploadInstructionsRequestSchema
+    >({
+      query: params => ({ url: '/upload/instructions/', params }),
+    }),
     getLeaderboard: builder.query<LeaderboardResponseSchema, LeaderboardRequestSchema>({
       query: params => ({ url: '/leaderboard/', params }),
     }),
@@ -64,6 +74,7 @@ export const prephouseApi = createApi({
 });
 
 export const {
+  useGetUploadInstructionsQuery,
   useGetLeaderboardQuery,
   useGetLeaderboardOverviewQuery,
   useGetSessionQuery,

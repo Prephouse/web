@@ -1,3 +1,6 @@
+import DOMPurify from 'dompurify';
+import HTMLReactParser from 'html-react-parser';
+
 import ValueError from 'errors/ValueError';
 
 /**
@@ -56,4 +59,8 @@ export function camelCaseToWords(str: string) {
     .replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1 $2');
 
   return res.charAt(0).toUpperCase() + res.slice(1);
+}
+
+export function parseHtml(str: string | undefined) {
+  return str && HTMLReactParser(DOMPurify.sanitize(str, { USE_PROFILES: { html: true } }));
 }
