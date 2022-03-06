@@ -1,6 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-const VideoPreview = ({ stream }: { stream: MediaStream | null }) => {
+const VideoPreview = ({
+  stream,
+  source,
+}: {
+  stream?: MediaStream | null;
+  source?: string | undefined;
+}) => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -9,8 +15,12 @@ const VideoPreview = ({ stream }: { stream: MediaStream | null }) => {
     }
   }, [stream]);
 
+  const props = source
+    ? { src: source, controls: true, style: { width: '100%' } }
+    : { autoPlay: true, ref: videoRef, style: { width: '100%', transform: 'scaleX(-1)' } };
+
   // eslint-disable-next-line jsx-a11y/media-has-caption
-  return <video ref={videoRef} autoPlay style={{ width: '100%', transform: 'scaleX(-1)' }} />;
+  return <video {...props} />;
 };
 
 export default VideoPreview;

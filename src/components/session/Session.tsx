@@ -8,6 +8,7 @@ import PageContainer from 'components/common/container/PageContainer';
 
 import { useGetSessionQuery } from 'services/prephouse';
 
+import Playback from './Playback';
 import ScoreChart from './ScoreChart';
 
 const Session = () => {
@@ -29,6 +30,13 @@ const Session = () => {
       <PageContainer>
         <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
           {title}
+        </Typography>
+        <Typography component="h5" variant="h5" sx={{ my: 2 }}>
+          {intl.formatMessage({ id: 'session.playback' })}
+        </Typography>
+        <Playback videoUrl={sessionData?.cloudfrontUrl} />
+        <Typography component="h5" variant="h5" sx={{ my: 2 }}>
+          {intl.formatMessage({ id: 'session.chart.title' })}
         </Typography>
         <ScoreChart sessionData={sessionData} />
         {/* TODO: Textual Feedback Here */}

@@ -7,6 +7,7 @@ const sessionRequestSchema = z.object({
 const sessionResponseSchema = z.object({
   date: z.string(),
   sessionCategory: z.string(),
+  cloudfrontUrl: z.string(),
   scores: z.object({
     overallScore: z.number().nonnegative(),
     silentPausesScore: z.number().nonnegative(),
