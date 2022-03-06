@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Notify deployment of production to Rollbar
-        uses: rollbar/github-deploy-action@2
+        uses: rollbar/github-deploy-action@2.1.1
         with:
           environment: 'production'
           version: ${{ github.sha }}
