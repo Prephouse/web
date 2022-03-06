@@ -1,10 +1,11 @@
+import { ReactNode } from 'react';
 import { useIntl } from 'react-intl';
 
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText } from '@mui/material';
 
 interface Props {
   open: boolean;
-  dialogContentText?: string;
+  dialogContentText?: ReactNode;
   approveText?: string;
   onApprove: (...args: unknown[]) => void;
   rejectText?: string;

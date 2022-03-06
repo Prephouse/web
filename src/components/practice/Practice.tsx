@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 
 import { Paper, Step, StepLabel, Stepper, useMediaQuery, useTheme } from '@mui/material';
 
 import PageContainer from 'components/common/container/PageContainer';
 import ConfirmationDialog from 'components/common/dialog/ConfirmationDialog';
+import ErrorDialog from 'components/practice/ErrorDialog';
 import PracticeFeedback from 'components/practice/steps/PracticeFeedback';
 import PracticeInstructions from 'components/practice/steps/PracticeInstructions';
 import PracticeIntroduction from 'components/practice/steps/PracticeIntroduction';
@@ -15,8 +18,12 @@ import PracticeUploadRecord from 'components/practice/steps/PracticeUploadRecord
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
+import rollbar from 'libs/rollbar';
+
 import { clearMediaSource } from 'states/practice/actions';
 import { SessionOrigin } from 'states/practice/enums';
+
+import { HOME_PATH } from 'strings/paths';
 
 import practiceSteps from 'values/practice/practiceSteps';
 
@@ -34,6 +41,8 @@ const Practice = () => {
     dispatch(clearMediaSource());
     setStep(step + 1);
   }, [dispatch, step]);
+
+  const navigate = useNavigate();
 
   const theme = useTheme();
   const showHorizontalStepper = useMediaQuery(theme.breakpoints.up('sm'));
@@ -103,26 +112,36 @@ const Practice = () => {
     <>
       <Helmet title={intl.formatMessage({ id: 'practice.title.expanded' })} />
       <PageContainer>
-        <Paper
-          elevation={3}
-          sx={{
-            width: '100%',
-            padding: 3,
+        <ErrorBoundary
+          FallbackComponent={ErrorDialog}
+          onReset={() => {
+            navigate(HOME_PATH);
+          }}
+          onError={(error, info) => {
+            rollbar.error(error, info.componentStack);
           }}
         >
-          <Stepper
-            activeStep={step}
-            alternativeLabel={showHorizontalStepper}
-            orientation={showHorizontalStepper ? 'horizontal' : 'vertical'}
+          <Paper
+            elevation={3}
+            sx={{
+              width: '100%',
+              padding: 3,
+            }}
           >
-            {practiceSteps.map(labelId => (
-              <Step key={labelId}>
-                <StepLabel>{intl.formatMessage({ id: labelId })}</StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-        </Paper>
-        {visitNextStep()}
+            <Stepper
+              activeStep={step}
+              alternativeLabel={showHorizontalStepper}
+              orientation={showHorizontalStepper ? 'horizontal' : 'vertical'}
+            >
+              {practiceSteps.map(labelId => (
+                <Step key={labelId}>
+                  <StepLabel>{intl.formatMessage({ id: labelId })}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Paper>
+          {visitNextStep()}
+        </ErrorBoundary>
       </PageContainer>
       <ConfirmationDialog
         open={blockSession === true}

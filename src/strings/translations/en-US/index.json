@@ -43,6 +43,7 @@
   "common.resume": "Resume",
   "common.submit": "Submit",
   "common.website": "Website",
+  "common.wrong": "Something went wrong",
   "common.yes": "Yes",
   "firebase.auth/email-already-in-use": "The provided email is already in use by an existing user.",
   "firebase.auth/too-many-requests": "Too many sign in attempts. Please wait until retrying.",
