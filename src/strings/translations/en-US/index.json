@@ -188,6 +188,6 @@
   "user.signup.password.strength.4": "Strong",
   "user.signup.password.strength.aria": "password strength meter",
   "user.signup.register": "Create account",
-  "user.signup.title": "Create your personalized account",
+  "user.signup.title": "Sign up",
   "user.signup.username": "Email Address"
 }
