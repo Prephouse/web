@@ -17,7 +17,7 @@ interface Props {
 
 const VideoRecordZone = ({ onSubmit }: Props) => {
   const [previewWidth, setPreviewWidth] = useState(60);
-  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+  const [blobUrl] = useState<string | null>(null);
 
   const intl = useIntl();
 
@@ -31,7 +31,7 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
     <PrephouseMediaRecorder
       video
       audio
-      onStop={async (blobUrlString, blob) => {
+      onStop={async (bUrl, blob) => {
         const value = await addUploadQuestion().unwrap();
         const upload = new AWS.S3.ManagedUpload({
           params: {
@@ -41,7 +41,7 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
             Body: blob,
           },
         });
-        const promise = upload.promise();
+        upload.promise();
       }}
       render={({
         status,

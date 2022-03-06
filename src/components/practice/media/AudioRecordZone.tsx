@@ -14,13 +14,13 @@ interface Props {
 }
 
 const AudioRecordZone = ({ onSubmit }: Props) => {
-  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+  const [blobUrl] = useState<string | null>(null);
   const [addUploadQuestion] = useAddUploadQuestionMutation({});
 
   return (
     <PrephouseMediaRecorder
       audio
-      onStop={async (blobUrlString, blob) => {
+      onStop={async (bUrl, blob) => {
         const value = await addUploadQuestion().unwrap();
         const upload = new AWS.S3.ManagedUpload({
           params: {
@@ -30,7 +30,7 @@ const AudioRecordZone = ({ onSubmit }: Props) => {
             Body: blob,
           },
         });
-        const promise = upload.promise();
+        upload.promise();
       }}
       render={({
         status,
