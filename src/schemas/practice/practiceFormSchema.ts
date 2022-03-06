@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import { z } from 'zod';
 
-import { InterviewType, SessionMedium, SessionOrigin } from 'states/practice/enums';
+import { SessionMedium, SessionOrigin } from 'states/practice/enums';
 
 export const getFormValidationSchema = (intl: IntlShape) => {
   const fieldParams = {
@@ -11,7 +11,6 @@ export const getFormValidationSchema = (intl: IntlShape) => {
   return z.object({
     medium: z.nativeEnum(SessionMedium, fieldParams),
     origin: z.nativeEnum(SessionOrigin, fieldParams),
-    interviewType: z.nativeEnum(InterviewType, fieldParams),
   });
 };
 

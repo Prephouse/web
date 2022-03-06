@@ -12,8 +12,3 @@ export enum SessionOrigin {
   Record,
   Upload,
 }
-
-export enum InterviewType {
-  Question,
-  Session,
-}

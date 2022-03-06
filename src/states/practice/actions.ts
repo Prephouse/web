@@ -1,14 +1,13 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { InterviewType, SessionMedium, SessionOrigin } from './enums';
+import { SessionMedium, SessionOrigin } from './enums';
 
 export const setPracticeSettings = createAction(
   'practice/setPracticeSettings',
-  (medium: SessionMedium, origin: SessionOrigin, interviewType: InterviewType) => ({
+  (medium: SessionMedium, origin: SessionOrigin) => ({
     payload: {
       medium,
       origin,
-      interviewType,
     },
   })
 );
