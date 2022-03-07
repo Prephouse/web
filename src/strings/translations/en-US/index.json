@@ -17,6 +17,7 @@
   "bank.question.categories": "Categories",
   "bank.question.description": "Description",
   "bank.question.frequency": "This question was asked {frequency, plural, =1 {one time} other {# times}} in the past to Prephouse users",
+  "bank.question.question": "Question",
   "bank.question.sampleAnswer": "Sample Answer",
   "bank.question.sampleAnswer.empty": "None provided",
   "bank.question.statistics": "Statistics",

@@ -71,26 +71,50 @@ const Bank = () => {
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls={`panel${idx}a-content`}
                 id={`panel${idx}a-header`}
+                sx={{
+                  '.MuiAccordionSummary-content': {
+                    overflow: 'hidden',
+                  },
+                }}
               >
-                <Typography noWrap sx={{ flexGrow: 1 }}>
+                <Typography
+                  component="span"
+                  sx={{
+                    flex: 1,
+                    minWidth: 0,
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
+                >
                   {intl.formatMessage(
                     { id: 'bank.question.title' },
                     { q_num: intl.formatNumber(question.id), q_title: question.question }
                   )}
                 </Typography>
                 <Chip
-                  sx={{ mx: 2 }}
+                  sx={{ mx: 2, '.MuiChip-root': { whiteSpace: 'nowrap' } }}
                   size="small"
                   icon={<CategoryIcon />}
                   label={question.categoryName}
                 />
               </AccordionSummary>
-              <AccordionDetails>
-                <Typography component="h3" variant="h6" sx={{ fontWeight: 'bold' }}>
+              <AccordionDetails
+                sx={{
+                  '& > p': {
+                    overflowWrap: 'break-word',
+                  },
+                }}
+              >
+                <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
+                  {intl.formatMessage({ id: 'bank.question.question' })}
+                </Typography>
+                <Typography paragraph>{question.question}</Typography>
+                <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   {intl.formatMessage({ id: 'bank.question.description' })}
                 </Typography>
                 <Typography paragraph>{question.description}</Typography>
-                <Typography component="h3" variant="h6" sx={{ fontWeight: 'bold' }}>
+                <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   {intl.formatMessage({ id: 'bank.question.sampleAnswer' })}
                 </Typography>
                 <Typography paragraph>
@@ -98,7 +122,7 @@ const Bank = () => {
                     <i>{intl.formatMessage({ id: 'bank.question.sampleAnswer.empty' })}</i>
                   )}
                 </Typography>
-                <Typography component="h3" variant="h6" sx={{ fontWeight: 'bold' }}>
+                <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   {intl.formatMessage({ id: 'bank.question.statistics' })}
                 </Typography>
                 <Typography component="ul">
