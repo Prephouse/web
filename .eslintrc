@@ -53,7 +53,11 @@
       {
         "selector": ["property", "function", "method"],
         "format": ["camelCase"],
-        "leadingUnderscore": "allow"
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "[- ]",
+          "match": false
+        }
       },
       {
         "selector": ["variable", "property"],
