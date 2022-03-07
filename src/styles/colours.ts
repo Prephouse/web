@@ -1,4 +1,4 @@
-import { blue, grey, purple, red } from '@mui/material/colors';
+import { blue, cyan, green, grey, indigo, orange, purple, red, yellow } from '@mui/material/colors';
 
 export const GREY_50 = grey[50];
 export const GREY_200 = grey[200];
@@ -13,9 +13,20 @@ export const BLUE_500 = blue[500];
 export const BLUE_800 = blue[800];
 export const BLUE_900 = blue[900];
 
+export const RED_500 = red[500];
 export const RED_600 = red[600];
 
+export const YELLOW_500 = yellow[500];
+
+export const GREEN_500 = green[500];
+
+export const ORANGE_500 = orange[500];
+
 export const PURPLE_500 = purple[500];
+
+export const CYAN_500 = cyan[500];
+
+export const INDIGO_500 = indigo[500];
 
 export const NAVIGATION_BLACK = GREY_900;
 export const NAVIGATION_HOVER_GREY = GREY_700;

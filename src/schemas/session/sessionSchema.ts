@@ -18,6 +18,12 @@ const sessionResponseSchema = z.object({
     pitchScore: z.number().nonnegative(),
     fillerWordsScore: z.number().nonnegative(),
   }),
+  textFeedback: z.array(
+    z.object({
+      category: z.string(),
+      comment: z.string(),
+    })
+  ),
 });
 
 export type SessionRequestSchema = z.infer<typeof sessionRequestSchema>;

@@ -10,6 +10,7 @@ import { useGetSessionQuery } from 'services/prephouse';
 
 import Playback from './Playback';
 import ScoreChart from './ScoreChart';
+import TextFeedback from './TextFeedback';
 
 const Session = () => {
   const { id } = useParams();
@@ -31,15 +32,18 @@ const Session = () => {
         <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
           {title}
         </Typography>
-        <Typography component="h5" variant="h5" sx={{ my: 2 }}>
+        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
           {intl.formatMessage({ id: 'session.playback' })}
         </Typography>
         <Playback videoUrl={sessionData?.cloudfrontUrl} />
-        <Typography component="h5" variant="h5" sx={{ my: 2 }}>
+        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
           {intl.formatMessage({ id: 'session.chart.title' })}
         </Typography>
         <ScoreChart sessionData={sessionData} />
-        {/* TODO: Textual Feedback Here */}
+        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+          {intl.formatMessage({ id: 'session.text.title' })}
+        </Typography>
+        <TextFeedback textFeedback={sessionData?.textFeedback} />
       </PageContainer>
     </>
   );
