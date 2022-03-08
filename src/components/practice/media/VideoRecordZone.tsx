@@ -53,6 +53,7 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
               />
             </Stack>
           </Box>
+          <QuestionPrompter />
           <Box
             sx={{
               display: 'flex',
@@ -70,20 +71,6 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
               />
               <VideoPreview stream={previewVideoStream} />
               <AudioPreview stream={previewAudioStream} />
-            </Box>
-            <Box my={1}>
-              <Stack spacing={3} direction="row" alignItems="center">
-                <Typography>
-                  {intl.formatMessage({ id: 'practice.practice.preview.size' })}
-                </Typography>
-                <Slider
-                  value={previewWidth}
-                  min={30}
-                  onChange={handlePreviewWidthChange}
-                  valueLabelDisplay="auto"
-                  valueLabelFormat={x => `${x}%`}
-                />
-              </Stack>
             </Box>
           </Box>
         </Box>

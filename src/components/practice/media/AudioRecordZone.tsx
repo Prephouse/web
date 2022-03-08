@@ -23,25 +23,28 @@ const AudioRecordZone = ({ onSubmit }: Props) => (
       pauseRecording,
       previewAudioStream,
     }) => (
-      <Box
-        my={3}
-        sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-        }}
-      >
-        <Box sx={{ width: '100%' }}>
-          <LiveRecordButtons
-            status={status}
-            startRecording={startRecording}
-            stopRecording={stopRecording}
-            resumeRecording={resumeRecording}
-            pauseRecording={pauseRecording}
-          />
-          <AudioPreview stream={previewAudioStream} height={296} />
+      <>
+        <QuestionPrompter />
+        <Box
+          my={3}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          <Box sx={{ width: '100%' }}>
+            <LiveRecordButtons
+              status={status}
+              startRecording={startRecording}
+              stopRecording={stopRecording}
+              resumeRecording={resumeRecording}
+              pauseRecording={pauseRecording}
+            />
+            <AudioPreview stream={previewAudioStream} height={296} />
+          </Box>
         </Box>
-      </Box>
+      </>
     )}
   />
 );
