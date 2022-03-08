@@ -2,9 +2,7 @@ import { IntlShape } from 'react-intl';
 import { z } from 'zod';
 
 export const FeedbackCategory = z.enum([
-  'support.feedback.category.accessibility',
   'support.feedback.category.feedback',
-  'support.feedback.category.localization',
   'support.feedback.category.practice',
   'support.feedback.category.signin',
   'support.feedback.category.signup',

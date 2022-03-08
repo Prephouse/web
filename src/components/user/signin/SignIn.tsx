@@ -46,11 +46,11 @@ const SignIn = () => {
 
   return (
     <>
-      <Helmet title={intl.formatMessage({ id: 'user.signin.title' })} />
+      <Helmet title={intl.formatMessage({ id: 'user.signin' })} />
       <PageContainer maxWidth="sm">
         <FormPaper elevation={4}>
           <Typography component="h2" variant="h4">
-            {intl.formatMessage({ id: 'user.signin.title' })}
+            {intl.formatMessage({ id: 'user.signin' })}
           </Typography>
           <Formik
             initialValues={signinInitialValues}
@@ -85,8 +85,9 @@ const SignIn = () => {
                     />
                   </FormGroupCompact>
                   <FormButtons
-                    primaryText={intl.formatMessage({ id: 'user.signin.message' })}
+                    primaryText={intl.formatMessage({ id: 'user.signin' })}
                     onSecondaryClick={() => resetForm()}
+                    direction="column-reverse"
                   />
                 </Form>
               );
@@ -104,7 +105,7 @@ const SignIn = () => {
             startIcon={<img src="/images/idp/google.svg" alt="Google Logo" draggable="false" />}
             onClick={() => signInWithAuthProvider(AuthProvider.Google, onSignIn, onSignInError)}
           >
-            {intl.formatMessage({ id: 'user.signin.google.message' })}
+            {intl.formatMessage({ id: 'user.signin.google' })}
           </IdpAuthButton>
           <IdpAuthButton
             backgroundColor={FACEBOOK_BLUE}
@@ -112,7 +113,7 @@ const SignIn = () => {
             startIcon={<img src="/images/idp/facebook.svg" alt="Facebook Logo" draggable="false" />}
             onClick={() => signInWithAuthProvider(AuthProvider.Facebook, onSignIn, onSignInError)}
           >
-            {intl.formatMessage({ id: 'user.signin.facebook.message' })}
+            {intl.formatMessage({ id: 'user.signin.facebook' })}
           </IdpAuthButton>
         </FormPaper>
       </PageContainer>

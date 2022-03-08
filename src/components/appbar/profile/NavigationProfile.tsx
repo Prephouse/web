@@ -80,7 +80,7 @@ const NavigationProfile = () => {
         size="large"
         onClick={handleOpenMenu}
         aria-haspopup="true"
-        aria-label={intl.formatMessage({ id: 'app.navigation.dropdown.show' })}
+        aria-label={intl.formatMessage({ id: 'app.navigation.dropdown.open' })}
       >
         <UserAvatar />
       </IconButton>

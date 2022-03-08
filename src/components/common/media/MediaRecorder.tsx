@@ -16,13 +16,10 @@ interface RenderProps {
   pauseRecording: () => void;
   resumeRecording: () => void;
   stopRecording: () => void;
-  mediaBlobUrl: string | null;
   status: MediaRecordingStatus;
   isAudioMuted: () => boolean;
-  duration: number /* in seconds */;
   previewVideoStream: MediaStream | null;
   previewAudioStream: MediaStream | null;
-  clearBlobUrl: () => void;
 }
 
 interface HookProps {
@@ -32,7 +29,7 @@ interface HookProps {
   onStart?: () => void;
   onResume?: () => void;
   onPause?: () => void;
-  onStop?: (blobUrl: string, blob: Blob) => void;
+  onStop?: (bUrl: string, blob: Blob) => void;
 }
 
 interface Props extends HookProps {
@@ -53,16 +50,11 @@ function useMediaRecorder({
   const mediaStream = useRef<MediaStream | null>(null);
 
   const [status, setStatus] = useState<MediaRecordingStatus>(MediaRecordingStatus.Idle);
-  const [mediaBlobUrl, setMediaBlobUrl] = useState<string | null>(null);
-  const [startTimeSec, setStartTimeSec] = useState(0);
-  const [endTimeSec, setEndTimeSec] = useState(0);
 
   const getMediaStream = useCallback(async () => {
     setStatus(MediaRecordingStatus.AcquiringMedia);
     try {
       mediaStream.current = await window.navigator.mediaDevices.getUserMedia({ audio, video });
-    } catch {
-      // TODO send to errors state
     } finally {
       setStatus(MediaRecordingStatus.Idle);
     }
@@ -100,9 +92,7 @@ function useMediaRecorder({
 
     const blob = new Blob(mediaChunks.current, blobProperty);
     const url = URL.createObjectURL(blob);
-    setMediaBlobUrl(url);
 
-    setEndTimeSec(Date.now() / 1_000);
     setStatus(MediaRecordingStatus.Stopped);
 
     onStop?.(url, blob);
@@ -125,12 +115,10 @@ function useMediaRecorder({
       mediaRecorder.current.ondataavailable = onRecordingActive;
       mediaRecorder.current.onstop = onRecordingStop;
       mediaRecorder.current.onerror = () => {
-        // TODO set errors state
         setStatus(MediaRecordingStatus.Idle);
       };
 
       setStatus(MediaRecordingStatus.Recording);
-      setStartTimeSec(Date.now() / 1_000);
       mediaRecorder.current.start();
 
       onStart?.();
@@ -167,29 +155,19 @@ function useMediaRecorder({
   const isAudioMuted = () =>
     mediaStream.current?.getAudioTracks().some(track => !track.enabled) ?? true;
 
-  const clearBlobUrl = () => {
-    if (mediaBlobUrl) {
-      URL.revokeObjectURL(mediaBlobUrl);
-    }
-    setMediaBlobUrl(null);
-  };
-
   return {
     startRecording,
     stopRecording,
     pauseRecording,
     resumeRecording,
-    mediaBlobUrl,
     status,
     isAudioMuted,
-    duration: endTimeSec - startTimeSec,
     previewVideoStream: mediaStream.current
       ? new MediaStream(mediaStream.current.getVideoTracks())
       : null,
     previewAudioStream: mediaStream.current
       ? new MediaStream(mediaStream.current.getAudioTracks())
       : null,
-    clearBlobUrl,
   };
 }
 

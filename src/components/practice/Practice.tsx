@@ -105,7 +105,7 @@ const Practice = () => {
 
   return (
     <>
-      <Helmet title={intl.formatMessage({ id: 'practice.title.expanded' })} />
+      <Helmet title={intl.formatMessage({ id: 'practice.title' })} />
       <PageContainer>
         <ErrorBoundary
           FallbackComponent={ErrorDialog}

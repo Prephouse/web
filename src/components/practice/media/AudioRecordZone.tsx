@@ -15,14 +15,7 @@ const AudioRecordZone = ({ onSubmit }: Props) => (
     onStop={(bUrl, blob) => {
       onSubmit(blob);
     }}
-    render={({
-      status,
-      startRecording,
-      stopRecording,
-      resumeRecording,
-      pauseRecording,
-      previewAudioStream,
-    }) => (
+    render={({ status, startRecording, stopRecording, previewAudioStream }) => (
       <>
         <QuestionPrompter />
         <Box
@@ -38,8 +31,6 @@ const AudioRecordZone = ({ onSubmit }: Props) => (
               status={status}
               startRecording={startRecording}
               stopRecording={stopRecording}
-              resumeRecording={resumeRecording}
-              pauseRecording={pauseRecording}
             />
             <AudioPreview stream={previewAudioStream} height={296} />
           </Box>

@@ -65,11 +65,11 @@ const SignUp = () => {
 
   return (
     <>
-      <Helmet title={intl.formatMessage({ id: 'user.signup.title' })} />
+      <Helmet title={intl.formatMessage({ id: 'user.signup' })} />
       <PageContainer maxWidth="sm">
         <FormPaper elevation={4}>
           <Typography component="h2" variant="h4">
-            {intl.formatMessage({ id: 'user.signup.title' })}
+            {intl.formatMessage({ id: 'user.signup' })}
           </Typography>
           <Formik
             initialValues={initialValues}
@@ -166,6 +166,7 @@ const SignUp = () => {
                     primaryText={intl.formatMessage({ id: 'user.signup.register' })}
                     secondaryText={intl.formatMessage({ id: 'user.signup.clear' })}
                     onSecondaryClick={() => resetForm()}
+                    direction="column-reverse"
                   />
                 </Form>
               );

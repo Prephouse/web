@@ -19,6 +19,7 @@ interface Props {
     | 'info'
     | 'warning'
     | undefined;
+  direction?: 'row' | 'column-reverse';
   sx?: SxProps;
 }
 
@@ -31,14 +32,15 @@ const FormButtons = ({
   secondaryColor = 'secondary',
   isLoading = false,
   loadingText,
+  direction = 'row',
   sx,
 }: Props) => (
   <Stack
-    direction="row"
-    spacing={2}
+    direction={direction}
+    spacing={direction === 'row' ? 2 : 0}
     sx={{ alignItems: 'baseline', justifyContent: 'space-between' }}
   >
-    <Box sx={{ width: '25%' }}>
+    <Box sx={{ width: direction === 'row' ? '25%' : '100%' }}>
       {secondaryText && (
         <Button
           variant="contained"
@@ -51,7 +53,7 @@ const FormButtons = ({
         </Button>
       )}
     </Box>
-    <Box sx={{ width: '25%' }}>
+    <Box sx={{ width: direction === 'row' ? '25%' : '100%' }}>
       <Button
         type="submit"
         variant="contained"

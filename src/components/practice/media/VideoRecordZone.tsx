@@ -33,8 +33,6 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
         status,
         startRecording,
         stopRecording,
-        resumeRecording,
-        pauseRecording,
         previewVideoStream,
         previewAudioStream,
       }) => (
@@ -66,8 +64,6 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
                 status={status}
                 startRecording={startRecording}
                 stopRecording={stopRecording}
-                resumeRecording={resumeRecording}
-                pauseRecording={pauseRecording}
               />
               <VideoPreview stream={previewVideoStream} />
               <AudioPreview stream={previewAudioStream} />

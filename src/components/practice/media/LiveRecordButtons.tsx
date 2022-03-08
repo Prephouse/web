@@ -1,26 +1,16 @@
 import { useIntl } from 'react-intl';
 
-import PauseIcon from '@mui/icons-material/Pause';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Button, ButtonGroup } from '@mui/material';
 
 import { MediaRecordingStatus } from 'components/common/media/MediaRecorder';
 
 interface Props {
   startRecording: () => void;
-  pauseRecording: () => void;
-  resumeRecording: () => void;
   stopRecording: () => void;
   status: MediaRecordingStatus;
 }
 
-const LiveRecordButtons = ({
-  startRecording,
-  pauseRecording,
-  resumeRecording,
-  stopRecording,
-  status,
-}: Props) => {
+const LiveRecordButtons = ({ startRecording, stopRecording, status }: Props) => {
   const intl = useIntl();
 
   return (
@@ -29,7 +19,7 @@ const LiveRecordButtons = ({
         {intl.formatMessage(
           { id: 'practice.practice.start' },
           {
-            session_type_name: intl.formatMessage({
+            session_type: intl.formatMessage({
               id: 'practice.setting.type.interview2',
             }),
           }
@@ -43,21 +33,12 @@ const LiveRecordButtons = ({
         {intl.formatMessage(
           { id: 'practice.practice.end' },
           {
-            session_type_name: intl.formatMessage({
+            session_type: intl.formatMessage({
               id: 'practice.setting.type.interview2',
             }),
           }
         )}
       </Button>
-      {status === MediaRecordingStatus.Paused ? (
-        <Button startIcon={<PlayArrowIcon />} onClick={resumeRecording}>
-          {intl.formatMessage({ id: 'common.resume' })}
-        </Button>
-      ) : (
-        <Button color="secondary" startIcon={<PauseIcon />} onClick={pauseRecording}>
-          {intl.formatMessage({ id: 'common.pause' })}
-        </Button>
-      )}
     </ButtonGroup>
   );
 };

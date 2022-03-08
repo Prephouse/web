@@ -7,7 +7,7 @@ import { Box, Typography } from '@mui/material';
 
 import QuestionPrompter from 'components/common/question/QuestionPrompter';
 
-import { SessionMedium, SessionType } from 'states/practice/enums';
+import { SessionMedium, SessionType, getSessionTypeId } from 'states/practice/enums';
 
 interface Props {
   sessionType: SessionType;
@@ -15,7 +15,7 @@ interface Props {
   onSubmit: (blob: Blob) => void;
 }
 
-const MediaUploadZone = ({ medium, onSubmit }: Props) => {
+const MediaUploadZone = ({ sessionType, medium, onSubmit }: Props) => {
   const [file, setFile] = useState<File | null>(null);
 
   const intl = useIntl();
@@ -87,7 +87,14 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
       <QuestionPrompter />
       <FileUploadIcon fontSize="large" sx={{ margin: 1 }} />
       <Typography component="div" variant="h6" gutterBottom>
-        {intl.formatMessage({ id: 'practice.upload' })}
+        {intl.formatMessage(
+          { id: 'practice.upload' },
+          {
+            session_type: intl.formatMessage({
+              id: getSessionTypeId(sessionType),
+            }),
+          }
+        )}
       </Typography>
       <input {...getInputProps()} />
       {showUploader()}

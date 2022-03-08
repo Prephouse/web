@@ -23,7 +23,7 @@ import useAppSelector from 'hooks/useAppSelector';
 import { getFormValidationSchema } from 'schemas/practice/practiceFormSchema';
 
 import { setPracticeSettings } from 'states/practice/actions';
-import { SessionMedium, SessionOrigin, SessionType } from 'states/practice/enums';
+import { SessionMedium, SessionOrigin, SessionType, getSessionTypeId } from 'states/practice/enums';
 
 import { parseStrictDecInt } from 'utils/string';
 import { toFormikValidationSchema } from 'utils/zodFormikAdapter';
@@ -37,16 +37,6 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
   const dispatch = useAppDispatch();
 
   const intl = useIntl();
-
-  const getSessionTypeName = (st: SessionType) => {
-    let name = '';
-    if (st === SessionType.Interview) {
-      name = intl.formatMessage({ id: 'practice.setting.type.interview2' });
-    } else if (st === SessionType.Presentation) {
-      name = intl.formatMessage({ id: 'practice.setting.type.presentation2' });
-    }
-    return name;
-  };
 
   const getPermissions = (medium: SessionMedium): PermissionRequestMap => {
     const permissions: PermissionRequestMap = new Map([
@@ -89,124 +79,6 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
             <Box sx={{ padding: 2 }}>
               <FormControl component="fieldset" required>
                 <FormLabel component="legend">
-                  {intl.formatMessage({ id: 'practice.setting.medium.title' })}
-                </FormLabel>
-                <FormHelperText>
-                  {intl.formatMessage({ id: 'practice.setting.medium.helper' })}
-                </FormHelperText>
-                <RadioGroup
-                  row
-                  name="medium"
-                  value={values.medium}
-                  onChange={event => {
-                    setFieldValue('medium', parseStrictDecInt(event.currentTarget.value));
-                  }}
-                >
-                  <FormControlLabel
-                    value={SessionMedium.VideoAudio}
-                    control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.setting.medium.videoAudio' })}
-                    aria-describedby="sessionMediumDescription"
-                    aria-invalid={errors.medium && touched.medium ? 'true' : 'false'}
-                  />
-                  <FormControlLabel
-                    value={SessionMedium.AudioOnly}
-                    control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.setting.medium.audio' })}
-                    aria-describedby="sessionMediumDescription"
-                    aria-invalid={errors.medium && touched.medium ? 'true' : 'false'}
-                  />
-                </RadioGroup>
-                {touched.medium && errors.medium && <FormErrorMessage msg={errors.medium} />}
-              </FormControl>
-              <Alert
-                id="sessionMediumDescription"
-                role="status"
-                variant="outlined"
-                severity="info"
-                sx={{ my: 1 }}
-              >
-                {intl.formatMessage(
-                  { id: 'practice.setting.medium.videoAudio.description' },
-                  { session_type_name: getSessionTypeName(SessionType.Interview) }
-                )}
-              </Alert>
-            </Box>
-            <Box sx={{ padding: 2 }}>
-              <FormControl component="fieldset" required>
-                <FormLabel component="legend">
-                  {intl.formatMessage({ id: 'practice.setting.source.title' })}
-                </FormLabel>
-                <FormHelperText>
-                  {intl.formatMessage(
-                    { id: 'practice.setting.source.helper' },
-                    { session_type_name: getSessionTypeName(SessionType.Interview) }
-                  )}
-                </FormHelperText>
-                <RadioGroup
-                  row
-                  name="origin"
-                  value={values.origin}
-                  onChange={event => {
-                    setFieldValue('origin', parseStrictDecInt(event.currentTarget.value));
-                  }}
-                >
-                  <FormControlLabel
-                    value={SessionOrigin.Record}
-                    control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.setting.source.record' })}
-                    aria-describedby="sessionOriginDescription"
-                    aria-invalid={errors.origin && touched.origin ? 'true' : 'false'}
-                  />
-                  <FormControlLabel
-                    value={SessionOrigin.Upload}
-                    control={<Radio />}
-                    label={intl.formatMessage({ id: 'practice.setting.source.upload' })}
-                    aria-describedby="sessionOriginDescription"
-                    aria-invalid={errors.origin && touched.origin ? 'true' : 'false'}
-                  />
-                </RadioGroup>
-                {touched.origin && errors.origin && <FormErrorMessage msg={errors.origin} />}
-              </FormControl>
-              {values.origin === SessionOrigin.Record && (
-                <PermissionManager
-                  requests={getPermissions(values.medium)}
-                  onDenied={onOriginPermissionDenied}
-                  render={({ permissions }) => {
-                    if (permissions.size > 0) {
-                      return (
-                        <Alert variant="outlined" severity="error">
-                          {intl.formatMessage({ id: 'common.permission.decline' })}
-                          <Typography component="ul" variant="inherit">
-                            {[...permissions.values()]
-                              .filter(v => !v.label)
-                              .map(v => (
-                                <li key={`decline-message-${v.id}`}>{v.declineMessage}</li>
-                              ))}
-                          </Typography>
-                        </Alert>
-                      );
-                    }
-                    return null;
-                  }}
-                />
-              )}
-              <Alert
-                id="sessionOriginDescription"
-                role="status"
-                variant="outlined"
-                severity="info"
-                sx={{ my: 1 }}
-              >
-                {intl.formatMessage(
-                  { id: 'practice.setting.source.record.description' },
-                  { session_type_name: getSessionTypeName(SessionType.Interview) }
-                )}
-              </Alert>
-            </Box>
-            <Box sx={{ padding: 2 }}>
-              <FormControl component="fieldset" required>
-                <FormLabel component="legend">
                   {intl.formatMessage({ id: 'practice.setting.type.title' })}
                 </FormLabel>
                 <FormHelperText>
@@ -240,9 +112,128 @@ const PracticeSettings = ({ onBack, onNext }: Props) => {
                 )}
               </FormControl>
             </Box>
+            <Box sx={{ padding: 2 }}>
+              <FormControl component="fieldset" required>
+                <FormLabel component="legend">
+                  {intl.formatMessage({ id: 'practice.setting.source.title' })}
+                </FormLabel>
+                <FormHelperText>
+                  {intl.formatMessage(
+                    { id: 'practice.setting.source.helper' },
+                    {
+                      session_type: intl.formatMessage({
+                        id: getSessionTypeId(values.sessionType),
+                      }),
+                    }
+                  )}
+                </FormHelperText>
+                <RadioGroup
+                  row
+                  name="origin"
+                  value={values.origin}
+                  onChange={event => {
+                    setFieldValue('origin', parseStrictDecInt(event.currentTarget.value));
+                  }}
+                >
+                  <FormControlLabel
+                    value={SessionOrigin.Record}
+                    control={<Radio />}
+                    label={intl.formatMessage(
+                      { id: 'practice.setting.source.record' },
+                      {
+                        session_type: intl.formatMessage({
+                          id: getSessionTypeId(values.sessionType),
+                        }),
+                      }
+                    )}
+                    aria-describedby="sessionOriginDescription"
+                    aria-invalid={errors.origin && touched.origin ? 'true' : 'false'}
+                  />
+                  <FormControlLabel
+                    value={SessionOrigin.Upload}
+                    control={<Radio />}
+                    label={intl.formatMessage(
+                      { id: 'practice.setting.source.upload' },
+                      {
+                        session_type: intl.formatMessage({
+                          id: getSessionTypeId(values.sessionType),
+                        }),
+                      }
+                    )}
+                    aria-describedby="sessionOriginDescription"
+                    aria-invalid={errors.origin && touched.origin ? 'true' : 'false'}
+                  />
+                </RadioGroup>
+                {touched.origin && errors.origin && <FormErrorMessage msg={errors.origin} />}
+              </FormControl>
+              {values.origin === SessionOrigin.Record && (
+                <PermissionManager
+                  requests={getPermissions(values.medium)}
+                  onDenied={onOriginPermissionDenied}
+                  render={({ permissions }) => {
+                    if (permissions.size > 0) {
+                      return (
+                        <Alert variant="outlined" severity="error">
+                          {intl.formatMessage({ id: 'common.permission.decline' })}
+                          <Typography component="ul" variant="inherit">
+                            {[...permissions.values()]
+                              .filter(v => !v.label)
+                              .map(v => (
+                                <li key={`decline-message-${v.id}`}>{v.declineMessage}</li>
+                              ))}
+                          </Typography>
+                        </Alert>
+                      );
+                    }
+                    return null;
+                  }}
+                />
+              )}
+            </Box>
+            <Box sx={{ padding: 2 }}>
+              <FormControl component="fieldset" required>
+                <FormLabel component="legend">
+                  {intl.formatMessage({ id: 'practice.setting.medium.title' })}
+                </FormLabel>
+                <FormHelperText>
+                  {intl.formatMessage(
+                    { id: 'practice.setting.medium.helper' },
+                    {
+                      session_type: intl.formatMessage({
+                        id: getSessionTypeId(values.sessionType),
+                      }),
+                    }
+                  )}
+                </FormHelperText>
+                <RadioGroup
+                  row
+                  name="medium"
+                  value={values.medium}
+                  onChange={event => {
+                    setFieldValue('medium', parseStrictDecInt(event.currentTarget.value));
+                  }}
+                >
+                  <FormControlLabel
+                    value={SessionMedium.VideoAudio}
+                    control={<Radio />}
+                    label={intl.formatMessage({ id: 'practice.setting.medium.videoAudio' })}
+                    aria-describedby="sessionMediumDescription"
+                    aria-invalid={errors.medium && touched.medium ? 'true' : 'false'}
+                  />
+                  <FormControlLabel
+                    value={SessionMedium.AudioOnly}
+                    control={<Radio />}
+                    label={intl.formatMessage({ id: 'practice.setting.medium.audio' })}
+                    aria-describedby="sessionMediumDescription"
+                    aria-invalid={errors.medium && touched.medium ? 'true' : 'false'}
+                  />
+                </RadioGroup>
+                {touched.medium && errors.medium && <FormErrorMessage msg={errors.medium} />}
+              </FormControl>
+            </Box>
             <FormButtons
               primaryText={intl.formatMessage({ id: 'practice.setting.confirm' })}
-              secondaryText={intl.formatMessage({ id: 'practice.setting.restart' })}
+              secondaryText={intl.formatMessage({ id: 'practice.setting.back' })}
               onSecondaryClick={onBack}
             />
           </Form>
