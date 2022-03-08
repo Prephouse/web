@@ -15,12 +15,10 @@ import PracticeIntroduction from 'components/practice/steps/PracticeIntroduction
 import PracticeSettings from 'components/practice/steps/PracticeSettings';
 import PracticeUploadRecord from 'components/practice/steps/PracticeUploadRecord';
 
-import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
 import rollbar from 'libs/rollbar';
 
-import { clearMediaSource } from 'states/practice/actions';
 import { SessionOrigin } from 'states/practice/enums';
 
 import { HOME_PATH } from 'strings/paths';
@@ -28,9 +26,7 @@ import { HOME_PATH } from 'strings/paths';
 import practiceSteps from 'values/practice/practiceSteps';
 
 const Practice = () => {
-  const source = useAppSelector(state => state.practice.source);
   const origin = useAppSelector(state => state.practice.origin);
-  const dispatch = useAppDispatch();
 
   const [blockSession, setBlockSession] = useState<boolean | null>(() => false);
   const [step, setStep] = useState(0);
@@ -38,9 +34,8 @@ const Practice = () => {
   const goToNextStep = useCallback(() => setStep(step + 1), [step]);
   const goToPreviousStep = useCallback(() => setStep(step - 1), [step]);
   const clearMediaWithNextStep = useCallback(() => {
-    dispatch(clearMediaSource());
     setStep(step + 1);
-  }, [dispatch, step]);
+  }, [step]);
 
   const navigate = useNavigate();
 
@@ -102,7 +97,7 @@ const Practice = () => {
       case 3:
         return <PracticeUploadRecord onBack={goToPreviousStep} onNext={goToNextStep} />;
       case 4:
-        return <PracticeFeedback src={source} />;
+        return <PracticeFeedback />;
       default:
         return null;
     }

@@ -1,76 +1,48 @@
-import AWS from 'aws-sdk';
-import { useState } from 'react';
-
 import { Box } from '@mui/material';
 
 import AudioPreview from 'components/common/media/AudioPreview';
 import PrephouseMediaRecorder from 'components/common/media/MediaRecorder';
 import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
 
-import { useAddUploadQuestionMutation, useAddUploadRecordMutation } from 'services/prephouse';
-
 interface Props {
-  onSubmit: (src: string) => void;
+  onSubmit: (blob: Blob) => void;
 }
 
-const AudioRecordZone = ({ onSubmit }: Props) => {
-  const [blobUrl] = useState<string | null>(null);
-  const [addUploadQuestion] = useAddUploadQuestionMutation({});
-  const [addUploadRecord] = useAddUploadRecordMutation({});
-
-  return (
-    <PrephouseMediaRecorder
-      audio
-      onStop={async (blobUrlString, blob) => {
-        const uploadRecord = await addUploadRecord({ category: 0 }).unwrap();
-        const value = await addUploadQuestion({ upload_id: uploadRecord.id }).unwrap();
-        const upload = new AWS.S3.ManagedUpload({
-          params: {
-            Bucket: process.env.REACT_APP_AWS_AUDIO_BUCKET ?? 'prephouse-audio-tracks',
-            Key: `${value.id}.wav`,
-            ContentType: 'audio/wav',
-            Body: blob,
-          },
-        });
-        upload.promise();
-      }}
-      render={({
-        status,
-        startRecording,
-        stopRecording,
-        resumeRecording,
-        pauseRecording,
-        previewAudioStream,
-      }) => {
-        if (blobUrl) {
-          onSubmit(blobUrl);
-          return null;
-        }
-
-        return (
-          <Box
-            my={3}
-            sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-            }}
-          >
-            <Box sx={{ width: '100%' }}>
-              <LiveRecordButtons
-                status={status}
-                startRecording={startRecording}
-                stopRecording={stopRecording}
-                resumeRecording={resumeRecording}
-                pauseRecording={pauseRecording}
-              />
-              <AudioPreview stream={previewAudioStream} height={296} />
-            </Box>
-          </Box>
-        );
-      }}
-    />
-  );
-};
+const AudioRecordZone = ({ onSubmit }: Props) => (
+  <PrephouseMediaRecorder
+    audio
+    onStop={(bUrl, blob) => {
+      onSubmit(blob);
+    }}
+    render={({
+      status,
+      startRecording,
+      stopRecording,
+      resumeRecording,
+      pauseRecording,
+      previewAudioStream,
+    }) => (
+      <Box
+        my={3}
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}
+      >
+        <Box sx={{ width: '100%' }}>
+          <LiveRecordButtons
+            status={status}
+            startRecording={startRecording}
+            stopRecording={stopRecording}
+            resumeRecording={resumeRecording}
+            pauseRecording={pauseRecording}
+          />
+          <AudioPreview stream={previewAudioStream} height={296} />
+        </Box>
+      </Box>
+    )}
+  />
+);
 
 export default AudioRecordZone;

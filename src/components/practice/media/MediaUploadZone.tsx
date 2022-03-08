@@ -10,7 +10,7 @@ import { SessionMedium, SessionType } from 'states/practice/enums';
 interface Props {
   sessionType: SessionType;
   medium: SessionMedium;
-  onSubmit: (src: string) => void;
+  onSubmit: (blob: Blob) => void;
 }
 
 const MediaUploadZone = ({ medium, onSubmit }: Props) => {
@@ -29,7 +29,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
   const onDrop = useCallback(
     acceptedFiles => {
       setFile(acceptedFiles[0]);
-      onSubmit(URL.createObjectURL(acceptedFiles[0]));
+      onSubmit(acceptedFiles[0]);
     },
     [onSubmit]
   );

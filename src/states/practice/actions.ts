@@ -12,7 +12,3 @@ export const setPracticeSettings = createAction(
     },
   })
 );
-
-export const setMediaSource = createAction<string>('practice/setMediaSource');
-
-export const clearMediaSource = createAction<void>('practice/clearMediaSource');

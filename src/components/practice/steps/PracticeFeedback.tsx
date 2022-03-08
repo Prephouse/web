@@ -14,7 +14,7 @@ import { GREY_500 } from 'styles/colours';
 import { roundAsDecimal } from 'utils/math';
 
 interface Props {
-  src: string | undefined;
+  src?: string;
 }
 
 const PracticeFeedback = ({ src }: Props) => {
