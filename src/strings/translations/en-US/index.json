@@ -82,6 +82,7 @@
   "practice.practice.end": "End {session_type_name}",
   "practice.practice.playback.video": "video playback",
   "practice.practice.preview.size": "Preview Size",
+  "practice.practice.question": "Question: ",
   "practice.practice.redirect": "You have already started a practice session in a different tab. Are you sure you want to continue with this session?",
   "practice.practice.start": "Start {session_type_name}",
   "practice.practice.submit": "Submit for feedback",

@@ -5,6 +5,8 @@ import { useIntl } from 'react-intl';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { Box, Typography } from '@mui/material';
 
+import QuestionPrompter from 'components/common/question/QuestionPrompter';
+
 import { SessionMedium, SessionType } from 'states/practice/enums';
 
 interface Props {
@@ -82,6 +84,7 @@ const MediaUploadZone = ({ medium, onSubmit }: Props) => {
       }}
       {...rootProps}
     >
+      <QuestionPrompter />
       <FileUploadIcon fontSize="large" sx={{ margin: 1 }} />
       <Typography component="div" variant="h6" gutterBottom>
         {intl.formatMessage({ id: 'practice.upload' })}

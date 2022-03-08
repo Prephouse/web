@@ -6,6 +6,7 @@ import { Box, Slider, Stack, Typography } from '@mui/material';
 import AudioPreview from 'components/common/media/AudioPreview';
 import PrephouseMediaRecorder from 'components/common/media/MediaRecorder';
 import VideoPreview from 'components/common/media/VideoPreview';
+import QuestionPrompter from 'components/common/question/QuestionPrompter';
 import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
 
 interface Props {
@@ -69,6 +70,20 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
               />
               <VideoPreview stream={previewVideoStream} />
               <AudioPreview stream={previewAudioStream} />
+            </Box>
+            <Box my={1}>
+              <Stack spacing={3} direction="row" alignItems="center">
+                <Typography>
+                  {intl.formatMessage({ id: 'practice.practice.preview.size' })}
+                </Typography>
+                <Slider
+                  value={previewWidth}
+                  min={30}
+                  onChange={handlePreviewWidthChange}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={x => `${x}%`}
+                />
+              </Stack>
             </Box>
           </Box>
         </Box>
