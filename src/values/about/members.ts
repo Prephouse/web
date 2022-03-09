@@ -13,9 +13,9 @@ const members: readonly Member[] = [
     img: 'jason-antao.jpg',
     bio: `
       A hard-working and creative innovator, he never settles for mediocrity in design and principle. His
-      studies as a Computer Engineering student at the University of Waterloo along with his work experience
-      has inspired him to apply his talents in meaningful ways that enable individuals and businesses (aka:
-      talented groups of people) to live their best lives no matter where they come from.`,
+      studies as a Computer Engineering student at the University of Waterloo along with his years of intense work experience
+      have inspired him to apply his talents in meaningful ways. Jason delivers on the details that matter, listens well, and thinks in scale. Most importantly,
+      he knows that learning is a lifelong process that he enjoys.`,
     website: 'https://www.jasonantao.com/',
     linkedin: 'https://www.linkedin.com/in/antaojason/',
     github: 'https://github.com/jasonantao',
@@ -48,21 +48,21 @@ const members: readonly Member[] = [
     name: 'Mivia Li',
     img: 'mivia-li.jpg',
     bio: `
-      TBD`,
+      A rockstar teammate with amazing skills`,
     linkedin: 'https://www.linkedin.com/in/mivia-li/',
     github: 'https://github.com/Mivialll',
   },
   {
     name: 'Priyanka Hariharan',
     img: 'priyanka-hariharan.jpg',
-    bio: `TBD`,
+    bio: `A rockstar teammate with amazing skills`,
     linkedin: 'https://www.linkedin.com/in/priyanka-h/',
     github: 'https://github.com/PriyankaH21',
   },
   {
     name: 'Boris Nguyen',
     img: 'boris-nguyen.jpg',
-    bio: `TBD`,
+    bio: `A rockstar teammate with amazing skills`,
     linkedin: 'https://www.linkedin.com/in/boris-nguyen/',
     github: 'https://github.com/boris-nguyen',
   },
