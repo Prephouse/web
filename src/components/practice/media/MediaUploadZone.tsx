@@ -6,6 +6,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { Box, Typography } from '@mui/material';
 
 import QuestionPrompter from 'components/common/question/QuestionPrompter';
+import PracticePanelPaper from 'components/practice/media/PracticePanelPaper';
 
 import { SessionMedium, SessionType, getSessionTypeId } from 'states/practice/enums';
 
@@ -65,22 +66,44 @@ const MediaUploadZone = ({ sessionType, medium, onSubmit }: Props) => {
   };
 
   return (
-    <Box>
-      <QuestionPrompter />
-      <FileUploadIcon fontSize="large" sx={{ margin: 1 }} />
-      <Typography component="div" variant="h6" gutterBottom>
-        {intl.formatMessage(
-          { id: 'practice.upload' },
-          {
-            session_type: intl.formatMessage({
-              id: getSessionTypeId(sessionType),
-            }),
-          }
-        )}
-      </Typography>
-      <input {...getInputProps()} />
-      {showUploader()}
-    </Box>
+    <>
+      <PracticePanelPaper>
+        <QuestionPrompter />
+      </PracticePanelPaper>
+      <Box
+        ref={ref}
+        width={1}
+        p={3}
+        my={3}
+        border="0.5px dashed"
+        borderRadius="6px"
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          cursor: 'pointer',
+          minHeight: 300,
+          '& > *': {
+            alignSelf: 'center',
+          },
+        }}
+        {...rootProps}
+      >
+        <FileUploadIcon fontSize="large" sx={{ margin: 1 }} />
+        <Typography component="div" variant="h6" gutterBottom>
+          {intl.formatMessage(
+            { id: 'practice.upload' },
+            {
+              session_type: intl.formatMessage({
+                id: getSessionTypeId(sessionType),
+              }),
+            }
+          )}
+        </Typography>
+        <input {...getInputProps()} />
+        {showUploader()}
+      </Box>
+    </>
   );
 };
 

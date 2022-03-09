@@ -8,6 +8,7 @@ import PrephouseMediaRecorder from 'components/common/media/MediaRecorder';
 import VideoPreview from 'components/common/media/VideoPreview';
 import QuestionPrompter from 'components/common/question/QuestionPrompter';
 import LiveRecordButtons from 'components/practice/media/LiveRecordButtons';
+import PracticePanelPaper from 'components/practice/media/PracticePanelPaper';
 
 interface Props {
   onSubmit: (blob: Blob) => void;
@@ -37,12 +38,13 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
         previewAudioStream,
       }) => (
         <Box my={3}>
-          <Box my={1}>
-            <Stack spacing={3} direction="row" alignItems="center">
-              <Typography>
+          <PracticePanelPaper>
+            <Stack spacing={3} direction="row" alignItems="center" sx={{ mb: 1 }}>
+              <Typography sx={{ whiteSpace: 'nowrap' }}>
                 {intl.formatMessage({ id: 'practice.practice.preview.size' })}
               </Typography>
               <Slider
+                size="small"
                 value={previewWidth}
                 min={30}
                 onChange={handlePreviewWidthChange}
@@ -50,8 +52,8 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
                 valueLabelFormat={x => `${x}%`}
               />
             </Stack>
-          </Box>
-          <QuestionPrompter />
+            <QuestionPrompter />
+          </PracticePanelPaper>
           <Box
             sx={{
               display: 'flex',

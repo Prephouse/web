@@ -117,7 +117,7 @@ const Practice = () => {
           }}
         >
           <Paper
-            elevation={3}
+            elevation={1}
             sx={{
               width: '100%',
               padding: 3,
