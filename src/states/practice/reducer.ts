@@ -1,18 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { setPracticeSettings } from './actions';
+import { setPracticeSettings, setQuestionId } from './actions';
 import { SessionMedium, SessionOrigin, SessionType } from './enums';
 
 interface PracticeReduxState {
   sessionType: SessionType;
   medium: SessionMedium;
   origin: SessionOrigin;
+  questionId: number | null;
 }
 
 const initState: PracticeReduxState = {
   sessionType: SessionType.Interview,
   medium: SessionMedium.VideoAudio,
   origin: SessionOrigin.Record,
+  questionId: null,
 };
 
 const practiceReducer = createReducer(initState, builder => {
@@ -20,6 +22,9 @@ const practiceReducer = createReducer(initState, builder => {
     state.medium = action.payload.medium;
     state.origin = action.payload.origin;
     state.sessionType = action.payload.sessionType;
+  });
+  builder.addCase(setQuestionId, (state, action) => {
+    state.questionId = action.payload.questionId;
   });
 });
 

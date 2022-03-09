@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const apiRequestSchema = z.object({
   uploadId: z.string().uuid(),
+  questionId: z.nullable(z.number()),
 });
 
 const apiResponseSchema = z.object({

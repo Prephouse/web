@@ -8,10 +8,12 @@ import AudioRecordZone from 'components/practice/media/AudioRecordZone';
 import MediaUploadZone from 'components/practice/media/MediaUploadZone';
 import VideoRecordZone from 'components/practice/media/VideoRecordZone';
 
+import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
 
 import { useAddUploadQuestionMutation, useAddUploadSessionMutation } from 'services/prephouse';
 
+import { setQuestionId } from 'states/practice/actions';
 import { SessionMedium, SessionOrigin } from 'states/practice/enums';
 
 interface Props {
@@ -23,6 +25,8 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
   const sessionType = useAppSelector(state => state.practice.sessionType);
   const medium = useAppSelector(state => state.practice.medium);
   const origin = useAppSelector(state => state.practice.origin);
+  const questionId = useAppSelector(state => state.practice.questionId);
+  const dispatch = useAppDispatch();
 
   const [blob, setBlob] = useState<Blob | null>(null);
 
@@ -43,7 +47,8 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
     }
     const token = await executeRecaptcha?.('submit_practice_session');
     const uploadRecord = await addUploadSession({ category: sessionType, token }).unwrap();
-    const value = await addUploadQuestion({ uploadId: uploadRecord.id }).unwrap();
+    const value = await addUploadQuestion({ uploadId: uploadRecord.id, questionId }).unwrap();
+    dispatch(setQuestionId(null));
     let upload: AWS.S3.ManagedUpload | null = null;
     if (medium === SessionMedium.VideoAudio) {
       upload = new AWS.S3.ManagedUpload({
@@ -68,7 +73,17 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
       upload.promise();
       onNext();
     }
-  }, [addUploadQuestion, addUploadSession, executeRecaptcha, sessionType, blob, medium, onNext]);
+  }, [
+    addUploadQuestion,
+    addUploadSession,
+    executeRecaptcha,
+    sessionType,
+    blob,
+    medium,
+    onNext,
+    dispatch,
+    questionId,
+  ]);
 
   const establishZone = () => {
     let zone = null;

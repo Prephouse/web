@@ -12,3 +12,12 @@ export const setPracticeSettings = createAction(
     },
   })
 );
+
+export const setQuestionId = createAction(
+  'practice/setQuestionId',
+  (questionId: number | null) => ({
+    payload: {
+      questionId,
+    },
+  })
+);
