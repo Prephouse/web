@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import { useCallback, useState } from 'react';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useIntl } from 'react-intl';
 
 import FormButtons from 'components/common/form/FormButtons';
@@ -9,7 +10,7 @@ import VideoRecordZone from 'components/practice/media/VideoRecordZone';
 
 import useAppSelector from 'hooks/useAppSelector';
 
-import { useAddUploadQuestionMutation, useAddUploadRecordMutation } from 'services/prephouse';
+import { useAddUploadQuestionMutation, useAddUploadSessionMutation } from 'services/prephouse';
 
 import { SessionMedium, SessionOrigin } from 'states/practice/enums';
 
@@ -25,10 +26,12 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
 
   const [blob, setBlob] = useState<Blob | null>(null);
 
+  const [addUploadSession] = useAddUploadSessionMutation({});
   const [addUploadQuestion] = useAddUploadQuestionMutation({});
-  const [addUploadRecord] = useAddUploadRecordMutation({});
 
   const intl = useIntl();
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmission = (b: Blob) => {
     setBlob(b);
@@ -38,8 +41,9 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
     if (!blob) {
       return;
     }
-    const uploadRecord = await addUploadRecord({ category: sessionType }).unwrap();
-    const value = await addUploadQuestion({ upload_id: uploadRecord.id }).unwrap();
+    const token = await executeRecaptcha?.('submit_practice_session');
+    const uploadRecord = await addUploadSession({ category: sessionType, token }).unwrap();
+    const value = await addUploadQuestion({ uploadId: uploadRecord.id }).unwrap();
     let upload: AWS.S3.ManagedUpload | null = null;
     if (medium === SessionMedium.VideoAudio) {
       upload = new AWS.S3.ManagedUpload({
@@ -64,7 +68,7 @@ const PracticeUploadRecord = ({ onNext, onBack }: Props) => {
       upload.promise();
       onNext();
     }
-  }, [addUploadQuestion, addUploadRecord, sessionType, blob, medium, onNext]);
+  }, [addUploadQuestion, addUploadSession, executeRecaptcha, sessionType, blob, medium, onNext]);
 
   const establishZone = () => {
     let zone = null;

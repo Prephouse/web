@@ -78,6 +78,9 @@ export default function generateTheme(localization: Localization, prefersDarkMod
               transitionDuration: 0.001ms !important;
             }
           }
+          .grecaptcha-badge {
+            visibility: hidden;
+          }
           @keyframes blink {
             78% {
               color: inherit;

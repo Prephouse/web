@@ -67,6 +67,7 @@ specifiers:
   react-dom: ^17.0.2
   react-dropzone: ^12.0.4
   react-error-boundary: ^3.1.4
+  react-google-recaptcha-v3: ^1.9.7
   react-helmet-async: ^1.2.3
   react-intl: ^5.24.6
   react-redux: ^7.2.6
@@ -108,6 +109,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-dropzone: 12.0.4_react@17.0.2
   react-error-boundary: 3.1.4_react@17.0.2
+  react-google-recaptcha-v3: 1.9.7_react-dom@17.0.2+react@17.0.2
   react-helmet-async: 1.2.3_react-dom@17.0.2+react@17.0.2
   react-intl: 5.24.6_react@17.0.2+typescript@4.6.2
   react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
@@ -10107,6 +10109,17 @@ packages:
 
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
+  /react-google-recaptcha-v3/1.9.7_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-LgHTuPUE86jGOtmMYMUWEYux8n7M2ZNj5GHct//DlXWZGyLIgFfLbvxA3UlgrG+tSu2pgw2mqXtYdPxaldqhWQ==}
+    peerDependencies:
+      react: ^17.0
+      react-dom: ^17.0
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-helmet-async/1.2.3_react-dom@17.0.2+react@17.0.2:

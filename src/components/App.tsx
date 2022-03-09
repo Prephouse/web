@@ -1,4 +1,5 @@
 import { lazy, useEffect, useMemo, useState } from 'react';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
 import { HelmetProvider } from 'react-helmet-async';
 import { IntlProvider } from 'react-intl';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -98,97 +99,99 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
-      <IntlProvider
-        locale={locale}
-        defaultLocale={DEFAULT_LOCALE}
-        messages={translatedStr.messages.default}
-      >
-        <LocalizationProvider dateAdapter={AdapterDateFns} locale={translatedStr.fnDate.default}>
-          <HelmetProvider>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <SnackbarProvider>
-                <PrephouseAppBar />
-                <main>
-                  <Routes>
-                    <Route path={HOME_PATH} element={<Home />} />
-                    <Route path={ABOUT_PATH} element={<SuspendableScreen screen={<About />} />} />
-                    <Route
-                      path={PROGRESS_PATH}
-                      element={
-                        <SuspendableScreen
-                          screen={
-                            <PrivateRoute>
-                              <Progress />
-                            </PrivateRoute>
-                          }
-                        />
-                      }
-                    />
-                    <Route
-                      path={PRACTICE_PATH}
-                      element={
-                        <SuspendableScreen
-                          screen={
-                            <PrivateRoute>
-                              <PracticeGround />
-                            </PrivateRoute>
-                          }
-                        />
-                      }
-                    />
-                    <Route
-                      path={LEADERBOARD_PATH}
-                      element={
-                        <SuspendableScreen
-                          screen={
-                            <PrivateRoute>
-                              <Leaderboard />
-                            </PrivateRoute>
-                          }
-                        />
-                      }
-                    />
-                    <Route
-                      path={SESSION_PATH}
-                      element={
-                        <SuspendableScreen
-                          screen={
-                            <PrivateRoute>
-                              <Session />
-                            </PrivateRoute>
-                          }
-                        />
-                      }
-                    />
-                    <Route
-                      path={QUESTION_BANK_PATH}
-                      element={<SuspendableScreen screen={<QuestionBank />} />}
-                    />
-                    <Route
-                      path={USER_SIGN_IN_PATH}
-                      element={<SuspendableScreen screen={<SignInForm />} />}
-                    />
-                    <Route
-                      path={USER_SIGN_UP_PATH}
-                      element={<SuspendableScreen screen={<SignUpForm />} />}
-                    />
-                    <Route
-                      path={SUPPORT_PATH}
-                      element={<SuspendableScreen screen={<Support />} />}
-                    />
-                    <Route path="*" element={<PageNotFoundView />} />
-                  </Routes>
-                  <SnackbarWrapper />
-                </main>
-              </SnackbarProvider>
-              <Footer />
-            </ThemeProvider>
-          </HelmetProvider>
-        </LocalizationProvider>
-      </IntlProvider>
-    </BrowserRouter>
+    <GoogleReCaptchaProvider reCaptchaKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}>
+      <BrowserRouter>
+        <IntlProvider
+          locale={locale}
+          defaultLocale={DEFAULT_LOCALE}
+          messages={translatedStr.messages.default}
+        >
+          <LocalizationProvider dateAdapter={AdapterDateFns} locale={translatedStr.fnDate.default}>
+            <HelmetProvider>
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <SnackbarProvider>
+                  <PrephouseAppBar />
+                  <main>
+                    <Routes>
+                      <Route path={HOME_PATH} element={<Home />} />
+                      <Route path={ABOUT_PATH} element={<SuspendableScreen screen={<About />} />} />
+                      <Route
+                        path={PROGRESS_PATH}
+                        element={
+                          <SuspendableScreen
+                            screen={
+                              <PrivateRoute>
+                                <Progress />
+                              </PrivateRoute>
+                            }
+                          />
+                        }
+                      />
+                      <Route
+                        path={PRACTICE_PATH}
+                        element={
+                          <SuspendableScreen
+                            screen={
+                              <PrivateRoute>
+                                <PracticeGround />
+                              </PrivateRoute>
+                            }
+                          />
+                        }
+                      />
+                      <Route
+                        path={LEADERBOARD_PATH}
+                        element={
+                          <SuspendableScreen
+                            screen={
+                              <PrivateRoute>
+                                <Leaderboard />
+                              </PrivateRoute>
+                            }
+                          />
+                        }
+                      />
+                      <Route
+                        path={SESSION_PATH}
+                        element={
+                          <SuspendableScreen
+                            screen={
+                              <PrivateRoute>
+                                <Session />
+                              </PrivateRoute>
+                            }
+                          />
+                        }
+                      />
+                      <Route
+                        path={QUESTION_BANK_PATH}
+                        element={<SuspendableScreen screen={<QuestionBank />} />}
+                      />
+                      <Route
+                        path={USER_SIGN_IN_PATH}
+                        element={<SuspendableScreen screen={<SignInForm />} />}
+                      />
+                      <Route
+                        path={USER_SIGN_UP_PATH}
+                        element={<SuspendableScreen screen={<SignUpForm />} />}
+                      />
+                      <Route
+                        path={SUPPORT_PATH}
+                        element={<SuspendableScreen screen={<Support />} />}
+                      />
+                      <Route path="*" element={<PageNotFoundView />} />
+                    </Routes>
+                    <SnackbarWrapper />
+                  </main>
+                </SnackbarProvider>
+                <Footer />
+              </ThemeProvider>
+            </HelmetProvider>
+          </LocalizationProvider>
+        </IntlProvider>
+      </BrowserRouter>
+    </GoogleReCaptchaProvider>
   );
 };
 
