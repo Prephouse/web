@@ -25,6 +25,16 @@ const sessionResponseSchema = z.object({
       comment: z.string(),
     })
   ),
+  timestampFeedback: z.array(
+    z.object({
+      feedbackId: z.string(),
+      category: z.string(),
+      comment: z.string(),
+      subcategory: z.string(),
+      timeStart: z.number(),
+      timeEnd: z.number(),
+    })
+  ),
 });
 
 export type SessionRequestSchema = z.infer<typeof sessionRequestSchema>;

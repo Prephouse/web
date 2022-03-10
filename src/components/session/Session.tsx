@@ -11,6 +11,7 @@ import { useGetSessionQuery } from 'services/prephouse';
 import Playback from './Playback';
 import ScoreChart from './ScoreChart';
 import TextFeedback from './TextFeedback';
+import TimestampFeedback from './TimestampFeedback';
 
 const Session = () => {
   const { id } = useParams();
@@ -50,6 +51,10 @@ const Session = () => {
           {intl.formatMessage({ id: 'session.text.title' })}
         </Typography>
         <TextFeedback textFeedback={sessionData?.textFeedback} />
+        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+          {intl.formatMessage({ id: 'session.timestamp.title' })}
+        </Typography>
+        <TimestampFeedback timestampFeedback={sessionData?.timestampFeedback} />
       </PageContainer>
     </>
   );
