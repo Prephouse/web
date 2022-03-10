@@ -45,6 +45,9 @@ const Practice = () => {
   const intl = useIntl();
 
   useEffect(() => {
+    if (!('BroadcastChannel' in window.self)) {
+      return () => {};
+    }
     let currPriority = 0;
     let maxPriority = 0;
     const bc = new BroadcastChannel('practice');
