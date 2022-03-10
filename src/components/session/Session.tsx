@@ -35,7 +35,7 @@ const Session = () => {
         <Typography component="h5" variant="h5" sx={{ my: 4 }}>
           {intl.formatMessage({ id: 'session.playback' })}
         </Typography>
-        <Playback videoUrl={sessionData?.cloudfrontUrl} />
+        {sessionData?.cloudfrontUrl && <Playback videoUrl={sessionData.cloudfrontUrl} />}
         <Typography component="h5" variant="h5" sx={{ my: 4 }}>
           {intl.formatMessage({ id: 'session.summary.title' })}
         </Typography>
