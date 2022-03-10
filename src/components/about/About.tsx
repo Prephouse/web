@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 
-import AppPanel from 'components/about/AppPanel';
 import IntroductoryPanel from 'components/about/IntroductoryPanel';
 import TeamPanel from 'components/about/TeamPanel';
 import PageContainer from 'components/common/container/PageContainer';
@@ -15,7 +14,6 @@ const About = () => {
       <PageContainer>
         <IntroductoryPanel />
         <TeamPanel />
-        <AppPanel />
       </PageContainer>
     </>
   );

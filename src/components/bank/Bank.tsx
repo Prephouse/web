@@ -113,7 +113,11 @@ const Bank = () => {
                 <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   {intl.formatMessage({ id: 'bank.question.description' })}
                 </Typography>
-                <Typography paragraph>{question.description}</Typography>
+                <Typography paragraph>
+                  {question.description || (
+                    <i>{intl.formatMessage({ id: 'bank.question.sampleAnswer.empty' })}</i>
+                  )}
+                </Typography>
                 <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                   {intl.formatMessage({ id: 'bank.question.sampleAnswer' })}
                 </Typography>
@@ -121,17 +125,6 @@ const Bank = () => {
                   {question.sampleAnswer || (
                     <i>{intl.formatMessage({ id: 'bank.question.sampleAnswer.empty' })}</i>
                   )}
-                </Typography>
-                <Typography component="h3" variant="subtitle1" sx={{ fontWeight: 'bold' }}>
-                  {intl.formatMessage({ id: 'bank.question.statistics' })}
-                </Typography>
-                <Typography component="ul">
-                  <li>
-                    {intl.formatMessage(
-                      { id: 'bank.question.frequency' },
-                      { frequency: question.frequency }
-                    )}
-                  </li>
                 </Typography>
               </AccordionDetails>
             </Accordion>
