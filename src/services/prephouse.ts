@@ -45,40 +45,40 @@ export const prephouseApi = createApi({
       UploadInstructionsResponseSchema,
       UploadInstructionsRequestSchema
     >({
-      query: params => ({ url: '/upload/instructions/', params }),
+      query: params => ({ url: '/upload/instructions', params }),
     }),
     getLeaderboard: builder.query<LeaderboardResponseSchema, LeaderboardRequestSchema>({
-      query: params => ({ url: '/leaderboard/', params }),
+      query: params => ({ url: '/leaderboard', params }),
     }),
     getLeaderboardOverview: builder.query<
       LeaderboardOverviewResponseSchema,
       LeaderboardOverviewRequestSchema
     >({
-      query: () => ({ url: '/leaderboard/overview/' }),
+      query: () => ({ url: '/leaderboard/overview' }),
     }),
     getSession: builder.query<SessionResponseSchema, SessionRequestSchema>({
-      query: params => ({ url: '/progress/scores_for_session/', params }),
+      query: params => ({ url: '/progress/scores_for_session', params }),
     }),
     getProgress: builder.query<ScoresPerCategoryResponseSchema, void>({
-      query: () => ({ url: '/progress/scores_by_feature/' }),
+      query: () => ({ url: '/progress/scores_by_feature' }),
     }),
     getProgressSessions: builder.query<ScoresPerSessionResponseSchema, void>({
-      query: () => ({ url: '/progress/scores_by_session/' }),
+      query: () => ({ url: '/progress/scores_by_session' }),
     }),
     getQuestion: builder.query<QuestionResponseSchema, QuestionRequestSchema>({
-      query: params => ({ url: '/question/', params }),
+      query: params => ({ url: '/question', params }),
     }),
     getQuestionCategories: builder.query<
       QuestionCategoriesResponseSchema,
       QuestionCategoriesRequestSchema
     >({
-      query: () => ({ url: '/question/categories/' }),
+      query: () => ({ url: '/question/categories' }),
     }),
     addUploadQuestion: builder.mutation<UploadQuestionResponseSchema, UploadQuestionRequestSchema>({
-      query: params => ({ url: '/upload/question/', method: 'POST', params }),
+      query: params => ({ url: '/upload/question', method: 'POST', params }),
     }),
     addUploadSession: builder.mutation<UploadSessionResponseSchema, UploadSessionRequestSchema>({
-      query: params => ({ url: '/upload/record/', method: 'POST', params }),
+      query: params => ({ url: '/upload/record', method: 'POST', params }),
     }),
   }),
 });
