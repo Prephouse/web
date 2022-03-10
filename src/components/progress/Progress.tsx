@@ -15,11 +15,11 @@ const Progress = () => {
     <>
       <Helmet title={intl.formatMessage({ id: 'progress.title' })} />
       <PageContainer>
-        <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
+        <Typography component="h2" variant="h4" sx={{ my: 4 }}>
           {intl.formatMessage({ id: 'progress.title' })}
         </Typography>
         <ProgressGraph />
-        <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
+        <Typography component="h2" variant="h4" sx={{ my: 4 }}>
           {intl.formatMessage({ id: 'progress.table.title' })}
         </Typography>
         <ProgressTable />

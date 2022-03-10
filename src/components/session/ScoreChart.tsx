@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useIntl } from 'react-intl';
 
+import { Paper } from '@mui/material';
+
 import { SessionResponseSchema } from 'schemas/session/sessionSchema';
 
 import { ColorPicker } from 'styles/colours';
@@ -70,7 +72,11 @@ const ScoreChart = ({ sessionData }: { sessionData: SessionResponseSchema | unde
     },
   };
 
-  return <Bar data={chartData} options={chartOptions} />;
+  return (
+    <Paper elevation={2} sx={{ p: 2 }}>
+      <Bar data={chartData} options={chartOptions} />
+    </Paper>
+  );
 };
 
 export default ScoreChart;

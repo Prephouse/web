@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 import { useParams } from 'react-router-dom';
 
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 
 import PageContainer from 'components/common/container/PageContainer';
 
@@ -36,6 +36,12 @@ const Session = () => {
           {intl.formatMessage({ id: 'session.playback' })}
         </Typography>
         <Playback videoUrl={sessionData?.cloudfrontUrl} />
+        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+          {intl.formatMessage({ id: 'session.summary.title' })}
+        </Typography>
+        <Paper elevation={2} sx={{ p: 2 }}>
+          <Typography component="p">{sessionData?.textSummary}</Typography>
+        </Paper>
         <Typography component="h5" variant="h5" sx={{ my: 4 }}>
           {intl.formatMessage({ id: 'session.chart.title' })}
         </Typography>

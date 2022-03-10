@@ -3,6 +3,8 @@ import { useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { useIntl } from 'react-intl';
 
+import { Paper } from '@mui/material';
+
 import { useGetProgressQuery } from 'services/prephouse';
 
 import { ColorPicker } from 'styles/colours';
@@ -66,7 +68,11 @@ const ProgressChart = () => {
       },
     },
   };
-  return <Line data={chartData} options={chartOptions} />;
+  return (
+    <Paper elevation={2} sx={{ p: 2 }}>
+      <Line data={chartData} options={chartOptions} />
+    </Paper>
+  );
 };
 
 export default ProgressChart;

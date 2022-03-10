@@ -134,6 +134,7 @@
   "session.chart.xLabel": "Feature",
   "session.chart.yLabel": "Scores",
   "session.playback": "Video Playback",
+  "session.summary.title": "Summary",
   "session.text.title": "Improvement Tips",
   "session.title": "Session Feedback",
   "support.bugReport": "Bug Report",
