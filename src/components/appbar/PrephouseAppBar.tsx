@@ -118,15 +118,31 @@ const PrephouseAppBar = () => {
               <NavigationProfile />
             ) : (
               <>
-                <ProfileButtons />
-                <NavigationPreference sx={{ ml: 2 }} />
+                <ProfileButtons
+                  sx={{
+                    display: {
+                      xs: 'none',
+                      [FULL_NAVIGATION_BREAKPOINT]: 'flex',
+                    },
+                  }}
+                />
+                <NavigationPreference
+                  sx={{
+                    ml: {
+                      xs: 0,
+                      [FULL_NAVIGATION_BREAKPOINT]: 2,
+                    },
+                  }}
+                />
               </>
             )}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
       <Offset />
-      <NavigationHamburgerMenu drawerOpened={drawerOpened} onDrawerOpened={handleDrawerOpened} />
+      {drawerOpened && (
+        <NavigationHamburgerMenu drawerOpened={drawerOpened} onDrawerOpened={handleDrawerOpened} />
+      )}
     </>
   );
 };

@@ -17,6 +17,9 @@ import {
 } from '@mui/material';
 
 import NavigationHeading from 'components/appbar/NavigationHeading';
+import ProfileButtons from 'components/appbar/profile/ProfileButtons';
+
+import useAppSelector from 'hooks/useAppSelector';
 
 import { NAVIGATION_BLACK } from 'styles/colours';
 
@@ -28,6 +31,8 @@ interface Props {
 }
 
 const NavigationHamburgerMenu = ({ drawerOpened, onDrawerOpened }: Props) => {
+  const user = useAppSelector(state => state.auth.user);
+
   const intl = useIntl();
 
   const theme = useTheme();
@@ -77,11 +82,21 @@ const NavigationHamburgerMenu = ({ drawerOpened, onDrawerOpened }: Props) => {
         </Toolbar>
         <Divider />
         <List disablePadding>
-          {navigationDestinations.map(({ path, titleId }) => (
-            <ListItem key={`nav-drawer-item-${titleId}`} component={RouterLink} to={path} button>
-              <ListItemText primary={intl.formatMessage({ id: titleId })} />
-            </ListItem>
-          ))}
+          {!user && (
+            <>
+              <ListItem>
+                <ProfileButtons fullWidth />
+              </ListItem>
+              <Divider />
+            </>
+          )}
+          {navigationDestinations.map(({ path, titleId, privateRoute }) =>
+            !privateRoute || (privateRoute && user) ? (
+              <ListItem key={`nav-drawer-item-${titleId}`} component={RouterLink} to={path} button>
+                <ListItemText primary={intl.formatMessage({ id: titleId })} />
+              </ListItem>
+            ) : null
+          )}
         </List>
       </Box>
     </Drawer>

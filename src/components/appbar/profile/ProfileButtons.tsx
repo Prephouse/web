@@ -1,17 +1,22 @@
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { Button, ButtonGroup } from '@mui/material';
+import { Button, ButtonGroup, SxProps } from '@mui/material';
 
 import { USER_SIGN_IN_PATH, USER_SIGN_UP_PATH } from 'strings/paths';
 
 import { BLUE_500 } from 'styles/colours';
 
-const ProfileButtons = () => {
+interface Props {
+  sx?: SxProps;
+  fullWidth?: boolean;
+}
+
+const ProfileButtons = ({ sx, fullWidth = false }: Props) => {
   const intl = useIntl();
 
   return (
-    <ButtonGroup variant="contained">
+    <ButtonGroup sx={sx} variant="contained" fullWidth={fullWidth}>
       <Button
         sx={{
           color: 'common.white',
@@ -20,7 +25,7 @@ const ProfileButtons = () => {
           textOverflow: 'nowrap',
           whiteSpace: 'nowrap',
         }}
-        color="info"
+        color="primary"
         component={RouterLink}
         to={USER_SIGN_IN_PATH}
       >
@@ -34,7 +39,7 @@ const ProfileButtons = () => {
           textOverflow: 'nowrap',
           whiteSpace: 'nowrap',
         }}
-        variant="outlined"
+        color="secondary"
         component={RouterLink}
         to={USER_SIGN_UP_PATH}
       >
