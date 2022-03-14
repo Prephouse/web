@@ -12,12 +12,12 @@ import { CssBaseline, ThemeProvider, responsiveFontSizes } from '@mui/material';
 import { Localization } from '@mui/material/locale';
 
 import PrephouseAppBar from 'components/appbar/PrephouseAppBar';
+import PrivateRoute from 'components/appbar/PrivateRoute';
 import PageNotFoundView from 'components/common/PageNotFoundView';
 import SuspendableScreen from 'components/common/router/SuspendableScreen';
 import SnackbarProvider from 'components/common/snackbar/SnackbarProvider';
 import Footer from 'components/footer/Footer';
 import Home from 'components/home/Home';
-import PrivateRoute from 'components/navigation/PrivateRoute';
 
 import useAppDispatch from 'hooks/useAppDispatch';
 import useAppSelector from 'hooks/useAppSelector';
@@ -104,6 +104,7 @@ const App = () => {
         <IntlProvider
           locale={locale}
           defaultLocale={DEFAULT_LOCALE}
+          timeZone={Intl.DateTimeFormat().resolvedOptions().timeZone}
           messages={translatedStr.messages.default}
         >
           <LocalizationProvider dateAdapter={AdapterDateFns} locale={translatedStr.fnDate.default}>

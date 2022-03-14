@@ -30,31 +30,41 @@ const Session = () => {
     <>
       <Helmet title={title} />
       <PageContainer>
-        <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
-          {title}
-        </Typography>
-        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
-          {intl.formatMessage({ id: 'session.playback' })}
-        </Typography>
-        {sessionData?.cloudfrontUrl && <Playback videoUrl={sessionData.cloudfrontUrl} />}
-        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
-          {intl.formatMessage({ id: 'session.summary.title' })}
-        </Typography>
-        <Paper elevation={2} sx={{ p: 2 }}>
-          <Typography component="p">{sessionData?.textSummary}</Typography>
-        </Paper>
-        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
-          {intl.formatMessage({ id: 'session.chart.title' })}
-        </Typography>
-        <ScoreChart sessionData={sessionData} />
-        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
-          {intl.formatMessage({ id: 'session.text.title' })}
-        </Typography>
-        <TextFeedback textFeedback={sessionData?.textFeedback} />
-        <Typography component="h5" variant="h5" sx={{ my: 4 }}>
-          {intl.formatMessage({ id: 'session.timestamp.title' })}
-        </Typography>
-        <TimestampFeedback timestampFeedback={sessionData?.timestampFeedback} />
+        <section id="playback">
+          <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
+            {title}
+          </Typography>
+          <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+            {intl.formatMessage({ id: 'session.playback' })}
+          </Typography>
+          {sessionData?.cloudfrontUrl && <Playback videoUrl={sessionData.cloudfrontUrl} />}
+        </section>
+        <section id="summary">
+          <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+            {intl.formatMessage({ id: 'session.summary.title' })}
+          </Typography>
+          <Paper elevation={2} sx={{ p: 2 }}>
+            <Typography component="p">{sessionData?.textSummary}</Typography>
+          </Paper>
+        </section>
+        <section id="feedback-numerical">
+          <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+            {intl.formatMessage({ id: 'session.chart.title' })}
+          </Typography>
+          <ScoreChart sessionData={sessionData} />
+        </section>
+        <section id="feedback-textual">
+          <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+            {intl.formatMessage({ id: 'session.text.title' })}
+          </Typography>
+          <TextFeedback textFeedback={sessionData?.textFeedback} />
+        </section>
+        <section id="feedback-timestamp">
+          <Typography component="h5" variant="h5" sx={{ my: 4 }}>
+            {intl.formatMessage({ id: 'session.timestamp.title' })}
+          </Typography>
+          <TimestampFeedback timestampFeedback={sessionData?.timestampFeedback} />
+        </section>
       </PageContainer>
     </>
   );

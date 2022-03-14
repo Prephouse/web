@@ -1,10 +1,20 @@
+import { defaults } from 'chart.js';
+
 import { createTheme } from '@mui/material';
 import { Localization } from '@mui/material/locale';
 
-import { BLUE_500, BLUE_900, GREY_200, GREY_300, GREY_600, PURPLE_500 } from 'styles/colours';
+import {
+  BLUE_500,
+  BLUE_900,
+  GREY_200,
+  GREY_300,
+  GREY_600,
+  GREY_800,
+  PURPLE_500,
+} from 'styles/colours';
 
 export default function generateTheme(localization: Localization, prefersDarkMode = false) {
-  return createTheme(
+  const theme = createTheme(
     {
       palette: {
         mode: prefersDarkMode ? 'dark' : 'light',
@@ -128,4 +138,10 @@ export default function generateTheme(localization: Localization, prefersDarkMod
     },
     localization
   );
+
+  defaults.color = theme.palette.text.primary;
+  defaults.borderColor = theme.palette.mode === 'light' ? GREY_300 : GREY_800;
+  defaults.font.family = theme.typography.fontFamily;
+
+  return theme;
 }

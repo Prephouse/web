@@ -46,7 +46,7 @@ const SignIn = () => {
 
   return (
     <>
-      <Helmet title={intl.formatMessage({ id: 'user.signin' })} />
+      <Helmet title={intl.formatMessage({ id: 'app.title' })} />
       <PageContainer maxWidth="sm">
         <FormPaper elevation={4}>
           <Typography component="h2" variant="h4">

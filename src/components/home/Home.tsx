@@ -2,15 +2,11 @@ import { Helmet } from 'react-helmet-async';
 import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { Button, Divider, Stack, Typography } from '@mui/material';
-
-import CenteredDiv from 'components/common/container/CenteredDiv';
-import IconicText from 'components/common/text/IconicText';
+import { Button, Container, Grid, Typography } from '@mui/material';
 
 import useAppSelector from 'hooks/useAppSelector';
 
-import { ABOUT_PATH, PRACTICE_PATH, USER_SIGN_UP_PATH } from 'strings/paths';
+import { PRACTICE_PATH, USER_SIGN_UP_PATH } from 'strings/paths';
 
 const Home = () => {
   const intl = useIntl();
@@ -20,22 +16,35 @@ const Home = () => {
   return (
     <>
       <Helmet title={intl.formatMessage({ id: 'app.title' })} />
-      <CenteredDiv style={{ minHeight: '70vh' }}>
-        <Stack
-          direction="column"
-          justifyContent="center"
+      <Container sx={{ minHeight: '100%' }}>
+        <Grid
+          container
+          spacing={2}
+          direction="row"
+          justifyContent="flex-start"
           alignItems="center"
-          spacing={1}
-          sx={{ mx: 3 }}
+          sx={{ minHeight: '100vh' }}
         >
-          <Typography component="h2" variant="h3">
-            {intl.formatMessage({ id: 'home.marketing.title' })}
-          </Typography>
-          <Typography variant="subtitle1">
-            {intl.formatMessage({ id: 'home.marketing.subtitle' })}
-          </Typography>
-          <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={2}>
+          <Grid item xs={8}>
+            <Typography
+              component="h2"
+              variant="h2"
+              sx={{
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                backgroundSize: 'cover',
+                backgroundImage:
+                  "url('https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjF9')",
+              }}
+            >
+              {intl.formatMessage({ id: 'home.marketing.title' })}
+            </Typography>
+            <Typography variant="h6">
+              {intl.formatMessage({ id: 'home.marketing.subtitle' })}
+            </Typography>
             <Button
+              sx={{ my: 5 }}
               component={RouterLink}
               to={user ? PRACTICE_PATH : USER_SIGN_UP_PATH}
               variant="contained"
@@ -44,26 +53,9 @@ const Home = () => {
             >
               {intl.formatMessage({ id: 'home.marketing.action.getStarted' })}
             </Button>
-            <Button
-              component={RouterLink}
-              to={ABOUT_PATH}
-              variant="contained"
-              size="large"
-              color="secondary"
-            >
-              {intl.formatMessage({ id: 'home.marketing.action.learnMore' })}
-            </Button>
-          </Stack>
-          <Typography component="div" variant="subtitle1" sx={{ padding: 2 }}>
-            {[...Array(5).keys()].map(num => {
-              const id = `home.highlight.${num}`;
-              return (
-                <IconicText key={id} text={intl.formatMessage({ id })} icon={<CheckCircleIcon />} />
-              );
-            })}
-          </Typography>
-        </Stack>
-      </CenteredDiv>
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };

@@ -6,7 +6,7 @@ const IntroductoryPanel = () => {
   const intl = useIntl();
 
   return (
-    <section id="prephouse-intro">
+    <section id="intro">
       <Typography component="h2" variant="h3" color="primary" gutterBottom align="center">
         {intl.formatMessage({ id: 'about.mission.slogan' })}
       </Typography>

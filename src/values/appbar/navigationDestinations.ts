@@ -9,28 +9,34 @@ import {
 interface NavigationDestination {
   readonly path: string;
   readonly titleId: string;
+  readonly privateRoute: boolean;
 }
 
 const navigationDestinations: readonly NavigationDestination[] = [
   {
     path: ABOUT_PATH,
     titleId: 'about.title',
-  },
-  {
-    path: PROGRESS_PATH,
-    titleId: 'progress.title',
+    privateRoute: false,
   },
   {
     path: PRACTICE_PATH,
     titleId: 'practice.title',
+    privateRoute: true,
+  },
+  {
+    path: PROGRESS_PATH,
+    titleId: 'progress.title',
+    privateRoute: true,
   },
   {
     path: LEADERBOARD_PATH,
     titleId: 'leaderboard.title',
+    privateRoute: true,
   },
   {
     path: QUESTION_BANK_PATH,
     titleId: 'bank.title',
+    privateRoute: true,
   },
 ];
 

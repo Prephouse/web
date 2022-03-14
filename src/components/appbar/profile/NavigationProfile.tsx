@@ -3,8 +3,9 @@ import { useIntl } from 'react-intl';
 
 import { Button, IconButton, Typography } from '@mui/material';
 
-import NavigationDropdownMenu from 'components/appbar/profile/NavigationDropdownMenu';
-import LanguageDropdownMenu from 'components/appbar/profile/language/LanguageDropdownMenu';
+import MenuManager from 'components/appbar/MenuManager';
+import LanguageDropdownMenu from 'components/appbar/preference/language/LanguageDropdownMenu';
+import ProfileDropdownMenu from 'components/appbar/profile/ProfileDropdownMenu';
 import UserAvatar from 'components/common/UserAvatar';
 import DropdownMenu from 'components/common/menu/DropdownMenu';
 
@@ -14,6 +15,7 @@ import { NAVIGATION_HOVER_GREY } from 'styles/colours';
 
 const NavigationProfile = () => {
   const user = useAppSelector(state => state.auth.user);
+
   const intl = useIntl();
 
   const [anchorElMenu, setAnchorElMenu] = useState<HTMLElement | null>(null);
@@ -22,16 +24,6 @@ const NavigationProfile = () => {
   };
   const handleCloseMenu = () => {
     setAnchorElMenu(null);
-  };
-
-  const [selectedMenuName, setSelectedMenuName] = useState<keyof typeof menus>('default');
-  const handleSwitchMenu = (newMenuName: string) =>
-    setSelectedMenuName(newMenuName as keyof typeof menus);
-  const handleMenuBack = () => handleSwitchMenu('default');
-
-  const menus = {
-    default: <NavigationDropdownMenu onSwitchMenu={handleSwitchMenu} />,
-    language: <LanguageDropdownMenu onMenuBack={handleMenuBack} />,
   };
 
   return (
@@ -63,7 +55,7 @@ const NavigationProfile = () => {
             textOverflow: 'ellipsis',
           }}
         >
-          {user?.displayName || intl.formatMessage({ id: 'user' })}
+          {user?.displayName || (user && intl.formatMessage({ id: 'user' }))}
         </Typography>
       </Button>
       <IconButton
@@ -85,7 +77,7 @@ const NavigationProfile = () => {
         <UserAvatar />
       </IconButton>
       <DropdownMenu
-        id="primary-nav-menu"
+        id="profile-nav-menu"
         sx={{
           '& .MuiPaper-root': {
             marginTop: 1,
@@ -96,7 +88,12 @@ const NavigationProfile = () => {
         anchorEl={anchorElMenu}
         onClose={handleCloseMenu}
       >
-        {menus[selectedMenuName]}
+        <MenuManager
+          menus={{
+            _default: ProfileDropdownMenu,
+            language: LanguageDropdownMenu,
+          }}
+        />
       </DropdownMenu>
     </nav>
   );

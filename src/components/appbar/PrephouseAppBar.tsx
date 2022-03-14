@@ -15,8 +15,12 @@ import {
 
 import NavigationHeading from 'components/appbar/NavigationHeading';
 import NavigationHamburgerMenu from 'components/appbar/hamburger/NavigationHamburgerMenu';
+import NavigationPreference from 'components/appbar/preference/NavigationPreference';
 import NavigationProfile from 'components/appbar/profile/NavigationProfile';
+import ProfileButtons from 'components/appbar/profile/ProfileButtons';
 import HeavyDivider from 'components/common/HeavyDivider';
+
+import useAppSelector from 'hooks/useAppSelector';
 
 import { NAVIGATION_BLACK, NAVIGATION_HOVER_GREY } from 'styles/colours';
 
@@ -38,6 +42,8 @@ const ElevationScroll = ({ children }: { children: ReactElement }) => {
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const PrephouseAppBar = () => {
+  const user = useAppSelector(state => state.auth.user);
+
   const intl = useIntl();
 
   const [drawerOpened, setDrawerOpened] = useState(false);
@@ -85,28 +91,37 @@ const PrephouseAppBar = () => {
               spacing={0.5}
               aria-label={intl.formatMessage({ id: 'app.navigation.bar' })}
             >
-              {navigationDestinations.map(({ path, titleId }) => (
-                <Button
-                  key={`nav-button-${titleId}`}
-                  sx={{
-                    color: 'primary.contrastText',
-                    borderRadius: 3,
-                    textTransform: 'none',
-                    textOverflow: 'nowrap',
-                    whiteSpace: 'nowrap',
-                    '&:hover': {
-                      backgroundColor: NAVIGATION_HOVER_GREY,
-                    },
-                  }}
-                  component={RouterLink}
-                  to={path}
-                >
-                  {intl.formatMessage({ id: titleId })}
-                </Button>
-              ))}
+              {navigationDestinations.map(({ path, titleId, privateRoute }) =>
+                !privateRoute || (privateRoute && user) ? (
+                  <Button
+                    key={`nav-button-${titleId}`}
+                    sx={{
+                      color: 'primary.contrastText',
+                      borderRadius: 3,
+                      textTransform: 'none',
+                      textOverflow: 'nowrap',
+                      whiteSpace: 'nowrap',
+                      '&:hover': {
+                        backgroundColor: NAVIGATION_HOVER_GREY,
+                      },
+                    }}
+                    component={RouterLink}
+                    to={path}
+                  >
+                    {intl.formatMessage({ id: titleId })}
+                  </Button>
+                ) : null
+              )}
             </Stack>
             <HeavyDivider orientation="vertical" />
-            <NavigationProfile />
+            {user ? (
+              <NavigationProfile />
+            ) : (
+              <>
+                <ProfileButtons />
+                <NavigationPreference sx={{ ml: 2 }} />
+              </>
+            )}
           </Toolbar>
         </AppBar>
       </ElevationScroll>

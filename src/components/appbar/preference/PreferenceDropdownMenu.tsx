@@ -5,9 +5,9 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import LanguageIcon from '@mui/icons-material/Language';
-import { Divider, Switch } from '@mui/material';
+import { Switch } from '@mui/material';
 
-import DarkModeNeon from 'components/appbar/profile/DarkModeNeon';
+import DarkModeNeon from 'components/appbar/preference/DarkModeNeon';
 import DropdownMenuItem from 'components/common/menu/DropdownMenuItem';
 
 import useAppDispatch from 'hooks/useAppDispatch';
@@ -17,14 +17,11 @@ import { changePrefersDarkMode } from 'states/preference/actions';
 
 import { SUPPORT_PATH } from 'strings/paths';
 
-import profileActions from 'values/appbar/profileActions';
-
 interface Props {
   onSwitchMenu: (nextMenu: string) => void;
 }
 
-const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
-  const user = useAppSelector(state => state.auth.user);
+const PreferenceDropdownMenu = ({ onSwitchMenu }: Props) => {
   const prefersDarkMode = useAppSelector(state => state.preference.prefersDarkMode);
   const dispatch = useAppDispatch();
 
@@ -32,19 +29,6 @@ const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
 
   return (
     <>
-      {profileActions.map(({ nameId, icon: Icon, to, loggedIn, onClick }) =>
-        loggedIn === !!user ? (
-          <DropdownMenuItem
-            key={`action-menu-item-${nameId}`}
-            component={RouterLink}
-            to={to}
-            primary={intl.formatMessage({ id: nameId })}
-            icon={<Icon />}
-            onClick={onClick}
-          />
-        ) : null
-      )}
-      <Divider />
       <DropdownMenuItem
         primary={<DarkModeNeon prefersDarkMode={prefersDarkMode} />}
         icon={<Brightness4Icon />}
@@ -76,4 +60,4 @@ const NavigationDropdownMenu = ({ onSwitchMenu }: Props) => {
   );
 };
 
-export default NavigationDropdownMenu;
+export default PreferenceDropdownMenu;
