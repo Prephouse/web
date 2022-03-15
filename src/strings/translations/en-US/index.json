@@ -73,6 +73,8 @@
   "leaderboard.table.type": "Type",
   "leaderboard.table.username": "Username",
   "leaderboard.title": "Leaderboard",
+  "practice.end.description": "We are currently processing your recording and you will receive feedback shortly.",
+  "practice.end.interview": "Thanks for Submitting!",
   "practice.feedback.playback.seek": "Adjust playback start time",
   "practice.feedback.playback.volume": "Change playback volume",
   "practice.feedback.title": "Review feedback",
