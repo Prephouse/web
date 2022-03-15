@@ -37,10 +37,10 @@ const SignIn = () => {
     navigate(PRACTICE_PATH); // TODO: temporary landing page after signing in
   };
 
-  const onSignInError = (code?: string) => {
+  const onSignInError = (code: string, defaultMessage: string) => {
     setSnackbar({
       severity: 'error',
-      message: intl.formatMessage({ id: `firebase.${code}`, defaultMessage: code ?? '' }),
+      message: intl.formatMessage({ id: `user.${code}`, defaultMessage }),
     });
   };
 

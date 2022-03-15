@@ -28,6 +28,7 @@ import rollbar from 'libs/rollbar';
 
 import { setUser } from 'states/auth/actions';
 
+import { USER_KEY } from 'strings/keys';
 import locales, { DEFAULT_LOCALE, TranslatedStr } from 'strings/locales';
 import {
   ABOUT_PATH,
@@ -85,7 +86,7 @@ const App = () => {
   useEffect(() => {
     const auth = getAuth();
     auth?.onAuthStateChanged(user => {
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem(USER_KEY, JSON.stringify(user));
       dispatch(
         setUser(
           user ? (({ uid, displayName, photoURL }) => ({ uid, displayName, photoURL }))(user) : null

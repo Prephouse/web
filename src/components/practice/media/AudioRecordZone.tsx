@@ -13,7 +13,7 @@ interface Props {
 const AudioRecordZone = ({ onSubmit }: Props) => (
   <PrephouseMediaRecorder
     audio
-    onStop={(bUrl, blob) => {
+    onStop={blob => {
       onSubmit(blob);
     }}
     render={({ status, startRecording, stopRecording, previewAudioStream }) => (

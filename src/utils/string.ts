@@ -49,10 +49,10 @@ export function parseStrictDecInt(str: string) {
 }
 
 /**
- * Converts camel case string to a human readable one
+ * Converts camel case string to a human-readable one
  * @param str the camel case string
  * @return human readable string
- * */
+ */
 export function camelCaseToWords(str: string) {
   const res = str
     .replace(/([a-z\d])([A-Z])/g, '$1 $2')
@@ -61,6 +61,11 @@ export function camelCaseToWords(str: string) {
   return res.charAt(0).toUpperCase() + res.slice(1);
 }
 
+/**
+ * Sanitizes a string for dangerous HTML and then parses the sanitized strings as HTML
+ * @param str the string with embedded HTML code
+ * @return parsed HTML as a JSX element
+ */
 export function parseHtml(str: string | undefined) {
   return str && HTMLReactParser(DOMPurify.sanitize(str, { USE_PROFILES: { html: true } }));
 }

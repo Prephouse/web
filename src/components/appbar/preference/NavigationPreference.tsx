@@ -27,7 +27,7 @@ const NavigationPreference = ({ sx }: Props) => {
   };
 
   return (
-    <nav aria-label={intl.formatMessage({ id: 'app.navigation.dropdown' })}>
+    <nav aria-label={intl.formatMessage({ id: 'app.navigation.preference' })}>
       <IconButton
         sx={{
           borderRadius: 3,
@@ -39,6 +39,7 @@ const NavigationPreference = ({ sx }: Props) => {
         color="inherit"
         onClick={handleOpenMenu}
         aria-haspopup="true"
+        aria-label={intl.formatMessage({ id: 'app.navigation.preference.open' })}
       >
         <SettingsIcon />
       </IconButton>

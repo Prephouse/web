@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { RenderOptions, render } from '@testing-library/react';
 
 import { configureStore } from '@reduxjs/toolkit';
-import { EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
 import { combineReducers } from 'redux';
 
 import practiceReducer from 'states/practice/reducer';

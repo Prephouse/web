@@ -27,7 +27,7 @@ const VideoRecordZone = ({ onSubmit }: Props) => {
     <PrephouseMediaRecorder
       video
       audio
-      onStop={(bUrl, blob) => {
+      onStop={blob => {
         onSubmit(blob);
       }}
       render={({

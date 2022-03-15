@@ -27,7 +27,7 @@ const NavigationProfile = () => {
   };
 
   return (
-    <nav aria-label={intl.formatMessage({ id: 'app.navigation.dropdown' })}>
+    <nav aria-label={intl.formatMessage({ id: 'app.navigation.profile' })}>
       <Button
         sx={{
           borderRadius: 3,
@@ -72,7 +72,7 @@ const NavigationProfile = () => {
         size="large"
         onClick={handleOpenMenu}
         aria-haspopup="true"
-        aria-label={intl.formatMessage({ id: 'app.navigation.dropdown.open' })}
+        aria-label={intl.formatMessage({ id: 'app.navigation.profile.open' })}
       >
         <UserAvatar />
       </IconButton>

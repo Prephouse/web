@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl';
 
-import { SxProps, Theme, Typography } from '@mui/material';
+import { SxProps, Typography } from '@mui/material';
 
 import PlainRouterLink from 'components/common/router/PlainRouterLink';
 
 import { HOME_PATH } from 'strings/paths';
 
 interface Props {
-  sx?: SxProps<Theme>;
+  sx?: SxProps;
 }
 
 const NavigationHeading = ({ sx }: Props) => {

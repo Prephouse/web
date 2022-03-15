@@ -12,38 +12,47 @@ import {
   updateProfile,
 } from 'firebase/auth';
 
+type SuccessCallback = () => void;
+type ErrorCallback = (code: string, defaultMessage: string) => void;
+
 export enum AuthProvider {
   Google = 'google',
   Facebook = 'facebook',
 }
+
+const processFirebaseError = (err: FirebaseError, onError?: ErrorCallback) => {
+  if (!['auth/popup-closed-by-user', 'auth/cancelled-popup-request'].includes(err.code)) {
+    onError?.(err.code, err.message);
+  }
+};
 
 export const registerWithEmailAndPassword = async (
   firstName: string,
   lastName: string,
   email: string,
   password: string,
-  onSuccess?: () => void,
-  onError?: (code?: string) => void
+  onSuccess?: SuccessCallback,
+  onError?: ErrorCallback
 ) => {
   try {
     const auth = getAuth();
     const res = await createUserWithEmailAndPassword(auth, email, password);
 
-    updateProfile(res.user, {
+    await updateProfile(res.user, {
       displayName: `${firstName} ${lastName}`,
     });
 
     onSuccess?.();
   } catch (err) {
-    onError?.((err as FirebaseError).code);
+    processFirebaseError(err as FirebaseError, onError);
   }
 };
 
 export const logInWithEmailAndPassword = async (
   email: string,
   password: string,
-  onSuccess?: () => void,
-  onError?: (code?: string) => void
+  onSuccess?: SuccessCallback,
+  onError?: ErrorCallback
 ) => {
   try {
     const auth = getAuth();
@@ -51,14 +60,14 @@ export const logInWithEmailAndPassword = async (
 
     onSuccess?.();
   } catch (err) {
-    onError?.((err as FirebaseError).code);
+    processFirebaseError(err as FirebaseError, onError);
   }
 };
 
 export const signInWithAuthProvider = async (
   provider: AuthProvider,
-  onSuccess?: () => void,
-  onError?: (code?: string) => void
+  onSuccess?: SuccessCallback,
+  onError?: ErrorCallback
 ) => {
   let authProvider;
 
@@ -80,18 +89,18 @@ export const signInWithAuthProvider = async (
 
     onSuccess?.();
   } catch (err) {
-    onError?.((err as FirebaseError).code);
+    processFirebaseError(err as FirebaseError, onError);
   }
 };
 
-export const logOut = async (onSuccess?: () => void, onError?: (code?: string) => void) => {
+export const logOut = async (onSuccess?: SuccessCallback, onError?: ErrorCallback) => {
   try {
     const auth = getAuth();
     await signOut(auth);
 
     onSuccess?.();
   } catch (err) {
-    onError?.((err as FirebaseError).code);
+    processFirebaseError(err as FirebaseError, onError);
   }
 };
 

@@ -29,7 +29,7 @@ interface HookProps {
   onStart?: () => void;
   onResume?: () => void;
   onPause?: () => void;
-  onStop?: (bUrl: string, blob: Blob) => void;
+  onStop?: (blob: Blob) => void;
 }
 
 interface Props extends HookProps {
@@ -86,16 +86,13 @@ function useMediaRecorder({
   };
 
   const onRecordingStop = () => {
-    const blobProperty: BlobPropertyBag = {
+    const blob = new Blob(mediaChunks.current, {
       ...(video ? { type: 'video/mp4' } : { type: 'audio/wav' }),
-    };
-
-    const blob = new Blob(mediaChunks.current, blobProperty);
-    const url = URL.createObjectURL(blob);
+    });
 
     setStatus(MediaRecordingStatus.Stopped);
 
-    onStop?.(url, blob);
+    onStop?.(blob);
   };
 
   const startRecording = async () => {
