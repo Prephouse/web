@@ -33,6 +33,7 @@ export const baseQuery =
         headers: {
           authorization: `Bearer ${idToken}`,
         },
+        withCredentials: true,
         method,
         url,
       };
