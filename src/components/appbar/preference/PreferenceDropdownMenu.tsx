@@ -2,9 +2,7 @@ import { useIntl } from 'react-intl';
 import { Link as RouterLink } from 'react-router-dom';
 
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
-import LanguageIcon from '@mui/icons-material/Language';
 import { Switch } from '@mui/material';
 
 import DarkModeNeon from 'components/appbar/preference/DarkModeNeon';
@@ -21,6 +19,7 @@ interface Props {
   onSwitchMenu: (nextMenu: string) => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const PreferenceDropdownMenu = ({ onSwitchMenu }: Props) => {
   const prefersDarkMode = useAppSelector(state => state.preference.prefersDarkMode);
   const dispatch = useAppDispatch();
@@ -41,13 +40,6 @@ const PreferenceDropdownMenu = ({ onSwitchMenu }: Props) => {
             role: 'switch',
           }}
         />
-      </DropdownMenuItem>
-      <DropdownMenuItem
-        primary={intl.formatMessage({ id: 'app.preference.language' })}
-        icon={<LanguageIcon />}
-        onClick={() => onSwitchMenu('language')}
-      >
-        <ChevronRightIcon />
       </DropdownMenuItem>
       <DropdownMenuItem
         button
