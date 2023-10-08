@@ -94,7 +94,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.5",
-    "postcss": "^8.4.8",
+    "postcss": "^8.4.31",
     "postcss-syntax": "^0.36.2",
     "prettier": "^2.5.1",
     "react-scripts": "^5.0.0",
